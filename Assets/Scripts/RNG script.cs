@@ -15,10 +15,12 @@ public class RNGscript : MonoBehaviour
     public List<OreClass> playerHand = new List<OreClass>();
     public int cardLimit = 1;
 
-    public float Currency = 0;
     public float timer = 0;
     public int StartTimer;
     public int RollStatus;
+    public int RollSkips = 4;
+    public float RollSpeed = 0.5f;
+    public int RollAmount = 1;
 
     public Button RollButton;
     public Text RollingText;
@@ -209,23 +211,23 @@ public class RNGscript : MonoBehaviour
         {
             timer = 0;
         }
-        if (RollStatus == 4)
+        if (RollStatus == RollSkips)
         {
             StartTimer = 0;
             timer = 0;
             RollStatus = 0;
             RollButton.enabled = true;
-            RollingText.enabled = false;
+            RollingText.text = "You rolled ";
             RarityEffectSprite.color = new Color(RarityEffectSprite.color.r, RarityEffectSprite.color.g, RarityEffectSprite.color.b, 0.5f);
             RarityEffectSprite2.color = new Color(RarityEffectSprite.color.r, RarityEffectSprite.color.g, RarityEffectSprite.color.b, 0.3f);
 
             for (int i = 0; i < playerHand.Count; i++)
             {
-                Currency = Currency + playerHand[i].OrePrice;
+                StaticVariables.cash = StaticVariables.cash + playerHand[i].OrePrice;
             }
-            CurrentMoney.text = Currency + "$";
+            CurrentMoney.text = StaticVariables.cash + "$";
         }
-        if (timer > 0.5f)
+        if (timer > RollSpeed)
         {
             timer = 0;
             RollForHand();
@@ -244,5 +246,6 @@ public class RNGscript : MonoBehaviour
         RollingText.enabled = true;
         RarityEffectSprite.color = new Color(RarityEffectSprite.color.r, RarityEffectSprite.color.g, RarityEffectSprite.color.b, 0);
         RarityEffectSprite2.color = new Color(RarityEffectSprite.color.r, RarityEffectSprite.color.g, RarityEffectSprite.color.b, 0);
+        RollingText.text = "Rolling...";
     }
 }
