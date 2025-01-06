@@ -23,6 +23,7 @@ public class OreClass
 public class ShopItems
 {
     public string ItemName;
+    public string description;
     public float Price;
     public Sprite ItemImage;
 }

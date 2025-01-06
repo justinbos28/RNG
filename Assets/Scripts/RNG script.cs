@@ -12,15 +12,18 @@ public class RNGscript : MonoBehaviour
     public List<OreClass> level3Ore = new List<OreClass>();
     public List<OreClass> level4Ore = new List<OreClass>();
     public List<OreClass> level5Ore = new List<OreClass>();
+    public List<OreClass> level6Ore = new List<OreClass>();
+    public List<OreClass> level7Ore = new List<OreClass>();
+    public List<OreClass> level8Ore = new List<OreClass>();
     public List<OreClass> playerHand = new List<OreClass>();
     public int cardLimit = 1;
 
     public float timer = 0;
+    public float RollSpeed = 0.5f;
     public int StartTimer;
     public int RollStatus;
     public int RollSkips = 4;
-    public float RollSpeed = 0.5f;
-    public int RollAmount = 1;
+    public int AutoTimer = 1;   
 
     public Button RollButton;
     public Text RollingText;
@@ -41,9 +44,10 @@ public class RNGscript : MonoBehaviour
     public static bool CalulateRNGPercent(float percent)
     {
         float temp;
-        temp = Random.Range(0, 100);
+        temp = Random.Range(0f, 100f);
         if (temp > 0 && temp < percent)
         {
+            //print(temp);
             return true;
         }
         else
@@ -92,6 +96,27 @@ public class RNGscript : MonoBehaviour
                 card.rarityEffectColor = Color.yellow;
                 level5Ore.Add(card);
             }
+            else if (card.rarity == 6)
+            {
+                card.rarityTitle = "Mythical";
+                card.chance = 100;
+                card.rarityEffectColor = Color.blue;
+                level6Ore.Add(card);
+            }
+            else if (card.rarity == 7)
+            {
+                card.rarityTitle = "Godly";
+                card.chance = 1000;
+                card.rarityEffectColor = Color.red;
+                level7Ore.Add(card);
+            }
+            else if (card.rarity == 8)
+            {
+                card.rarityTitle = "Divine";
+                card.chance = 10000;
+                card.rarityEffectColor = Color.black;
+                level8Ore.Add(card);
+            }
         }
     }
 
@@ -102,11 +127,47 @@ public class RNGscript : MonoBehaviour
         List<int> hand = new List<int>();
         for (int i = 0; i < cardLimit; i++)
         {
+            bool cardRarityChance8 = CalulateRNGPercent(0.01f);
+            bool cardRarityChance7 = CalulateRNGPercent(0.1f);
+            bool cardRarityChance6 = CalulateRNGPercent(1);
             bool cardRarityChance5 = CalulateRNGPercent(10);
             bool cardRarityChance4 = CalulateRNGPercent(17);
             bool cardRarityChance3 = CalulateRNGPercent(25);
             bool cardRarityChance2 = CalulateRNGPercent(50);
-            if (cardRarityChance5)
+            if (cardRarityChance8)
+            {
+                if (level8Ore.Count == 1)
+                {
+                    hand.Add(level8Ore[0].OreID);
+                }
+                else
+                {
+                    hand.Add(level8Ore[Random.Range(1, level8Ore.Count)].OreID);
+                }
+            }
+            else if (cardRarityChance7)
+            {
+                if (level7Ore.Count == 1)
+                {
+                    hand.Add(level7Ore[0].OreID);
+                }
+                else
+                {
+                    hand.Add(level7Ore[Random.Range(1, level7Ore.Count)].OreID);
+                }
+            }
+            else if (cardRarityChance6)
+            {
+                if (level6Ore.Count == 1)
+                {
+                    hand.Add(level6Ore[0].OreID);
+                }
+                else
+                {
+                    hand.Add(level6Ore[Random.Range(1, level6Ore.Count)].OreID);
+                }
+            }
+            else if (cardRarityChance5)
             {
                 if (level5Ore.Count == 1)
                 {
@@ -202,8 +263,7 @@ public class RNGscript : MonoBehaviour
 
     public void Update()
     {
-        if (StartTimer == 1)
-
+        if (StartTimer == AutoTimer)
         {
             timer = timer + Time.deltaTime;
         }
@@ -234,6 +294,7 @@ public class RNGscript : MonoBehaviour
             RollStatus += 1;
             RarityEffectSprite.color = new Color(RarityEffectSprite.color.r, RarityEffectSprite.color.g, RarityEffectSprite.color.b, 0);
             RarityEffectSprite2.color = new Color(RarityEffectSprite.color.r, RarityEffectSprite.color.g, RarityEffectSprite.color.b, 0);
+            RollingText.text = "Rolling...";
         }
     }
 

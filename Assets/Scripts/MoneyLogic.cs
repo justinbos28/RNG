@@ -2,18 +2,24 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class NewBehaviourScript : MonoBehaviour
+public class MoneyLogic : MonoBehaviour
 {
-
-    // Start is called before the first frame update
-    void Start()
+    public RNGscript RNGscript;
+    public void BuyRollspeed()
     {
-        
+        if (StaticVariables.cash > 25 || StaticVariables.cash == 25)
+        {
+            StaticVariables.cash -= 25;
+            RNGscript.RollSpeed = 0.4f;
+        }
     }
 
-    // Update is called once per frame
-    void Update()
+    public void BuyAutoRoll()
     {
-        
+        if (StaticVariables.cash > 5 || StaticVariables.cash == 5)
+        {
+            StaticVariables.cash -= 5;
+            RNGscript.AutoTimer = 0;
+        }
     }
 }
