@@ -23,13 +23,35 @@ public class RNGscript : MonoBehaviour
     public int StartTimer;
     public int RollStatus;
     public int RollSkips = 4;
-    public int AutoTimer = 1;   
+    public int AutoTimer = 1;  
 
     public Button RollButton;
     public Text RollingText;
     public Text CurrentMoney;
+    public GameObject RollButton1;
+    public GameObject RollButton2;
+    public GameObject RollButton3;
+    public GameObject RollButton4;
+    public GameObject RollButton5;
+    public GameObject RollButton6;
+    public GameObject RarityEffectObject;
+    public GameObject RarityEffectObject2;
+    public GameObject RarityEffectObject3;
+    public GameObject RarityEffectObject4;
+    public GameObject RarityEffectObject5;
+    public GameObject RarityEffectObject6;
     public SpriteRenderer RarityEffectSprite;
     public SpriteRenderer RarityEffectSprite2;
+    public SpriteRenderer RarityEffectSprite3;
+    public SpriteRenderer RarityEffectSprite4;
+    public SpriteRenderer RarityEffectSprite5;
+    public SpriteRenderer RarityEffectSprite6;
+    public SpriteRenderer RarityEffectSprite7;
+    public SpriteRenderer RarityEffectSprite8;
+    public SpriteRenderer RarityEffectSprite9;
+    public SpriteRenderer RarityEffectSprite10;
+    public SpriteRenderer RarityEffectSprite11;
+    public SpriteRenderer RarityEffectSprite12;
 
     // Displays the cards
     public List<Text> titles = new List<Text>();
@@ -64,21 +86,18 @@ public class RNGscript : MonoBehaviour
             if (card.rarity == 1)
             {
                 card.rarityTitle = "Common";
-                card.chance = 1;
                 card.rarityEffectColor = Color.white;
                 level1Ore.Add(card);
             }
             else if (card.rarity == 2)
             {
                 card.rarityTitle = "Uncommon";
-                card.chance = 2;
                 card.rarityEffectColor = Color.green;
                 level2Ore.Add(card);
             }
             else if (card.rarity == 3)
             {
                 card.rarityTitle = "Rare";
-                card.chance = 4;
                 card.rarityEffectColor = Color.cyan;
                 level3Ore.Add(card);
             }
@@ -86,34 +105,29 @@ public class RNGscript : MonoBehaviour
             {
                 card.rarityTitle = "Epic";
                 card.rarityEffectColor = Color.magenta;
-                card.chance = 6;
                 level4Ore.Add(card);
             }
             else if (card.rarity == 5)
             {
                 card.rarityTitle = "Legendary";
-                card.chance = 10;
                 card.rarityEffectColor = Color.yellow;
                 level5Ore.Add(card);
             }
             else if (card.rarity == 6)
             {
                 card.rarityTitle = "Mythical";
-                card.chance = 100;
-                card.rarityEffectColor = Color.blue;
+                card.rarityEffectColor = new Vector4(1f, 0.5f, 0f);
                 level6Ore.Add(card);
             }
             else if (card.rarity == 7)
             {
                 card.rarityTitle = "Godly";
-                card.chance = 1000;
                 card.rarityEffectColor = Color.red;
                 level7Ore.Add(card);
             }
             else if (card.rarity == 8)
             {
                 card.rarityTitle = "Divine";
-                card.chance = 10000;
                 card.rarityEffectColor = Color.black;
                 level8Ore.Add(card);
             }
@@ -280,13 +294,29 @@ public class RNGscript : MonoBehaviour
             RollingText.text = "You rolled ";
             RarityEffectSprite.color = new Color(RarityEffectSprite.color.r, RarityEffectSprite.color.g, RarityEffectSprite.color.b, 0.5f);
             RarityEffectSprite2.color = new Color(RarityEffectSprite.color.r, RarityEffectSprite.color.g, RarityEffectSprite.color.b, 0.3f);
+            RarityEffectSprite3.color = new Color(RarityEffectSprite3.color.r, RarityEffectSprite3.color.g, RarityEffectSprite3.color.b, 0.5f);
+            RarityEffectSprite4.color = new Color(RarityEffectSprite3.color.r, RarityEffectSprite3.color.g, RarityEffectSprite3.color.b, 0.3f);
+            RarityEffectSprite5.color = new Color(RarityEffectSprite5.color.r, RarityEffectSprite5.color.g, RarityEffectSprite5.color.b, 0.5f);
+            RarityEffectSprite6.color = new Color(RarityEffectSprite5.color.r, RarityEffectSprite5.color.g, RarityEffectSprite5.color.b, 0.3f);
+            RarityEffectSprite7.color = new Color(RarityEffectSprite7.color.r, RarityEffectSprite7.color.g, RarityEffectSprite7.color.b, 0.5f);
+            RarityEffectSprite8.color = new Color(RarityEffectSprite7.color.r, RarityEffectSprite7.color.g, RarityEffectSprite7.color.b, 0.3f);
+            RarityEffectSprite9.color = new Color(RarityEffectSprite9.color.r, RarityEffectSprite9.color.g, RarityEffectSprite9.color.b, 0.5f);
+            RarityEffectSprite10.color = new Color(RarityEffectSprite9.color.r, RarityEffectSprite9.color.g, RarityEffectSprite9.color.b, 0.3f);
+            RarityEffectSprite11.color = new Color(RarityEffectSprite11.color.r, RarityEffectSprite11.color.g, RarityEffectSprite11.color.b, 0.5f);
+            RarityEffectSprite12.color = new Color(RarityEffectSprite11.color.r, RarityEffectSprite11.color.g, RarityEffectSprite11.color.b, 0.3f);
 
             for (int i = 0; i < playerHand.Count; i++)
             {
                 StaticVariables.cash = StaticVariables.cash + playerHand[i].OrePrice;
+                if (playerHand[i].OreID >= 6)
+                {
+                    AutoTimer = 1;
+                }
             }
             CurrentMoney.text = StaticVariables.cash + "$";
+            
         }
+
         if (timer > RollSpeed)
         {
             timer = 0;
@@ -294,7 +324,80 @@ public class RNGscript : MonoBehaviour
             RollStatus += 1;
             RarityEffectSprite.color = new Color(RarityEffectSprite.color.r, RarityEffectSprite.color.g, RarityEffectSprite.color.b, 0);
             RarityEffectSprite2.color = new Color(RarityEffectSprite.color.r, RarityEffectSprite.color.g, RarityEffectSprite.color.b, 0);
+            RarityEffectSprite3.color = new Color(RarityEffectSprite3.color.r, RarityEffectSprite3.color.g, RarityEffectSprite3.color.b, 0);
+            RarityEffectSprite4.color = new Color(RarityEffectSprite3.color.r, RarityEffectSprite3.color.g, RarityEffectSprite3.color.b, 0);
+            RarityEffectSprite5.color = new Color(RarityEffectSprite5.color.r, RarityEffectSprite5.color.g, RarityEffectSprite5.color.b, 0);
+            RarityEffectSprite6.color = new Color(RarityEffectSprite5.color.r, RarityEffectSprite5.color.g, RarityEffectSprite5.color.b, 0);
+            RarityEffectSprite7.color = new Color(RarityEffectSprite7.color.r, RarityEffectSprite7.color.g, RarityEffectSprite7.color.b, 0);
+            RarityEffectSprite8.color = new Color(RarityEffectSprite7.color.r, RarityEffectSprite7.color.g, RarityEffectSprite7.color.b, 0);
+            RarityEffectSprite9.color = new Color(RarityEffectSprite9.color.r, RarityEffectSprite9.color.g, RarityEffectSprite9.color.b, 0);
+            RarityEffectSprite10.color = new Color(RarityEffectSprite9.color.r, RarityEffectSprite9.color.g, RarityEffectSprite9.color.b, 0);
+            RarityEffectSprite11.color = new Color(RarityEffectSprite11.color.r, RarityEffectSprite11.color.g, RarityEffectSprite11.color.b, 0);
+            RarityEffectSprite12.color = new Color(RarityEffectSprite11.color.r, RarityEffectSprite11.color.g, RarityEffectSprite11.color.b, 0);
+
             RollingText.text = "Rolling...";
+        }
+
+        if (cardLimit == 6)
+        {
+            RollButton6.SetActive(true);
+            RarityEffectSprite11.enabled = true;
+            RarityEffectSprite12.enabled = true;
+            RollButton6.transform.position = new Vector3(0, -1.5f , 0);
+            RollButton1.transform.position = new Vector3(0, 1.5f, 0);
+            RarityEffectObject.transform.position = RollButton1.transform.position;
+            RarityEffectObject6.transform.position = RollButton6.transform.position;
+        }
+        else if (cardLimit == 5)
+        {
+            RollButton5.SetActive(true);
+            RarityEffectSprite9.enabled = true;
+            RarityEffectSprite10.enabled = true;
+            RollButton1.transform.position = new Vector3(0, 0, 0);
+            RollButton2.transform.position = new Vector3(5, 1.5f, 0);
+            RollButton3.transform.position = new Vector3(-5, 1.5f, 0);
+            RollButton4.transform.position = new Vector3(-5, -1.5f, 0);
+            RollButton5.transform.position = new Vector3(5, -1.5f, 0);
+            RarityEffectObject.transform.position = RollButton1.transform.position;
+            RarityEffectObject2.transform.position = RollButton2.transform.position;
+            RarityEffectObject3.transform.position = RollButton3.transform.position;
+            RarityEffectObject4.transform.position = RollButton4.transform.position;
+            RarityEffectObject5.transform.position = RollButton5.transform.position;
+        }
+        else if (cardLimit == 4)
+        {
+            RollButton4.SetActive(true);
+            RarityEffectSprite7.enabled = true;
+            RarityEffectSprite8.enabled = true;
+            RollButton2.transform.position = new Vector3(3, 1.5f, 0);
+            RollButton1.transform.position = new Vector3(3, -1.5f, 0);
+            RollButton3.transform.position = new Vector3(-3, 1.5f, 0);
+            RollButton4.transform.position = new Vector3(-3, -1.5f, 0);
+            RarityEffectObject.transform.position = RollButton1.transform.position;
+            RarityEffectObject2.transform.position = RollButton2.transform.position;
+            RarityEffectObject3.transform.position = RollButton3.transform.position;
+            RarityEffectObject4.transform.position = RollButton4.transform.position;
+        }
+        else if (cardLimit == 3)
+        {
+            RollButton3.SetActive(true);
+            RarityEffectSprite5.enabled = true;
+            RarityEffectSprite6.enabled = true;
+            RollButton2.transform.position = new Vector3(5, 0, 0);
+            RollButton1.transform.position = Vector3.zero;
+            RollButton3.transform.position = new Vector3(-5, 0, 0);
+            RarityEffectObject.transform.position = RollButton1.transform.position;
+            RarityEffectObject2.transform.position = RollButton2.transform.position;
+        }
+        else if (cardLimit == 2)
+        {
+            RollButton2.SetActive(true);
+            RarityEffectSprite3.enabled = true;
+            RarityEffectSprite4.enabled = true;
+            RollButton1.transform.position = new Vector3(-3, 0, 0);
+            RollButton2.transform.position = new Vector3(3, 0, 0);
+            RarityEffectObject.transform.position = RollButton1.transform.position;
+            RarityEffectObject2.transform.position = RollButton2.transform.position;
         }
     }
 
@@ -307,6 +410,17 @@ public class RNGscript : MonoBehaviour
         RollingText.enabled = true;
         RarityEffectSprite.color = new Color(RarityEffectSprite.color.r, RarityEffectSprite.color.g, RarityEffectSprite.color.b, 0);
         RarityEffectSprite2.color = new Color(RarityEffectSprite.color.r, RarityEffectSprite.color.g, RarityEffectSprite.color.b, 0);
+        RarityEffectSprite3.color = new Color(RarityEffectSprite3.color.r, RarityEffectSprite3.color.g, RarityEffectSprite3.color.b, 0);
+        RarityEffectSprite4.color = new Color(RarityEffectSprite3.color.r, RarityEffectSprite3.color.g, RarityEffectSprite3.color.b, 0);
+        RarityEffectSprite5.color = new Color(RarityEffectSprite5.color.r, RarityEffectSprite5.color.g, RarityEffectSprite5.color.b, 0);
+        RarityEffectSprite6.color = new Color(RarityEffectSprite5.color.r, RarityEffectSprite5.color.g, RarityEffectSprite5.color.b, 0);
+        RarityEffectSprite7.color = new Color(RarityEffectSprite7.color.r, RarityEffectSprite7.color.g, RarityEffectSprite7.color.b, 0);
+        RarityEffectSprite8.color = new Color(RarityEffectSprite7.color.r, RarityEffectSprite7.color.g, RarityEffectSprite7.color.b, 0);
+        RarityEffectSprite9.color = new Color(RarityEffectSprite9.color.r, RarityEffectSprite9.color.g, RarityEffectSprite9.color.b, 0);
+        RarityEffectSprite10.color = new Color(RarityEffectSprite9.color.r, RarityEffectSprite9.color.g, RarityEffectSprite9.color.b, 0);
+        RarityEffectSprite11.color = new Color(RarityEffectSprite11.color.r, RarityEffectSprite11.color.g, RarityEffectSprite11.color.b, 0);
+        RarityEffectSprite12.color = new Color(RarityEffectSprite11.color.r, RarityEffectSprite11.color.g, RarityEffectSprite11.color.b, 0);
+
         RollingText.text = "Rolling...";
     }
 }
