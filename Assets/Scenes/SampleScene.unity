@@ -868,7 +868,7 @@ GameObject:
   - component: {fileID: 221748839}
   - component: {fileID: 221748838}
   m_Layer: 5
-  m_Name: Coins
+  m_Name: Money
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1922,7 +1922,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1546723948}
         m_TargetAssemblyTypeName: MoneyLogic, Assembly-CSharp
-        m_MethodName: RollAmountTest
+        m_MethodName: GiveMoneyTest
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2880,7 +2880,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Click Me
+  m_Text: Roll to see ore
 --- !u!222 &853428032
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -2959,7 +2959,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Click Me
+  m_Text: Roll to see ore
 --- !u!222 &901312449
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -3796,7 +3796,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Click Me
+  m_Text: Roll to see ore
 --- !u!222 &1081063576
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -5095,7 +5095,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Click Me
+  m_Text: Roll to see ore
 --- !u!222 &1449909702
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -5294,7 +5294,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 50.00$
+  m_Text: 25.00$
 --- !u!222 &1493709928
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -5978,7 +5978,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 717b60b09bafedb479c9907220e5a69f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  BoughtRollSpeed1: 0
+  BoughtRollSpeed2: 0
+  BoughtRollSpeed3: 0
+  BoughtRollSpeed4: 0
+  BoughtRollSpeed5: 0
+  BoughtRollSpeed6: 0
   RNGscript: {fileID: 1546723946}
+  RollSpeedText: {fileID: 1493709927}
+  CurrentMoney: {fileID: 221748838}
 --- !u!114 &1546723949
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6672,7 +6680,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Click Me
+  m_Text: Roll to see ore
 --- !u!222 &1758412351
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -6957,7 +6965,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 
+  m_Text: Roll to see ore
 --- !u!222 &1949802236
 CanvasRenderer:
   m_ObjectHideFlags: 0
