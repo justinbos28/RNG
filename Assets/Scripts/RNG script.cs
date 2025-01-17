@@ -25,6 +25,8 @@ public class RNGscript : MonoBehaviour
     public float timer = 0;
     public float timer2 = 0;
     public float RollSpeed = 0.5f;
+    public float LuckPercentage = 1;
+    public float LuckMultiplier = 1;
     public int StartTimer;
     public int RollStatus;
     public int RollSkips = 4;
@@ -173,17 +175,17 @@ public class RNGscript : MonoBehaviour
         List<int> hand = new List<int>();
         for (int i = 0; i < cardLimit; i++)
         {
-            bool cardRarityChance12 = CalulateRNGPercent(0.1f);
-            bool cardRarityChance11 = CalulateRNGPercent(0.13f);
-            bool cardRarityChance10 = CalulateRNGPercent(0.25f);
-            bool cardRarityChance9 = CalulateRNGPercent(0.4f);
-            bool cardRarityChance8 = CalulateRNGPercent(0.625f);
-            bool cardRarityChance7 = CalulateRNGPercent(0.8f);
-            bool cardRarityChance6 = CalulateRNGPercent(1);
-            bool cardRarityChance5 = CalulateRNGPercent(10);
-            bool cardRarityChance4 = CalulateRNGPercent(17);
-            bool cardRarityChance3 = CalulateRNGPercent(25);
-            bool cardRarityChance2 = CalulateRNGPercent(50);
+            bool cardRarityChance12 = CalulateRNGPercent(0.1f * LuckPercentage * LuckMultiplier);
+            bool cardRarityChance11 = CalulateRNGPercent(0.13f * LuckPercentage * LuckMultiplier);
+            bool cardRarityChance10 = CalulateRNGPercent(0.25f * LuckPercentage * LuckMultiplier);
+            bool cardRarityChance9 = CalulateRNGPercent(0.4f * LuckPercentage * LuckMultiplier);
+            bool cardRarityChance8 = CalulateRNGPercent(0.625f * LuckPercentage * LuckMultiplier);
+            bool cardRarityChance7 = CalulateRNGPercent(0.8f * LuckPercentage * LuckMultiplier);
+            bool cardRarityChance6 = CalulateRNGPercent(1 * LuckPercentage * LuckMultiplier);
+            bool cardRarityChance5 = CalulateRNGPercent(10 / LuckPercentage / LuckMultiplier);
+            bool cardRarityChance4 = CalulateRNGPercent(17 / LuckPercentage / LuckMultiplier);
+            bool cardRarityChance3 = CalulateRNGPercent(25 / LuckPercentage / LuckMultiplier);
+            bool cardRarityChance2 = CalulateRNGPercent(50 / LuckPercentage / LuckMultiplier);
             if (cardRarityChance12)
             {
                 if (level12Ore.Count == 1)
@@ -309,13 +311,28 @@ public class RNGscript : MonoBehaviour
             }
             else
             {
-                if (level1Ore.Count == 1)
+                if (1 * LuckPercentage * LuckPercentage >= 2)
                 {
-                    hand.Add(level1Ore[0].OreID);
+                    // fix this bc i want it to basically roll again
+                    if (level3Ore.Count == 1)
+                    {
+                        hand.Add(level3Ore[0].OreID);
+                    }
+                    else
+                    {
+                        hand.Add(level3Ore[Random.Range(1, level3Ore.Count)].OreID);
+                    }
                 }
                 else
                 {
-                    hand.Add(level1Ore[Random.Range(1, level1Ore.Count)].OreID);
+                    if (level1Ore.Count == 1)
+                    {
+                        hand.Add(level1Ore[0].OreID);
+                    }
+                    else
+                    {
+                        hand.Add(level1Ore[Random.Range(1, level1Ore.Count)].OreID);
+                    }
                 }
             }
         }
@@ -418,9 +435,9 @@ public class RNGscript : MonoBehaviour
                 StaticVariables.cash = StaticVariables.cash + playerHand[i].OrePrice;
                 if (playerHand[i].OreID >= 6)
                 {
-                    AutoTimer = 1;
-                    RollButton.SetActive(true);
-                    MoneyLogic.AutoRoll = false;
+                    //AutoTimer = 1;
+                    //RollButton.SetActive(true);
+                    //MoneyLogic.AutoRoll = false;
                 }
             }
             CurrentMoney.text = StaticVariables.cash + "$";

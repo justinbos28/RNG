@@ -10,6 +10,8 @@ public class MoneyLogic : MonoBehaviour
     public int BoughtRollSpeed;
     public int BoughtRollAmount;
     public int BoughtRollSkips;
+    public int BoughtLuckPercentage;
+    public int BoughtLuckMultiplier;
     public bool AutoRoll;
 
     public Text RollSpeedText;
@@ -17,8 +19,11 @@ public class MoneyLogic : MonoBehaviour
     public Text RollAmountText;
     public Text RollSkipsText;
     public Text AutoRollText;
+    public Text LuckPercentageText;
+    public Text LuckMultiplierText;
     public RNGscript RNGscript;
     public GameObject AutoRollButton;
+    public Image AutoRollButtonColor;
     public void BuyRollspeed()
     {
         if (StaticVariables.cash >= 25 && BoughtRollSpeed == 0)
@@ -96,6 +101,7 @@ public class MoneyLogic : MonoBehaviour
             AutoRoll = true;
             AutoRollButton.SetActive(true);
             RNGscript.RollButton.SetActive(false);
+            AutoRollButtonColor.color = Color.green;
             AutoRollText.text = "Purchased";
         }
     }
@@ -106,12 +112,14 @@ public class MoneyLogic : MonoBehaviour
             RNGscript.AutoTimer = 0;
             RNGscript.RollButton.SetActive(false);
             AutoRoll = true;
+            AutoRollButtonColor.color = Color.green;
         }
         else if (AutoRoll ==  true)
         {
             RNGscript.AutoTimer = 1;
             RNGscript.RollButton.SetActive(true);
             AutoRoll = false;
+            AutoRollButtonColor.color = Color.red;
         }
     }
     public void BuyRollAmount()
@@ -182,6 +190,39 @@ public class MoneyLogic : MonoBehaviour
             BoughtRollSkips = 3;
             RollSkipsText.text = "Purchased";
             CurrentMoney.text = StaticVariables.cash + "$";
+        }
+    }
+    public void BuyLuckPercentage()
+    {
+        if (StaticVariables.cash >= 100 && BoughtLuckPercentage == 0)
+        {
+            StaticVariables.cash -= 100;
+            RNGscript.LuckPercentage = 1.1f; // 10%
+            BoughtLuckPercentage = 1;
+            LuckPercentageText.text = "500";
+        }
+        else if (StaticVariables.cash >= 500 && BoughtLuckPercentage == 1)
+        {
+            StaticVariables.cash -= 500;
+            RNGscript.LuckPercentage = 2f;
+            BoughtLuckPercentage = 2;
+            LuckPercentageText.text = "1500";
+        }
+        else if (StaticVariables.cash >= 1500 && BoughtLuckPercentage >= 2)
+        {
+            StaticVariables.cash -= 1500;
+            RNGscript.LuckPercentage = 3f;
+            BoughtLuckPercentage = 3;
+            LuckPercentageText.text = "end test";
+        }
+    }
+    public void BuyLuckMulitplier()
+    {
+        if (StaticVariables.cash >= 10000 && BoughtLuckMultiplier == 0)
+        {
+            StaticVariables.cash -= 10000;
+            RNGscript.LuckMultiplier = 2f; // 2x luck added on top of the percentage
+            LuckMultiplierText.text = "Purchased";
         }
     }
     public void GiveMoneyTest()
