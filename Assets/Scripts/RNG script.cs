@@ -29,7 +29,7 @@ public class RNGscript : MonoBehaviour
     public float LuckMultiplier = 1;
     public int StartTimer;
     public int RollStatus;
-    public int RollSkips = 4;
+    public int RollSkips = 5;
     public int AutoTimer = 1;
     public bool Timer2Active = false;
     public bool AutoRollTimer = false;
@@ -446,8 +446,8 @@ public class RNGscript : MonoBehaviour
             RollButton6.SetActive(true);
             RarityEffectSprite11.enabled = true;
             RarityEffectSprite12.enabled = true;
-            RollButton6.transform.position = new Vector3(0, -1.5f , 0);
-            RollButton1.transform.position = new Vector3(0, 1.5f, 0);
+            RollButton6.transform.position = new Vector3(0, -1.5f , 100);
+            RollButton1.transform.position = new Vector3(0, 1.5f, 100);
             RarityEffectObject.transform.position = RollButton1.transform.position;
             RarityEffectObject6.transform.position = RollButton6.transform.position;
         }
@@ -456,11 +456,11 @@ public class RNGscript : MonoBehaviour
             RollButton5.SetActive(true);
             RarityEffectSprite9.enabled = true;
             RarityEffectSprite10.enabled = true;
-            RollButton1.transform.position = new Vector3(0, 0, 0);
-            RollButton2.transform.position = new Vector3(5, 1.5f, 0);
-            RollButton3.transform.position = new Vector3(-5, 1.5f, 0);
-            RollButton4.transform.position = new Vector3(-5, -1.5f, 0);
-            RollButton5.transform.position = new Vector3(5, -1.5f, 0);
+            RollButton1.transform.position = new Vector3(0, 0, 100);
+            RollButton2.transform.position = new Vector3(5, 1.5f, 100);
+            RollButton3.transform.position = new Vector3(-5, 1.5f, 100);
+            RollButton4.transform.position = new Vector3(-5, -1.5f, 100);
+            RollButton5.transform.position = new Vector3(5, -1.5f, 100);
             RarityEffectObject.transform.position = RollButton1.transform.position;
             RarityEffectObject2.transform.position = RollButton2.transform.position;
             RarityEffectObject3.transform.position = RollButton3.transform.position;
@@ -472,10 +472,10 @@ public class RNGscript : MonoBehaviour
             RollButton4.SetActive(true);
             RarityEffectSprite7.enabled = true;
             RarityEffectSprite8.enabled = true;
-            RollButton2.transform.position = new Vector3(3, 1.5f, 0);
-            RollButton1.transform.position = new Vector3(3, -1.5f, 0);
-            RollButton3.transform.position = new Vector3(-3, 1.5f, 0);
-            RollButton4.transform.position = new Vector3(-3, -1.5f, 0);
+            RollButton2.transform.position = new Vector3(3, 1.5f, 100);
+            RollButton1.transform.position = new Vector3(3, -1.5f, 100);
+            RollButton3.transform.position = new Vector3(-3, 1.5f, 100);
+            RollButton4.transform.position = new Vector3(-3, -1.5f, 100);
             RarityEffectObject.transform.position = RollButton1.transform.position;
             RarityEffectObject2.transform.position = RollButton2.transform.position;
             RarityEffectObject3.transform.position = RollButton3.transform.position;
@@ -486,9 +486,9 @@ public class RNGscript : MonoBehaviour
             RollButton3.SetActive(true);
             RarityEffectSprite5.enabled = true;
             RarityEffectSprite6.enabled = true;
-            RollButton2.transform.position = new Vector3(5, 0, 0);
-            RollButton1.transform.position = Vector3.zero;
-            RollButton3.transform.position = new Vector3(-5, 0, 0);
+            RollButton2.transform.position = new Vector3(5, 0, 100);
+            RollButton1.transform.position = new Vector3(0, 0, 100);
+            RollButton3.transform.position = new Vector3(-5, 0, 100);
             RarityEffectObject.transform.position = RollButton1.transform.position;
             RarityEffectObject2.transform.position = RollButton2.transform.position;
         }
@@ -497,8 +497,8 @@ public class RNGscript : MonoBehaviour
             RollButton2.SetActive(true);
             RarityEffectSprite3.enabled = true;
             RarityEffectSprite4.enabled = true;
-            RollButton1.transform.position = new Vector3(-3, 0, 0);
-            RollButton2.transform.position = new Vector3(3, 0, 0);
+            RollButton1.transform.position = new Vector3(-3, 0, 100);
+            RollButton2.transform.position = new Vector3(3, 0, 100);
             RarityEffectObject.transform.position = RollButton1.transform.position;
             RarityEffectObject2.transform.position = RollButton2.transform.position;
         }
@@ -508,7 +508,7 @@ public class RNGscript : MonoBehaviour
     {
         timer = 0;
         StartTimer = 1;
-        RollForHand();
+        //RollForHand();
         RollButton.SetActive(false);
         RollingText.enabled = true;
         RarityEffectSprite.color = new Color(RarityEffectSprite.color.r, RarityEffectSprite.color.g, RarityEffectSprite.color.b, 0);

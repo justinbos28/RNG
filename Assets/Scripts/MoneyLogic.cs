@@ -170,7 +170,7 @@ public class MoneyLogic : MonoBehaviour
         if (StaticVariables.cash >= 5000 && BoughtRollSkips == 0)
         {
             StaticVariables.cash -= 5000;
-            RNGscript.RollSkips = 3;
+            RNGscript.RollSkips = 4;
             BoughtRollSkips = 1;
             RollSkipsText.text = "10.000$";
             CurrentMoney.text = StaticVariables.cash + "$";
@@ -178,7 +178,7 @@ public class MoneyLogic : MonoBehaviour
         else if(StaticVariables.cash >= 10000 && BoughtRollSkips == 1)
         {
             StaticVariables.cash -= 10000;
-            RNGscript.RollSkips = 2;
+            RNGscript.RollSkips = 3;
             BoughtRollSkips = 2;
             RollSkipsText.text = "20.000$";
             CurrentMoney.text = StaticVariables.cash + "$";
@@ -186,7 +186,7 @@ public class MoneyLogic : MonoBehaviour
         else if( StaticVariables.cash >= 20000 && BoughtRollSkips == 2)
         {
             StaticVariables.cash -= 20000;
-            RNGscript.RollSkips = 1;
+            RNGscript.RollSkips = 2;
             BoughtRollSkips = 3;
             RollSkipsText.text = "Purchased";
             CurrentMoney.text = StaticVariables.cash + "$";
