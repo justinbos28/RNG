@@ -95,74 +95,50 @@ public class RNGscript : MonoBehaviour
         {
             if (card.rarity == 1)
             {
-                card.rarityTitle = "Common";
-                card.rarityEffectColor = Color.white;
                 level1Ore.Add(card);
             }
             else if (card.rarity == 2)
             {
-                card.rarityTitle = "Uncommon";
-                card.rarityEffectColor = Color.green;
                 level2Ore.Add(card);
             }
             else if (card.rarity == 3)
             {
-                card.rarityTitle = "Rare";
-                card.rarityEffectColor = Color.cyan;
                 level3Ore.Add(card);
             }
             else if (card.rarity == 4)
             {
-                card.rarityTitle = "Epic";
-                card.rarityEffectColor = Color.magenta;
                 level4Ore.Add(card);
             }
             else if (card.rarity == 5)
             {
-                card.rarityTitle = "Legendary";
-                card.rarityEffectColor = Color.yellow;
                 level5Ore.Add(card);
             }
             else if (card.rarity == 6)
             {
-                card.rarityTitle = "Mythical";
-                card.rarityEffectColor = new Vector4(1f, 0.5f, 0f);
                 level6Ore.Add(card);
             }
             else if (card.rarity == 7)
             {
-                card.rarityTitle = "Godly";
-                card.rarityEffectColor = Color.red;
                 level7Ore.Add(card);
             }
             else if (card.rarity == 8)
             {
-                card.rarityTitle = "Divine";
-                card.rarityEffectColor = Color.black;
                 level8Ore.Add(card);
             }
             else if (card.rarity == 9)
             {
-                card.rarityTitle = "Unreal";
-                card.rarityEffectColor = new Vector4(1f, 0.5f, 0.1f ,0f);
                 level9Ore.Add(card);
             }
             else if (card.rarity == 10)
             {
-                card.rarityTitle = "Ancient";
-                card.rarityEffectColor = new Vector4(0.6f, 0.45f, 0.08f, 0f);
                 level10Ore.Add(card);
             }
             else if (card.rarity == 11)
             {
-                card.rarityTitle = "IDon'tKnowAnymore";
-                card.rarityEffectColor = new Vector4(0.8f, 0, 1, 0);
                 level11Ore.Add(card);
             }
             else if (card.rarity == 12)
             {
-                card.rarityTitle = "YouJustGotLucky";
-                card.rarityEffectColor = new Vector4(0, 1, 1, 0);
                 level12Ore.Add(card);
             }
         }
@@ -175,17 +151,20 @@ public class RNGscript : MonoBehaviour
         List<int> hand = new List<int>();
         for (int i = 0; i < cardLimit; i++)
         {
-            bool cardRarityChance12 = CalulateRNGPercent(0.1f * LuckPercentage * LuckMultiplier);
-            bool cardRarityChance11 = CalulateRNGPercent(0.13f * LuckPercentage * LuckMultiplier);
+            // uncommon ores
+            bool cardRarityChance12 = CalulateRNGPercent(0.121f * LuckPercentage * LuckMultiplier);
+            bool cardRarityChance11 = CalulateRNGPercent(0.15f * LuckPercentage * LuckMultiplier);
             bool cardRarityChance10 = CalulateRNGPercent(0.25f * LuckPercentage * LuckMultiplier);
             bool cardRarityChance9 = CalulateRNGPercent(0.4f * LuckPercentage * LuckMultiplier);
-            bool cardRarityChance8 = CalulateRNGPercent(0.625f * LuckPercentage * LuckMultiplier);
-            bool cardRarityChance7 = CalulateRNGPercent(0.8f * LuckPercentage * LuckMultiplier);
-            bool cardRarityChance6 = CalulateRNGPercent(1 * LuckPercentage * LuckMultiplier);
-            bool cardRarityChance5 = CalulateRNGPercent(10 / LuckPercentage / LuckMultiplier);
-            bool cardRarityChance4 = CalulateRNGPercent(17 / LuckPercentage / LuckMultiplier);
-            bool cardRarityChance3 = CalulateRNGPercent(25 / LuckPercentage / LuckMultiplier);
-            bool cardRarityChance2 = CalulateRNGPercent(50 / LuckPercentage / LuckMultiplier);
+            bool cardRarityChance8 = CalulateRNGPercent(0.9f * LuckPercentage * LuckMultiplier);
+            // common ores
+            bool cardRarityChance7 = CalulateRNGPercent(1.4f * LuckPercentage * LuckMultiplier);
+            bool cardRarityChance6 = CalulateRNGPercent(1.8f * LuckPercentage * LuckMultiplier);
+            bool cardRarityChance5 = CalulateRNGPercent(4.8f / LuckPercentage / LuckMultiplier);
+            bool cardRarityChance4 = CalulateRNGPercent(9.1f / LuckPercentage / LuckMultiplier);
+            bool cardRarityChance3 = CalulateRNGPercent(14.3f / LuckPercentage / LuckMultiplier);
+            bool cardRarityChance2 = CalulateRNGPercent(20 / LuckPercentage / LuckMultiplier);
+            bool cardRarityChance1 = CalulateRNGPercent(50 / LuckPercentage / LuckMultiplier);
             if (cardRarityChance12)
             {
                 if (level12Ore.Count == 1)
@@ -309,30 +288,26 @@ public class RNGscript : MonoBehaviour
                     hand.Add(level2Ore[Random.Range(1, level2Ore.Count)].OreID);
                 }
             }
-            else
+            else if (cardRarityChance1)
             {
-                if (1 * LuckPercentage * LuckPercentage >= 2)
+                if (level1Ore.Count == 1)
                 {
-                    // fix this bc i want it to basically roll again
-                    if (level3Ore.Count == 1)
-                    {
-                        hand.Add(level3Ore[0].OreID);
-                    }
-                    else
-                    {
-                        hand.Add(level3Ore[Random.Range(1, level3Ore.Count)].OreID);
-                    }
+                    hand.Add(level1Ore[0].OreID);
                 }
                 else
                 {
-                    if (level1Ore.Count == 1)
-                    {
-                        hand.Add(level1Ore[0].OreID);
-                    }
-                    else
-                    {
-                        hand.Add(level1Ore[Random.Range(1, level1Ore.Count)].OreID);
-                    }
+                    hand.Add(level1Ore[Random.Range(1, level1Ore.Count)].OreID);
+                }
+            }
+            else
+            {
+                if (level1Ore.Count == 1)
+                {
+                    hand.Add(level1Ore[0].OreID);
+                }
+                else
+                {
+                    hand.Add(level1Ore[Random.Range(1, level1Ore.Count)].OreID);
                 }
             }
         }
