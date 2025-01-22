@@ -194,24 +194,24 @@ public class MoneyLogic : MonoBehaviour
     }
     public void BuyLuckPercentage()
     {
-        if (StaticVariables.cash >= 100 && BoughtLuckPercentage == 0)
+        if (StaticVariables.cash >= 50 && BoughtLuckPercentage == 0)
         {
-            StaticVariables.cash -= 100;
+            StaticVariables.cash -= 50;
             RNGscript.LuckPercentage = 1.1f; // 10%
             BoughtLuckPercentage = 1;
-            LuckPercentageText.text = "500";
+            LuckPercentageText.text = "100";
         }
-        else if (StaticVariables.cash >= 500 && BoughtLuckPercentage == 1)
+        else if (StaticVariables.cash >= 100 && BoughtLuckPercentage == 1)
         {
-            StaticVariables.cash -= 500;
-            RNGscript.LuckPercentage = 2f;
+            StaticVariables.cash -= 100;
+            RNGscript.LuckPercentage = 1.2f;
             BoughtLuckPercentage = 2;
-            LuckPercentageText.text = "1500";
+            LuckPercentageText.text = "250";
         }
-        else if (StaticVariables.cash >= 1500 && BoughtLuckPercentage >= 2)
+        else if (StaticVariables.cash >= 250 && BoughtLuckPercentage >= 2)
         {
-            StaticVariables.cash -= 1500;
-            RNGscript.LuckPercentage = 3f;
+            StaticVariables.cash -= 250;
+            RNGscript.LuckPercentage = 1.3f;
             BoughtLuckPercentage = 3;
             LuckPercentageText.text = "end test";
         }

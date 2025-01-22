@@ -7,18 +7,13 @@ using UnityEngine.UI;
 public class RNGscript : MonoBehaviour
 {
     public List<OreClass> allOres = new List<OreClass>();
-    public List<OreClass> level1Ore = new List<OreClass>();
-    public List<OreClass> level2Ore = new List<OreClass>();
-    public List<OreClass> level3Ore = new List<OreClass>();
-    public List<OreClass> level4Ore = new List<OreClass>();
-    public List<OreClass> level5Ore = new List<OreClass>();
-    public List<OreClass> level6Ore = new List<OreClass>();
-    public List<OreClass> level7Ore = new List<OreClass>();
-    public List<OreClass> level8Ore = new List<OreClass>();
-    public List<OreClass> level9Ore = new List<OreClass>();
-    public List<OreClass> level10Ore = new List<OreClass>();
-    public List<OreClass> level11Ore = new List<OreClass>();
-    public List<OreClass> level12Ore = new List<OreClass>();
+    public List<OreClass> CommonOres = new List<OreClass>();
+    public List<OreClass> UncommonOres = new List<OreClass>();
+    public List<OreClass> RareOres = new List<OreClass>();
+    public List<OreClass> EpicOres = new List<OreClass>();
+    public List<OreClass> LegendaryOres = new List<OreClass>();
+    public List<OreClass> MythicOres = new List<OreClass>();
+
     public List<OreClass> playerHand = new List<OreClass>();
     public int cardLimit = 1;
 
@@ -36,7 +31,10 @@ public class RNGscript : MonoBehaviour
 
     public Text RollingText;
     public Text CurrentMoney;
+
     public MoneyLogic MoneyLogic;
+    public OreStorage OreStorage;
+    
     public GameObject RollButton;
     public GameObject RollButton1;
     public GameObject RollButton2;
@@ -50,6 +48,7 @@ public class RNGscript : MonoBehaviour
     public GameObject RarityEffectObject4;
     public GameObject RarityEffectObject5;
     public GameObject RarityEffectObject6;
+    
     public SpriteRenderer RarityEffectSprite;
     public SpriteRenderer RarityEffectSprite2;
     public SpriteRenderer RarityEffectSprite3;
@@ -93,53 +92,92 @@ public class RNGscript : MonoBehaviour
     {
         foreach (OreClass card in allOres)
         {
-            if (card.rarity == 1)
+            switch (card.rarity)
             {
-                level1Ore.Add(card);
-            }
-            else if (card.rarity == 2)
-            {
-                level2Ore.Add(card);
-            }
-            else if (card.rarity == 3)
-            {
-                level3Ore.Add(card);
-            }
-            else if (card.rarity == 4)
-            {
-                level4Ore.Add(card);
-            }
-            else if (card.rarity == 5)
-            {
-                level5Ore.Add(card);
-            }
-            else if (card.rarity == 6)
-            {
-                level6Ore.Add(card);
-            }
-            else if (card.rarity == 7)
-            {
-                level7Ore.Add(card);
-            }
-            else if (card.rarity == 8)
-            {
-                level8Ore.Add(card);
-            }
-            else if (card.rarity == 9)
-            {
-                level9Ore.Add(card);
-            }
-            else if (card.rarity == 10)
-            {
-                level10Ore.Add(card);
-            }
-            else if (card.rarity == 11)
-            {
-                level11Ore.Add(card);
-            }
-            else if (card.rarity == 12)
-            {
-                level12Ore.Add(card);
+                case 1:
+                    CommonOres.Add(card);
+                    break;
+                case 2:
+                    CommonOres.Add(card);
+                    break;
+                case 3:
+                    CommonOres.Add(card);
+                    break;
+                case 4:
+                    CommonOres.Add(card);
+                    break;
+                case 5:
+                    CommonOres.Add(card);
+                    break;
+                case 6:
+                    CommonOres.Add(card);
+                    break;
+                case 7:
+                    CommonOres.Add(card);
+                    break;
+                case 8:
+                    UncommonOres.Add(card);
+                    break;
+                case 9:
+                    UncommonOres.Add(card);
+                    break;
+                case 10:
+                    UncommonOres.Add(card);
+                    break;
+                case 11:
+                    UncommonOres.Add(card);
+                    break;
+                case 12:
+                    UncommonOres.Add(card);
+                    break;
+                case 13:
+                    RareOres.Add(card);
+                    break;
+                case 14:
+                    RareOres.Add(card);
+                    break;
+                case 15:
+                    RareOres.Add(card);
+                    break;
+                case 16:
+                    RareOres.Add(card);
+                    break;
+                case 17:
+                    RareOres.Add(card);
+                    break;
+                case 18:
+                    EpicOres.Add(card);
+                    break;
+                case 19:
+                    EpicOres.Add(card);
+                    break;
+                case 20:
+                    EpicOres.Add(card);
+                    break;
+                case 21:
+                    EpicOres.Add(card);
+                    break;
+                case 22:
+                    EpicOres.Add(card);
+                    break;
+                case 23:
+                    LegendaryOres.Add(card);
+                    break;
+                case 24:
+                    LegendaryOres.Add(card);
+                    break;
+                case 25:
+                    LegendaryOres.Add(card);
+                    break;
+                case 26:
+                    LegendaryOres.Add(card);
+                    break;
+                case 27:
+                    LegendaryOres.Add(card);
+                    break;
+                case 28:
+                    MythicOres.Add(card);
+                    break;
             }
         }
     }
@@ -151,6 +189,26 @@ public class RNGscript : MonoBehaviour
         List<int> hand = new List<int>();
         for (int i = 0; i < cardLimit; i++)
         {
+            // mythic ores
+            bool cardRarityChance28 = CalulateRNGPercent(0.0001f * LuckPercentage * LuckMultiplier);
+            // legendary ores
+            bool cardRarityChance27 = CalulateRNGPercent(0.00011f * LuckPercentage * LuckMultiplier);
+            bool cardRarityChance26 = CalulateRNGPercent(0.00015f * LuckPercentage * LuckMultiplier);
+            bool cardRarityChance25 = CalulateRNGPercent(0.00022f * LuckPercentage * LuckMultiplier);
+            bool cardRarityChance24 = CalulateRNGPercent(0.0004f * LuckPercentage * LuckMultiplier);
+            bool cardRarityChance23 = CalulateRNGPercent(0.00067f * LuckPercentage * LuckMultiplier);
+            // epic ores
+            bool cardRarityChance22 = CalulateRNGPercent(0.0011f * LuckPercentage * LuckMultiplier);
+            bool cardRarityChance21 = CalulateRNGPercent(0.0015f * LuckPercentage * LuckMultiplier);
+            bool cardRarityChance20 = CalulateRNGPercent(0.0022f * LuckPercentage * LuckMultiplier);
+            bool cardRarityChance19 = CalulateRNGPercent(0.0035f * LuckPercentage * LuckMultiplier);
+            bool cardRarityChance18 = CalulateRNGPercent(0.0067f * LuckPercentage * LuckMultiplier);
+            // rare ores
+            bool cardRarityChance17 = CalulateRNGPercent(0.01f * LuckPercentage * LuckMultiplier);
+            bool cardRarityChance16 = CalulateRNGPercent(0.013f * LuckPercentage * LuckMultiplier);
+            bool cardRarityChance15 = CalulateRNGPercent(0.018f * LuckPercentage * LuckMultiplier);
+            bool cardRarityChance14 = CalulateRNGPercent(0.03f * LuckPercentage * LuckMultiplier);
+            bool cardRarityChance13 = CalulateRNGPercent(0.074f * LuckPercentage * LuckMultiplier);
             // uncommon ores
             bool cardRarityChance12 = CalulateRNGPercent(0.121f * LuckPercentage * LuckMultiplier);
             bool cardRarityChance11 = CalulateRNGPercent(0.15f * LuckPercentage * LuckMultiplier);
@@ -164,151 +222,139 @@ public class RNGscript : MonoBehaviour
             bool cardRarityChance4 = CalulateRNGPercent(9.1f / LuckPercentage / LuckMultiplier);
             bool cardRarityChance3 = CalulateRNGPercent(14.3f / LuckPercentage / LuckMultiplier);
             bool cardRarityChance2 = CalulateRNGPercent(20 / LuckPercentage / LuckMultiplier);
-            bool cardRarityChance1 = CalulateRNGPercent(50 / LuckPercentage / LuckMultiplier);
-            if (cardRarityChance12)
+            bool cardRarityChance1 = CalulateRNGPercent(50 * LuckPercentage * LuckMultiplier);
+
+            void AddOreToHand(List<OreClass> oreList, List<int> hand)
             {
-                if (level12Ore.Count == 1)
+                if (oreList.Count == 0) // checks if theres 0 ores in the list
                 {
-                    hand.Add(level12Ore[0].OreID);
+                    Debug.LogError("No ores in the list");
                 }
-                else
+                else if (oreList.Count == 1) // checks if theres only 1 ore in the list
                 {
-                    hand.Add(level12Ore[Random.Range(1, level12Ore.Count)].OreID);
+                    hand.Add(oreList[0].OreID);
                 }
+                else // if theres more than 1 ore in the list randomly selects one
+                {
+                    hand.Add(oreList[Random.Range(0, oreList.Count)].OreID);
+                }
+            }
+
+            if (cardRarityChance28)
+            {
+                AddOreToHand(MythicOres, hand);
+            }
+            else if (cardRarityChance27)
+            {
+                AddOreToHand(LegendaryOres, hand);
+            }
+            else if (cardRarityChance26)
+            {
+                AddOreToHand(LegendaryOres, hand);
+            }
+            else if (cardRarityChance25)
+            {
+                AddOreToHand(LegendaryOres, hand);
+            }
+            else if (cardRarityChance24)
+            {
+                AddOreToHand(LegendaryOres, hand);
+            }
+            else if (cardRarityChance23)
+            {
+                AddOreToHand(LegendaryOres, hand);
+            }
+            else if (cardRarityChance22)
+            {
+                AddOreToHand(EpicOres, hand);
+            }
+            else if (cardRarityChance21)
+            {
+                AddOreToHand(EpicOres, hand);
+            }
+            else if (cardRarityChance20)
+            {
+                AddOreToHand(EpicOres, hand);
+            }
+            else if (cardRarityChance19)
+            {
+                AddOreToHand(EpicOres, hand);
+            }
+            else if (cardRarityChance18)
+            {
+                AddOreToHand(EpicOres, hand);
+            }
+            else if (cardRarityChance17)
+            {
+                AddOreToHand(RareOres, hand);
+            }
+            else if (cardRarityChance16)
+            {
+                AddOreToHand(RareOres, hand);
+            }
+            else if (cardRarityChance15)
+            {
+                AddOreToHand(RareOres, hand);
+            }
+            else if (cardRarityChance14)
+            {
+                AddOreToHand(RareOres, hand);
+            }
+            else if (cardRarityChance13)
+            {
+                AddOreToHand(RareOres, hand);
+            }
+            else if (cardRarityChance12)
+            {
+                AddOreToHand(UncommonOres, hand);
             }
             else if (cardRarityChance11)
             {
-                if (level11Ore.Count == 1)
-                {
-                    hand.Add(level11Ore[0].OreID);
-                }
-                else
-                {
-                    hand.Add(level11Ore[Random.Range(1, level11Ore.Count)].OreID);
-                }
+                AddOreToHand(UncommonOres, hand);
             }
             else if (cardRarityChance10)
             {
-                if (level10Ore.Count == 1)
-                {
-                    hand.Add(level10Ore[0].OreID);
-                }
-                else
-                {
-                    hand.Add(level10Ore[Random.Range(1, level10Ore.Count)].OreID);
-                }
+                AddOreToHand(UncommonOres, hand);
             }
             else if (cardRarityChance9)
             {
-                if (level9Ore.Count == 1)
-                {
-                    hand.Add(level9Ore[0].OreID);
-                }
-                else
-                {
-                    hand.Add(level9Ore[Random.Range(1, level9Ore.Count)].OreID);
-                }
+                AddOreToHand(UncommonOres, hand);
             }
             else if (cardRarityChance8)
             {
-                if (level8Ore.Count == 1)
-                {
-                    hand.Add(level8Ore[0].OreID);
-                }
-                else
-                {
-                    hand.Add(level8Ore[Random.Range(1, level8Ore.Count)].OreID);
-                }
+                AddOreToHand(UncommonOres, hand);
             }
             else if (cardRarityChance7)
             {
-                if (level7Ore.Count == 1)
-                {
-                    hand.Add(level7Ore[0].OreID);
-                }
-                else
-                {
-                    hand.Add(level7Ore[Random.Range(1, level7Ore.Count)].OreID);
-                }
+                AddOreToHand(CommonOres, hand);
             }
             else if (cardRarityChance6)
             {
-                if (level6Ore.Count == 1)
-                {
-                    hand.Add(level6Ore[0].OreID);
-                }
-                else
-                {
-                    hand.Add(level6Ore[Random.Range(1, level6Ore.Count)].OreID);
-                }
+                AddOreToHand(CommonOres, hand);
             }
             else if (cardRarityChance5)
             {
-                if (level5Ore.Count == 1)
-                {
-                    hand.Add(level5Ore[0].OreID);
-                }
-                else
-                {
-                    hand.Add(level5Ore[Random.Range(1, level5Ore.Count)].OreID);
-                }
+                AddOreToHand(CommonOres, hand);
             }
             else if (cardRarityChance4)
             {
-                if (level4Ore.Count == 1)
-                {
-                    hand.Add(level4Ore[0].OreID);
-                }
-                else
-                {
-                    hand.Add(level4Ore[Random.Range(1, level4Ore.Count)].OreID);
-                }
-
+                AddOreToHand(CommonOres, hand);
             }
             else if (cardRarityChance3)
             {
-                if (level3Ore.Count == 1)
-                {
-                    hand.Add(level3Ore[0].OreID);
-                }
-                else
-                {
-                    hand.Add(level3Ore[Random.Range(1, level3Ore.Count)].OreID);
-                }
-
+                AddOreToHand(CommonOres, hand);
             }
             else if (cardRarityChance2)
             {
-                if (level2Ore.Count == 1)
-                {
-                    hand.Add(level2Ore[0].OreID);
-                }
-                else
-                {
-                    hand.Add(level2Ore[Random.Range(1, level2Ore.Count)].OreID);
-                }
+                AddOreToHand(CommonOres, hand);
             }
             else if (cardRarityChance1)
             {
-                if (level1Ore.Count == 1)
-                {
-                    hand.Add(level1Ore[0].OreID);
-                }
-                else
-                {
-                    hand.Add(level1Ore[Random.Range(1, level1Ore.Count)].OreID);
-                }
+                AddOreToHand(CommonOres, hand);
             }
             else
             {
-                if (level1Ore.Count == 1)
-                {
-                    hand.Add(level1Ore[0].OreID);
-                }
-                else
-                {
-                    hand.Add(level1Ore[Random.Range(1, level1Ore.Count)].OreID);
-                }
+                AddOreToHand(CommonOres, hand);
             }
         }
         foreach (int ID in hand)
@@ -407,15 +453,105 @@ public class RNGscript : MonoBehaviour
 
             for (int i = 0; i < playerHand.Count; i++)
             {
-                StaticVariables.cash = StaticVariables.cash + playerHand[i].OrePrice;
-                if (playerHand[i].OreID >= 6)
-                {
-                    //AutoTimer = 1;
-                    //RollButton.SetActive(true);
-                    //MoneyLogic.AutoRoll = false;
-                }
+                //foreach (var ore in playerHand)
+                //{
+                //    switch (ore.OreID)
+                //    {
+                //        case 1:
+                //            StaticVariables.ore1++;
+                //            break;
+                //        case 2:
+                //            StaticVariables.ore2++;
+                //            break;
+                //        case 3:
+                //            StaticVariables.ore3++;
+                //            break;
+                //        case 4:
+                //            StaticVariables.ore4++;
+                //            break;
+                //        case 5:
+                //            StaticVariables.ore5++;
+                //            break;
+                //        case 6:
+                //            StaticVariables.ore6++;
+                //            break;
+                //        case 7:
+                //            StaticVariables.ore7++;
+                //            break;
+                //        case 8:
+                //            StaticVariables.ore8++;
+                //            break;
+                //        case 9:
+                //            StaticVariables.ore9++;
+                //            break;
+                //        case 10:
+                //            StaticVariables.ore10++;
+                //            break;
+                //        case 11:
+                //            StaticVariables.ore11++;
+                //            break;
+                //        case 12:
+                //            StaticVariables.ore12++;
+                //            break;
+                //        case 13:
+                //            StaticVariables.ore13++;
+                //            break;
+                //        case 14:
+                //            StaticVariables.ore14++;
+                //            break;
+                //        case 15:
+                //            StaticVariables.ore15++;
+                //            break;
+                //        case 16:
+                //            StaticVariables.ore16++;
+                //            break;
+                //        case 17:
+                //            StaticVariables.ore17++;
+                //            break;
+                //        case 18:
+                //            StaticVariables.ore18++;
+                //            break;
+                //        case 19:
+                //            StaticVariables.ore19++;
+                //            break;
+                //        case 20:
+                //            StaticVariables.ore20++;
+                //            break;
+                //        case 21:
+                //            StaticVariables.ore21++;
+                //            break;
+                //        case 22:
+                //            StaticVariables.ore22++;
+                //            break;
+                //        case 23:
+                //            StaticVariables.ore23++;
+                //            break;
+                //        case 24:
+                //            StaticVariables.ore24++;
+                //            break;
+                //        case 25:
+                //            StaticVariables.ore25++;
+                //            break;
+                //        case 26:
+                //            StaticVariables.ore26++;
+                //            break;
+                //        case 27:
+                //            StaticVariables.ore27++;
+                //            break;
+                //        case 28:
+                //            StaticVariables.ore28++;
+                //            break;
+                //    }
+                //}
             }
-            CurrentMoney.text = StaticVariables.cash + "$";
+            if (StaticVariables.cash < 1000)
+            {
+                CurrentMoney.text = StaticVariables.cash.ToString("F2") + "$";
+            }
+            else
+            {
+                CurrentMoney.text = StaticVariables.cash.ToString("F0") + "$";
+            }
             RollStatus++;
         }
         // rolling the dice (roll animation)
@@ -526,4 +662,5 @@ public class RNGscript : MonoBehaviour
 
         RollingText.text = "Rolling...";
     }
+    
 }

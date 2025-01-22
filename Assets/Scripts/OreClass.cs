@@ -20,10 +20,3 @@ public class OreClass
     public float OrePrice;
     public Color rarityEffectColor;
 }
-public class ShopItems
-{
-    public string ItemName;
-    public string description;
-    public float Price;
-    public Sprite ItemImage;
-}
