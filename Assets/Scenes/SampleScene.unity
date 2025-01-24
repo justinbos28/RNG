@@ -3104,7 +3104,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: -91.8, y: 18.135}
+  m_AnchoredPosition: {x: -91.8, y: 18.135002}
   m_SizeDelta: {x: 160, y: 25.400002}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &473390769
@@ -10482,7 +10482,7 @@ MonoBehaviour:
     chance: 240
     OrePrice: 6
     rarityEffectColor: {r: 0.13725491, g: 0.8784314, b: 0.14901961, a: 0}
-  - name: Petrolium
+  - name: Petroleum
     decription: 
     rarityTitle: Uncommon
     OrePicture: {fileID: 21300000, guid: c3612f98229ab4746b26426c4c9b2b54, type: 3}
@@ -10515,7 +10515,7 @@ MonoBehaviour:
   - name: Quarts
     decription: 
     rarityTitle: Rare
-    OrePicture: {fileID: 21300000, guid: b73b9b09f3e540e498214462ea47f792, type: 3}
+    OrePicture: {fileID: 21300000, guid: c6bf3ed163c5ec04496e8d2c753716f2, type: 3}
     rarity: 13
     rarityCount: 0
     OreID: 0
@@ -10525,7 +10525,7 @@ MonoBehaviour:
   - name: Silver
     decription: 
     rarityTitle: Rare
-    OrePicture: {fileID: 21300000, guid: b73b9b09f3e540e498214462ea47f792, type: 3}
+    OrePicture: {fileID: 21300000, guid: 08d54b5582b3ac4438ebfdaf7b7a6145, type: 3}
     rarity: 14
     rarityCount: 0
     OreID: 0
@@ -10535,7 +10535,7 @@ MonoBehaviour:
   - name: Titanium
     decription: 
     rarityTitle: Rare
-    OrePicture: {fileID: 21300000, guid: b73b9b09f3e540e498214462ea47f792, type: 3}
+    OrePicture: {fileID: 21300000, guid: be1d244665c69584fa47978a393e5d36, type: 3}
     rarity: 15
     rarityCount: 0
     OreID: 0
@@ -10545,7 +10545,7 @@ MonoBehaviour:
   - name: Silicon
     decription: 
     rarityTitle: Rare
-    OrePicture: {fileID: 21300000, guid: b73b9b09f3e540e498214462ea47f792, type: 3}
+    OrePicture: {fileID: 21300000, guid: 889d4bdb43b519545a2d0d43917f460c, type: 3}
     rarity: 16
     rarityCount: 0
     OreID: 0
@@ -10555,7 +10555,7 @@ MonoBehaviour:
   - name: Amethyst
     decription: 
     rarityTitle: Rare
-    OrePicture: {fileID: 21300000, guid: b73b9b09f3e540e498214462ea47f792, type: 3}
+    OrePicture: {fileID: 21300000, guid: 2b2e855fcc86e2447bb5023dbceff818, type: 3}
     rarity: 17
     rarityCount: 0
     OreID: 0
@@ -10565,7 +10565,7 @@ MonoBehaviour:
   - name: Gold
     decription: 
     rarityTitle: Epic
-    OrePicture: {fileID: 21300000, guid: b73b9b09f3e540e498214462ea47f792, type: 3}
+    OrePicture: {fileID: 21300000, guid: 8854a7082deb9c14e85bf3646f867177, type: 3}
     rarity: 18
     rarityCount: 0
     OreID: 0
@@ -10575,7 +10575,7 @@ MonoBehaviour:
   - name: Uranium
     decription: 
     rarityTitle: Epic
-    OrePicture: {fileID: 21300000, guid: b73b9b09f3e540e498214462ea47f792, type: 3}
+    OrePicture: {fileID: 21300000, guid: dade3fec5b3f4cb4ba7e2edf62b6d0fa, type: 3}
     rarity: 19
     rarityCount: 0
     OreID: 0
@@ -10585,7 +10585,7 @@ MonoBehaviour:
   - name: Tungsten
     decription: 
     rarityTitle: Epic
-    OrePicture: {fileID: 21300000, guid: b73b9b09f3e540e498214462ea47f792, type: 3}
+    OrePicture: {fileID: 21300000, guid: 9d332891c9e695443b3343a85eb48952, type: 3}
     rarity: 20
     rarityCount: 0
     OreID: 0
@@ -10595,7 +10595,7 @@ MonoBehaviour:
   - name: Bismuth
     decription: 
     rarityTitle: Epic
-    OrePicture: {fileID: 21300000, guid: b73b9b09f3e540e498214462ea47f792, type: 3}
+    OrePicture: {fileID: 21300000, guid: e220f05f4ce859b42b83654dc03ece57, type: 3}
     rarity: 21
     rarityCount: 0
     OreID: 0
@@ -10605,7 +10605,7 @@ MonoBehaviour:
   - name: Adurite
     decription: 
     rarityTitle: Epic
-    OrePicture: {fileID: 21300000, guid: b73b9b09f3e540e498214462ea47f792, type: 3}
+    OrePicture: {fileID: 21300000, guid: 93074e55e87d99b478fcd2fb17ae2c58, type: 3}
     rarity: 22
     rarityCount: 0
     OreID: 0
@@ -10625,7 +10625,7 @@ MonoBehaviour:
   - name: Sapphire
     decription: 
     rarityTitle: Legendary
-    OrePicture: {fileID: 21300000, guid: b73b9b09f3e540e498214462ea47f792, type: 3}
+    OrePicture: {fileID: 21300000, guid: 7f01c970fc1f0264ab18095cd6047f3e, type: 3}
     rarity: 24
     rarityCount: 0
     OreID: 0
@@ -10635,7 +10635,7 @@ MonoBehaviour:
   - name: Ruby
     decription: 
     rarityTitle: Legendary
-    OrePicture: {fileID: 21300000, guid: b73b9b09f3e540e498214462ea47f792, type: 3}
+    OrePicture: {fileID: 21300000, guid: c398f07e7fb26af44be9e35589422543, type: 3}
     rarity: 25
     rarityCount: 0
     OreID: 0
@@ -10701,7 +10701,7 @@ MonoBehaviour:
   RollStatus: 0
   RollSkips: 4
   AutoTimer: 1
-  Timer2Active: 0
+  Timer2Active: 1
   AutoRollTimer: 0
   RollingText: {fileID: 531839743}
   CurrentMoney: {fileID: 221748838}
