@@ -12,6 +12,7 @@ public class MoneyLogic : MonoBehaviour
     public int BoughtRollSkips;
     public int BoughtLuckPercentage;
     public int BoughtLuckMultiplier;
+    public int BoughtMoneyMultiplier;
     public bool AutoRoll;
 
     public Text RollSpeedText;
@@ -21,6 +22,7 @@ public class MoneyLogic : MonoBehaviour
     public Text AutoRollText;
     public Text LuckPercentageText;
     public Text LuckMultiplierText;
+    public Text MoneyMultiplier;
     public RNGscript RNGscript;
     public GameObject AutoRollButton;
     public Image AutoRollButtonColor;
@@ -32,47 +34,47 @@ public class MoneyLogic : MonoBehaviour
             RNGscript.RollSpeed = 0.45f;
             BoughtRollSpeed = 1;
             RollSpeedText.text = "150$";
-            CurrentMoney.text = StaticVariables.cash + "$";
+            CurrentMoney.text = StaticVariables.cash.ToString("F2") + "$";
         }
         else if (StaticVariables.cash >= 150 && BoughtRollSpeed == 1)
         {
             StaticVariables.cash -= 150;
             RNGscript.RollSpeed = 0.4f;
             BoughtRollSpeed = 2;
-            RollSpeedText.text = "500$";
-            CurrentMoney.text = StaticVariables.cash + "$";
+            RollSpeedText.text = "350$";
+            CurrentMoney.text = StaticVariables.cash.ToString("F2") + "$";
         }
-        else if (StaticVariables.cash >= 500 && BoughtRollSpeed == 2)
+        else if (StaticVariables.cash >= 350 && BoughtRollSpeed == 2)
         {
-            StaticVariables.cash -= 500;
+            StaticVariables.cash -= 350;
             RNGscript.RollSpeed = 0.35f;
             BoughtRollSpeed = 3;
-            RollSpeedText.text = "1700$";
-            CurrentMoney.text = StaticVariables.cash + "$";
+            RollSpeedText.text = "750$";
+            CurrentMoney.text = StaticVariables.cash.ToString("F2") + "$";
         }
-        else if (StaticVariables.cash >= 1700 && BoughtRollSpeed == 3)
+        else if (StaticVariables.cash >= 750 && BoughtRollSpeed == 3)
         {
-            StaticVariables.cash -= 1700;
+            StaticVariables.cash -= 750;
             RNGscript.RollSpeed = 0.3f;
             BoughtRollSpeed = 4;
-            RollSpeedText.text = "4500$";
-            CurrentMoney.text = StaticVariables.cash + "$";
+            RollSpeedText.text = "2000$";
+            CurrentMoney.text = StaticVariables.cash.ToString("F2") + "$";
         }
-        else if (StaticVariables.cash >= 4500 && BoughtRollSpeed == 4)
+        else if (StaticVariables.cash >= 2000 && BoughtRollSpeed == 4)
         {
-            StaticVariables.cash -= 4500;
+            StaticVariables.cash -= 2000;
             RNGscript.RollSpeed = 0.25f;
             BoughtRollSpeed = 5;
-            RollSpeedText.text = "10.000";
-            CurrentMoney.text = StaticVariables.cash + "$";
+            RollSpeedText.text = "4.500";
+            CurrentMoney.text = StaticVariables.cash.ToString("F2") + "$";
         }
-        else if (StaticVariables.cash >= 10000 && BoughtRollSpeed == 5)
+        else if (StaticVariables.cash >= 4500 && BoughtRollSpeed == 5)
         {
-            StaticVariables.cash -= 10000;
+            StaticVariables.cash -= 4500;
             RNGscript.RollSpeed = 0.2f;
             BoughtRollSpeed = 6;
             RollSpeedText.text = "Purchased";
-            CurrentMoney.text = StaticVariables.cash + "$";
+            CurrentMoney.text = StaticVariables.cash.ToString("F2") + "$";
         }
         //else if (StaticVariables.cash >= 25000 && BoughtRollSpeed == 6)
         //{
@@ -94,15 +96,16 @@ public class MoneyLogic : MonoBehaviour
 
     public void BuyAutoRoll()
     {
-        if (StaticVariables.cash >= 1000 && AutoRoll == false)
+        if (StaticVariables.cash >= 500 && AutoRoll == false)
         {
-            StaticVariables.cash -= 1000;
+            StaticVariables.cash -= 500;
             RNGscript.AutoTimer = 0;
             AutoRoll = true;
             AutoRollButton.SetActive(true);
             RNGscript.RollButton.SetActive(false);
             AutoRollButtonColor.color = Color.green;
             AutoRollText.text = "Purchased";
+            CurrentMoney.text = StaticVariables.cash.ToString("F2") + "$";
         }
     }
     public void AutoRollToggle()
@@ -129,67 +132,67 @@ public class MoneyLogic : MonoBehaviour
             StaticVariables.cash -= 1500;
             RNGscript.cardLimit = 2;
             BoughtRollAmount = 1;
-            RollAmountText.text = "5000$";
-            CurrentMoney.text = StaticVariables.cash + "$";
+            RollAmountText.text = "3500$";
+            CurrentMoney.text = StaticVariables.cash.ToString("F2") + "$";
         }
-        else if (StaticVariables.cash >= 5000 && BoughtRollAmount == 1)
+        else if (StaticVariables.cash >= 3500 && BoughtRollAmount == 1)
         {
-            StaticVariables.cash -= 5000;
+            StaticVariables.cash -= 3500;
             RNGscript.cardLimit = 3;
             BoughtRollAmount = 2;
-            RollAmountText.text = "15.000$";
-            CurrentMoney.text = StaticVariables.cash + "$";
+            RollAmountText.text = "5.000$";
+            CurrentMoney.text = StaticVariables.cash.ToString("F2") + "$";
         }
-        else if (StaticVariables.cash >= 15000 && BoughtRollAmount == 2) 
+        else if (StaticVariables.cash >= 5000 && BoughtRollAmount == 2) 
         {
-            StaticVariables.cash -= 15000;
+            StaticVariables.cash -= 5000;
             RNGscript.cardLimit = 4;
             BoughtRollAmount = 3;
-            RollAmountText.text = "45.000$";
-            CurrentMoney.text = StaticVariables.cash + "$";
+            RollAmountText.text = "12.000$";
+            CurrentMoney.text = StaticVariables.cash.ToString("F2") + "$";
         }
-        else if (StaticVariables.cash >= 45000 && BoughtRollAmount == 3)
+        else if (StaticVariables.cash >= 12000 && BoughtRollAmount == 3)
         {
-            StaticVariables.cash -= 45000;
+            StaticVariables.cash -= 12000;
             RNGscript.cardLimit = 5;
             BoughtRollAmount = 4;
-            RollAmountText.text = "100.000$";
-            CurrentMoney.text = StaticVariables.cash + "$";
+            RollAmountText.text = "25.000$";
+            CurrentMoney.text = StaticVariables.cash.ToString("F2") + "$";
         }
-        else if (StaticVariables.cash >= 100000 && BoughtRollAmount == 4)
+        else if (StaticVariables.cash >= 25000 && BoughtRollAmount == 4)
         {
-            StaticVariables.cash -= 100000;
+            StaticVariables.cash -= 25000;
             RNGscript.cardLimit = 6;
             BoughtRollAmount = 5;
             RollAmountText.text = "Purchased";
-            CurrentMoney.text = StaticVariables.cash + "$";
+            CurrentMoney.text = StaticVariables.cash.ToString("F2") + "$";
         }
     }
     public void BuyRollSkips()
     {
-        if (StaticVariables.cash >= 5000 && BoughtRollSkips == 0)
+        if (StaticVariables.cash >= 1000 && BoughtRollSkips == 0)
         {
-            StaticVariables.cash -= 5000;
+            StaticVariables.cash -= 1500;
             RNGscript.RollSkips = 4;
             BoughtRollSkips = 1;
-            RollSkipsText.text = "10.000$";
-            CurrentMoney.text = StaticVariables.cash + "$";
+            RollSkipsText.text = "5.500$";
+            CurrentMoney.text = StaticVariables.cash.ToString("F2") + "$";
         }
-        else if(StaticVariables.cash >= 10000 && BoughtRollSkips == 1)
+        else if(StaticVariables.cash >= 5500 && BoughtRollSkips == 1)
         {
-            StaticVariables.cash -= 10000;
+            StaticVariables.cash -= 5500;
             RNGscript.RollSkips = 3;
             BoughtRollSkips = 2;
-            RollSkipsText.text = "20.000$";
-            CurrentMoney.text = StaticVariables.cash + "$";
+            RollSkipsText.text = "15.000$";
+            CurrentMoney.text = StaticVariables.cash.ToString("F2") + "$";
         }
-        else if( StaticVariables.cash >= 20000 && BoughtRollSkips == 2)
+        else if( StaticVariables.cash >= 15000 && BoughtRollSkips == 2)
         {
-            StaticVariables.cash -= 20000;
+            StaticVariables.cash -= 15000;
             RNGscript.RollSkips = 2;
             BoughtRollSkips = 3;
             RollSkipsText.text = "Purchased";
-            CurrentMoney.text = StaticVariables.cash + "$";
+            CurrentMoney.text = StaticVariables.cash.ToString("F2") + "$";
         }
     }
     public void BuyLuckPercentage()
@@ -199,35 +202,179 @@ public class MoneyLogic : MonoBehaviour
             StaticVariables.cash -= 50;
             RNGscript.LuckPercentage = 1.1f; // 10%
             BoughtLuckPercentage = 1;
-            LuckPercentageText.text = "100";
+            LuckPercentageText.text = "100$";
+            CurrentMoney.text = StaticVariables.cash.ToString("F2") + "$";
         }
         else if (StaticVariables.cash >= 100 && BoughtLuckPercentage == 1)
         {
             StaticVariables.cash -= 100;
             RNGscript.LuckPercentage = 1.2f;
             BoughtLuckPercentage = 2;
-            LuckPercentageText.text = "250";
+            LuckPercentageText.text = "250$";
+            CurrentMoney.text = StaticVariables.cash.ToString("F2") + "$";
         }
-        else if (StaticVariables.cash >= 250 && BoughtLuckPercentage >= 2)
+        else if (StaticVariables.cash >= 250 && BoughtLuckPercentage == 2)
         {
             StaticVariables.cash -= 250;
             RNGscript.LuckPercentage = 1.3f;
             BoughtLuckPercentage = 3;
-            LuckPercentageText.text = "end test";
+            LuckPercentageText.text = "500$";
+            CurrentMoney.text = StaticVariables.cash.ToString("F2") + "$";
+        }
+        else if (StaticVariables.cash >= 500 && BoughtLuckPercentage == 3)
+        {
+            StaticVariables.cash -= 500;
+            RNGscript.LuckPercentage = 1.4f;
+            BoughtLuckPercentage = 4;
+            LuckPercentageText.text = "1.500$";
+            CurrentMoney.text = StaticVariables.cash.ToString("F2") + "$";
+        }
+        else if (StaticVariables.cash >= 1500 && BoughtLuckPercentage == 4)
+        {
+            StaticVariables.cash -= 1500;
+            RNGscript.LuckPercentage = 1.5f;
+            BoughtLuckPercentage = 5;
+            LuckPercentageText.text = "3.500$";
+            CurrentMoney.text = StaticVariables.cash.ToString("F2") + "$";
+        }
+        else if (StaticVariables.cash >= 3500 && BoughtLuckPercentage == 5)
+        {
+            StaticVariables.cash -= 3500;
+            RNGscript.LuckPercentage = 1.65f;
+            BoughtLuckPercentage = 6;
+            LuckPercentageText.text = "8.000$";
+            CurrentMoney.text = StaticVariables.cash.ToString("F2") + "$";
+        }
+        else if (StaticVariables.cash >= 8000 && BoughtLuckPercentage == 6)
+        {
+            StaticVariables.cash -= 8000;
+            RNGscript.LuckPercentage = 1.8f;
+            BoughtLuckPercentage = 7;
+            LuckPercentageText.text = "12.500$";
+            CurrentMoney.text = StaticVariables.cash.ToString("F2") + "$";
+        }
+        else if (StaticVariables.cash >= 12500 && BoughtLuckPercentage == 7)
+        {
+            StaticVariables.cash -= 12500;
+            RNGscript.LuckPercentage = 2f;
+            BoughtLuckPercentage = 8;
+            LuckPercentageText.text = "20.000$";
+            CurrentMoney.text = StaticVariables.cash.ToString("F2") + "$";
+        }
+        else if (StaticVariables.cash >= 20000 && BoughtLuckPercentage == 8)
+        {
+            StaticVariables.cash -= 20000;
+            RNGscript.LuckPercentage = 2.2f;
+            BoughtLuckPercentage = 9;
+            LuckPercentageText.text = "35.000$";
+            CurrentMoney.text = StaticVariables.cash.ToString("F2") + "$";
+        }
+        else if (StaticVariables.cash >= 35000 && BoughtLuckPercentage == 9)
+        {
+            StaticVariables.cash -= 35000;
+            RNGscript.LuckPercentage = 2.5f;
+            BoughtLuckPercentage = 10;
+            LuckPercentageText.text = "Purchased";
+            CurrentMoney.text = StaticVariables.cash.ToString("F2") + "$";
         }
     }
     public void BuyLuckMulitplier()
     {
-        if (StaticVariables.cash >= 10000 && BoughtLuckMultiplier == 0)
+        if (StaticVariables.cash >= 2500 && BoughtLuckMultiplier == 0)
+        {
+            StaticVariables.cash -= 2500;
+            RNGscript.LuckMultiplier = 1.5f; // 2x luck added on top of the percentage
+            BoughtLuckMultiplier = 1;
+            LuckMultiplierText.text = "5500";
+            CurrentMoney.text = StaticVariables.cash.ToString("F2") + "$";
+        }
+        else if (StaticVariables.cash >= 5500 && BoughtLuckMultiplier == 1)
+        {
+            StaticVariables.cash -= 5500;
+            RNGscript.LuckMultiplier = 2f;
+            BoughtLuckMultiplier = 2;
+            LuckMultiplierText.text = "10.000";
+            CurrentMoney.text = StaticVariables.cash.ToString("F2") + "$";
+        }
+        else if (StaticVariables.cash >= 10000 && BoughtLuckMultiplier == 2)
         {
             StaticVariables.cash -= 10000;
-            RNGscript.LuckMultiplier = 2f; // 2x luck added on top of the percentage
+            RNGscript.LuckMultiplier = 2.5f;
+            BoughtLuckMultiplier = 3;
+            LuckMultiplierText.text = "22.000";
+            CurrentMoney.text = StaticVariables.cash.ToString("F2") + "$";
+        }
+        else if (StaticVariables.cash >= 22000 && BoughtLuckMultiplier == 3)
+        {
+            StaticVariables.cash -= 22000;
+            RNGscript.LuckMultiplier = 3f;
+            BoughtLuckMultiplier = 4;
+            LuckMultiplierText.text = "45.000";
+            CurrentMoney.text = StaticVariables.cash.ToString("F2") + "$";
+        }
+        else if (StaticVariables.cash >= 45000 && BoughtLuckMultiplier == 4)
+        {
+            StaticVariables.cash -= 45000;
+            RNGscript.LuckMultiplier = 4f;
+            BoughtLuckMultiplier = 5;
             LuckMultiplierText.text = "Purchased";
+            CurrentMoney.text = StaticVariables.cash.ToString("F2") + "$";
+        }
+    }
+    public void BuyMoneyMultiplier()
+    {
+        if (StaticVariables.cash >= 100 && BoughtMoneyMultiplier == 0)
+        {
+            StaticVariables.cash -= 100;
+            RNGscript.MoneyMultiplier = 1.25f;
+            BoughtMoneyMultiplier = 1;
+            MoneyMultiplier.text = "1000$";
+            CurrentMoney.text = StaticVariables.cash.ToString("F2") + "$";
+        }
+        else if (StaticVariables.cash >= 1000 && BoughtMoneyMultiplier == 1)
+        {
+            StaticVariables.cash -= 1000;
+            RNGscript.MoneyMultiplier = 1.5f;
+            BoughtMoneyMultiplier = 2;
+            MoneyMultiplier.text = "3000$";
+            CurrentMoney.text = StaticVariables.cash.ToString("F2") + "$";
+        }
+        else if (StaticVariables.cash >= 3000 && BoughtMoneyMultiplier == 2)
+        {
+            StaticVariables.cash -= 3000;
+            RNGscript.MoneyMultiplier = 1.75f;
+            BoughtMoneyMultiplier = 3;
+            MoneyMultiplier.text = "7.500$";
+            CurrentMoney.text = StaticVariables.cash.ToString("F2") + "$";
+        }
+        else if (StaticVariables.cash >= 7500 && BoughtMoneyMultiplier == 3)
+        {
+            StaticVariables.cash -= 7500;
+            RNGscript.MoneyMultiplier = 2f;
+            BoughtMoneyMultiplier = 4;
+            MoneyMultiplier.text = "10.000$";
+            CurrentMoney.text = StaticVariables.cash.ToString("F2") + "$";
+        }
+        else if (StaticVariables.cash >= 10000 && BoughtMoneyMultiplier == 4)
+        {
+            StaticVariables.cash -= 10000;
+            RNGscript.MoneyMultiplier = 2.5f;
+            BoughtMoneyMultiplier = 5;
+            MoneyMultiplier.text = "20.000$";
+            CurrentMoney.text = StaticVariables.cash.ToString("F2") + "$";
+        }
+        else if (StaticVariables.cash >= 20000 && BoughtMoneyMultiplier == 5)
+        {
+            StaticVariables.cash -= 20000;
+            RNGscript.MoneyMultiplier = 3f;
+            BoughtMoneyMultiplier = 6;
+            MoneyMultiplier.text = "Purchased";
+            CurrentMoney.text = StaticVariables.cash.ToString("F2") + "$";
         }
     }
     public void GiveMoneyTest()
     {
         StaticVariables.cash += 100000;
-        CurrentMoney.text = StaticVariables.cash + "$";
+        CurrentMoney.text = StaticVariables.cash.ToString("F2") + "$";
     }
 }

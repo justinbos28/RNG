@@ -352,7 +352,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &33201914
 RectTransform:
   m_ObjectHideFlags: 0
@@ -747,7 +747,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 3df04df2fb53d6e4683f12e9a815fba0, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 72037d587dbf1a24d91400545cfc91f7, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -1206,7 +1206,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1546723948}
         m_TargetAssemblyTypeName: MoneyLogic, Assembly-CSharp
-        m_MethodName: 
+        m_MethodName: BuyMoneyMultiplier
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1583,7 +1583,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 0, b: 0, a: 1}
+  m_Color: {r: 0.44139376, g: 0.8584906, b: 0.4529158, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -1603,7 +1603,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Click me to roll
+  m_Text: Click me to mine
 --- !u!222 &152324887
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1768,7 +1768,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 546.87, y: -66}
+  m_AnchoredPosition: {x: 537.14, y: -40}
   m_SizeDelta: {x: 1027.73, y: 60}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &221748838
@@ -1784,7 +1784,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.13501245, g: 0.6981132, b: 0.19523717, a: 1}
+  m_Color: {r: 0.10693307, g: 0.8396226, b: 0.18834306, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -1794,7 +1794,7 @@ MonoBehaviour:
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
     m_FontSize: 30
-    m_FontStyle: 0
+    m_FontStyle: 1
     m_BestFit: 0
     m_MinSize: 0
     m_MaxSize: 40
@@ -2186,7 +2186,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 3df04df2fb53d6e4683f12e9a815fba0, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 3642f0652557a0a4497d346cdc3b0143, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -2751,7 +2751,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: nan$
+  m_Text: 100$
 --- !u!222 &344850318
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -3249,8 +3249,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
-  m_Type: 1
+  m_Sprite: {fileID: 21300000, guid: f7a56ada7445e3b41a7d5799a4c01e7b, type: 3}
+  m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -3390,6 +3390,7 @@ GameObject:
   - component: {fileID: 519420032}
   - component: {fileID: 519420031}
   - component: {fileID: 519420029}
+  - component: {fileID: 519420033}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -3414,7 +3415,7 @@ Camera:
   m_GameObject: {fileID: 519420028}
   m_Enabled: 1
   serializedVersion: 2
-  m_ClearFlags: 2
+  m_ClearFlags: 1
   m_BackGroundColor: {r: 0.7264151, g: 0.4815884, b: 0.17475079, a: 0}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
@@ -3471,6 +3472,15 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!45 &519420033
+Skybox:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 519420028}
+  m_Enabled: 1
+  m_CustomSkybox: {fileID: 2100000, guid: d710d922033ea8b418df538a9641bd5d, type: 2}
 --- !u!1 &527825422
 GameObject:
   m_ObjectHideFlags: 0
@@ -3638,7 +3648,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: 0, y: -117.399994}
+  m_AnchoredPosition: {x: 0, y: -72}
   m_SizeDelta: {x: 250, y: 60}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &531839742
@@ -3662,7 +3672,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.44313726, g: 0.85882354, b: 0.4509804, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -3672,7 +3682,7 @@ MonoBehaviour:
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
     m_FontSize: 20
-    m_FontStyle: 0
+    m_FontStyle: 1
     m_BestFit: 0
     m_MinSize: 2
     m_MaxSize: 40
@@ -3715,7 +3725,7 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 72812760}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0.49779204}
+  m_AnchorMin: {x: 0, y: 0.58337265}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 20, y: 20}
@@ -3793,9 +3803,9 @@ RectTransform:
   m_Father: {fileID: 33201914}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_SizeDelta: {x: -7, y: 0}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &538551423
 MonoBehaviour:
@@ -3908,8 +3918,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
-  m_Type: 1
+  m_Sprite: {fileID: 21300000, guid: f7a56ada7445e3b41a7d5799a4c01e7b, type: 3}
+  m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -4396,8 +4406,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
-  m_Type: 1
+  m_Sprite: {fileID: 21300000, guid: f7a56ada7445e3b41a7d5799a4c01e7b, type: 3}
+  m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -4550,7 +4560,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 3df04df2fb53d6e4683f12e9a815fba0, type: 3}
+  m_Sprite: {fileID: 21300000, guid: ddd25c60de0ce7b438fdd47a24fa6658, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -4628,8 +4638,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
-  m_Type: 1
+  m_Sprite: {fileID: 21300000, guid: f7a56ada7445e3b41a7d5799a4c01e7b, type: 3}
+  m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -4935,7 +4945,7 @@ GameObject:
   m_Component:
   - component: {fileID: 770247426}
   m_Layer: 5
-  m_Name: comming soon 3
+  m_Name: MoneyMultiplier
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5355,8 +5365,8 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 1867698020}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 0.583331}
+  m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 20, y: 20}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -5547,7 +5557,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 1000$
+  m_Text: 500$
 --- !u!222 &953061355
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -5818,15 +5828,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.745283, g: 0.745283, b: 0.745283, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
-  m_Type: 1
+  m_Sprite: {fileID: 21300000, guid: a957c97f10d350743a1ec1906561b596, type: 3}
+  m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -6036,8 +6046,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
-  m_Type: 1
+  m_Sprite: {fileID: 21300000, guid: f7a56ada7445e3b41a7d5799a4c01e7b, type: 3}
+  m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -6091,8 +6101,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0.2}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -78.67001, y: -40.600006}
-  m_SizeDelta: {x: 157.33002, y: -111.140015}
+  m_AnchoredPosition: {x: -78.67001, y: -40.585007}
+  m_SizeDelta: {x: 157.33002, y: -111.17001}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1010180707
 MonoBehaviour:
@@ -7121,7 +7131,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Coming Soon
+  m_Text: Money Multiplier
 --- !u!222 &1126864114
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -7492,7 +7502,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 5000$
+  m_Text: 1500$
 --- !u!222 &1215945874
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -7735,7 +7745,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 10.000$
+  m_Text: 2.500$
 --- !u!222 &1268650078
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -9306,7 +9316,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
+  m_Sprite: {fileID: 21300000, guid: 15366d8c01ecaec4d8d38e5a18e1f467, type: 3}
   m_Type: 1
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -9315,7 +9325,7 @@ MonoBehaviour:
   m_FillClockwise: 1
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
-  m_PixelsPerUnitMultiplier: 1
+  m_PixelsPerUnitMultiplier: 2
 --- !u!222 &1491348681
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -9407,7 +9417,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 536057467}
   m_Direction: 2
   m_Value: 1
-  m_Size: 0.5022079
+  m_Size: 0.41662735
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -10385,27 +10395,27 @@ MonoBehaviour:
   - name: Stone
     decription: 
     rarityTitle: Common
-    OrePicture: {fileID: 21300000, guid: 3df04df2fb53d6e4683f12e9a815fba0, type: 3}
+    OrePicture: {fileID: 21300000, guid: f7a56ada7445e3b41a7d5799a4c01e7b, type: 3}
     rarity: 1
     rarityCount: 0
     OreID: 0
     chance: 1
-    OrePrice: 0.05
+    OrePrice: 0.25
     rarityEffectColor: {r: 1, g: 1, b: 1, a: 0}
   - name: Coal
     decription: 
     rarityTitle: Common
-    OrePicture: {fileID: 21300000, guid: f826a19400c33394eb81f0373af22116, type: 3}
+    OrePicture: {fileID: 21300000, guid: 58dd21e62d1cb9f4f8cd41ee4e9ba2a6, type: 3}
     rarity: 2
     rarityCount: 0
     OreID: 0
     chance: 4
-    OrePrice: 0.1
+    OrePrice: 0.5
     rarityEffectColor: {r: 1, g: 1, b: 1, a: 0}
   - name: Sand
     decription: 
     rarityTitle: Common
-    OrePicture: {fileID: 21300000, guid: 68bd9a512606ffa42ba60c32db76aefc, type: 3}
+    OrePicture: {fileID: 21300000, guid: 99769032a13047448adc5b52f8f55644, type: 3}
     rarity: 3
     rarityCount: 0
     OreID: 0
@@ -10415,67 +10425,67 @@ MonoBehaviour:
   - name: Wood
     decription: 
     rarityTitle: Common
-    OrePicture: {fileID: 21300000, guid: 535101cb43dae8c4db6dfad68df9f78f, type: 3}
+    OrePicture: {fileID: 21300000, guid: f50b71e38238d80489280594ca8083a1, type: 3}
     rarity: 4
     rarityCount: 0
     OreID: 0
     chance: 10
-    OrePrice: 0.5
+    OrePrice: 1
     rarityEffectColor: {r: 1, g: 1, b: 1, a: 0}
   - name: Iron
     decription: 
     rarityTitle: Common
-    OrePicture: {fileID: 21300000, guid: 50e6f4a3d8d13e943aef2cf07536d18a, type: 3}
+    OrePicture: {fileID: 21300000, guid: 70ead2093dd7ac8478c42db6861af594, type: 3}
     rarity: 5
     rarityCount: 0
     OreID: 0
     chance: 20
-    OrePrice: 1
+    OrePrice: 4
     rarityEffectColor: {r: 1, g: 1, b: 1, a: 0}
   - name: Rubber
     decription: 
     rarityTitle: Common
-    OrePicture: {fileID: 21300000, guid: 84a882e2f6a08ea4fb710c31b816e3df, type: 3}
+    OrePicture: {fileID: 21300000, guid: b774094c758e770428e7f36898d65bee, type: 3}
     rarity: 6
     rarityCount: 0
     OreID: 0
     chance: 55
-    OrePrice: 2
+    OrePrice: 5
     rarityEffectColor: {r: 1, g: 1, b: 1, a: 0}
   - name: Plastic
     decription: 
     rarityTitle: Common
-    OrePicture: {fileID: 21300000, guid: 60e14ad33d21a8c47bcacb664897a722, type: 3}
+    OrePicture: {fileID: 21300000, guid: 59f8f7754f46b7c4e928a3a3c7e6bf50, type: 3}
     rarity: 7
     rarityCount: 0
     OreID: 0
     chance: 70
-    OrePrice: 5
+    OrePrice: 8
     rarityEffectColor: {r: 1, g: 1, b: 1, a: 0}
   - name: Copper
     decription: 
     rarityTitle: Uncommon
-    OrePicture: {fileID: 21300000, guid: 4c4caac85aa7d964684cf5658ec4ad27, type: 3}
+    OrePicture: {fileID: 21300000, guid: b51b973252012f74e92e3feca1855d79, type: 3}
     rarity: 8
     rarityCount: 0
     OreID: 0
     chance: 110
-    OrePrice: 10
+    OrePrice: 12
     rarityEffectColor: {r: 0.13656996, g: 0.8773585, b: 0.14523412, a: 0}
   - name: Zinc
     decription: 
     rarityTitle: Uncommon
-    OrePicture: {fileID: 21300000, guid: 1c3a235fcba604646a16455ac75ada80, type: 3}
+    OrePicture: {fileID: 21300000, guid: ebaac7de745b6c04e875b8ade8e79edf, type: 3}
     rarity: 9
     rarityCount: 0
     OreID: 0
     chance: 240
-    OrePrice: 25
+    OrePrice: 6
     rarityEffectColor: {r: 0.13725491, g: 0.8784314, b: 0.14901961, a: 0}
   - name: Petrolium
     decription: 
     rarityTitle: Uncommon
-    OrePicture: {fileID: 21300000, guid: 1c3a235fcba604646a16455ac75ada80, type: 3}
+    OrePicture: {fileID: 21300000, guid: c3612f98229ab4746b26426c4c9b2b54, type: 3}
     rarity: 10
     rarityCount: 0
     OreID: 0
@@ -10485,22 +10495,22 @@ MonoBehaviour:
   - name: Bronze
     decription: 
     rarityTitle: Uncommon
-    OrePicture: {fileID: 21300000, guid: 9922c91725f65d8479d40f7ffe2e059b, type: 3}
+    OrePicture: {fileID: 21300000, guid: b926218beafa1b744904f9b8db748dc1, type: 3}
     rarity: 11
     rarityCount: 0
     OreID: 0
     chance: 650
-    OrePrice: 100
+    OrePrice: 40
     rarityEffectColor: {r: 0.13725491, g: 0.8784314, b: 0.14901961, a: 0}
   - name: Steel
     decription: 
     rarityTitle: Uncommon
-    OrePicture: {fileID: 21300000, guid: b73b9b09f3e540e498214462ea47f792, type: 3}
+    OrePicture: {fileID: 21300000, guid: 3b9eb4d2d0faa014893ca2e12d9b3be1, type: 3}
     rarity: 12
     rarityCount: 0
     OreID: 0
     chance: 825
-    OrePrice: 250
+    OrePrice: 85
     rarityEffectColor: {r: 0.13725491, g: 0.8784314, b: 0.14901961, a: 0}
   - name: Quarts
     decription: 
@@ -10510,7 +10520,7 @@ MonoBehaviour:
     rarityCount: 0
     OreID: 0
     chance: 1350
-    OrePrice: 500
+    OrePrice: 250
     rarityEffectColor: {r: 0, g: 0.6139307, b: 1, a: 0}
   - name: Silver
     decription: 
@@ -10520,7 +10530,7 @@ MonoBehaviour:
     rarityCount: 0
     OreID: 0
     chance: 3500
-    OrePrice: 1000
+    OrePrice: 200
     rarityEffectColor: {r: 0, g: 0.6139307, b: 1, a: 0}
   - name: Titanium
     decription: 
@@ -10530,7 +10540,7 @@ MonoBehaviour:
     rarityCount: 0
     OreID: 0
     chance: 5600
-    OrePrice: 3500
+    OrePrice: 450
     rarityEffectColor: {r: 0, g: 0.6139307, b: 1, a: 0}
   - name: Silicon
     decription: 
@@ -10540,7 +10550,7 @@ MonoBehaviour:
     rarityCount: 0
     OreID: 0
     chance: 7500
-    OrePrice: 5600
+    OrePrice: 150
     rarityEffectColor: {r: 0, g: 0.6139307, b: 1, a: 0}
   - name: Amethyst
     decription: 
@@ -10550,7 +10560,7 @@ MonoBehaviour:
     rarityCount: 0
     OreID: 0
     chance: 9650
-    OrePrice: 10000
+    OrePrice: 700
     rarityEffectColor: {r: 0, g: 0.6139307, b: 1, a: 0}
   - name: Gold
     decription: 
@@ -10560,7 +10570,7 @@ MonoBehaviour:
     rarityCount: 0
     OreID: 0
     chance: 15000
-    OrePrice: 10000
+    OrePrice: 1500
     rarityEffectColor: {r: 0.772892, g: 0, b: 1, a: 0}
   - name: Uranium
     decription: 
@@ -10570,7 +10580,7 @@ MonoBehaviour:
     rarityCount: 0
     OreID: 0
     chance: 28000
-    OrePrice: 10000
+    OrePrice: 5000
     rarityEffectColor: {r: 0.772892, g: 0, b: 1, a: 0}
   - name: Tungsten
     decription: 
@@ -10580,7 +10590,7 @@ MonoBehaviour:
     rarityCount: 0
     OreID: 0
     chance: 45000
-    OrePrice: 10000
+    OrePrice: 3500
     rarityEffectColor: {r: 0.772892, g: 0, b: 1, a: 0}
   - name: Bismuth
     decription: 
@@ -10590,7 +10600,7 @@ MonoBehaviour:
     rarityCount: 0
     OreID: 0
     chance: 67000
-    OrePrice: 10000
+    OrePrice: 6200
     rarityEffectColor: {r: 0.772892, g: 0, b: 1, a: 0}
   - name: Adurite
     decription: 
@@ -10600,7 +10610,7 @@ MonoBehaviour:
     rarityCount: 0
     OreID: 0
     chance: 89000
-    OrePrice: 10000
+    OrePrice: 5500
     rarityEffectColor: {r: 0.772892, g: 0, b: 1, a: 0}
   - name: Magnetite
     decription: 
@@ -10620,7 +10630,7 @@ MonoBehaviour:
     rarityCount: 0
     OreID: 0
     chance: 240000
-    OrePrice: 10000
+    OrePrice: 15000
     rarityEffectColor: {r: 1, g: 0.8081863, b: 0, a: 0}
   - name: Ruby
     decription: 
@@ -10630,7 +10640,7 @@ MonoBehaviour:
     rarityCount: 0
     OreID: 0
     chance: 460000
-    OrePrice: 10000
+    OrePrice: 25000
     rarityEffectColor: {r: 1, g: 0.8081863, b: 0, a: 0}
   - name: Emerald
     decription: 
@@ -10640,7 +10650,7 @@ MonoBehaviour:
     rarityCount: 0
     OreID: 0
     chance: 680312
-    OrePrice: 10000
+    OrePrice: 55000
     rarityEffectColor: {r: 1, g: 0.8081863, b: 0, a: 0}
   - name: Diamond
     decription: 
@@ -10650,7 +10660,7 @@ MonoBehaviour:
     rarityCount: 0
     OreID: 0
     chance: 890000
-    OrePrice: 10000
+    OrePrice: 80000
     rarityEffectColor: {r: 1, g: 0.8081863, b: 0, a: 0}
   - name: Unknown
     decription: 
@@ -10660,14 +10670,25 @@ MonoBehaviour:
     rarityCount: 0
     OreID: 0
     chance: 1000000
-    OrePrice: 10000
+    OrePrice: 100000
     rarityEffectColor: {r: 0, g: 0, b: 0, a: 0}
+  - name: Alimesjournite
+    decription: 
+    rarityTitle: Unreal
+    OrePicture: {fileID: 21300000, guid: eb911a5aa7a2a3c4a9df5401b36b07da, type: 3}
+    rarity: 29
+    rarityCount: 0
+    OreID: 0
+    chance: 69420
+    OrePrice: 10000000
+    rarityEffectColor: {r: 0.1385509, g: 0.49056602, b: 0.09024564, a: 0}
   CommonOres: []
   UncommonOres: []
   RareOres: []
   EpicOres: []
   LegendaryOres: []
   MythicOres: []
+  UnrealOres: []
   playerHand: []
   cardLimit: 1
   timer: 0
@@ -10675,6 +10696,7 @@ MonoBehaviour:
   RollSpeed: 0.5
   LuckPercentage: 1
   LuckMultiplier: 1
+  MoneyMultiplier: 1
   StartTimer: 0
   RollStatus: 0
   RollSkips: 4
@@ -10777,6 +10799,7 @@ MonoBehaviour:
   BoughtRollSkips: 0
   BoughtLuckPercentage: 0
   BoughtLuckMultiplier: 0
+  BoughtMoneyMultiplier: 0
   AutoRoll: 0
   RollSpeedText: {fileID: 1493709927}
   CurrentMoney: {fileID: 221748838}
@@ -10785,6 +10808,7 @@ MonoBehaviour:
   AutoRollText: {fileID: 953061354}
   LuckPercentageText: {fileID: 1080303263}
   LuckMultiplierText: {fileID: 1268650077}
+  MoneyMultiplier: {fileID: 344850317}
   RNGscript: {fileID: 1546723946}
   AutoRollButton: {fileID: 1032464898}
   AutoRollButtonColor: {fileID: 93507715}
@@ -11096,8 +11120,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
-  m_Type: 1
+  m_Sprite: {fileID: 21300000, guid: f7a56ada7445e3b41a7d5799a4c01e7b, type: 3}
+  m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -12165,7 +12189,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 0, b: 0, a: 1}
+  m_Color: {r: 0.44313726, g: 0.85882354, b: 0.4509804, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1

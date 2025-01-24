@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -13,6 +14,7 @@ public class RNGscript : MonoBehaviour
     public List<OreClass> EpicOres = new List<OreClass>();
     public List<OreClass> LegendaryOres = new List<OreClass>();
     public List<OreClass> MythicOres = new List<OreClass>();
+    public List<OreClass> UnrealOres = new List<OreClass>();
 
     public List<OreClass> playerHand = new List<OreClass>();
     public int cardLimit = 1;
@@ -22,6 +24,7 @@ public class RNGscript : MonoBehaviour
     public float RollSpeed = 0.5f;
     public float LuckPercentage = 1;
     public float LuckMultiplier = 1;
+    public float MoneyMultiplier = 1;
     public int StartTimer;
     public int RollStatus;
     public int RollSkips = 5;
@@ -95,88 +98,47 @@ public class RNGscript : MonoBehaviour
             switch (card.rarity)
             {
                 case 1:
-                    CommonOres.Add(card);
-                    break;
                 case 2:
-                    CommonOres.Add(card);
-                    break;
                 case 3:
-                    CommonOres.Add(card);
-                    break;
                 case 4:
-                    CommonOres.Add(card);
-                    break;
                 case 5:
-                    CommonOres.Add(card);
-                    break;
                 case 6:
-                    CommonOres.Add(card);
-                    break;
                 case 7:
                     CommonOres.Add(card);
                     break;
                 case 8:
-                    UncommonOres.Add(card);
-                    break;
                 case 9:
-                    UncommonOres.Add(card);
-                    break;
                 case 10:
-                    UncommonOres.Add(card);
-                    break;
                 case 11:
-                    UncommonOres.Add(card);
-                    break;
                 case 12:
                     UncommonOres.Add(card);
                     break;
                 case 13:
-                    RareOres.Add(card);
-                    break;
                 case 14:
-                    RareOres.Add(card);
-                    break;
                 case 15:
-                    RareOres.Add(card);
-                    break;
                 case 16:
-                    RareOres.Add(card);
-                    break;
                 case 17:
                     RareOres.Add(card);
                     break;
                 case 18:
-                    EpicOres.Add(card);
-                    break;
                 case 19:
-                    EpicOres.Add(card);
-                    break;
                 case 20:
-                    EpicOres.Add(card);
-                    break;
                 case 21:
-                    EpicOres.Add(card);
-                    break;
                 case 22:
                     EpicOres.Add(card);
                     break;
                 case 23:
-                    LegendaryOres.Add(card);
-                    break;
                 case 24:
-                    LegendaryOres.Add(card);
-                    break;
                 case 25:
-                    LegendaryOres.Add(card);
-                    break;
                 case 26:
-                    LegendaryOres.Add(card);
-                    break;
                 case 27:
                     LegendaryOres.Add(card);
                     break;
                 case 28:
                     MythicOres.Add(card);
+                    break;
+                case 29:
+                    UnrealOres.Add(card);
                     break;
             }
         }
@@ -189,6 +151,8 @@ public class RNGscript : MonoBehaviour
         List<int> hand = new List<int>();
         for (int i = 0; i < cardLimit; i++)
         {
+            // unreal ores
+            bool cardRarityChance29 = CalulateRNGPercent(0.00001f * LuckPercentage * LuckMultiplier);
             // mythic ores
             bool cardRarityChance28 = CalulateRNGPercent(0.0001f * LuckPercentage * LuckMultiplier);
             // legendary ores
@@ -222,7 +186,7 @@ public class RNGscript : MonoBehaviour
             bool cardRarityChance4 = CalulateRNGPercent(9.1f / LuckPercentage / LuckMultiplier);
             bool cardRarityChance3 = CalulateRNGPercent(14.3f / LuckPercentage / LuckMultiplier);
             bool cardRarityChance2 = CalulateRNGPercent(20 / LuckPercentage / LuckMultiplier);
-            bool cardRarityChance1 = CalulateRNGPercent(50 * LuckPercentage * LuckMultiplier);
+            bool cardRarityChance1 = CalulateRNGPercent(50 / LuckPercentage / LuckMultiplier);
 
             void AddOreToHand(List<OreClass> oreList, List<int> hand)
             {
@@ -239,8 +203,11 @@ public class RNGscript : MonoBehaviour
                     hand.Add(oreList[Random.Range(0, oreList.Count)].OreID);
                 }
             }
-
-            if (cardRarityChance28)
+            if (cardRarityChance29)
+            {
+                AddOreToHand(UnrealOres, hand);
+            }
+            else if (cardRarityChance28)
             {
                 AddOreToHand(MythicOres, hand);
             }
@@ -437,7 +404,7 @@ public class RNGscript : MonoBehaviour
         // showing the ore and giving the price
         if (RollStatus == RollSkips)
         {
-            RollingText.text = "You rolled ";
+            RollingText.text = "You mined ";
             RarityEffectSprite.color = new Color(RarityEffectSprite.color.r, RarityEffectSprite.color.g, RarityEffectSprite.color.b, 0.5f);
             RarityEffectSprite2.color = new Color(RarityEffectSprite.color.r, RarityEffectSprite.color.g, RarityEffectSprite.color.b, 0.3f);
             RarityEffectSprite3.color = new Color(RarityEffectSprite3.color.r, RarityEffectSprite3.color.g, RarityEffectSprite3.color.b, 0.5f);
@@ -453,6 +420,14 @@ public class RNGscript : MonoBehaviour
 
             for (int i = 0; i < playerHand.Count; i++)
             {
+                StaticVariables.cash += playerHand[i].OrePrice * MoneyMultiplier;
+                if (new int[] { 9, 12, 19, 21, 26 }.Contains(playerHand[i].OreID))
+                //if (playerHand[i].OreID == 9 || playerHand[i].OreID == 12 || playerHand[i].OreID == 19 || playerHand[i].OreID == 21 || playerHand[i].OreID == 26)
+                {
+                    titles[i].color = Color.black;
+                    effects[i].color = Color.black;
+                    rarity[i].color = Color.black;
+                }
                 //foreach (var ore in playerHand)
                 //{
                 //    switch (ore.OreID)
@@ -573,7 +548,14 @@ public class RNGscript : MonoBehaviour
             RarityEffectSprite11.color = new Color(RarityEffectSprite11.color.r, RarityEffectSprite11.color.g, RarityEffectSprite11.color.b, 0);
             RarityEffectSprite12.color = new Color(RarityEffectSprite11.color.r, RarityEffectSprite11.color.g, RarityEffectSprite11.color.b, 0);
 
-            RollingText.text = "Rolling...";
+            RollingText.text = "Mining...";
+
+            for (int i = 0; i < playerHand.Count; i++)
+            {
+                titles[i].color = new Vector4(0.45f, 0.86f, 0.45f, 1);
+                effects[i].color = new Vector4(0.45f, 0.86f, 0.45f, 1);
+                rarity[i].color = new Vector4(0.45f, 0.86f, 0.45f, 1);
+            }
         }
 
         // aligns the ores to the corerct spot after buying more roll amount
@@ -660,7 +642,7 @@ public class RNGscript : MonoBehaviour
         RarityEffectSprite11.color = new Color(RarityEffectSprite11.color.r, RarityEffectSprite11.color.g, RarityEffectSprite11.color.b, 0);
         RarityEffectSprite12.color = new Color(RarityEffectSprite11.color.r, RarityEffectSprite11.color.g, RarityEffectSprite11.color.b, 0);
 
-        RollingText.text = "Rolling...";
+        RollingText.text = "Mining...";
     }
     
 }
