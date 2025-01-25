@@ -3499,7 +3499,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &527825423
 RectTransform:
   m_ObjectHideFlags: 0
@@ -3566,7 +3566,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1546723948}
         m_TargetAssemblyTypeName: MoneyLogic, Assembly-CSharp
-        m_MethodName: GiveMoneyTest
+        m_MethodName: 
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -10615,7 +10615,7 @@ MonoBehaviour:
   - name: Magnetite
     decription: 
     rarityTitle: Legendary
-    OrePicture: {fileID: 21300000, guid: b73b9b09f3e540e498214462ea47f792, type: 3}
+    OrePicture: {fileID: 21300000, guid: d77aeb51d60b0264eacdc1080e6f5ff8, type: 3}
     rarity: 23
     rarityCount: 0
     OreID: 0
@@ -10645,7 +10645,7 @@ MonoBehaviour:
   - name: Emerald
     decription: 
     rarityTitle: Legendary
-    OrePicture: {fileID: 21300000, guid: b73b9b09f3e540e498214462ea47f792, type: 3}
+    OrePicture: {fileID: 21300000, guid: 39503bd81dc33464db05d3402bb17bc3, type: 3}
     rarity: 26
     rarityCount: 0
     OreID: 0
@@ -10655,7 +10655,7 @@ MonoBehaviour:
   - name: Diamond
     decription: 
     rarityTitle: Legendary
-    OrePicture: {fileID: 21300000, guid: b73b9b09f3e540e498214462ea47f792, type: 3}
+    OrePicture: {fileID: 21300000, guid: f09afa3dfba1ccb49922b17c4555a2af, type: 3}
     rarity: 27
     rarityCount: 0
     OreID: 0
@@ -10665,13 +10665,13 @@ MonoBehaviour:
   - name: Unknown
     decription: 
     rarityTitle: Mythic
-    OrePicture: {fileID: 21300000, guid: b73b9b09f3e540e498214462ea47f792, type: 3}
+    OrePicture: {fileID: 21300000, guid: c2d18e00b06502a4ebcb9a4dbce21900, type: 3}
     rarity: 28
     rarityCount: 0
     OreID: 0
     chance: 1000000
     OrePrice: 100000
-    rarityEffectColor: {r: 0, g: 0, b: 0, a: 0}
+    rarityEffectColor: {r: 1, g: 0, b: 0, a: 0}
   - name: Alimesjournite
     decription: 
     rarityTitle: Unreal
@@ -10680,8 +10680,8 @@ MonoBehaviour:
     rarityCount: 0
     OreID: 0
     chance: 69420
-    OrePrice: 10000000
-    rarityEffectColor: {r: 0.1385509, g: 0.49056602, b: 0.09024564, a: 0}
+    OrePrice: 10
+    rarityEffectColor: {r: 0.20754719, g: 0.20754719, b: 0.20754719, a: 0}
   CommonOres: []
   UncommonOres: []
   RareOres: []
@@ -12189,7 +12189,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.44313726, g: 0.85882354, b: 0.4509804, a: 1}
+  m_Color: {r: 0, g: 0, b: 0, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1

@@ -328,44 +328,44 @@ public class MoneyLogic : MonoBehaviour
             StaticVariables.cash -= 100;
             RNGscript.MoneyMultiplier = 1.25f;
             BoughtMoneyMultiplier = 1;
-            MoneyMultiplier.text = "1000$";
+            MoneyMultiplier.text = "500$";
             CurrentMoney.text = StaticVariables.cash.ToString("F2") + "$";
         }
-        else if (StaticVariables.cash >= 1000 && BoughtMoneyMultiplier == 1)
+        else if (StaticVariables.cash >= 500 && BoughtMoneyMultiplier == 1)
         {
-            StaticVariables.cash -= 1000;
+            StaticVariables.cash -= 500;
             RNGscript.MoneyMultiplier = 1.5f;
             BoughtMoneyMultiplier = 2;
+            MoneyMultiplier.text = "1500$";
+            CurrentMoney.text = StaticVariables.cash.ToString("F2") + "$";
+        }
+        else if (StaticVariables.cash >= 1500 && BoughtMoneyMultiplier == 2)
+        {
+            StaticVariables.cash -= 1500;
+            RNGscript.MoneyMultiplier = 1.75f;
+            BoughtMoneyMultiplier = 3;
             MoneyMultiplier.text = "3000$";
             CurrentMoney.text = StaticVariables.cash.ToString("F2") + "$";
         }
-        else if (StaticVariables.cash >= 3000 && BoughtMoneyMultiplier == 2)
+        else if (StaticVariables.cash >= 3000 && BoughtMoneyMultiplier == 3)
         {
             StaticVariables.cash -= 3000;
-            RNGscript.MoneyMultiplier = 1.75f;
-            BoughtMoneyMultiplier = 3;
+            RNGscript.MoneyMultiplier = 2f;
+            BoughtMoneyMultiplier = 4;
+            MoneyMultiplier.text = "5.000$";
+            CurrentMoney.text = StaticVariables.cash.ToString("F2") + "$";
+        }
+        else if (StaticVariables.cash >= 5000 && BoughtMoneyMultiplier == 4)
+        {
+            StaticVariables.cash -= 5000;
+            RNGscript.MoneyMultiplier = 2.5f;
+            BoughtMoneyMultiplier = 5;
             MoneyMultiplier.text = "7.500$";
             CurrentMoney.text = StaticVariables.cash.ToString("F2") + "$";
         }
-        else if (StaticVariables.cash >= 7500 && BoughtMoneyMultiplier == 3)
+        else if (StaticVariables.cash >= 7500 && BoughtMoneyMultiplier == 5)
         {
             StaticVariables.cash -= 7500;
-            RNGscript.MoneyMultiplier = 2f;
-            BoughtMoneyMultiplier = 4;
-            MoneyMultiplier.text = "10.000$";
-            CurrentMoney.text = StaticVariables.cash.ToString("F2") + "$";
-        }
-        else if (StaticVariables.cash >= 10000 && BoughtMoneyMultiplier == 4)
-        {
-            StaticVariables.cash -= 10000;
-            RNGscript.MoneyMultiplier = 2.5f;
-            BoughtMoneyMultiplier = 5;
-            MoneyMultiplier.text = "20.000$";
-            CurrentMoney.text = StaticVariables.cash.ToString("F2") + "$";
-        }
-        else if (StaticVariables.cash >= 20000 && BoughtMoneyMultiplier == 5)
-        {
-            StaticVariables.cash -= 20000;
             RNGscript.MoneyMultiplier = 3f;
             BoughtMoneyMultiplier = 6;
             MoneyMultiplier.text = "Purchased";

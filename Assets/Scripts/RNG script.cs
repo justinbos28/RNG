@@ -137,9 +137,9 @@ public class RNGscript : MonoBehaviour
                 case 28:
                     MythicOres.Add(card);
                     break;
-                case 29:
-                    UnrealOres.Add(card);
-                    break;
+                //case 29:
+                //    UnrealOres.Add(card);
+                //    break;
             }
         }
     }
@@ -152,7 +152,7 @@ public class RNGscript : MonoBehaviour
         for (int i = 0; i < cardLimit; i++)
         {
             // unreal ores
-            bool cardRarityChance29 = CalulateRNGPercent(0.00001f * LuckPercentage * LuckMultiplier);
+            //bool cardRarityChance29 = CalulateRNGPercent(0.00001f * LuckPercentage * LuckMultiplier);
             // mythic ores
             bool cardRarityChance28 = CalulateRNGPercent(0.0001f * LuckPercentage * LuckMultiplier);
             // legendary ores
@@ -203,11 +203,11 @@ public class RNGscript : MonoBehaviour
                     hand.Add(oreList[Random.Range(0, oreList.Count)].OreID);
                 }
             }
-            if (cardRarityChance29)
-            {
-                AddOreToHand(UnrealOres, hand);
-            }
-            else if (cardRarityChance28)
+            //if (cardRarityChance29)
+            //{
+            //    AddOreToHand(UnrealOres, hand);
+            //}
+            if (cardRarityChance28)
             {
                 AddOreToHand(MythicOres, hand);
             }
@@ -421,12 +421,12 @@ public class RNGscript : MonoBehaviour
             for (int i = 0; i < playerHand.Count; i++)
             {
                 StaticVariables.cash += playerHand[i].OrePrice * MoneyMultiplier;
-                if (new int[] { 9, 12, 19, 21, 26 }.Contains(playerHand[i].OreID))
+                if (new int[] { 2, 6, 10, 28, 29 }.Contains(playerHand[i].OreID))
                 //if (playerHand[i].OreID == 9 || playerHand[i].OreID == 12 || playerHand[i].OreID == 19 || playerHand[i].OreID == 21 || playerHand[i].OreID == 26)
                 {
-                    titles[i].color = Color.black;
-                    effects[i].color = Color.black;
-                    rarity[i].color = Color.black;
+                    titles[i].color = Color.white;
+                    effects[i].color = Color.white;
+                    rarity[i].color = Color.white;
                 }
                 //foreach (var ore in playerHand)
                 //{
@@ -552,9 +552,9 @@ public class RNGscript : MonoBehaviour
 
             for (int i = 0; i < playerHand.Count; i++)
             {
-                titles[i].color = new Vector4(0.45f, 0.86f, 0.45f, 1);
-                effects[i].color = new Vector4(0.45f, 0.86f, 0.45f, 1);
-                rarity[i].color = new Vector4(0.45f, 0.86f, 0.45f, 1);
+                titles[i].color = Color.black;
+                effects[i].color = Color.black;
+                rarity[i].color = Color.black;
             }
         }
 
