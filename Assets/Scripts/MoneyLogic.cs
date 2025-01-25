@@ -5,7 +5,7 @@ using UnityEngine;
 using UnityEngine.Experimental.Rendering;
 using UnityEngine.UI;
 
-public class MoneyLogic : MonoBehaviour
+public class MoneyLogic : MonoBehaviour, IDataPersistence
 {
     public int BoughtRollSpeed;
     public int BoughtRollAmount;
@@ -13,7 +13,10 @@ public class MoneyLogic : MonoBehaviour
     public int BoughtLuckPercentage;
     public int BoughtLuckMultiplier;
     public int BoughtMoneyMultiplier;
+
+    public float Money;
     public bool AutoRoll;
+    public bool BoughtAutoRoll;
 
     public Text RollSpeedText;
     public Text CurrentMoney;
@@ -26,6 +29,170 @@ public class MoneyLogic : MonoBehaviour
     public RNGscript RNGscript;
     public GameObject AutoRollButton;
     public Image AutoRollButtonColor;
+
+    
+    public void Update()
+    {
+        StaticVariables.cash = Money;
+    }
+    // saving data and getting saved data
+    public void LoadData(GameData data)
+    {
+        this.BoughtRollSpeed = data.BoughtRollSpeed;
+        this.BoughtMoneyMultiplier = data.BoughtMoneyMultiplier;
+        this.BoughtLuckPercentage = data.BoughtLuckPercentage;
+        this.BoughtLuckMultiplier = data.BoughtLuckMultiplier;
+        this.BoughtRollAmount = data.BoughtRollAmount;
+        this.BoughtRollSkips = data.BoughtRollSkips;
+        this.BoughtAutoRoll = data.BoughtAutoRoll;
+        
+        this.Money = data.Money;
+    }
+    public void SaveData(ref GameData data)
+    {
+        data.BoughtRollSpeed = this.BoughtRollSpeed;
+        data.BoughtMoneyMultiplier = this.BoughtMoneyMultiplier;
+        data.BoughtLuckPercentage = this.BoughtLuckPercentage;
+        data.BoughtLuckMultiplier = this.BoughtLuckMultiplier;
+        data.BoughtRollAmount = this.BoughtRollAmount;
+        data.BoughtRollSkips = this.BoughtRollSkips;
+        data.BoughtAutoRoll = this.BoughtAutoRoll;
+
+        data.Money = this.Money;
+    }
+    // end saving and getting saved data
+    public void Start()
+    {
+        if (BoughtRollSpeed == 1)
+        {
+            RollSpeedText.text = "350$"; // 1 is 150 niet 350!
+        }
+        else if (BoughtRollSpeed == 2)
+        {
+            RollSpeedText.text = "750$";
+        }
+        else if (BoughtRollSpeed == 3)
+        {
+            RollSpeedText.text = "2.000$";
+        }
+        else if (BoughtRollSpeed == 4)
+        {
+            RollSpeedText.text = "4.500$";
+        }
+        else if (BoughtRollSpeed == 5)
+        {
+            RollSpeedText.text = "Purchased";
+        }
+
+        if (BoughtAutoRoll == true)
+        {
+            AutoRollButton.SetActive(true);
+            RNGscript.RollButton.SetActive(false);
+            AutoRollButtonColor.color = Color.green;
+            AutoRollText.text = "Purchased";
+        }
+
+        if (BoughtRollAmount == 1)
+        {
+            RollAmountText.text = "5.000$";
+        }
+        else if (BoughtRollAmount == 2)
+        {
+            RollAmountText.text = "12.000$";
+        }
+        else if (BoughtRollAmount == 3)
+        {
+            RollAmountText.text = "25.000$";
+        }
+        else if (BoughtRollAmount == 4)
+        {
+            RollAmountText.text = "Purchased";
+        }
+
+        if (BoughtRollSkips == 1)
+        {
+            RollSkipsText.text = "15.000$";
+        }
+        else if (BoughtRollSkips == 2)
+        {
+            RollSkipsText.text = "Purchased";
+        }
+
+        if (BoughtLuckPercentage == 1)
+        {
+            RollSkipsText.text = "250$";
+        }
+        else if (BoughtLuckPercentage == 2)
+        {
+            RollSkipsText.text = "500$";
+        }
+        else if (BoughtLuckPercentage == 3)
+        {
+            RollSkipsText.text = "1.500$";
+        }
+        else if (BoughtLuckPercentage == 4)
+        {
+            RollSkipsText.text = "3.500$";
+        }
+        else if (BoughtLuckPercentage == 5)
+        {
+            RollSkipsText.text = "8.000$";
+        }
+        else if (BoughtLuckPercentage == 6)
+        {
+            RollSkipsText.text = "12.500$";
+        }
+        else if (BoughtLuckPercentage == 7)
+        {
+            RollSkipsText.text = "20.000$";
+        }
+        else if (BoughtLuckPercentage == 8)
+        {
+            RollSkipsText.text = "35.000$";
+        }
+        else if (BoughtLuckPercentage == 9)
+        {
+            RollSkipsText.text = "Purchased";
+        }
+
+        if (BoughtLuckMultiplier == 1)
+        {
+            LuckMultiplierText.text = "10.000";
+        }
+        else if (BoughtLuckMultiplier == 2)
+        {
+            LuckMultiplierText.text = "22.000";
+        }
+        else if (BoughtLuckMultiplier == 3)
+        {
+            LuckMultiplierText.text = "45.000";
+        }
+        else if (BoughtLuckMultiplier == 4)
+        {
+            LuckMultiplierText.text = "Purchased";
+        }
+
+        if (BoughtMoneyMultiplier == 1)
+        {
+            MoneyMultiplier.text = "1500$";
+        }
+        else if (BoughtMoneyMultiplier == 2)
+        {
+            MoneyMultiplier.text = "3000$";
+        }
+        else if (BoughtMoneyMultiplier == 3)
+        {
+            MoneyMultiplier.text = "5.000$";
+        }
+        else if (BoughtMoneyMultiplier == 4)
+        {
+            MoneyMultiplier.text = "7.500$";
+        }
+        else if (BoughtMoneyMultiplier == 5)
+        {
+            MoneyMultiplier.text = "Purchased";
+        }
+    }
     public void BuyRollspeed()
     {
         if (StaticVariables.cash >= 25 && BoughtRollSpeed == 0)
@@ -36,7 +203,7 @@ public class MoneyLogic : MonoBehaviour
             RollSpeedText.text = "150$";
             CurrentMoney.text = StaticVariables.cash.ToString("F2") + "$";
         }
-        else if (StaticVariables.cash >= 150 && BoughtRollSpeed == 1)
+        else if (StaticVariables.cash >= 150 && BoughtRollSpeed == 1) // zie hier 150 = 1
         {
             StaticVariables.cash -= 150;
             RNGscript.RollSpeed = 0.4f;
@@ -96,11 +263,12 @@ public class MoneyLogic : MonoBehaviour
 
     public void BuyAutoRoll()
     {
-        if (StaticVariables.cash >= 500 && AutoRoll == false)
+        if (StaticVariables.cash >= 500 && BoughtAutoRoll == false)
         {
             StaticVariables.cash -= 500;
             RNGscript.AutoTimer = 0;
             AutoRoll = true;
+            BoughtAutoRoll = true;
             AutoRollButton.SetActive(true);
             RNGscript.RollButton.SetActive(false);
             AutoRollButtonColor.color = Color.green;
@@ -374,7 +542,7 @@ public class MoneyLogic : MonoBehaviour
     }
     public void GiveMoneyTest()
     {
-        StaticVariables.cash += 100000;
+        Money += 100000;
         CurrentMoney.text = StaticVariables.cash.ToString("F2") + "$";
     }
 }

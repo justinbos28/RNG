@@ -5,7 +5,7 @@ using UnityEngine;
 using UnityEngine.UI;
 
 
-public class RNGscript : MonoBehaviour
+public class RNGscript : MonoBehaviour, IDataPersistence
 {
     public List<OreClass> allOres = new List<OreClass>();
     public List<OreClass> CommonOres = new List<OreClass>();
@@ -21,13 +21,16 @@ public class RNGscript : MonoBehaviour
 
     public float timer = 0;
     public float timer2 = 0;
+
     public float RollSpeed = 0.5f;
     public float LuckPercentage = 1;
     public float LuckMultiplier = 1;
     public float MoneyMultiplier = 1;
-    public int StartTimer;
+
     public int RollStatus;
     public int RollSkips = 5;
+
+    public int StartTimer;
     public int AutoTimer = 1;
     public bool Timer2Active = false;
     public bool AutoRollTimer = false;
@@ -75,6 +78,29 @@ public class RNGscript : MonoBehaviour
     // Calulates the chance of something happening by percent simple use a chance from 1 to 10 else chance is 1 to 100
     // <param name="percent"></param>
     // <param name="simple"></param>
+
+    // saving data and getting saved data
+    public void LoadData(GameData data)
+    {
+        this.cardLimit = data.CardLimit;
+        this.RollSkips = data.RollSkips;
+        this.RollSpeed = data.RollSpeed;
+        this.LuckMultiplier = data.LuckMultiplier;
+        this.LuckPercentage = data.LuckPercentage;
+        this.MoneyMultiplier = data.MoneyMultiplier;
+    }
+    public void SaveData(ref GameData data)
+    {
+        data.CardLimit = this.cardLimit;
+        data.LuckMultiplier = this.LuckMultiplier;
+        data.LuckPercentage = this.LuckPercentage;
+        data.MoneyMultiplier = this.MoneyMultiplier;
+        data.RollSkips = this.RollSkips;
+        data.RollSpeed = this.RollSpeed;
+    }
+    // end saving and getting saved data
+
+
     public static bool CalulateRNGPercent(float percent)
     {
         float temp;
@@ -362,6 +388,15 @@ public class RNGscript : MonoBehaviour
 
     public void Update()
     {
+        if (MoneyLogic.Money < 1000)
+        {
+            CurrentMoney.text = StaticVariables.cash.ToString("F2") + "$";
+        }
+        else
+        {
+            CurrentMoney.text = StaticVariables.cash.ToString("F0") + "$";
+        }
+
         // timers for auto rolling, animation
         if (StartTimer == AutoTimer)
         {
@@ -420,7 +455,7 @@ public class RNGscript : MonoBehaviour
 
             for (int i = 0; i < playerHand.Count; i++)
             {
-                StaticVariables.cash += playerHand[i].OrePrice * MoneyMultiplier;
+                MoneyLogic.Money += playerHand[i].OrePrice * MoneyMultiplier;
                 if (new int[] { 2, 6, 10, 28, 29 }.Contains(playerHand[i].OreID))
                 //if (playerHand[i].OreID == 9 || playerHand[i].OreID == 12 || playerHand[i].OreID == 19 || playerHand[i].OreID == 21 || playerHand[i].OreID == 26)
                 {
@@ -519,14 +554,6 @@ public class RNGscript : MonoBehaviour
                 //    }
                 //}
             }
-            if (StaticVariables.cash < 1000)
-            {
-                CurrentMoney.text = StaticVariables.cash.ToString("F2") + "$";
-            }
-            else
-            {
-                CurrentMoney.text = StaticVariables.cash.ToString("F0") + "$";
-            }
             RollStatus++;
         }
         // rolling the dice (roll animation)
@@ -562,16 +589,45 @@ public class RNGscript : MonoBehaviour
         if (cardLimit == 6)
         {
             RollButton6.SetActive(true);
+            RollButton5.SetActive(true);
+            RollButton4.SetActive(true);
+            RollButton3.SetActive(true);
+            RollButton2.SetActive(true);
+            RarityEffectSprite3.enabled = true;
+            RarityEffectSprite4.enabled = true;
+            RarityEffectSprite5.enabled = true;
+            RarityEffectSprite6.enabled = true;
+            RarityEffectSprite7.enabled = true;
+            RarityEffectSprite8.enabled = true;
+            RarityEffectSprite9.enabled = true;
+            RarityEffectSprite10.enabled = true;
             RarityEffectSprite11.enabled = true;
             RarityEffectSprite12.enabled = true;
             RollButton6.transform.position = new Vector3(0, -1.5f , 100);
             RollButton1.transform.position = new Vector3(0, 1.5f, 100);
+            RollButton2.transform.position = new Vector3(5, 1.5f, 100);
+            RollButton3.transform.position = new Vector3(-5, 1.5f, 100);
+            RollButton4.transform.position = new Vector3(-5, -1.5f, 100);
+            RollButton5.transform.position = new Vector3(5, -1.5f, 100);
             RarityEffectObject.transform.position = RollButton1.transform.position;
             RarityEffectObject6.transform.position = RollButton6.transform.position;
+            RarityEffectObject2.transform.position = RollButton2.transform.position;
+            RarityEffectObject3.transform.position = RollButton3.transform.position;
+            RarityEffectObject4.transform.position = RollButton4.transform.position;
+            RarityEffectObject5.transform.position = RollButton5.transform.position;
         }
         else if (cardLimit == 5)
         {
             RollButton5.SetActive(true);
+            RollButton4.SetActive(true);
+            RollButton3.SetActive(true);
+            RollButton2.SetActive(true);
+            RarityEffectSprite3.enabled = true;
+            RarityEffectSprite4.enabled = true;
+            RarityEffectSprite5.enabled = true;
+            RarityEffectSprite6.enabled = true;
+            RarityEffectSprite7.enabled = true;
+            RarityEffectSprite8.enabled = true;
             RarityEffectSprite9.enabled = true;
             RarityEffectSprite10.enabled = true;
             RollButton1.transform.position = new Vector3(0, 0, 100);
@@ -588,6 +644,12 @@ public class RNGscript : MonoBehaviour
         else if (cardLimit == 4)
         {
             RollButton4.SetActive(true);
+            RollButton3.SetActive(true);
+            RollButton2.SetActive(true);
+            RarityEffectSprite3.enabled = true;
+            RarityEffectSprite4.enabled = true;
+            RarityEffectSprite5.enabled = true;
+            RarityEffectSprite6.enabled = true;
             RarityEffectSprite7.enabled = true;
             RarityEffectSprite8.enabled = true;
             RollButton2.transform.position = new Vector3(3, 1.5f, 100);
@@ -602,6 +664,9 @@ public class RNGscript : MonoBehaviour
         else if (cardLimit == 3)
         {
             RollButton3.SetActive(true);
+            RollButton2.SetActive(true);
+            RarityEffectSprite3.enabled = true;
+            RarityEffectSprite4.enabled = true;
             RarityEffectSprite5.enabled = true;
             RarityEffectSprite6.enabled = true;
             RollButton2.transform.position = new Vector3(5, 0, 100);
@@ -609,6 +674,7 @@ public class RNGscript : MonoBehaviour
             RollButton3.transform.position = new Vector3(-5, 0, 100);
             RarityEffectObject.transform.position = RollButton1.transform.position;
             RarityEffectObject2.transform.position = RollButton2.transform.position;
+            RarityEffectObject3.transform.position = RollButton3.transform.position;
         }
         else if (cardLimit == 2)
         {
