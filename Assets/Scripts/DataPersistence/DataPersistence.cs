@@ -45,8 +45,6 @@ public class DataPersistence : MonoBehaviour
         {
             dataPersistenceObj.LoadData(gameData);
         }
-
-        Debug.Log("loaded money count = " + gameData.Money);
     }
 
     public void SaveGame()
@@ -55,7 +53,6 @@ public class DataPersistence : MonoBehaviour
         {
             dataPersistenceObj.SaveData(ref gameData);
         }
-        Debug.Log("saved money count = " + gameData.Money);
 
         dataHandler.Save(gameData);
     }
