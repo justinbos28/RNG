@@ -28,6 +28,7 @@ public class MoneyLogic : MonoBehaviour, IDataPersistence
     public Text MoneyMultiplier;
     public RNGscript RNGscript;
     public GameObject AutoRollButton;
+    public Image AutoSellButton;
     public Image AutoRollButtonColor;
 
 
@@ -564,5 +565,18 @@ public class MoneyLogic : MonoBehaviour, IDataPersistence
     {
         Money += 100000;
         CurrentMoney.text = StaticVariables.cash.ToString("F2") + "$";
+    }
+    public void AutoSellActive()
+    {
+        if (RNGscript.AutoSell == false)
+        {
+            RNGscript.AutoSell = true;
+            AutoSellButton.color = Color.green;
+        }
+        else
+        {
+            RNGscript.AutoSell = false;
+            AutoSellButton.color = Color.red;
+        }
     }
 }

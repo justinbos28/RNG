@@ -32,6 +32,7 @@ public class RNGscript : MonoBehaviour, IDataPersistence
 
     public int StartTimer;
     public int AutoTimer = 1;
+    public bool AutoSell = false;
     public bool Timer2Active = false;
     public bool AutoRollTimer = false;
 
@@ -40,7 +41,7 @@ public class RNGscript : MonoBehaviour, IDataPersistence
 
     public MoneyLogic MoneyLogic;
     public OreStorage OreStorage;
-    
+
     public GameObject RollButton;
     public GameObject RollButton1;
     public GameObject RollButton2;
@@ -372,7 +373,7 @@ public class RNGscript : MonoBehaviour, IDataPersistence
             titles[i].text = playerHand[i].name;
             OreSpriteRenderer[i].color = playerHand[i].rarityEffectColor;
             effects[i].text = "1 in " + playerHand[i].chance;
-            rarity[i].text = playerHand[i].rarityTitle + "\n" + playerHand[i].decription;
+            rarity[i].text = playerHand[i].rarityTitle;
             OrePicture[i].sprite = playerHand[i].OrePicture;
         }
     }
@@ -455,7 +456,16 @@ public class RNGscript : MonoBehaviour, IDataPersistence
 
             for (int i = 0; i < playerHand.Count; i++)
             {
-                MoneyLogic.Money += playerHand[i].OrePrice * MoneyMultiplier;
+                // auto sells the ores
+                if (AutoSell == true)
+                {
+                    MoneyLogic.Money += playerHand[i].OrePrice * MoneyMultiplier;
+                }
+                else
+                {
+                    playerHand[i].StorageAmount++;
+                }
+                
                 if (new int[] { 2, 6, 10, 28, 29 }.Contains(playerHand[i].OreID))
                 //if (playerHand[i].OreID == 9 || playerHand[i].OreID == 12 || playerHand[i].OreID == 19 || playerHand[i].OreID == 21 || playerHand[i].OreID == 26)
                 {
@@ -463,96 +473,15 @@ public class RNGscript : MonoBehaviour, IDataPersistence
                     effects[i].color = Color.white;
                     rarity[i].color = Color.white;
                 }
-                //foreach (var ore in playerHand)
-                //{
-                //    switch (ore.OreID)
-                //    {
-                //        case 1:
-                //            StaticVariables.ore1++;
-                //            break;
-                //        case 2:
-                //            StaticVariables.ore2++;
-                //            break;
-                //        case 3:
-                //            StaticVariables.ore3++;
-                //            break;
-                //        case 4:
-                //            StaticVariables.ore4++;
-                //            break;
-                //        case 5:
-                //            StaticVariables.ore5++;
-                //            break;
-                //        case 6:
-                //            StaticVariables.ore6++;
-                //            break;
-                //        case 7:
-                //            StaticVariables.ore7++;
-                //            break;
-                //        case 8:
-                //            StaticVariables.ore8++;
-                //            break;
-                //        case 9:
-                //            StaticVariables.ore9++;
-                //            break;
-                //        case 10:
-                //            StaticVariables.ore10++;
-                //            break;
-                //        case 11:
-                //            StaticVariables.ore11++;
-                //            break;
-                //        case 12:
-                //            StaticVariables.ore12++;
-                //            break;
-                //        case 13:
-                //            StaticVariables.ore13++;
-                //            break;
-                //        case 14:
-                //            StaticVariables.ore14++;
-                //            break;
-                //        case 15:
-                //            StaticVariables.ore15++;
-                //            break;
-                //        case 16:
-                //            StaticVariables.ore16++;
-                //            break;
-                //        case 17:
-                //            StaticVariables.ore17++;
-                //            break;
-                //        case 18:
-                //            StaticVariables.ore18++;
-                //            break;
-                //        case 19:
-                //            StaticVariables.ore19++;
-                //            break;
-                //        case 20:
-                //            StaticVariables.ore20++;
-                //            break;
-                //        case 21:
-                //            StaticVariables.ore21++;
-                //            break;
-                //        case 22:
-                //            StaticVariables.ore22++;
-                //            break;
-                //        case 23:
-                //            StaticVariables.ore23++;
-                //            break;
-                //        case 24:
-                //            StaticVariables.ore24++;
-                //            break;
-                //        case 25:
-                //            StaticVariables.ore25++;
-                //            break;
-                //        case 26:
-                //            StaticVariables.ore26++;
-                //            break;
-                //        case 27:
-                //            StaticVariables.ore27++;
-                //            break;
-                //        case 28:
-                //            StaticVariables.ore28++;
-                //            break;
-                //    }
-                //}
+                // auto sells if ores are more then the common ore storage
+                if (new int[] { 1, 2, 3, 4, 5, 6, 7 }.Contains(playerHand[i].OreID))
+                {
+                    if (playerHand[i].StorageAmount >= OreStorage.MaxCommonOres)
+                    {
+                        MoneyLogic.Money += playerHand[i].OrePrice * MoneyMultiplier;
+                        playerHand[i].StorageAmount = OreStorage.MaxCommonOres;
+                    }
+                }
             }
             RollStatus++;
         }

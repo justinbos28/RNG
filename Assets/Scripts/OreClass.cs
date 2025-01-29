@@ -6,7 +6,7 @@ using UnityEngine;
 public class OreClass
 {
     public string name;
-    public string decription;
+    public string description;
     public string rarityTitle;
     public Sprite OrePicture;
     // rarity index
@@ -17,6 +17,7 @@ public class OreClass
     // chance is displayed
     // if chance is 1 it displays 1 in 1
     public int chance;
+    public int StorageAmount;
     public float OrePrice;
     public Color rarityEffectColor;
 }
