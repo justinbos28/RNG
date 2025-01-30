@@ -8,7 +8,7 @@
 // 6. stats - delayed
 /// 7. background - done
 // 8. sounds
-// 9. remove test objects
+/// 9. remove test objects - done
 /// 10. balance money - done?
 /// 11. begin ore texture (dice?) - done
 /// 12. luck textures shop - done

@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -157,6 +158,29 @@ public class OreStorage : MonoBehaviour
         InventoryStatus++;
     }
 
+    public void SetToDefault()
+    {
+        for (int i = 0; i < RNGscript.CommonOres.Count; i++)
+        {
+            Name[i].text = RNGscript.CommonOres[i].name;
+            Color[i].color = RNGscript.CommonOres[i].Color;
+            Image[i].sprite = RNGscript.CommonOres[i].OrePicture;
+            Price[i].text = RNGscript.CommonOres[i].OrePrice.ToString();
+            Storage[i].text = RNGscript.CommonOres[i].StorageAmount.ToString();
+            Description[i].text = RNGscript.CommonOres[i].description;
+        }
+
+        for (int i = RNGscript.CommonOres.Count; i < Name.Count; i++)
+        {
+            Name[i].text = "Empty";
+            Color[i].color = RNGscript.CommonOres[i].Color;
+            Image[i].sprite = null;
+            Price[i].text = "0";
+            Storage[i].text = "0";
+            Description[i].text = "Empty";
+        }
+    }
+
     public void UpdateInventory()
     {
         if (InventoryStatus == 1)
@@ -206,15 +230,5 @@ public class OreStorage : MonoBehaviour
     void Start()
     {
 
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        //if (StaticVariables.ore1 >= MaxCommonOres)
-        //{
-        //    StaticVariables.ore1 = MaxCommonOres;
-
-        //}
     }
 }

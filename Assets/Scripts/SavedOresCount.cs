@@ -15,7 +15,6 @@ public class SavedOresCount : MonoBehaviour, IDataPersistence
         {
             RNGscript.allOres[i].StorageAmount = OresCount[i];
         }
-        OreStorage.SwitchInventory();
     }
 
     public void SaveData(ref GameData data)
