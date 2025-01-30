@@ -41,6 +41,7 @@ public class RNGscript : MonoBehaviour, IDataPersistence
 
     public MoneyLogic MoneyLogic;
     public OreStorage OreStorage;
+    public SavedOresCount SavedOresCount;
 
     public GameObject RollButton;
     public GameObject RollButton1;
@@ -483,6 +484,7 @@ public class RNGscript : MonoBehaviour, IDataPersistence
                     }
                 }
             }
+            OreStorage.UpdateInventory();
             RollStatus++;
         }
         // rolling the dice (roll animation)

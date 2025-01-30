@@ -26,6 +26,8 @@ public class GameData
     public int BoughtLuckMultiplier;
     public int BoughtMoneyMultiplier;
 
+    public List<int> OresCount = new List<int>();
+
     public GameData()
     {
         this.Money = 0;
@@ -43,5 +45,6 @@ public class GameData
         this.BoughtRollAmount = 0;
         this.BoughtRollSkips = 0;
         this.BoughtRollSpeed = 0;
+        this.OresCount = new List<int>();
     }
 }

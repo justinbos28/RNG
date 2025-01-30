@@ -20,4 +20,5 @@ public class OreClass
     public int StorageAmount;
     public float OrePrice;
     public Color rarityEffectColor;
+    public Color Color;
 }
