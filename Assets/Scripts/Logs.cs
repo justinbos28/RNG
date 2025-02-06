@@ -1,7 +1,7 @@
 // things to do before this beta is done
 
 /// 1. fix luck, basically making coal less common also in some way - fixed
-// 2. inventory, make ore storage - progress
+/// 2. inventory, make ore storage - done
 /// 3. ore textures - done
 /// 4. more ores - done
 /// 5. make actual ores, rarities - done
@@ -13,6 +13,11 @@
 /// 11. begin ore texture (dice?) - done
 /// 12. luck textures shop - done
 // 13. 2 more upgrades for money and inv space - done except for inv space
+
+/// new
+// 14. index - progress
+// 15. crafting ( like being able  to make necklaces, ect with the gems and other materials)
+// 16. nerf money, luck, speed ect
 
 // ores: luck, chance, rarity, prices
 // 5 common - 1 to 100
