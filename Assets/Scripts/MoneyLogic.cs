@@ -95,7 +95,7 @@ public class MoneyLogic : MonoBehaviour, IDataPersistence
         // roll amount
         if (BoughtRollAmount == 1)
         {
-            RollAmountText.text = "1.500$";
+            RollAmountText.text = "3.500$";
         }
         else if (BoughtRollAmount == 2)
         {
@@ -361,7 +361,7 @@ public class MoneyLogic : MonoBehaviour, IDataPersistence
     {
         if (StaticVariables.cash >= 1000 && BoughtRollSkips == 0)
         {
-            Money -= 1500;
+            Money -= 1000;
             RNGscript.RollSkips = 4;
             BoughtRollSkips = 1;
             RollSkipsText.text = "5.500$";
@@ -472,7 +472,7 @@ public class MoneyLogic : MonoBehaviour, IDataPersistence
         if (StaticVariables.cash >= 2500 && BoughtLuckMultiplier == 0)
         {
             Money -= 2500;
-            RNGscript.LuckMultiplier = 1.5f; // 2x luck added on top of the percentage
+            RNGscript.LuckMultiplier = 1.5f; // 1.5x luck added on top of the percentage
             BoughtLuckMultiplier = 1;
             LuckMultiplierText.text = "5.500";
             CurrentMoney.text = StaticVariables.cash.ToString("F2") + "$";

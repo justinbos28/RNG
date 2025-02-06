@@ -12,12 +12,12 @@ public class OreClass
     // rarity index
     // example 1 = 1 to common
     public int rarity;
-    public int rarityCount;
     public int OreID;
     // chance is displayed
     // if chance is 1 it displays 1 in 1
     public int chance;
     public int StorageAmount;
+    public float Percentage;
     public float OrePrice;
     public Color rarityEffectColor;
     public Color Color;

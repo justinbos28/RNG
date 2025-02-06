@@ -1,11 +1,15 @@
+using JetBrains.Annotations;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class OreStorage : MonoBehaviour
 {
+    [Header("storage")]
     public int InventoryStatus = 0;
 
     public int MaxCommonOres = 500;
@@ -13,8 +17,9 @@ public class OreStorage : MonoBehaviour
     public int MaxRareOres = 125;
     public int MaxEpicOres = 75;
     public int MaxLegendaryOres = 25;
-    public int MaxMythicalOres = 1;
+    public int MaxMythicOres = 5;
 
+    [Header("lists")]
     public List<Text> Storage = new List<Text>();
     public List<Text> Description = new List<Text>();
     public List<Image> Image = new List<Image>();
@@ -23,10 +28,17 @@ public class OreStorage : MonoBehaviour
     public List<Text> Price = new List<Text>();
 
     public RNGscript RNGscript;
+    public MoneyLogic MoneyLogic;
+    [Header("selling")]
+    public List<SellClass> SellOres = new List<SellClass>();
 
     public void SwitchInventory()
     {
-
+        for(int j = 0; j < SellOres.Count; j++)
+        {
+            SellOres[j].InputField.text = "";
+            SellOres[j].InputField.textComponent.color = new Vector4(0, 0, 0, 1);
+        }
         if (InventoryStatus == 0)
         {
             for (int i = 0; i < RNGscript.CommonOres.Count; i++)
@@ -37,6 +49,7 @@ public class OreStorage : MonoBehaviour
                 Price[i].text = RNGscript.CommonOres[i].OrePrice.ToString();
                 Storage[i].text = RNGscript.CommonOres[i].StorageAmount.ToString();
                 Description[i].text = RNGscript.CommonOres[i].description;
+                SellOres[i].InputField.enabled = true;
             }
 
             for (int i = RNGscript.CommonOres.Count; i < Name.Count; i++)
@@ -47,6 +60,7 @@ public class OreStorage : MonoBehaviour
                 Price[i].text = "0";
                 Storage[i].text = "0";
                 Description[i].text = "Empty";
+                SellOres[i].InputField.enabled = false;
             }
         }
         else if (InventoryStatus == 1)
@@ -59,6 +73,7 @@ public class OreStorage : MonoBehaviour
                 Price[i].text = RNGscript.UncommonOres[i].OrePrice.ToString();
                 Storage[i].text = RNGscript.UncommonOres[i].StorageAmount.ToString();
                 Description[i].text = RNGscript.UncommonOres[i].description;
+                SellOres[i].InputField.enabled = true;
             }
             for (int i = RNGscript.UncommonOres.Count; i < Name.Count; i++)
             {
@@ -68,6 +83,7 @@ public class OreStorage : MonoBehaviour
                 Price[i].text = "0";
                 Storage[i].text = "0";
                 Description[i].text = "Empty";
+                SellOres[i].InputField.enabled = false;
             }
         }
         else if (InventoryStatus == 2)
@@ -80,6 +96,7 @@ public class OreStorage : MonoBehaviour
                 Price[i].text = RNGscript.RareOres[i].OrePrice.ToString();
                 Storage[i].text = RNGscript.RareOres[i].StorageAmount.ToString();
                 Description[i].text = RNGscript.RareOres[i].description;
+                SellOres[i].InputField.enabled = true;
             }
             for (int i = RNGscript.RareOres.Count; i < Name.Count; i++)
             {
@@ -89,6 +106,7 @@ public class OreStorage : MonoBehaviour
                 Price[i].text = "0";
                 Storage[i].text = "0";
                 Description[i].text = "Empty";
+                SellOres[i].InputField.enabled = false;
             }
         }
         else if (InventoryStatus == 3)
@@ -101,6 +119,7 @@ public class OreStorage : MonoBehaviour
                 Price[i].text = RNGscript.EpicOres[i].OrePrice.ToString();
                 Storage[i].text = RNGscript.EpicOres[i].StorageAmount.ToString();
                 Description[i].text = RNGscript.EpicOres[i].description;
+                SellOres[i].InputField.enabled = true;
             }
             for (int i = RNGscript.EpicOres.Count; i < Name.Count; i++)
             {
@@ -110,6 +129,7 @@ public class OreStorage : MonoBehaviour
                 Price[i].text = "0";
                 Storage[i].text = "0";
                 Description[i].text = "Empty";
+                SellOres[i].InputField.enabled = false;
             }
         }
         else if (InventoryStatus == 4)
@@ -122,6 +142,7 @@ public class OreStorage : MonoBehaviour
                 Price[i].text = RNGscript.LegendaryOres[i].OrePrice.ToString();
                 Storage[i].text = RNGscript.LegendaryOres[i].StorageAmount.ToString();
                 Description[i].text = RNGscript.LegendaryOres[i].description;
+                SellOres[i].InputField.enabled = true;
             }
             for (int i = RNGscript.LegendaryOres.Count; i < Name.Count; i++)
             {
@@ -131,6 +152,7 @@ public class OreStorage : MonoBehaviour
                 Price[i].text = "0";
                 Storage[i].text = "0";
                 Description[i].text = "Empty";
+                SellOres[i].InputField.enabled = false;
             }
         }
         else if (InventoryStatus == 5)
@@ -144,6 +166,7 @@ public class OreStorage : MonoBehaviour
                 Storage[i].text = RNGscript.MythicOres[i].StorageAmount.ToString();
                 Description[i].text = RNGscript.MythicOres[i].description;
                 InventoryStatus = -1;
+                SellOres[i].InputField.enabled = true;
             }
             for (int i = RNGscript.MythicOres.Count; i < Name.Count; i++)
             {
@@ -153,6 +176,7 @@ public class OreStorage : MonoBehaviour
                 Price[i].text = "0";
                 Storage[i].text = "0";
                 Description[i].text = "Empty";
+                SellOres[i].InputField.enabled = false;
             }
         }
         InventoryStatus++;
@@ -160,6 +184,7 @@ public class OreStorage : MonoBehaviour
 
     public void SetToDefault()
     {
+        InventoryStatus = 1;
         for (int i = 0; i < RNGscript.CommonOres.Count; i++)
         {
             Name[i].text = RNGscript.CommonOres[i].name;
@@ -168,6 +193,7 @@ public class OreStorage : MonoBehaviour
             Price[i].text = RNGscript.CommonOres[i].OrePrice.ToString();
             Storage[i].text = RNGscript.CommonOres[i].StorageAmount.ToString();
             Description[i].text = RNGscript.CommonOres[i].description;
+            SellOres[i].InputField.enabled = true;
         }
 
         for (int i = RNGscript.CommonOres.Count; i < Name.Count; i++)
@@ -178,6 +204,7 @@ public class OreStorage : MonoBehaviour
             Price[i].text = "0";
             Storage[i].text = "0";
             Description[i].text = "Empty";
+            SellOres[i].InputField.enabled = false;
         }
     }
 
@@ -226,9 +253,149 @@ public class OreStorage : MonoBehaviour
             }
         }
     }
-    // Start is called before the first frame update
-    void Start()
-    {
 
+    public void SellSelectedOres()
+    {
+        if (InventoryStatus == 1)
+        {
+            for (int j = 0; j < SellOres.Count; j++) // Loop through SellOres
+            {
+                int sellAmount;
+                if (!int.TryParse(SellOres[j].InputField.text, out sellAmount) || sellAmount <= 0)
+                {
+                    continue; // Skip invalid inputs
+                }
+
+                if (sellAmount > RNGscript.CommonOres[j].StorageAmount)
+                {
+                    SellOres[j].InputField.textComponent.color = new Vector4(1, 0, 0, 1);
+                }
+                else
+                {
+                    RNGscript.CommonOres[j].StorageAmount -= sellAmount;
+                    SellOres[j].InputField.textComponent.color = new Vector4(0, 0, 0, 1);
+                    SellOres[j].InputField.text = "";
+                    MoneyLogic.Money += RNGscript.CommonOres[j].OrePrice * RNGscript.MoneyMultiplier * sellAmount;
+
+                }
+            }
+        }
+        if (InventoryStatus == 2)
+        {
+            for (int j = 0; j < SellOres.Count; j++) // Loop through SellOres
+            {
+                int sellAmount;
+                if (!int.TryParse(SellOres[j].InputField.text, out sellAmount) || sellAmount <= 0)
+                {
+                    continue; // Skip invalid inputs
+                }
+
+                if (sellAmount > RNGscript.UncommonOres[j].StorageAmount)
+                {
+                    SellOres[j].InputField.textComponent.color = new Vector4(1, 0, 0, 1);
+                }
+                else
+                {
+                    RNGscript.UncommonOres[j].StorageAmount -= sellAmount;
+                    SellOres[j].InputField.textComponent.color = new Vector4(0, 0, 0, 1);
+                    SellOres[j].InputField.text = "";
+                    MoneyLogic.Money += RNGscript.UncommonOres[j].OrePrice * RNGscript.MoneyMultiplier * sellAmount;
+                }
+            }
+        }
+        if (InventoryStatus == 3)
+        {
+            for (int j = 0; j < SellOres.Count; j++) // Loop through SellOres
+            {
+                int sellAmount;
+                if (!int.TryParse(SellOres[j].InputField.text, out sellAmount) || sellAmount <= 0)
+                {
+                    continue; // Skip invalid inputs
+                }
+
+                if (sellAmount > RNGscript.RareOres[j].StorageAmount)
+                {
+                    SellOres[j].InputField.textComponent.color = new Vector4(1, 0, 0, 1);
+                }
+                else
+                {
+                    RNGscript.RareOres[j].StorageAmount -= sellAmount;
+                    SellOres[j].InputField.textComponent.color = new Vector4(0, 0, 0, 1);
+                    SellOres[j].InputField.text = "";
+                    MoneyLogic.Money += RNGscript.RareOres[j].OrePrice * RNGscript.MoneyMultiplier * sellAmount;
+
+                }
+            }
+        }
+        if (InventoryStatus == 4)
+        {
+            for (int j = 0; j < SellOres.Count; j++) // Loop through SellOres
+            {
+                int sellAmount;
+                if (!int.TryParse(SellOres[j].InputField.text, out sellAmount) || sellAmount <= 0)
+                {
+                    continue; // Skip invalid inputs
+                }
+
+                if (sellAmount > RNGscript.EpicOres[j].StorageAmount)
+                {
+                    SellOres[j].InputField.textComponent.color = new Vector4(1, 0, 0, 1);
+                }
+                else
+                {
+                    RNGscript.EpicOres[j].StorageAmount -= sellAmount;
+                    SellOres[j].InputField.textComponent.color = new Vector4(0, 0, 0, 1);
+                    SellOres[j].InputField.text = "";
+                    MoneyLogic.Money += RNGscript.EpicOres[j].OrePrice * RNGscript.MoneyMultiplier * sellAmount;
+                }
+            }
+        }
+        if (InventoryStatus == 5)
+        {
+            for (int j = 0; j < SellOres.Count; j++) // Loop through SellOres
+            {
+                int sellAmount;
+                if (!int.TryParse(SellOres[j].InputField.text, out sellAmount) || sellAmount <= 0)
+                {
+                    continue; // Skip invalid inputs
+                }
+
+                if (sellAmount > RNGscript.LegendaryOres[j].StorageAmount)
+                {
+                    SellOres[j].InputField.textComponent.color = new Vector4(1, 0, 0, 1);
+                }
+                else
+                {
+                    RNGscript.LegendaryOres[j].StorageAmount -= sellAmount;
+                    SellOres[j].InputField.textComponent.color = new Vector4(0, 0, 0, 1);
+                    SellOres[j].InputField.text = "";
+                    MoneyLogic.Money += RNGscript.LegendaryOres[j].OrePrice * RNGscript.MoneyMultiplier * sellAmount;
+                }
+            }
+        }
+        if (InventoryStatus == 0)
+        {
+            for (int j = 0; j < SellOres.Count; j++) // Loop through SellOres
+            {
+                int sellAmount;
+                if (!int.TryParse(SellOres[j].InputField.text, out sellAmount) || sellAmount <= 0)
+                {
+                    continue; // Skip invalid inputs
+                }
+
+                if (sellAmount > RNGscript.MythicOres[j].StorageAmount)
+                {
+                    SellOres[j].InputField.textComponent.color = new Vector4(1, 0, 0, 1);
+                }
+                else
+                {
+                    RNGscript.MythicOres[j].StorageAmount -= sellAmount;
+                    SellOres[j].InputField.textComponent.color = new Vector4(0, 0, 0, 1);
+                    SellOres[j].InputField.text = "";
+                    MoneyLogic.Money += RNGscript.MythicOres[j].OrePrice * RNGscript.MoneyMultiplier * sellAmount;
+                }
+            }
+        }
     }
+
 }

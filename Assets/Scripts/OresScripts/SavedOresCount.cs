@@ -9,7 +9,12 @@ public class SavedOresCount : MonoBehaviour, IDataPersistence
 
     public void LoadData(GameData data)
     {
-        this.OresCount = data.OresCount;
+        if (data.OresCount == null || data.OresCount.Count == 0)
+        {
+            data.OresCount = new List<int>(new int[RNGscript.allOres.Count]);
+        }
+
+        this.OresCount = new List<int>(data.OresCount);
 
         for (int i = 0; i < RNGscript.allOres.Count; i++)
         {
@@ -19,12 +24,17 @@ public class SavedOresCount : MonoBehaviour, IDataPersistence
 
     public void SaveData(ref GameData data)
     {
-        data.OresCount = this.OresCount;
+        for (int i = 0; i < RNGscript.allOres.Count; i++)
+        {
+            OresCount[i] = RNGscript.allOres[i].StorageAmount;
+        }
+
+        data.OresCount = new List<int>(OresCount);
     }
 
-    void Update()
+    void LateUpdate()
     {
-        for (int i = 0; i < OresCount.Count; i++)
+        for (int i = 0; i < RNGscript.allOres.Count; i++)
         {
             OresCount[i] = RNGscript.allOres[i].StorageAmount;
         }

@@ -7,7 +7,9 @@ public class Uimanager : MonoBehaviour
 {
     public GameObject Inventory;
     public GameObject Shop;
+    public GameObject Index;
     public bool ShopPanel;
+    public bool OpenIndex;
     public bool InventoryPanel;
     public void ShopButton()
     {
@@ -38,5 +40,20 @@ public class Uimanager : MonoBehaviour
             Inventory.SetActive(false);
             InventoryPanel = false;
         }
+    }
+
+    public void SwitchToIndex()
+    {
+        if (OpenIndex == false)
+        {
+            Index.SetActive(true);
+            OpenIndex = true;
+        }
+        else
+        {
+            Index.SetActive(false);
+            OpenIndex = false;
+        }
+
     }
 }

@@ -1,7 +1,7 @@
 // things to do before this beta is done
 
 /// 1. fix luck, basically making coal less common also in some way - fixed
-// 2. inventory, make ore storage - delayed
+// 2. inventory, make ore storage - progress
 /// 3. ore textures - done
 /// 4. more ores - done
 /// 5. make actual ores, rarities - done

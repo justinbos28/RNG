@@ -41,7 +41,6 @@ public class RNGscript : MonoBehaviour, IDataPersistence
 
     public MoneyLogic MoneyLogic;
     public OreStorage OreStorage;
-    public SavedOresCount SavedOresCount;
 
     public GameObject RollButton;
     public GameObject RollButton1;
@@ -483,6 +482,43 @@ public class RNGscript : MonoBehaviour, IDataPersistence
                         playerHand[i].StorageAmount = OreStorage.MaxCommonOres;
                     }
                 }
+                if (new int[] { 8, 9, 10, 11, 12 }.Contains(playerHand[i].OreID))
+                {
+                    if (playerHand[i].StorageAmount >= OreStorage.MaxUncommonOres)
+                    {
+                        MoneyLogic.Money += playerHand[i].OrePrice * MoneyMultiplier;
+                        playerHand[i].StorageAmount = OreStorage.MaxUncommonOres;
+                    }
+                }
+                if (new int[] { 13, 14, 15, 16, 17 }.Contains(playerHand[i].OreID))
+                {
+                    if (playerHand[i].StorageAmount >= OreStorage.MaxRareOres)
+                    {
+                        MoneyLogic.Money += playerHand[i].OrePrice * MoneyMultiplier;
+                        playerHand[i].StorageAmount = OreStorage.MaxRareOres;
+                    }
+                }
+                if (new int[] { 18, 19, 20, 21, 22 }.Contains(playerHand[i].OreID))
+                {
+                    if (playerHand[i].StorageAmount >= OreStorage.MaxEpicOres)
+                    {
+                        MoneyLogic.Money += playerHand[i].OrePrice * MoneyMultiplier;
+                        playerHand[i].StorageAmount = OreStorage.MaxEpicOres;
+                    }
+                }
+                if (new int[] { 23, 24, 25, 26, 27 }.Contains(playerHand[i].OreID))
+                {
+                    if (playerHand[i].StorageAmount >= OreStorage.MaxLegendaryOres)
+                    {
+                        MoneyLogic.Money += playerHand[i].OrePrice * MoneyMultiplier;
+                        playerHand[i].StorageAmount = OreStorage.MaxLegendaryOres;
+                    }
+                }
+                if (playerHand[i].OreID == 28)
+                {
+                    MoneyLogic.Money += playerHand[i].OrePrice * MoneyMultiplier;
+                    playerHand[i].StorageAmount = OreStorage.MaxMythicOres;
+                }
             }
             OreStorage.UpdateInventory();
             RollStatus++;
@@ -540,12 +576,6 @@ public class RNGscript : MonoBehaviour, IDataPersistence
             RollButton3.transform.position = new Vector3(-5, 1.5f, 100);
             RollButton4.transform.position = new Vector3(-5, -1.5f, 100);
             RollButton5.transform.position = new Vector3(5, -1.5f, 100);
-            RarityEffectObject.transform.position = RollButton1.transform.position;
-            RarityEffectObject6.transform.position = RollButton6.transform.position;
-            RarityEffectObject2.transform.position = RollButton2.transform.position;
-            RarityEffectObject3.transform.position = RollButton3.transform.position;
-            RarityEffectObject4.transform.position = RollButton4.transform.position;
-            RarityEffectObject5.transform.position = RollButton5.transform.position;
         }
         else if (cardLimit == 5)
         {
@@ -566,11 +596,6 @@ public class RNGscript : MonoBehaviour, IDataPersistence
             RollButton3.transform.position = new Vector3(-5, 1.5f, 100);
             RollButton4.transform.position = new Vector3(-5, -1.5f, 100);
             RollButton5.transform.position = new Vector3(5, -1.5f, 100);
-            RarityEffectObject.transform.position = RollButton1.transform.position;
-            RarityEffectObject2.transform.position = RollButton2.transform.position;
-            RarityEffectObject3.transform.position = RollButton3.transform.position;
-            RarityEffectObject4.transform.position = RollButton4.transform.position;
-            RarityEffectObject5.transform.position = RollButton5.transform.position;
         }
         else if (cardLimit == 4)
         {
@@ -587,10 +612,6 @@ public class RNGscript : MonoBehaviour, IDataPersistence
             RollButton1.transform.position = new Vector3(3, -1.5f, 100);
             RollButton3.transform.position = new Vector3(-3, 1.5f, 100);
             RollButton4.transform.position = new Vector3(-3, -1.5f, 100);
-            RarityEffectObject.transform.position = RollButton1.transform.position;
-            RarityEffectObject2.transform.position = RollButton2.transform.position;
-            RarityEffectObject3.transform.position = RollButton3.transform.position;
-            RarityEffectObject4.transform.position = RollButton4.transform.position;
         }
         else if (cardLimit == 3)
         {
@@ -603,9 +624,6 @@ public class RNGscript : MonoBehaviour, IDataPersistence
             RollButton2.transform.position = new Vector3(5, 0, 100);
             RollButton1.transform.position = new Vector3(0, 0, 100);
             RollButton3.transform.position = new Vector3(-5, 0, 100);
-            RarityEffectObject.transform.position = RollButton1.transform.position;
-            RarityEffectObject2.transform.position = RollButton2.transform.position;
-            RarityEffectObject3.transform.position = RollButton3.transform.position;
         }
         else if (cardLimit == 2)
         {
@@ -614,8 +632,6 @@ public class RNGscript : MonoBehaviour, IDataPersistence
             RarityEffectSprite4.enabled = true;
             RollButton1.transform.position = new Vector3(-3, 0, 100);
             RollButton2.transform.position = new Vector3(3, 0, 100);
-            RarityEffectObject.transform.position = RollButton1.transform.position;
-            RarityEffectObject2.transform.position = RollButton2.transform.position;
         }
     }
     // button connected first roll
