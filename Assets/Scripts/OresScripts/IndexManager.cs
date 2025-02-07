@@ -46,6 +46,7 @@ public class IndexManager : MonoBehaviour
                 IndexList[i].Price.text = "Ore Price = " + ores[i].OrePrice.ToString();
                 IndexList[i].Rarity.text = "1 / " + ores[i].chance.ToString();
                 IndexList[i].Image.sprite = ores[i].OrePicture;
+                IndexList[i].background.color = ores[i].Color;
             }
             else
             {
@@ -58,7 +59,7 @@ public class IndexManager : MonoBehaviour
             }
         }
 
-        if (IndexCount == 6) { IndexCount = 0; }
+        if (IndexCount == 5) { IndexCount = -1; }
         IndexCount++;
     }
 }

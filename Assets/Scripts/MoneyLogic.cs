@@ -13,6 +13,7 @@ public class MoneyLogic : MonoBehaviour, IDataPersistence
     public int BoughtLuckPercentage;
     public int BoughtLuckMultiplier;
     public int BoughtMoneyMultiplier;
+    public int BoughtStorageAmount;
 
     public float Money;
     public bool AutoRoll;
@@ -26,7 +27,9 @@ public class MoneyLogic : MonoBehaviour, IDataPersistence
     public Text LuckPercentageText;
     public Text LuckMultiplierText;
     public Text MoneyMultiplier;
+    public Text StorageAmount;
     public RNGscript RNGscript;
+    public OreStorage OreStorage;
     public GameObject AutoRollButton;
     public Image AutoSellButton;
     public Image AutoRollButtonColor;
@@ -42,6 +45,7 @@ public class MoneyLogic : MonoBehaviour, IDataPersistence
         this.BoughtRollAmount = data.BoughtRollAmount;
         this.BoughtRollSkips = data.BoughtRollSkips;
         this.BoughtAutoRoll = data.BoughtAutoRoll;
+        this.BoughtStorageAmount = data.BoughtStorageAmount;
 
         this.Money = data.Money;
     }
@@ -54,6 +58,7 @@ public class MoneyLogic : MonoBehaviour, IDataPersistence
         data.BoughtRollAmount = this.BoughtRollAmount;
         data.BoughtRollSkips = this.BoughtRollSkips;
         data.BoughtAutoRoll = this.BoughtAutoRoll;
+        data.BoughtStorageAmount = this.BoughtStorageAmount;
 
         data.Money = this.Money;
     }
@@ -212,6 +217,26 @@ public class MoneyLogic : MonoBehaviour, IDataPersistence
         else if (BoughtMoneyMultiplier == 6)
         {
             MoneyMultiplier.text = "Purchased";
+        }
+        if (BoughtStorageAmount == 1)
+        {
+            OreStorage.MaxCommonOres = 1000;
+            OreStorage.MaxUncommonOres = 500;
+            OreStorage.MaxRareOres = 250;
+            OreStorage.MaxEpicOres = 150;
+            OreStorage.MaxLegendaryOres = 50;
+            OreStorage.MaxMythicOres = 10;
+            StorageAmount.text = "100.000$";
+        }
+        else if (BoughtStorageAmount == 2)
+        {
+            OreStorage.MaxCommonOres = 2000;
+            OreStorage.MaxUncommonOres = 1000;
+            OreStorage.MaxRareOres = 500;
+            OreStorage.MaxEpicOres = 300;
+            OreStorage.MaxLegendaryOres = 100;
+            OreStorage.MaxMythicOres = 20;
+            StorageAmount.text = "Purchased";
         }
     }
     public void BuyRollspeed()
@@ -577,6 +602,35 @@ public class MoneyLogic : MonoBehaviour, IDataPersistence
         {
             RNGscript.AutoSell = false;
             AutoSellButton.color = Color.red;
+        }
+    }
+    public void BuyStorageAmount()
+    {
+        if (StaticVariables.cash >= 10000 && BoughtStorageAmount == 0)
+        {
+            Money -= 10000;
+            BoughtStorageAmount = 1;
+            OreStorage.MaxCommonOres = 1000;
+            OreStorage.MaxUncommonOres = 500;
+            OreStorage.MaxRareOres = 250;
+            OreStorage.MaxEpicOres = 150;
+            OreStorage.MaxLegendaryOres = 50;
+            OreStorage.MaxMythicOres = 10;
+            StorageAmount.text = "100.000$";
+            CurrentMoney.text = StaticVariables.cash.ToString("F2") + "$";
+        }
+        else if (StaticVariables.cash >= 100000 && BoughtStorageAmount == 1)
+        {
+            Money -= 100000;
+            BoughtStorageAmount = 2;
+            OreStorage.MaxCommonOres = 2000;
+            OreStorage.MaxUncommonOres = 1000;
+            OreStorage.MaxRareOres = 500;
+            OreStorage.MaxEpicOres = 300;
+            OreStorage.MaxLegendaryOres = 100;
+            OreStorage.MaxMythicOres = 20;
+            StorageAmount.text = "Purchased";
+            CurrentMoney.text = StaticVariables.cash.ToString("F2") + "$";
         }
     }
 }

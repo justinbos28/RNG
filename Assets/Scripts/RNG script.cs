@@ -120,6 +120,10 @@ public class RNGscript : MonoBehaviour, IDataPersistence
     // assign the ored to list by level
     public void AssignRarity()
     {
+        for (int i = 0; i < allOres.Count; i++)
+        {
+            allOres[i].rarity = i + 1;
+        }
         foreach (OreClass card in allOres)
         {
             switch (card.rarity)
@@ -138,30 +142,44 @@ public class RNGscript : MonoBehaviour, IDataPersistence
                 case 10:
                 case 11:
                 case 12:
-                    UncommonOres.Add(card);
-                    break;
                 case 13:
                 case 14:
+                    UncommonOres.Add(card);
+                    break;
                 case 15:
                 case 16:
                 case 17:
-                    RareOres.Add(card);
-                    break;
                 case 18:
                 case 19:
                 case 20:
                 case 21:
-                case 22:
-                    EpicOres.Add(card);
+                    RareOres.Add(card);
                     break;
+                case 22:
                 case 23:
                 case 24:
                 case 25:
                 case 26:
                 case 27:
+                case 28:
+                    EpicOres.Add(card);
+                    break;
+                case 29:
+                case 30:
+                case 31:
+                case 32:
+                case 33:
+                case 34:
+                case 35:
                     LegendaryOres.Add(card);
                     break;
-                case 28:
+                case 36:
+                case 37:
+                case 38:
+                case 39:
+                case 40:
+                case 41:
+                case 42:
                     MythicOres.Add(card);
                     break;
                 //case 29:
@@ -178,42 +196,23 @@ public class RNGscript : MonoBehaviour, IDataPersistence
         List<int> hand = new List<int>();
         for (int i = 0; i < cardLimit; i++)
         {
-            // unreal ores
-            //bool cardRarityChance29 = CalulateRNGPercent(0.00001f * LuckPercentage * LuckMultiplier);
-            // mythic ores
-            bool cardRarityChance28 = CalulateRNGPercent(0.0001f * LuckPercentage * LuckMultiplier);
-            // legendary ores
-            bool cardRarityChance27 = CalulateRNGPercent(0.00011f * LuckPercentage * LuckMultiplier);
-            bool cardRarityChance26 = CalulateRNGPercent(0.00015f * LuckPercentage * LuckMultiplier);
-            bool cardRarityChance25 = CalulateRNGPercent(0.00022f * LuckPercentage * LuckMultiplier);
-            bool cardRarityChance24 = CalulateRNGPercent(0.0004f * LuckPercentage * LuckMultiplier);
-            bool cardRarityChance23 = CalulateRNGPercent(0.00067f * LuckPercentage * LuckMultiplier);
-            // epic ores
-            bool cardRarityChance22 = CalulateRNGPercent(0.0011f * LuckPercentage * LuckMultiplier);
-            bool cardRarityChance21 = CalulateRNGPercent(0.0015f * LuckPercentage * LuckMultiplier);
-            bool cardRarityChance20 = CalulateRNGPercent(0.0022f * LuckPercentage * LuckMultiplier);
-            bool cardRarityChance19 = CalulateRNGPercent(0.0035f * LuckPercentage * LuckMultiplier);
-            bool cardRarityChance18 = CalulateRNGPercent(0.0067f * LuckPercentage * LuckMultiplier);
-            // rare ores
-            bool cardRarityChance17 = CalulateRNGPercent(0.01f * LuckPercentage * LuckMultiplier);
-            bool cardRarityChance16 = CalulateRNGPercent(0.013f * LuckPercentage * LuckMultiplier);
-            bool cardRarityChance15 = CalulateRNGPercent(0.018f * LuckPercentage * LuckMultiplier);
-            bool cardRarityChance14 = CalulateRNGPercent(0.03f * LuckPercentage * LuckMultiplier);
-            bool cardRarityChance13 = CalulateRNGPercent(0.074f * LuckPercentage * LuckMultiplier);
-            // uncommon ores
-            bool cardRarityChance12 = CalulateRNGPercent(0.121f * LuckPercentage * LuckMultiplier);
-            bool cardRarityChance11 = CalulateRNGPercent(0.15f * LuckPercentage * LuckMultiplier);
-            bool cardRarityChance10 = CalulateRNGPercent(0.25f * LuckPercentage * LuckMultiplier);
-            bool cardRarityChance9 = CalulateRNGPercent(0.4f * LuckPercentage * LuckMultiplier);
-            bool cardRarityChance8 = CalulateRNGPercent(0.9f * LuckPercentage * LuckMultiplier);
-            // common ores
-            bool cardRarityChance7 = CalulateRNGPercent(1.4f * LuckPercentage * LuckMultiplier);
-            bool cardRarityChance6 = CalulateRNGPercent(1.8f * LuckPercentage * LuckMultiplier);
-            bool cardRarityChance5 = CalulateRNGPercent(4.8f / LuckPercentage / LuckMultiplier);
-            bool cardRarityChance4 = CalulateRNGPercent(9.1f / LuckPercentage / LuckMultiplier);
-            bool cardRarityChance3 = CalulateRNGPercent(14.3f / LuckPercentage / LuckMultiplier);
-            bool cardRarityChance2 = CalulateRNGPercent(20 / LuckPercentage / LuckMultiplier);
-            bool cardRarityChance1 = CalulateRNGPercent(50 / LuckPercentage / LuckMultiplier);
+            // Define ore rarity chances in a dictionary
+            Dictionary<int, float> oreRarityChances = new Dictionary<int, float>
+            {
+                { 42,0.00001f },{ 41,0.000013f },{ 40,0.000017f },{ 39,0.000025f },{ 38, 0.000037f }, { 37, 0.000067f}, { 36, 0.0001f }, // mythic
+                { 35, 0.00011f }, { 34, 0.00015f }, { 33, 0.00018f }, { 32, 0.00022f }, { 31, 0.00028f }, { 30, 0.0004f }, { 29, 0.00067f }, // legendary
+                { 28, 0.001f }, { 27, 0.0011f }, { 26, 0.0013f }, { 25, 0.0015f }, { 24, 0.0022f }, { 23, 0.0035f }, { 22, 0.0067f }, // epic
+                { 21, 0.01f }, { 20, 0.013f }, { 19, 0.015f }, { 18, 0.018f }, { 17, 0.022f }, { 16, 0.03f }, { 15, 0.074f }, // rare
+                { 14, 0.121f }, { 13, 0.15f }, { 12, 0.18f }, { 11, 0.25f }, { 10, 0.4f },{ 9, 0.66f }, { 8, 0.9f }, // uncommon
+                { 7, 1.4f }, { 6, 1.8f }, { 5, 4.8f }, { 4, 9.1f }, { 3, 14.3f }, { 2, 20f }, { 1, 50f } // common
+            };
+            // 42 total gems.
+
+            // Calculate chances for each ore rarity
+            Dictionary<int, bool> oreRarityResults = oreRarityChances.ToDictionary(
+                kvp => kvp.Key,
+                kvp => CalulateRNGPercent(kvp.Value * LuckPercentage * LuckMultiplier)
+            );
 
             void AddOreToHand(List<OreClass> oreList, List<int> hand)
             {
@@ -230,125 +229,70 @@ public class RNGscript : MonoBehaviour, IDataPersistence
                     hand.Add(oreList[Random.Range(0, oreList.Count)].OreID);
                 }
             }
-            //if (cardRarityChance29)
-            //{
-            //    AddOreToHand(UnrealOres, hand);
-            //}
-            if (cardRarityChance28)
+
+            foreach (var oreRarityResult in oreRarityResults)
             {
-                AddOreToHand(MythicOres, hand);
-            }
-            else if (cardRarityChance27)
-            {
-                AddOreToHand(LegendaryOres, hand);
-            }
-            else if (cardRarityChance26)
-            {
-                AddOreToHand(LegendaryOres, hand);
-            }
-            else if (cardRarityChance25)
-            {
-                AddOreToHand(LegendaryOres, hand);
-            }
-            else if (cardRarityChance24)
-            {
-                AddOreToHand(LegendaryOres, hand);
-            }
-            else if (cardRarityChance23)
-            {
-                AddOreToHand(LegendaryOres, hand);
-            }
-            else if (cardRarityChance22)
-            {
-                AddOreToHand(EpicOres, hand);
-            }
-            else if (cardRarityChance21)
-            {
-                AddOreToHand(EpicOres, hand);
-            }
-            else if (cardRarityChance20)
-            {
-                AddOreToHand(EpicOres, hand);
-            }
-            else if (cardRarityChance19)
-            {
-                AddOreToHand(EpicOres, hand);
-            }
-            else if (cardRarityChance18)
-            {
-                AddOreToHand(EpicOres, hand);
-            }
-            else if (cardRarityChance17)
-            {
-                AddOreToHand(RareOres, hand);
-            }
-            else if (cardRarityChance16)
-            {
-                AddOreToHand(RareOres, hand);
-            }
-            else if (cardRarityChance15)
-            {
-                AddOreToHand(RareOres, hand);
-            }
-            else if (cardRarityChance14)
-            {
-                AddOreToHand(RareOres, hand);
-            }
-            else if (cardRarityChance13)
-            {
-                AddOreToHand(RareOres, hand);
-            }
-            else if (cardRarityChance12)
-            {
-                AddOreToHand(UncommonOres, hand);
-            }
-            else if (cardRarityChance11)
-            {
-                AddOreToHand(UncommonOres, hand);
-            }
-            else if (cardRarityChance10)
-            {
-                AddOreToHand(UncommonOres, hand);
-            }
-            else if (cardRarityChance9)
-            {
-                AddOreToHand(UncommonOres, hand);
-            }
-            else if (cardRarityChance8)
-            {
-                AddOreToHand(UncommonOres, hand);
-            }
-            else if (cardRarityChance7)
-            {
-                AddOreToHand(CommonOres, hand);
-            }
-            else if (cardRarityChance6)
-            {
-                AddOreToHand(CommonOres, hand);
-            }
-            else if (cardRarityChance5)
-            {
-                AddOreToHand(CommonOres, hand);
-            }
-            else if (cardRarityChance4)
-            {
-                AddOreToHand(CommonOres, hand);
-            }
-            else if (cardRarityChance3)
-            {
-                AddOreToHand(CommonOres, hand);
-            }
-            else if (cardRarityChance2)
-            {
-                AddOreToHand(CommonOres, hand);
-            }
-            else if (cardRarityChance1)
-            {
-                AddOreToHand(CommonOres, hand);
-            }
-            else
-            {
-                AddOreToHand(CommonOres, hand);
+                if (oreRarityResult.Value)
+                {
+                    switch (oreRarityResult.Key)
+                    {
+                        case 42:
+                        case 41:
+                        case 40:
+                        case 39:
+                        case 38:
+                        case 37:
+                        case 36:
+                            AddOreToHand(MythicOres, hand);
+                            break;
+                        case 35:
+                        case 34:
+                        case 33:
+                        case 32:
+                        case 31:
+                        case 30:
+                        case 29:
+                            AddOreToHand(LegendaryOres, hand);
+                            break;
+                        case 28:
+                        case 27:
+                        case 26:
+                        case 25:
+                        case 24:
+                        case 23:
+                        case 22:
+                            AddOreToHand(EpicOres, hand);
+                            break;
+                        case 21:
+                        case 20:
+                        case 19:
+                        case 18:
+                        case 17:
+                        case 16:
+                        case 15:
+                            AddOreToHand(RareOres, hand);
+                            break;
+                        case 14:
+                        case 13:
+                        case 12:
+                        case 11:
+                        case 10:
+                        case 9:
+                        case 8:
+                            AddOreToHand(UncommonOres, hand);
+                            break;
+                        case 7:
+                        case 6:
+                        case 5:
+                        case 4:
+                        case 3:
+                        case 2:
+                        case 1:
+                            AddOreToHand(CommonOres, hand);
+                            break;
+                    }
+                    break;
+                }
             }
         }
         foreach (int ID in hand)
@@ -465,9 +409,8 @@ public class RNGscript : MonoBehaviour, IDataPersistence
                 {
                     playerHand[i].StorageAmount++;
                 }
-                
-                if (new int[] { 2, 6, 10, 28, 29 }.Contains(playerHand[i].OreID))
-                //if (playerHand[i].OreID == 9 || playerHand[i].OreID == 12 || playerHand[i].OreID == 19 || playerHand[i].OreID == 21 || playerHand[i].OreID == 26)
+                // changes the color of the ore text if the background is black
+                if (new int[] { 2, 11, 23, 28, 29, 42 }.Contains(playerHand[i].OreID))
                 {
                     titles[i].color = Color.white;
                     effects[i].color = Color.white;
@@ -482,7 +425,7 @@ public class RNGscript : MonoBehaviour, IDataPersistence
                         playerHand[i].StorageAmount = OreStorage.MaxCommonOres;
                     }
                 }
-                if (new int[] { 8, 9, 10, 11, 12 }.Contains(playerHand[i].OreID))
+                if (new int[] { 8, 9, 10, 11, 12, 13, 14 }.Contains(playerHand[i].OreID))
                 {
                     if (playerHand[i].StorageAmount >= OreStorage.MaxUncommonOres)
                     {
@@ -490,7 +433,7 @@ public class RNGscript : MonoBehaviour, IDataPersistence
                         playerHand[i].StorageAmount = OreStorage.MaxUncommonOres;
                     }
                 }
-                if (new int[] { 13, 14, 15, 16, 17 }.Contains(playerHand[i].OreID))
+                if (new int[] { 15, 16, 17, 18, 19, 20, 21 }.Contains(playerHand[i].OreID))
                 {
                     if (playerHand[i].StorageAmount >= OreStorage.MaxRareOres)
                     {
@@ -498,7 +441,7 @@ public class RNGscript : MonoBehaviour, IDataPersistence
                         playerHand[i].StorageAmount = OreStorage.MaxRareOres;
                     }
                 }
-                if (new int[] { 18, 19, 20, 21, 22 }.Contains(playerHand[i].OreID))
+                if (new int[] { 22, 23, 24, 25, 26, 27, 28 }.Contains(playerHand[i].OreID))
                 {
                     if (playerHand[i].StorageAmount >= OreStorage.MaxEpicOres)
                     {
@@ -506,7 +449,7 @@ public class RNGscript : MonoBehaviour, IDataPersistence
                         playerHand[i].StorageAmount = OreStorage.MaxEpicOres;
                     }
                 }
-                if (new int[] { 23, 24, 25, 26, 27 }.Contains(playerHand[i].OreID))
+                if (new int[] { 29, 30, 31, 32, 33, 34, 35 }.Contains(playerHand[i].OreID))
                 {
                     if (playerHand[i].StorageAmount >= OreStorage.MaxLegendaryOres)
                     {
@@ -514,7 +457,7 @@ public class RNGscript : MonoBehaviour, IDataPersistence
                         playerHand[i].StorageAmount = OreStorage.MaxLegendaryOres;
                     }
                 }
-                if (playerHand[i].OreID == 28)
+                if (new int[] { 36, 37, 38, 39, 40, 41, 42 }.Contains(playerHand[i].OreID))
                 {
                     MoneyLogic.Money += playerHand[i].OrePrice * MoneyMultiplier;
                     playerHand[i].StorageAmount = OreStorage.MaxMythicOres;

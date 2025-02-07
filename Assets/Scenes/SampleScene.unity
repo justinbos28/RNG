@@ -547,7 +547,7 @@ MonoBehaviour:
   m_Elasticity: 0.1
   m_Inertia: 1
   m_DecelerationRate: 0
-  m_ScrollSensitivity: 15
+  m_ScrollSensitivity: 30
   m_Viewport: {fileID: 538551422}
   m_HorizontalScrollbar: {fileID: 0}
   m_VerticalScrollbar: {fileID: 1958464919}
@@ -10757,7 +10757,7 @@ GameObject:
   m_Component:
   - component: {fileID: 938214291}
   m_Layer: 5
-  m_Name: comming soon 4
+  m_Name: Storage Amount
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -10975,7 +10975,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Coming Soon
+  m_Text: Storage Amount
 --- !u!222 &947679701
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -11967,7 +11967,7 @@ MonoBehaviour:
   MaxRareOres: 125
   MaxEpicOres: 75
   MaxLegendaryOres: 25
-  MaxMythicOres: 1
+  MaxMythicOres: 5
   Storage:
   - {fileID: 1468832781}
   - {fileID: 868731499}
@@ -12053,7 +12053,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7efcbc371d2ce714c831074bf2145d48, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  OresCount: 00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
+  OresCount: 000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
   RNGscript: {fileID: 1546723946}
   OreStorage: {fileID: 987623140}
 --- !u!114 &987623143
@@ -12075,42 +12075,49 @@ MonoBehaviour:
     Rarity: {fileID: 114380694}
     Percentage: {fileID: 1917384987}
     Image: {fileID: 1694437882}
+    background: {fileID: 1759399710}
   - Price: {fileID: 1947160697}
     Name: {fileID: 1824096630}
     Description: {fileID: 1419627941}
     Rarity: {fileID: 545855637}
     Percentage: {fileID: 1276151087}
     Image: {fileID: 476845042}
+    background: {fileID: 1950993776}
   - Price: {fileID: 383486442}
     Name: {fileID: 729337598}
     Description: {fileID: 2075765475}
     Rarity: {fileID: 1213265393}
     Percentage: {fileID: 1902817057}
     Image: {fileID: 1594876128}
+    background: {fileID: 280987999}
   - Price: {fileID: 2144881107}
     Name: {fileID: 909887601}
     Description: {fileID: 390631159}
     Rarity: {fileID: 805854484}
     Percentage: {fileID: 2032872907}
     Image: {fileID: 934132914}
+    background: {fileID: 1170184092}
   - Price: {fileID: 1718108021}
     Name: {fileID: 701761747}
     Description: {fileID: 1869816305}
     Rarity: {fileID: 2108121916}
     Percentage: {fileID: 1384351862}
     Image: {fileID: 561894495}
+    background: {fileID: 1736826365}
   - Price: {fileID: 912739216}
     Name: {fileID: 40702536}
     Description: {fileID: 1551011880}
     Rarity: {fileID: 290553410}
     Percentage: {fileID: 1734969910}
     Image: {fileID: 2002885048}
+    background: {fileID: 1834506854}
   - Price: {fileID: 578195215}
     Name: {fileID: 677232190}
     Description: {fileID: 1738504483}
     Rarity: {fileID: 1155465021}
     Percentage: {fileID: 172672066}
     Image: {fileID: 992729432}
+    background: {fileID: 138399281}
   RNGscript: {fileID: 1546723946}
   IndexCount: 0
 --- !u!1 &989356331
@@ -12684,7 +12691,7 @@ MonoBehaviour:
   m_Elasticity: 0.1
   m_Inertia: 1
   m_DecelerationRate: 0
-  m_ScrollSensitivity: 15
+  m_ScrollSensitivity: 30
   m_Viewport: {fileID: 1064645596}
   m_HorizontalScrollbar: {fileID: 0}
   m_VerticalScrollbar: {fileID: 1492057738}
@@ -15851,7 +15858,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1546723948}
         m_TargetAssemblyTypeName: MoneyLogic, Assembly-CSharp
-        m_MethodName: 
+        m_MethodName: BuyStorageAmount
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -17569,7 +17576,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: nan$
+  m_Text: 10.000$
 --- !u!222 &1455659968
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -19478,10 +19485,10 @@ MonoBehaviour:
     OrePrice: 4
     rarityEffectColor: {r: 1, g: 1, b: 1, a: 0}
     Color: {r: 1, g: 1, b: 1, a: 1}
-  - name: Rubber
-    description: Used for making tires
+  - name: Stone Gem
+    description: A basic stone gem
     rarityTitle: Common
-    OrePicture: {fileID: 21300000, guid: b774094c758e770428e7f36898d65bee, type: 3}
+    OrePicture: {fileID: 21300000, guid: 69d875d7cbc2dc64ca32e38126138b00, type: 3}
     rarity: 6
     OreID: 0
     chance: 55
@@ -19490,10 +19497,10 @@ MonoBehaviour:
     OrePrice: 5
     rarityEffectColor: {r: 1, g: 1, b: 1, a: 0}
     Color: {r: 1, g: 1, b: 1, a: 1}
-  - name: Plastic
-    description: Turtles love this
+  - name: Rusty gem
+    description: A rusted gem but still useful
     rarityTitle: Common
-    OrePicture: {fileID: 21300000, guid: 59f8f7754f46b7c4e928a3a3c7e6bf50, type: 3}
+    OrePicture: {fileID: 21300000, guid: 8a43ac0a2dad64547b4f9b7025c34d5f, type: 3}
     rarity: 7
     OreID: 0
     chance: 70
@@ -19514,8 +19521,20 @@ MonoBehaviour:
     OrePrice: 12
     rarityEffectColor: {r: 0.13656996, g: 0.8773585, b: 0.14523412, a: 0}
     Color: {r: 0.13725491, g: 0.8784314, b: 0.14509805, a: 1}
-  - name: Zinc
-    description: i don't know what this is
+  - name: Heat Gem
+    description: its feels warm to the touch
+    rarityTitle: Uncommon
+    OrePicture: {fileID: 21300000, guid: c2d18e00b06502a4ebcb9a4dbce21900, type: 3}
+    rarity: 0
+    OreID: 0
+    chance: 150
+    StorageAmount: 0
+    Percentage: 0.66
+    OrePrice: 20
+    rarityEffectColor: {r: 0.13725491, g: 0.8784314, b: 0.14509805, a: 0}
+    Color: {r: 0.13725491, g: 0.8784314, b: 0.14509805, a: 1}
+  - name: Yellow gem
+    description: A basic yellow gem used for crafting
     rarityTitle: Uncommon
     OrePicture: {fileID: 21300000, guid: ebaac7de745b6c04e875b8ade8e79edf, type: 3}
     rarity: 9
@@ -19538,8 +19557,20 @@ MonoBehaviour:
     OrePrice: 50
     rarityEffectColor: {r: 0.13725491, g: 0.8784314, b: 0.14901961, a: 0}
     Color: {r: 0.13725491, g: 0.8784314, b: 0.14509805, a: 1}
-  - name: Bronze
-    description: A mix of materiaks
+  - name: Water gem
+    description: A water gem? what can you use that for
+    rarityTitle: Uncommon
+    OrePicture: {fileID: 21300000, guid: c2d18e00b06502a4ebcb9a4dbce21900, type: 3}
+    rarity: 28
+    OreID: 0
+    chance: 550
+    StorageAmount: 0
+    Percentage: 0.18
+    OrePrice: 40
+    rarityEffectColor: {r: 0.13725491, g: 0.8784314, b: 0.14509805, a: 0}
+    Color: {r: 0.13725491, g: 0.8784314, b: 0.14509805, a: 1}
+  - name: Shiny Gem
+    description: it shines like the stars. maybe powerful as well
     rarityTitle: Uncommon
     OrePicture: {fileID: 21300000, guid: b926218beafa1b744904f9b8db748dc1, type: 3}
     rarity: 11
@@ -19586,6 +19617,18 @@ MonoBehaviour:
     OrePrice: 200
     rarityEffectColor: {r: 0, g: 0.6139307, b: 1, a: 0}
     Color: {r: 0, g: 0.6156863, b: 1, a: 1}
+  - name: Fast gem
+    description: Fast? can it make my mining faster?
+    rarityTitle: Rare
+    OrePicture: {fileID: 21300000, guid: c2d18e00b06502a4ebcb9a4dbce21900, type: 3}
+    rarity: 28
+    OreID: 0
+    chance: 4500
+    StorageAmount: 0
+    Percentage: 0.022
+    OrePrice: 175
+    rarityEffectColor: {r: 0, g: 0.6156863, b: 1, a: 0}
+    Color: {r: 0, g: 0.6156863, b: 1, a: 1}
   - name: Titanium
     description: I am titanium
     rarityTitle: Rare
@@ -19598,8 +19641,20 @@ MonoBehaviour:
     OrePrice: 450
     rarityEffectColor: {r: 0, g: 0.6139307, b: 1, a: 0}
     Color: {r: 0, g: 0.6156863, b: 1, a: 1}
-  - name: Silicon
-    description: silky idk
+  - name: Ice gem
+    description: A cold and wet gem. more useless then water?
+    rarityTitle: Rare
+    OrePicture: {fileID: 21300000, guid: c2d18e00b06502a4ebcb9a4dbce21900, type: 3}
+    rarity: 28
+    OreID: 0
+    chance: 6500
+    StorageAmount: 0
+    Percentage: 0.015
+    OrePrice: 300
+    rarityEffectColor: {r: 0, g: 0.6156863, b: 1, a: 0}
+    Color: {r: 0, g: 0.6156863, b: 1, a: 1}
+  - name: Clear gem
+    description: You can see straight through it!
     rarityTitle: Rare
     OrePicture: {fileID: 21300000, guid: 889d4bdb43b519545a2d0d43917f460c, type: 3}
     rarity: 16
@@ -19607,7 +19662,7 @@ MonoBehaviour:
     chance: 7500
     StorageAmount: 0
     Percentage: 0.013
-    OrePrice: 150
+    OrePrice: 450
     rarityEffectColor: {r: 0, g: 0.6139307, b: 1, a: 0}
     Color: {r: 0, g: 0.6156863, b: 1, a: 1}
   - name: Amethyst
@@ -19670,6 +19725,18 @@ MonoBehaviour:
     OrePrice: 6200
     rarityEffectColor: {r: 0.772892, g: 0, b: 1, a: 0}
     Color: {r: 0.77254903, g: 0, b: 1, a: 1}
+  - name: Air gem
+    description: Why air?
+    rarityTitle: Epic
+    OrePicture: {fileID: 21300000, guid: c2d18e00b06502a4ebcb9a4dbce21900, type: 3}
+    rarity: 28
+    OreID: 0
+    chance: 75000
+    StorageAmount: 0
+    Percentage: 0.0013
+    OrePrice: 4500
+    rarityEffectColor: {r: 0.77254903, g: 0, b: 1, a: 0}
+    Color: {r: 0.77254903, g: 0, b: 1, a: 1}
   - name: Adurite
     description: does this even exist?
     rarityTitle: Epic
@@ -19681,6 +19748,18 @@ MonoBehaviour:
     Percentage: 0.0011
     OrePrice: 5500
     rarityEffectColor: {r: 0.772892, g: 0, b: 1, a: 0}
+    Color: {r: 0.77254903, g: 0, b: 1, a: 1}
+  - name: Fire Gem
+    description: Hotter then hot
+    rarityTitle: Epic
+    OrePicture: {fileID: 21300000, guid: c2d18e00b06502a4ebcb9a4dbce21900, type: 3}
+    rarity: 28
+    OreID: 0
+    chance: 95000
+    StorageAmount: 0
+    Percentage: 0.001
+    OrePrice: 6750
+    rarityEffectColor: {r: 0.77254903, g: 0, b: 1, a: 0}
     Color: {r: 0.77254903, g: 0, b: 1, a: 1}
   - name: Magnetite
     description: magnetic purple
@@ -19706,6 +19785,18 @@ MonoBehaviour:
     OrePrice: 15000
     rarityEffectColor: {r: 1, g: 0.8081863, b: 0, a: 0}
     Color: {r: 1, g: 0.80784315, b: 0, a: 1}
+  - name: Energy gem
+    description: Lots of energy in this one
+    rarityTitle: Legendary
+    OrePicture: {fileID: 21300000, guid: c2d18e00b06502a4ebcb9a4dbce21900, type: 3}
+    rarity: 28
+    OreID: 0
+    chance: 350000
+    StorageAmount: 0
+    Percentage: 0.00028
+    OrePrice: 20000
+    rarityEffectColor: {r: 1, g: 0.80784315, b: 0, a: 0}
+    Color: {r: 1, g: 0.80784315, b: 0, a: 1}
   - name: Ruby
     description: An even more valuable red gem
     rarityTitle: Legendary
@@ -19717,6 +19808,18 @@ MonoBehaviour:
     Percentage: 0.00022
     OrePrice: 25000
     rarityEffectColor: {r: 1, g: 0.8081863, b: 0, a: 0}
+    Color: {r: 1, g: 0.80784315, b: 0, a: 1}
+  - name: Rich gem
+    description: Can this make me rich? oh wait its a legendary
+    rarityTitle: Legendary
+    OrePicture: {fileID: 21300000, guid: c2d18e00b06502a4ebcb9a4dbce21900, type: 3}
+    rarity: 28
+    OreID: 0
+    chance: 560000
+    StorageAmount: 0
+    Percentage: 0.00018
+    OrePrice: 35000
+    rarityEffectColor: {r: 1, g: 0.80784315, b: 0, a: 0}
     Color: {r: 1, g: 0.80784315, b: 0, a: 1}
   - name: Emerald
     description: A super valuable green gem!
@@ -19733,7 +19836,7 @@ MonoBehaviour:
   - name: Diamond
     description: Shiny, Valuable, small and cool. made from coal
     rarityTitle: Legendary
-    OrePicture: {fileID: 21300000, guid: f09afa3dfba1ccb49922b17c4555a2af, type: 3}
+    OrePicture: {fileID: 21300000, guid: 83498084f449ed241b04534db4765e38, type: 3}
     rarity: 27
     OreID: 0
     chance: 890000
@@ -19742,8 +19845,8 @@ MonoBehaviour:
     OrePrice: 80000
     rarityEffectColor: {r: 1, g: 0.8081863, b: 0, a: 0}
     Color: {r: 1, g: 0.80784315, b: 0, a: 1}
-  - name: Unknown
-    description: what even is this?
+  - name: Obsidian
+    description: A nice shard of black glass
     rarityTitle: Mythic
     OrePicture: {fileID: 21300000, guid: c2d18e00b06502a4ebcb9a4dbce21900, type: 3}
     rarity: 28
@@ -19752,6 +19855,78 @@ MonoBehaviour:
     StorageAmount: 0
     Percentage: 0.0001
     OrePrice: 100000
+    rarityEffectColor: {r: 1, g: 0, b: 0, a: 0}
+    Color: {r: 1, g: 0, b: 0, a: 1}
+  - name: Dark gem
+    description: A black gem that contains energy
+    rarityTitle: Mythic
+    OrePicture: {fileID: 21300000, guid: c2d18e00b06502a4ebcb9a4dbce21900, type: 3}
+    rarity: 28
+    OreID: 0
+    chance: 1500000
+    StorageAmount: 0
+    Percentage: 0.000067
+    OrePrice: 150000
+    rarityEffectColor: {r: 1, g: 0, b: 0, a: 0}
+    Color: {r: 1, g: 0, b: 0, a: 1}
+  - name: Light gem
+    description: It glows!
+    rarityTitle: Mythic
+    OrePicture: {fileID: 21300000, guid: c2d18e00b06502a4ebcb9a4dbce21900, type: 3}
+    rarity: 28
+    OreID: 0
+    chance: 2700000
+    StorageAmount: 0
+    Percentage: 0.000067
+    OrePrice: 240000
+    rarityEffectColor: {r: 1, g: 0, b: 0, a: 0}
+    Color: {r: 1, g: 0, b: 0, a: 1}
+  - name: Rainbow gem
+    description: A nice rainbow is very valueable
+    rarityTitle: Mythic
+    OrePicture: {fileID: 21300000, guid: c2d18e00b06502a4ebcb9a4dbce21900, type: 3}
+    rarity: 28
+    OreID: 0
+    chance: 4000000
+    StorageAmount: 0
+    Percentage: 0.000067
+    OrePrice: 300000
+    rarityEffectColor: {r: 1, g: 0, b: 0, a: 0}
+    Color: {r: 1, g: 0, b: 0, a: 1}
+  - name: Crystal gem
+    description: Valueable and see through
+    rarityTitle: Mythic
+    OrePicture: {fileID: 21300000, guid: c2d18e00b06502a4ebcb9a4dbce21900, type: 3}
+    rarity: 28
+    OreID: 0
+    chance: 6000000
+    StorageAmount: 0
+    Percentage: 0.000067
+    OrePrice: 350000
+    rarityEffectColor: {r: 1, g: 0, b: 0, a: 0}
+    Color: {r: 1, g: 0, b: 0, a: 1}
+  - name: Mythic gem
+    description: A mythic gem. what could that mean
+    rarityTitle: Mythic
+    OrePicture: {fileID: 21300000, guid: c2d18e00b06502a4ebcb9a4dbce21900, type: 3}
+    rarity: 28
+    OreID: 0
+    chance: 8000000
+    StorageAmount: 0
+    Percentage: 0.000067
+    OrePrice: 400000
+    rarityEffectColor: {r: 1, g: 0, b: 0, a: 0}
+    Color: {r: 1, g: 0, b: 0, a: 1}
+  - name: 01001010
+    description: A mythic gem. what could that mean
+    rarityTitle: Mythic
+    OrePicture: {fileID: 21300000, guid: c2d18e00b06502a4ebcb9a4dbce21900, type: 3}
+    rarity: 28
+    OreID: 0
+    chance: 9900000
+    StorageAmount: 0
+    Percentage: 0.000067
+    OrePrice: 400000
     rarityEffectColor: {r: 1, g: 0, b: 0, a: 0}
     Color: {r: 1, g: 0, b: 0, a: 1}
   CommonOres: []
@@ -19873,6 +20048,7 @@ MonoBehaviour:
   BoughtLuckPercentage: 0
   BoughtLuckMultiplier: 0
   BoughtMoneyMultiplier: 0
+  BoughtStorageAmount: 0
   Money: 0
   AutoRoll: 0
   BoughtAutoRoll: 0
@@ -19884,7 +20060,9 @@ MonoBehaviour:
   LuckPercentageText: {fileID: 1080303263}
   LuckMultiplierText: {fileID: 1268650077}
   MoneyMultiplier: {fileID: 344850317}
+  StorageAmount: {fileID: 1455659967}
   RNGscript: {fileID: 1546723946}
+  OreStorage: {fileID: 987623140}
   AutoRollButton: {fileID: 1032464898}
   AutoSellButton: {fileID: 1657349031}
   AutoRollButtonColor: {fileID: 93507715}
@@ -22181,7 +22359,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 3df04df2fb53d6e4683f12e9a815fba0, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 694e455931114a14d8c76a8c08609eeb, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1

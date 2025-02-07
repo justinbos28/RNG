@@ -25,7 +25,7 @@
 // 5 rare - 1000 to 10.000
 // 5 epic - 10.000 to 100.000
 // 5 legendary - 100.000 to 1.000.000
-// 1 mythic - 1.000.000
+// 1 mythic - 1.000.000 - 10.000.000
 
 // common -------
 // stone 1/1
@@ -33,21 +33,30 @@
 // sand 1/6
 // wood 1/10
 // iron 1/20
-// rubber 1/55
-// plastic 1/70
+// Stone gem 1/55 - new
+// Rusty gem 1/70 - new
+/// rubber 1/55 - change with gems
+/// plastic 1/70 - change with gems
 
 // uncommon ------
 // copper 1/110
-// zinc 1/240
+// Heat gem 1/150 - new
+// yellow gem 1/240 - new
+/// zinc 1/240 - change with gems
 // petrolium 1/400
-// bronze 1/650
+// Water gem 1/550 - new
+// shiny gem 1/650 - new
+/// bronze 1/650 - change with gems
 // steel 1/825
 
 // rare ----------
 // quartz 1/1350
 // silver 1/3500
+// Fast gem 1/4500 - new
 // titanium 1/5600
-// silicon 1/7500
+// Ice gem 1/6500 - new
+// clear gem 1/7500 - new
+/// silicon 1/7500 - change with gems
 // amethyst 1/9650
 
 // epic -----
@@ -55,14 +64,26 @@
 // uranium 1/28.000
 // tungsten 1/45.000
 // bismuth 1/67.000
+// Air gem 1/75.000 - new
 // adurite 1/89.000
+// Fire gem 1/95.000 - new
 
 // legendary ------
 // magnetite 1/150.000
 // sapphire 1/240.000
+// Energy gem 1/350.000 - new
 // ruby 1/ 460.000
+// Rich gem 1/560.000 - new
 // emerald 1/680.312
 // diamond 1/890.000
 
 // mythic -------
-// unknown 1/1.000.000
+// Obsidian 1/1.000.000
+// Dark gem 1/1.500.000 - new
+// Light gem 1/2.700.000 - new
+// Rainbow gem 1/4.000.000 - new
+// Crystal Gem 1/6.000.000 - new
+// Mythic gem 1/8.000.000 - new
+// 01001001 1/9.900.000 - new
+
+// 42 total ores

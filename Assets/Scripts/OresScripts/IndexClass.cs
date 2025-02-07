@@ -12,6 +12,7 @@ public class IndexClass
     public Text Rarity;
     public Text Percentage;
     public Image Image;
+    public Image background;
 }
 
 

@@ -25,6 +25,7 @@ public class GameData
     public int BoughtLuckPercentage;
     public int BoughtLuckMultiplier;
     public int BoughtMoneyMultiplier;
+    public int BoughtStorageAmount;
 
     public List<int> OresCount = new List<int>();
 
