@@ -40,6 +40,7 @@ public class RNGscript : MonoBehaviour, IDataPersistence
     public Text CurrentMoney;
 
     public MoneyLogic MoneyLogic;
+    public XPScript XPScript;
     public OreStorage OreStorage;
 
     public GameObject RollButton;
@@ -122,11 +123,11 @@ public class RNGscript : MonoBehaviour, IDataPersistence
     {
         for (int i = 0; i < allOres.Count; i++)
         {
-            allOres[i].rarity = i + 1;
+            allOres[i].OreID = i + 1;
         }
         foreach (OreClass card in allOres)
         {
-            switch (card.rarity)
+            switch (card.OreID)
             {
                 case 1:
                 case 2:
@@ -194,41 +195,39 @@ public class RNGscript : MonoBehaviour, IDataPersistence
     {
         playerHand.Clear();
         List<int> hand = new List<int>();
-        for (int i = 0; i < cardLimit; i++)
-        {
-            // Define ore rarity chances in a dictionary
-            Dictionary<int, float> oreRarityChances = new Dictionary<int, float>
-            {
-                { 42,0.00001f },{ 41,0.000013f },{ 40,0.000017f },{ 39,0.000025f },{ 38, 0.000037f }, { 37, 0.000067f}, { 36, 0.0001f }, // mythic
-                { 35, 0.00011f }, { 34, 0.00015f }, { 33, 0.00018f }, { 32, 0.00022f }, { 31, 0.00028f }, { 30, 0.0004f }, { 29, 0.00067f }, // legendary
-                { 28, 0.001f }, { 27, 0.0011f }, { 26, 0.0013f }, { 25, 0.0015f }, { 24, 0.0022f }, { 23, 0.0035f }, { 22, 0.0067f }, // epic
-                { 21, 0.01f }, { 20, 0.013f }, { 19, 0.015f }, { 18, 0.018f }, { 17, 0.022f }, { 16, 0.03f }, { 15, 0.074f }, // rare
-                { 14, 0.121f }, { 13, 0.15f }, { 12, 0.18f }, { 11, 0.25f }, { 10, 0.4f },{ 9, 0.66f }, { 8, 0.9f }, // uncommon
-                { 7, 1.4f }, { 6, 1.8f }, { 5, 4.8f }, { 4, 9.1f }, { 3, 14.3f }, { 2, 20f }, { 1, 50f } // common
-            };
-            // 42 total gems.
 
-            // Calculate chances for each ore rarity
+        for (int i = 0; i < cardLimit; i++) // Ensure we don't go over cardLimit
+        {
+            Dictionary<int, float> oreRarityChances = new Dictionary<int, float>
+        {
+            { 42, 0.00001f }, { 41, 0.000013f }, { 40, 0.000017f }, { 39, 0.000025f }, { 38, 0.000037f }, { 37, 0.000067f }, { 36, 0.0001f },
+            { 35, 0.00011f }, { 34, 0.00015f }, { 33, 0.00018f }, { 32, 0.00022f }, { 31, 0.00028f }, { 30, 0.0004f }, { 29, 0.00067f },
+            { 28, 0.001f }, { 27, 0.0011f }, { 26, 0.0013f }, { 25, 0.0015f }, { 24, 0.0022f }, { 23, 0.0035f }, { 22, 0.0067f },
+            { 21, 0.01f }, { 20, 0.013f }, { 19, 0.015f }, { 18, 0.018f }, { 17, 0.022f }, { 16, 0.03f }, { 15, 0.074f },
+            { 14, 0.121f }, { 13, 0.15f }, { 12, 0.18f }, { 11, 0.25f }, { 10, 0.4f }, { 9, 0.66f }, { 8, 0.9f },
+            { 7, 1.4f }, { 6, 1.8f }, { 5, 4.8f }, { 4, 9.1f }, { 3, 14.3f }, { 2, 20f }, { 1, 50f }
+        };
+
             Dictionary<int, bool> oreRarityResults = oreRarityChances.ToDictionary(
                 kvp => kvp.Key,
-                kvp => CalulateRNGPercent(kvp.Value * LuckPercentage * LuckMultiplier)
+                kvp => CalulateRNGPercent(kvp.Value * LuckPercentage * LuckMultiplier * XPScript.XPLuckMultiplier)
             );
 
             void AddOreToHand(List<OreClass> oreList, List<int> hand)
             {
-                if (oreList.Count == 0) // checks if theres 0 ores in the list
+                if (hand.Count >= cardLimit) return; // Prevent exceeding limit
+
+                if (oreList.Count == 0)
                 {
                     Debug.LogError("No ores in the list");
                 }
-                else if (oreList.Count == 1) // checks if theres only 1 ore in the list
-                {
-                    hand.Add(oreList[0].OreID);
-                }
-                else // if theres more than 1 ore in the list randomly selects one
+                else
                 {
                     hand.Add(oreList[Random.Range(0, oreList.Count)].OreID);
                 }
             }
+
+            bool oreAdded = false;
 
             foreach (var oreRarityResult in oreRarityResults)
             {
@@ -236,65 +235,38 @@ public class RNGscript : MonoBehaviour, IDataPersistence
                 {
                     switch (oreRarityResult.Key)
                     {
-                        case 42:
-                        case 41:
-                        case 40:
-                        case 39:
-                        case 38:
-                        case 37:
-                        case 36:
+                        case >= 36 and <= 42:
                             AddOreToHand(MythicOres, hand);
                             break;
-                        case 35:
-                        case 34:
-                        case 33:
-                        case 32:
-                        case 31:
-                        case 30:
-                        case 29:
+                        case >= 29 and <= 35:
                             AddOreToHand(LegendaryOres, hand);
                             break;
-                        case 28:
-                        case 27:
-                        case 26:
-                        case 25:
-                        case 24:
-                        case 23:
-                        case 22:
+                        case >= 22 and <= 28:
                             AddOreToHand(EpicOres, hand);
                             break;
-                        case 21:
-                        case 20:
-                        case 19:
-                        case 18:
-                        case 17:
-                        case 16:
-                        case 15:
+                        case >= 15 and <= 21:
                             AddOreToHand(RareOres, hand);
                             break;
-                        case 14:
-                        case 13:
-                        case 12:
-                        case 11:
-                        case 10:
-                        case 9:
-                        case 8:
+                        case >= 8 and <= 14:
                             AddOreToHand(UncommonOres, hand);
                             break;
-                        case 7:
-                        case 6:
-                        case 5:
-                        case 4:
-                        case 3:
-                        case 2:
-                        case 1:
+                        case >= 1 and <= 7:
                             AddOreToHand(CommonOres, hand);
                             break;
                     }
-                    break;
+
+                    oreAdded = true;
+                    break; // Stop after adding one ore
                 }
             }
+
+            // If no ore was added, guarantee a common ore
+            if (!oreAdded)
+            {
+                AddOreToHand(CommonOres, hand);
+            }
         }
+
         foreach (int ID in hand)
         {
             foreach (OreClass c in allOres)
@@ -302,12 +274,14 @@ public class RNGscript : MonoBehaviour, IDataPersistence
                 if (c.OreID == ID)
                 {
                     playerHand.Add(c);
+                    break;
                 }
             }
         }
-        
+
         DisplayCard();
     }
+
 
     // displays all the ores
     public void DisplayCard()
@@ -324,10 +298,6 @@ public class RNGscript : MonoBehaviour, IDataPersistence
 
     public void Start()
     {
-        for (int i = 0; i < allOres.Count; i++)
-        {
-            allOres[i].OreID = i + 1;
-        }
         AssignRarity();
     }
 
@@ -464,6 +434,7 @@ public class RNGscript : MonoBehaviour, IDataPersistence
                 }
             }
             OreStorage.UpdateInventory();
+            XPScript.UpdateXP();
             RollStatus++;
         }
         // rolling the dice (roll animation)

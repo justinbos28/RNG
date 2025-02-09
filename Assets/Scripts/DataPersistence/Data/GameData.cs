@@ -29,6 +29,14 @@ public class GameData
 
     public List<int> OresCount = new List<int>();
 
+    [Header("Values from Xpscript")]
+    public int XPCount;
+    public int LevelCount;
+    public int XPMultiplier = 1;
+
+    public float XPNeeded;
+    public float XPLuckMultiplier = 1;
+
     public GameData()
     {
         this.Money = 0;
@@ -46,6 +54,12 @@ public class GameData
         this.BoughtRollAmount = 0;
         this.BoughtRollSkips = 0;
         this.BoughtRollSpeed = 0;
+        this.XPCount = 0;
+        this.LevelCount = 1;
+        this.XPNeeded = 100;
+        this.XPMultiplier = 1;
+        this.XPLuckMultiplier = 1;
         this.OresCount = new List<int>();
+        
     }
 }

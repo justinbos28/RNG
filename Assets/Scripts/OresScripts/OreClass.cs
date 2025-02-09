@@ -11,7 +11,7 @@ public class OreClass
     public Sprite OrePicture;
     // rarity index
     // example 1 = 1 to common
-    public int rarity;
+    public int XP;
     public int OreID;
     // chance is displayed
     // if chance is 1 it displays 1 in 1

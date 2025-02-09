@@ -4495,7 +4495,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &321805323
 RectTransform:
   m_ObjectHideFlags: 0
@@ -6478,6 +6478,87 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 491328072}
   m_CullTransparentMesh: 1
+--- !u!1 &494812804
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 494812805}
+  - component: {fileID: 494812807}
+  - component: {fileID: 494812806}
+  m_Layer: 5
+  m_Name: Text (Legacy)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &494812805
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 494812804}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1525050667}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: -1.14e-13, y: 132}
+  m_SizeDelta: {x: 408.09, y: 48.32}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &494812806
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 494812804}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 0.44257098, g: 0.8396226, b: 0.43169275, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_FontData:
+    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    m_FontSize: 40
+    m_FontStyle: 0
+    m_BestFit: 0
+    m_MinSize: 4
+    m_MaxSize: 40
+    m_Alignment: 4
+    m_AlignByGeometry: 0
+    m_RichText: 1
+    m_HorizontalOverflow: 0
+    m_VerticalOverflow: 0
+    m_LineSpacing: 1
+  m_Text: 'Stats
+
+'
+--- !u!222 &494812807
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 494812804}
+  m_CullTransparentMesh: 1
 --- !u!1 &510382344
 GameObject:
   m_ObjectHideFlags: 0
@@ -8311,6 +8392,7 @@ GameObject:
   - component: {fileID: 649251858}
   - component: {fileID: 649251857}
   - component: {fileID: 649251859}
+  - component: {fileID: 649251860}
   m_Layer: 0
   m_Name: UiLogic
   m_TagString: Untagged
@@ -8361,9 +8443,26 @@ MonoBehaviour:
   Inventory: {fileID: 33201913}
   Shop: {fileID: 1010180705}
   Index: {fileID: 1573240934}
+  Stats: {fileID: 1525050666}
   ShopPanel: 0
   OpenIndex: 0
   InventoryPanel: 0
+  OpenStats: 0
+--- !u!114 &649251860
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 649251856}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ecf6065a30c953145a9709e92cffa334, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  StatText: {fileID: 1687452676}
+  RNGscript: {fileID: 1546723946}
+  OreStorage: {fileID: 987623140}
 --- !u!1 &662705565
 GameObject:
   m_ObjectHideFlags: 0
@@ -8478,12 +8577,14 @@ RectTransform:
   - {fileID: 1676136554}
   - {fileID: 527825423}
   - {fileID: 1010180706}
+  - {fileID: 1445724593}
   - {fileID: 33201914}
   - {fileID: 144296824}
   - {fileID: 1832558934}
+  - {fileID: 1525050667}
   - {fileID: 1591385177}
+  - {fileID: 1675956983}
   - {fileID: 321805323}
-  - {fileID: 1445724593}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -11942,6 +12043,7 @@ GameObject:
   - component: {fileID: 987623140}
   - component: {fileID: 987623142}
   - component: {fileID: 987623143}
+  - component: {fileID: 987623144}
   m_Layer: 0
   m_Name: OreStorageLogic
   m_TagString: Untagged
@@ -12120,6 +12222,25 @@ MonoBehaviour:
     background: {fileID: 138399281}
   RNGscript: {fileID: 1546723946}
   IndexCount: 0
+--- !u!114 &987623144
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 987623138}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3bccc2448f212624295a032129177fe8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  XPCount: 0
+  LevelCount: 1
+  XPMultiplier: 1
+  XPLuckMultiplier: 1
+  XPNeeded: 0
+  ShowXp: {fileID: 1080634120}
+  RNGscript: {fileID: 1546723946}
 --- !u!1 &989356331
 GameObject:
   m_ObjectHideFlags: 0
@@ -13514,6 +13635,85 @@ CanvasRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1080303261}
+  m_CullTransparentMesh: 1
+--- !u!1 &1080634118
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1080634119}
+  - component: {fileID: 1080634121}
+  - component: {fileID: 1080634120}
+  m_Layer: 5
+  m_Name: Text (Legacy)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1080634119
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1080634118}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1975079057}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 300, y: 30}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1080634120
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1080634118}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_FontData:
+    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    m_FontSize: 20
+    m_FontStyle: 1
+    m_BestFit: 0
+    m_MinSize: 0
+    m_MaxSize: 40
+    m_Alignment: 4
+    m_AlignByGeometry: 0
+    m_RichText: 1
+    m_HorizontalOverflow: 0
+    m_VerticalOverflow: 0
+    m_LineSpacing: 1
+  m_Text: 'Level 1: 100/100'
+--- !u!222 &1080634121
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1080634118}
   m_CullTransparentMesh: 1
 --- !u!1 &1081063573
 GameObject:
@@ -17368,7 +17568,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1445724593
 RectTransform:
   m_ObjectHideFlags: 0
@@ -17384,10 +17584,10 @@ RectTransform:
   - {fileID: 1975079057}
   m_Father: {fileID: 662705569}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 233.82}
-  m_SizeDelta: {x: -748.01, y: -496.63}
+  m_AnchorMin: {x: 0.5, y: 1}
+  m_AnchorMax: {x: 0.5, y: 1}
+  m_AnchoredPosition: {x: 0, y: -33.179993}
+  m_SizeDelta: {x: 331.99, y: 37.369995}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1445724594
 MonoBehaviour:
@@ -18991,6 +19191,83 @@ RectTransform:
   m_AnchoredPosition: {x: 2.6, y: 32.99999}
   m_SizeDelta: {x: 135.12, y: 50.000015}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!1 &1525050666
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1525050667}
+  - component: {fileID: 1525050669}
+  - component: {fileID: 1525050668}
+  m_Layer: 5
+  m_Name: Stats
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!224 &1525050667
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1525050666}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 494812805}
+  - {fileID: 1687452675}
+  m_Father: {fileID: 662705569}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 0, y: 2.9560852}
+  m_SizeDelta: {x: -333.23, y: -198.27}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1525050668
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1525050666}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 0.8773585, g: 0.8773585, b: 0.8773585, a: 0.78431374}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 21300000, guid: 15366d8c01ecaec4d8d38e5a18e1f467, type: 3}
+  m_Type: 1
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 4
+--- !u!222 &1525050669
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1525050666}
+  m_CullTransparentMesh: 1
 --- !u!1 &1534841476
 GameObject:
   m_ObjectHideFlags: 0
@@ -19429,7 +19706,7 @@ MonoBehaviour:
     description: A common rock
     rarityTitle: Common
     OrePicture: {fileID: 21300000, guid: f7a56ada7445e3b41a7d5799a4c01e7b, type: 3}
-    rarity: 1
+    XP: 1
     OreID: 0
     chance: 1
     StorageAmount: 0
@@ -19441,7 +19718,7 @@ MonoBehaviour:
     description: A black ore good for fueling fire
     rarityTitle: Common
     OrePicture: {fileID: 21300000, guid: 58dd21e62d1cb9f4f8cd41ee4e9ba2a6, type: 3}
-    rarity: 2
+    XP: 1
     OreID: 0
     chance: 4
     StorageAmount: 0
@@ -19453,7 +19730,7 @@ MonoBehaviour:
     description: good for making glass
     rarityTitle: Common
     OrePicture: {fileID: 21300000, guid: 99769032a13047448adc5b52f8f55644, type: 3}
-    rarity: 3
+    XP: 1
     OreID: 0
     chance: 6
     StorageAmount: 0
@@ -19465,7 +19742,7 @@ MonoBehaviour:
     description: one of the most basic building materials
     rarityTitle: Common
     OrePicture: {fileID: 21300000, guid: f50b71e38238d80489280594ca8083a1, type: 3}
-    rarity: 4
+    XP: 1
     OreID: 0
     chance: 10
     StorageAmount: 0
@@ -19477,7 +19754,7 @@ MonoBehaviour:
     description: A strong material
     rarityTitle: Common
     OrePicture: {fileID: 21300000, guid: 70ead2093dd7ac8478c42db6861af594, type: 3}
-    rarity: 5
+    XP: 1
     OreID: 0
     chance: 20
     StorageAmount: 0
@@ -19489,7 +19766,7 @@ MonoBehaviour:
     description: A basic stone gem
     rarityTitle: Common
     OrePicture: {fileID: 21300000, guid: 69d875d7cbc2dc64ca32e38126138b00, type: 3}
-    rarity: 6
+    XP: 1
     OreID: 0
     chance: 55
     StorageAmount: 0
@@ -19500,8 +19777,8 @@ MonoBehaviour:
   - name: Rusty gem
     description: A rusted gem but still useful
     rarityTitle: Common
-    OrePicture: {fileID: 21300000, guid: 8a43ac0a2dad64547b4f9b7025c34d5f, type: 3}
-    rarity: 7
+    OrePicture: {fileID: 21300000, guid: b82cc8ce5cb3968498a569921e9e329f, type: 3}
+    XP: 1
     OreID: 0
     chance: 70
     StorageAmount: 0
@@ -19513,7 +19790,7 @@ MonoBehaviour:
     description: Shiny, brown and good at conducting electricuity
     rarityTitle: Uncommon
     OrePicture: {fileID: 21300000, guid: b51b973252012f74e92e3feca1855d79, type: 3}
-    rarity: 8
+    XP: 2
     OreID: 0
     chance: 110
     StorageAmount: 0
@@ -19524,8 +19801,8 @@ MonoBehaviour:
   - name: Heat Gem
     description: its feels warm to the touch
     rarityTitle: Uncommon
-    OrePicture: {fileID: 21300000, guid: c2d18e00b06502a4ebcb9a4dbce21900, type: 3}
-    rarity: 0
+    OrePicture: {fileID: 21300000, guid: 2b6a0dab368d58141b0e699de94e1ca4, type: 3}
+    XP: 2
     OreID: 0
     chance: 150
     StorageAmount: 0
@@ -19536,8 +19813,8 @@ MonoBehaviour:
   - name: Yellow gem
     description: A basic yellow gem used for crafting
     rarityTitle: Uncommon
-    OrePicture: {fileID: 21300000, guid: ebaac7de745b6c04e875b8ade8e79edf, type: 3}
-    rarity: 9
+    OrePicture: {fileID: 21300000, guid: 3ab93f26b1507b2408c14efb6c2c60d8, type: 3}
+    XP: 2
     OreID: 0
     chance: 240
     StorageAmount: 0
@@ -19549,7 +19826,7 @@ MonoBehaviour:
     description: OIL
     rarityTitle: Uncommon
     OrePicture: {fileID: 21300000, guid: c3612f98229ab4746b26426c4c9b2b54, type: 3}
-    rarity: 10
+    XP: 2
     OreID: 0
     chance: 400
     StorageAmount: 0
@@ -19560,8 +19837,8 @@ MonoBehaviour:
   - name: Water gem
     description: A water gem? what can you use that for
     rarityTitle: Uncommon
-    OrePicture: {fileID: 21300000, guid: c2d18e00b06502a4ebcb9a4dbce21900, type: 3}
-    rarity: 28
+    OrePicture: {fileID: 21300000, guid: 1f6ec9b8cab1ca041a343bf7286ea26e, type: 3}
+    XP: 2
     OreID: 0
     chance: 550
     StorageAmount: 0
@@ -19572,8 +19849,8 @@ MonoBehaviour:
   - name: Shiny Gem
     description: it shines like the stars. maybe powerful as well
     rarityTitle: Uncommon
-    OrePicture: {fileID: 21300000, guid: b926218beafa1b744904f9b8db748dc1, type: 3}
-    rarity: 11
+    OrePicture: {fileID: 21300000, guid: a805a0fd22b2f8b40a14959f8e0da661, type: 3}
+    XP: 2
     OreID: 0
     chance: 650
     StorageAmount: 0
@@ -19585,7 +19862,7 @@ MonoBehaviour:
     description: A stronger mixture then iron
     rarityTitle: Uncommon
     OrePicture: {fileID: 21300000, guid: 3b9eb4d2d0faa014893ca2e12d9b3be1, type: 3}
-    rarity: 12
+    XP: 2
     OreID: 0
     chance: 825
     StorageAmount: 0
@@ -19597,7 +19874,7 @@ MonoBehaviour:
     description: White Shiny crystal looking gem
     rarityTitle: Rare
     OrePicture: {fileID: 21300000, guid: c6bf3ed163c5ec04496e8d2c753716f2, type: 3}
-    rarity: 13
+    XP: 5
     OreID: 0
     chance: 1350
     StorageAmount: 0
@@ -19609,7 +19886,7 @@ MonoBehaviour:
     description: White, Shiny and valuable
     rarityTitle: Rare
     OrePicture: {fileID: 21300000, guid: 08d54b5582b3ac4438ebfdaf7b7a6145, type: 3}
-    rarity: 14
+    XP: 5
     OreID: 0
     chance: 3500
     StorageAmount: 0
@@ -19620,8 +19897,8 @@ MonoBehaviour:
   - name: Fast gem
     description: Fast? can it make my mining faster?
     rarityTitle: Rare
-    OrePicture: {fileID: 21300000, guid: c2d18e00b06502a4ebcb9a4dbce21900, type: 3}
-    rarity: 28
+    OrePicture: {fileID: 21300000, guid: 7651344973d092d43ad78ad2f9b6b2ec, type: 3}
+    XP: 5
     OreID: 0
     chance: 4500
     StorageAmount: 0
@@ -19633,7 +19910,7 @@ MonoBehaviour:
     description: I am titanium
     rarityTitle: Rare
     OrePicture: {fileID: 21300000, guid: be1d244665c69584fa47978a393e5d36, type: 3}
-    rarity: 15
+    XP: 5
     OreID: 0
     chance: 5600
     StorageAmount: 0
@@ -19644,8 +19921,8 @@ MonoBehaviour:
   - name: Ice gem
     description: A cold and wet gem. more useless then water?
     rarityTitle: Rare
-    OrePicture: {fileID: 21300000, guid: c2d18e00b06502a4ebcb9a4dbce21900, type: 3}
-    rarity: 28
+    OrePicture: {fileID: 21300000, guid: f99412bfed10be848aa6ae3b876d947a, type: 3}
+    XP: 5
     OreID: 0
     chance: 6500
     StorageAmount: 0
@@ -19656,8 +19933,8 @@ MonoBehaviour:
   - name: Clear gem
     description: You can see straight through it!
     rarityTitle: Rare
-    OrePicture: {fileID: 21300000, guid: 889d4bdb43b519545a2d0d43917f460c, type: 3}
-    rarity: 16
+    OrePicture: {fileID: 21300000, guid: d7de70d0a33595d4a9300330dd7b8ec9, type: 3}
+    XP: 5
     OreID: 0
     chance: 7500
     StorageAmount: 0
@@ -19669,7 +19946,7 @@ MonoBehaviour:
     description: purple crystal
     rarityTitle: Rare
     OrePicture: {fileID: 21300000, guid: 2b2e855fcc86e2447bb5023dbceff818, type: 3}
-    rarity: 17
+    XP: 5
     OreID: 0
     chance: 9650
     StorageAmount: 0
@@ -19681,7 +19958,7 @@ MonoBehaviour:
     description: GOLD
     rarityTitle: Epic
     OrePicture: {fileID: 21300000, guid: 8854a7082deb9c14e85bf3646f867177, type: 3}
-    rarity: 18
+    XP: 10
     OreID: 0
     chance: 15000
     StorageAmount: 0
@@ -19693,7 +19970,7 @@ MonoBehaviour:
     description: This ore Tastes funny
     rarityTitle: Epic
     OrePicture: {fileID: 21300000, guid: dade3fec5b3f4cb4ba7e2edf62b6d0fa, type: 3}
-    rarity: 19
+    XP: 10
     OreID: 0
     chance: 28000
     StorageAmount: 0
@@ -19705,7 +19982,7 @@ MonoBehaviour:
     description: Super heavy
     rarityTitle: Epic
     OrePicture: {fileID: 21300000, guid: 9d332891c9e695443b3343a85eb48952, type: 3}
-    rarity: 20
+    XP: 10
     OreID: 0
     chance: 45000
     StorageAmount: 0
@@ -19716,8 +19993,8 @@ MonoBehaviour:
   - name: Bismuth
     description: spiral, multicolored crystal
     rarityTitle: Epic
-    OrePicture: {fileID: 21300000, guid: e220f05f4ce859b42b83654dc03ece57, type: 3}
-    rarity: 21
+    OrePicture: {fileID: 21300000, guid: 3af3405d386f0214b910ad6212bda799, type: 3}
+    XP: 10
     OreID: 0
     chance: 67000
     StorageAmount: 0
@@ -19728,8 +20005,8 @@ MonoBehaviour:
   - name: Air gem
     description: Why air?
     rarityTitle: Epic
-    OrePicture: {fileID: 21300000, guid: c2d18e00b06502a4ebcb9a4dbce21900, type: 3}
-    rarity: 28
+    OrePicture: {fileID: 21300000, guid: b4c04e3ffbd0c38488af56e8fed5af49, type: 3}
+    XP: 10
     OreID: 0
     chance: 75000
     StorageAmount: 0
@@ -19741,7 +20018,7 @@ MonoBehaviour:
     description: does this even exist?
     rarityTitle: Epic
     OrePicture: {fileID: 21300000, guid: 93074e55e87d99b478fcd2fb17ae2c58, type: 3}
-    rarity: 22
+    XP: 10
     OreID: 0
     chance: 89000
     StorageAmount: 0
@@ -19752,8 +20029,8 @@ MonoBehaviour:
   - name: Fire Gem
     description: Hotter then hot
     rarityTitle: Epic
-    OrePicture: {fileID: 21300000, guid: c2d18e00b06502a4ebcb9a4dbce21900, type: 3}
-    rarity: 28
+    OrePicture: {fileID: 21300000, guid: 58b4441bfe8d8c3428e7620a872dfdd1, type: 3}
+    XP: 10
     OreID: 0
     chance: 95000
     StorageAmount: 0
@@ -19765,7 +20042,7 @@ MonoBehaviour:
     description: magnetic purple
     rarityTitle: Legendary
     OrePicture: {fileID: 21300000, guid: d77aeb51d60b0264eacdc1080e6f5ff8, type: 3}
-    rarity: 23
+    XP: 25
     OreID: 0
     chance: 150000
     StorageAmount: 0
@@ -19777,7 +20054,7 @@ MonoBehaviour:
     description: A valuable blue gem
     rarityTitle: Legendary
     OrePicture: {fileID: 21300000, guid: 7f01c970fc1f0264ab18095cd6047f3e, type: 3}
-    rarity: 24
+    XP: 25
     OreID: 0
     chance: 240000
     StorageAmount: 0
@@ -19788,8 +20065,8 @@ MonoBehaviour:
   - name: Energy gem
     description: Lots of energy in this one
     rarityTitle: Legendary
-    OrePicture: {fileID: 21300000, guid: c2d18e00b06502a4ebcb9a4dbce21900, type: 3}
-    rarity: 28
+    OrePicture: {fileID: 21300000, guid: 2ab7dd42574a03144bbf5919f356672d, type: 3}
+    XP: 25
     OreID: 0
     chance: 350000
     StorageAmount: 0
@@ -19801,7 +20078,7 @@ MonoBehaviour:
     description: An even more valuable red gem
     rarityTitle: Legendary
     OrePicture: {fileID: 21300000, guid: c398f07e7fb26af44be9e35589422543, type: 3}
-    rarity: 25
+    XP: 25
     OreID: 0
     chance: 460000
     StorageAmount: 0
@@ -19812,8 +20089,8 @@ MonoBehaviour:
   - name: Rich gem
     description: Can this make me rich? oh wait its a legendary
     rarityTitle: Legendary
-    OrePicture: {fileID: 21300000, guid: c2d18e00b06502a4ebcb9a4dbce21900, type: 3}
-    rarity: 28
+    OrePicture: {fileID: 21300000, guid: 15d02378136c8974da6aa7039e98240e, type: 3}
+    XP: 25
     OreID: 0
     chance: 560000
     StorageAmount: 0
@@ -19825,7 +20102,7 @@ MonoBehaviour:
     description: A super valuable green gem!
     rarityTitle: Legendary
     OrePicture: {fileID: 21300000, guid: 39503bd81dc33464db05d3402bb17bc3, type: 3}
-    rarity: 26
+    XP: 25
     OreID: 0
     chance: 680312
     StorageAmount: 0
@@ -19837,7 +20114,7 @@ MonoBehaviour:
     description: Shiny, Valuable, small and cool. made from coal
     rarityTitle: Legendary
     OrePicture: {fileID: 21300000, guid: 83498084f449ed241b04534db4765e38, type: 3}
-    rarity: 27
+    XP: 25
     OreID: 0
     chance: 890000
     StorageAmount: 0
@@ -19848,8 +20125,8 @@ MonoBehaviour:
   - name: Obsidian
     description: A nice shard of black glass
     rarityTitle: Mythic
-    OrePicture: {fileID: 21300000, guid: c2d18e00b06502a4ebcb9a4dbce21900, type: 3}
-    rarity: 28
+    OrePicture: {fileID: 21300000, guid: ffc85391970fdc144b86e14a4c1e1082, type: 3}
+    XP: 50
     OreID: 0
     chance: 1000000
     StorageAmount: 0
@@ -19860,8 +20137,8 @@ MonoBehaviour:
   - name: Dark gem
     description: A black gem that contains energy
     rarityTitle: Mythic
-    OrePicture: {fileID: 21300000, guid: c2d18e00b06502a4ebcb9a4dbce21900, type: 3}
-    rarity: 28
+    OrePicture: {fileID: 21300000, guid: 6e6a5825c07f1504294c7bb6c6f21538, type: 3}
+    XP: 50
     OreID: 0
     chance: 1500000
     StorageAmount: 0
@@ -19872,8 +20149,8 @@ MonoBehaviour:
   - name: Light gem
     description: It glows!
     rarityTitle: Mythic
-    OrePicture: {fileID: 21300000, guid: c2d18e00b06502a4ebcb9a4dbce21900, type: 3}
-    rarity: 28
+    OrePicture: {fileID: 21300000, guid: 4f1bcfe87ecb989408e4a3ec22345bce, type: 3}
+    XP: 50
     OreID: 0
     chance: 2700000
     StorageAmount: 0
@@ -19884,8 +20161,8 @@ MonoBehaviour:
   - name: Rainbow gem
     description: A nice rainbow is very valueable
     rarityTitle: Mythic
-    OrePicture: {fileID: 21300000, guid: c2d18e00b06502a4ebcb9a4dbce21900, type: 3}
-    rarity: 28
+    OrePicture: {fileID: 21300000, guid: 2324d898b58a28140b52e07b936c7869, type: 3}
+    XP: 50
     OreID: 0
     chance: 4000000
     StorageAmount: 0
@@ -19896,8 +20173,8 @@ MonoBehaviour:
   - name: Crystal gem
     description: Valueable and see through
     rarityTitle: Mythic
-    OrePicture: {fileID: 21300000, guid: c2d18e00b06502a4ebcb9a4dbce21900, type: 3}
-    rarity: 28
+    OrePicture: {fileID: 21300000, guid: b6203c32c9a9642478094475915475cf, type: 3}
+    XP: 50
     OreID: 0
     chance: 6000000
     StorageAmount: 0
@@ -19908,8 +20185,8 @@ MonoBehaviour:
   - name: Mythic gem
     description: A mythic gem. what could that mean
     rarityTitle: Mythic
-    OrePicture: {fileID: 21300000, guid: c2d18e00b06502a4ebcb9a4dbce21900, type: 3}
-    rarity: 28
+    OrePicture: {fileID: 21300000, guid: e589b8b566c5e4947877f7b664f40111, type: 3}
+    XP: 50
     OreID: 0
     chance: 8000000
     StorageAmount: 0
@@ -19918,10 +20195,10 @@ MonoBehaviour:
     rarityEffectColor: {r: 1, g: 0, b: 0, a: 0}
     Color: {r: 1, g: 0, b: 0, a: 1}
   - name: 01001010
-    description: A mythic gem. what could that mean
+    description: an error? a chip? maybe this can be useful
     rarityTitle: Mythic
-    OrePicture: {fileID: 21300000, guid: c2d18e00b06502a4ebcb9a4dbce21900, type: 3}
-    rarity: 28
+    OrePicture: {fileID: 21300000, guid: 160b64c452bcdb345a0c113287a07b0f, type: 3}
+    XP: 50
     OreID: 0
     chance: 9900000
     StorageAmount: 0
@@ -19954,6 +20231,7 @@ MonoBehaviour:
   RollingText: {fileID: 531839743}
   CurrentMoney: {fileID: 221748838}
   MoneyLogic: {fileID: 1546723948}
+  XPScript: {fileID: 987623144}
   OreStorage: {fileID: 987623140}
   RollButton: {fileID: 983420770}
   RollButton1: {fileID: 557897852}
@@ -21618,6 +21896,138 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1675402211}
   m_CullTransparentMesh: 1
+--- !u!1 &1675956982
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1675956983}
+  - component: {fileID: 1675956986}
+  - component: {fileID: 1675956985}
+  - component: {fileID: 1675956984}
+  m_Layer: 5
+  m_Name: Settings
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1675956983
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1675956982}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 662705569}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 33.99994, y: -109.5}
+  m_SizeDelta: {x: 35, y: 35}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1675956984
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1675956982}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Navigation:
+    m_Mode: 3
+    m_WrapAround: 0
+    m_SelectOnUp: {fileID: 0}
+    m_SelectOnDown: {fileID: 0}
+    m_SelectOnLeft: {fileID: 0}
+    m_SelectOnRight: {fileID: 0}
+  m_Transition: 1
+  m_Colors:
+    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
+    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
+    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
+    m_ColorMultiplier: 1
+    m_FadeDuration: 0.1
+  m_SpriteState:
+    m_HighlightedSprite: {fileID: 0}
+    m_PressedSprite: {fileID: 0}
+    m_SelectedSprite: {fileID: 0}
+    m_DisabledSprite: {fileID: 0}
+  m_AnimationTriggers:
+    m_NormalTrigger: Normal
+    m_HighlightedTrigger: Highlighted
+    m_PressedTrigger: Pressed
+    m_SelectedTrigger: Selected
+    m_DisabledTrigger: Disabled
+  m_Interactable: 1
+  m_TargetGraphic: {fileID: 1675956985}
+  m_OnClick:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 649251859}
+        m_TargetAssemblyTypeName: Uimanager, Assembly-CSharp
+        m_MethodName: SwitchStats
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &1675956985
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1675956982}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 0.6792453, g: 0.6792453, b: 0.6792453, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 21300000, guid: 67ba01348174a6a42bc88e909e612a84, type: 3}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!222 &1675956986
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1675956982}
+  m_CullTransparentMesh: 1
 --- !u!1 &1676136553
 GameObject:
   m_ObjectHideFlags: 0
@@ -21733,6 +22143,87 @@ CanvasRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1678887150}
+  m_CullTransparentMesh: 1
+--- !u!1 &1687452674
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1687452675}
+  - component: {fileID: 1687452677}
+  - component: {fileID: 1687452676}
+  m_Layer: 5
+  m_Name: Text (Legacy) (1)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1687452675
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1687452674}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1525050667}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: -0.00000011921, y: -23.32}
+  m_SizeDelta: {x: 716, y: 262.32}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1687452676
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1687452674}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 0.44257098, g: 0.8396226, b: 0.43169275, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_FontData:
+    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    m_FontSize: 17
+    m_FontStyle: 0
+    m_BestFit: 0
+    m_MinSize: 0
+    m_MaxSize: 40
+    m_Alignment: 0
+    m_AlignByGeometry: 0
+    m_RichText: 1
+    m_HorizontalOverflow: 0
+    m_VerticalOverflow: 0
+    m_LineSpacing: 1
+  m_Text: 'Stats
+
+'
+--- !u!222 &1687452677
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1687452674}
   m_CullTransparentMesh: 1
 --- !u!1 &1694437880
 GameObject:
@@ -24943,7 +25434,8 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 1080634119}
   m_Father: {fileID: 1445724593}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -24964,7 +25456,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 0.92708635, b: 1, a: 1}
+  m_Color: {r: 0.396276, g: 0.8018868, b: 0.38959596, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -24980,7 +25472,7 @@ MonoBehaviour:
   m_FillClockwise: 1
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
-  m_PixelsPerUnitMultiplier: 4
+  m_PixelsPerUnitMultiplier: 1
 --- !u!222 &1975079059
 CanvasRenderer:
   m_ObjectHideFlags: 0

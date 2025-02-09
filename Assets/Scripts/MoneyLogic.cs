@@ -244,7 +244,7 @@ public class MoneyLogic : MonoBehaviour, IDataPersistence
         if (StaticVariables.cash >= 25 && BoughtRollSpeed == 0)
         {
             Money -= 25;
-            RNGscript.RollSpeed = 0.45f;
+            RNGscript.RollSpeed -= 0.05f;
             BoughtRollSpeed = 1;
             RollSpeedText.text = "150$";
             CurrentMoney.text = StaticVariables.cash.ToString("F2") + "$";
@@ -252,7 +252,7 @@ public class MoneyLogic : MonoBehaviour, IDataPersistence
         else if (StaticVariables.cash >= 150 && BoughtRollSpeed == 1) // zie hier 150 = 1
         {
             Money -= 150;
-            RNGscript.RollSpeed = 0.4f;
+            RNGscript.RollSpeed -= 0.05f;
             BoughtRollSpeed = 2;
             RollSpeedText.text = "350$";
             CurrentMoney.text = StaticVariables.cash.ToString("F2") + "$";
@@ -260,7 +260,7 @@ public class MoneyLogic : MonoBehaviour, IDataPersistence
         else if (StaticVariables.cash >= 350 && BoughtRollSpeed == 2)
         {
             Money -= 350;
-            RNGscript.RollSpeed = 0.35f;
+            RNGscript.RollSpeed -= 0.05f;
             BoughtRollSpeed = 3;
             RollSpeedText.text = "750$";
             CurrentMoney.text = StaticVariables.cash.ToString("F2") + "$";
@@ -268,7 +268,7 @@ public class MoneyLogic : MonoBehaviour, IDataPersistence
         else if (StaticVariables.cash >= 750 && BoughtRollSpeed == 3)
         {
             Money -= 750;
-            RNGscript.RollSpeed = 0.3f;
+            RNGscript.RollSpeed -= 0.05f;
             BoughtRollSpeed = 4;
             RollSpeedText.text = "2.000$";
             CurrentMoney.text = StaticVariables.cash.ToString("F2") + "$";
@@ -276,7 +276,7 @@ public class MoneyLogic : MonoBehaviour, IDataPersistence
         else if (StaticVariables.cash >= 2000 && BoughtRollSpeed == 4)
         {
             Money -= 2000;
-            RNGscript.RollSpeed = 0.25f;
+            RNGscript.RollSpeed -= 0.05f;
             BoughtRollSpeed = 5;
             RollSpeedText.text = "4.500";
             CurrentMoney.text = StaticVariables.cash.ToString("F2") + "$";
@@ -284,7 +284,7 @@ public class MoneyLogic : MonoBehaviour, IDataPersistence
         else if (StaticVariables.cash >= 4500 && BoughtRollSpeed == 5)
         {
             Money -= 4500;
-            RNGscript.RollSpeed = 0.2f;
+            RNGscript.RollSpeed -= 0.05f;
             BoughtRollSpeed = 6;
             RollSpeedText.text = "Purchased";
             CurrentMoney.text = StaticVariables.cash.ToString("F2") + "$";

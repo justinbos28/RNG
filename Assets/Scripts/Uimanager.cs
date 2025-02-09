@@ -8,9 +8,11 @@ public class Uimanager : MonoBehaviour
     public GameObject Inventory;
     public GameObject Shop;
     public GameObject Index;
+    public GameObject Stats;
     public bool ShopPanel;
     public bool OpenIndex;
     public bool InventoryPanel;
+    public bool OpenStats;
     public void ShopButton()
     {
         if (ShopPanel == false)
@@ -55,5 +57,19 @@ public class Uimanager : MonoBehaviour
             OpenIndex = false;
         }
 
+    }
+
+    public void SwitchStats()
+    {
+        if (OpenStats == false)
+        {
+            OpenStats = true;
+            Stats.SetActive(true);
+        }
+        else
+        {
+            OpenStats = false;
+            Stats.SetActive(false);
+        }
     }
 }
