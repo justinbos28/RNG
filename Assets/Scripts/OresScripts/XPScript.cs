@@ -57,7 +57,7 @@ public class XPScript : MonoBehaviour, IDataPersistence
     }
     public void LeveledUp()
     {
-        XPNeeded += 10 + (1.1f * LevelCount);
+        XPNeeded += (2 * 1.1f) * LevelCount;
         LevelCount++;
         ShowXp.text = "level " + LevelCount + ": " + XPCount + " / " + XPNeeded.ToString("F0");
         if (LevelCount == 10)
