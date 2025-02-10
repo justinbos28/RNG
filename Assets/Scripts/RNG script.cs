@@ -200,12 +200,12 @@ public class RNGscript : MonoBehaviour, IDataPersistence
         {
             Dictionary<int, float> oreRarityChances = new Dictionary<int, float>
         {
-            { 42, 0.00001f }, { 41, 0.000013f }, { 40, 0.000017f }, { 39, 0.000025f }, { 38, 0.000037f }, { 37, 0.000067f }, { 36, 0.0001f },
-            { 35, 0.00011f }, { 34, 0.00015f }, { 33, 0.00018f }, { 32, 0.00022f }, { 31, 0.00028f }, { 30, 0.0004f }, { 29, 0.00067f },
-            { 28, 0.001f }, { 27, 0.0011f }, { 26, 0.0013f }, { 25, 0.0015f }, { 24, 0.0022f }, { 23, 0.0035f }, { 22, 0.0067f },
-            { 21, 0.01f }, { 20, 0.013f }, { 19, 0.015f }, { 18, 0.018f }, { 17, 0.022f }, { 16, 0.03f }, { 15, 0.074f },
-            { 14, 0.121f }, { 13, 0.15f }, { 12, 0.18f }, { 11, 0.25f }, { 10, 0.4f }, { 9, 0.66f }, { 8, 0.9f },
-            { 7, 1.4f }, { 6, 1.8f }, { 5, 4.8f }, { 4, 9.1f }, { 3, 14.3f }, { 2, 20f }, { 1, 50f }
+            { 42, 0.00001f }, { 41, 0.000013f }, { 40, 0.000017f }, { 39, 0.000025f }, { 38, 0.000037f }, { 37, 0.000067f }, { 36, 0.0001f }, // mythic ores
+            { 35, 0.00011f }, { 34, 0.00015f }, { 33, 0.00018f }, { 32, 0.00022f }, { 31, 0.00028f }, { 30, 0.0004f }, { 29, 0.00067f }, // legendary ores
+            { 28, 0.001f }, { 27, 0.0011f }, { 26, 0.0013f }, { 25, 0.0015f }, { 24, 0.0022f }, { 23, 0.0035f }, { 22, 0.0067f }, // epic ores
+            { 21, 0.01f }, { 20, 0.013f }, { 19, 0.015f }, { 18, 0.018f }, { 17, 0.022f }, { 16, 0.03f }, { 15, 0.074f }, // rare ores
+            { 14, 0.121f }, { 13, 0.15f }, { 12, 0.18f }, { 11, 0.25f }, { 10, 0.4f }, { 9, 0.66f }, { 8, 0.9f }, // uncommon ores
+            { 7, 1.4f }, { 6, 1.8f }, { 5, 4.8f }, { 4, 9.1f }, { 3, 14.3f }, { 2, 20f }, { 1, 50f } // common ores
         };
 
             Dictionary<int, bool> oreRarityResults = oreRarityChances.ToDictionary(
@@ -354,7 +354,7 @@ public class RNGscript : MonoBehaviour, IDataPersistence
         // showing the ore and giving the price
         if (RollStatus == RollSkips)
         {
-            RollingText.text = "You mined ";
+            RollingText.text = "You found ";
             RarityEffectSprite.color = new Color(RarityEffectSprite.color.r, RarityEffectSprite.color.g, RarityEffectSprite.color.b, 0.5f);
             RarityEffectSprite2.color = new Color(RarityEffectSprite.color.r, RarityEffectSprite.color.g, RarityEffectSprite.color.b, 0.3f);
             RarityEffectSprite3.color = new Color(RarityEffectSprite3.color.r, RarityEffectSprite3.color.g, RarityEffectSprite3.color.b, 0.5f);
@@ -379,8 +379,8 @@ public class RNGscript : MonoBehaviour, IDataPersistence
                 {
                     playerHand[i].StorageAmount++;
                 }
-                // changes the color of the ore text if the background is black
-                if (new int[] { 2, 11, 23, 28, 29, 42 }.Contains(playerHand[i].OreID))
+                // changes the color of the ore text if the texture is black
+                if (new int[] { 2, 11, 23, 36, 37, 42 }.Contains(playerHand[i].OreID))
                 {
                     titles[i].color = Color.white;
                     effects[i].color = Color.white;
@@ -395,6 +395,7 @@ public class RNGscript : MonoBehaviour, IDataPersistence
                         playerHand[i].StorageAmount = OreStorage.MaxCommonOres;
                     }
                 }
+                // autosell for uncommon ores
                 if (new int[] { 8, 9, 10, 11, 12, 13, 14 }.Contains(playerHand[i].OreID))
                 {
                     if (playerHand[i].StorageAmount >= OreStorage.MaxUncommonOres)
@@ -403,6 +404,7 @@ public class RNGscript : MonoBehaviour, IDataPersistence
                         playerHand[i].StorageAmount = OreStorage.MaxUncommonOres;
                     }
                 }
+                // autosell for rare ores
                 if (new int[] { 15, 16, 17, 18, 19, 20, 21 }.Contains(playerHand[i].OreID))
                 {
                     if (playerHand[i].StorageAmount >= OreStorage.MaxRareOres)
@@ -411,6 +413,7 @@ public class RNGscript : MonoBehaviour, IDataPersistence
                         playerHand[i].StorageAmount = OreStorage.MaxRareOres;
                     }
                 }
+                // autosell for epic ores
                 if (new int[] { 22, 23, 24, 25, 26, 27, 28 }.Contains(playerHand[i].OreID))
                 {
                     if (playerHand[i].StorageAmount >= OreStorage.MaxEpicOres)
@@ -419,6 +422,7 @@ public class RNGscript : MonoBehaviour, IDataPersistence
                         playerHand[i].StorageAmount = OreStorage.MaxEpicOres;
                     }
                 }
+                // autosell for legendary ores
                 if (new int[] { 29, 30, 31, 32, 33, 34, 35 }.Contains(playerHand[i].OreID))
                 {
                     if (playerHand[i].StorageAmount >= OreStorage.MaxLegendaryOres)
@@ -427,12 +431,17 @@ public class RNGscript : MonoBehaviour, IDataPersistence
                         playerHand[i].StorageAmount = OreStorage.MaxLegendaryOres;
                     }
                 }
+                // autosell for mythic ores
                 if (new int[] { 36, 37, 38, 39, 40, 41, 42 }.Contains(playerHand[i].OreID))
                 {
-                    MoneyLogic.Money += playerHand[i].OrePrice * MoneyMultiplier;
-                    playerHand[i].StorageAmount = OreStorage.MaxMythicOres;
+                    if (playerHand[i].StorageAmount >= OreStorage.MaxMythicOres)
+                    {
+                        MoneyLogic.Money += playerHand[i].OrePrice * MoneyMultiplier;
+                        playerHand[i].StorageAmount = OreStorage.MaxMythicOres;
+                    }
                 }
             }
+            // updates the inventory and xp
             OreStorage.UpdateInventory();
             XPScript.UpdateXP();
             RollStatus++;

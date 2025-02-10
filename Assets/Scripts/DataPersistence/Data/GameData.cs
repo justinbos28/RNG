@@ -56,10 +56,9 @@ public class GameData
         this.BoughtRollSpeed = 0;
         this.XPCount = 0;
         this.LevelCount = 1;
-        this.XPNeeded = 100;
+        this.XPNeeded = 10;
         this.XPMultiplier = 1;
         this.XPLuckMultiplier = 1;
-        this.OresCount = new List<int>();
-        
+        this.OresCount = new List<int>();  
     }
 }

@@ -11,7 +11,7 @@ public class XPScript : MonoBehaviour, IDataPersistence
     public int XPMultiplier = 1;
     public float XPLuckMultiplier = 1;
 
-    public float XPNeeded = 100;
+    public float XPNeeded = 10;
     public Text ShowXp;
 
     public RNGscript RNGscript;
@@ -34,7 +34,14 @@ public class XPScript : MonoBehaviour, IDataPersistence
     }
     private void Update()
     {
-        ShowXp.text = "level " + LevelCount + ": " + XPCount + "/" + XPNeeded.ToString();
+        if (LevelCount < 100)
+        {
+            ShowXp.text = "level " + LevelCount + ": " + XPCount + " / " + XPNeeded.ToString("F0");
+        }
+        else
+        {
+             ShowXp.text = "level " + LevelCount + ": " + "Max";
+        }
     }
     public void UpdateXP()
     {
@@ -50,9 +57,9 @@ public class XPScript : MonoBehaviour, IDataPersistence
     }
     public void LeveledUp()
     {
-        XPNeeded += 45.5f * LevelCount * 1.1f + 50;
+        XPNeeded += 10 + (1.1f * LevelCount);
         LevelCount++;
-        ShowXp.text = "level " + LevelCount + ": " + XPCount + "/" + XPNeeded.ToString();
+        ShowXp.text = "level " + LevelCount + ": " + XPCount + " / " + XPNeeded.ToString("F0");
         if (LevelCount == 10)
         {
             XPMultiplier = 2;
@@ -109,9 +116,10 @@ public class XPScript : MonoBehaviour, IDataPersistence
         }
         else if (LevelCount == 100)
         {
-            XPMultiplier = 10;
+            XPMultiplier = 0;
             XPLuckMultiplier = 2;
             RNGscript.RollSpeed -= 0.01f;
+            XPCount = 0;
         }
     }
 }
