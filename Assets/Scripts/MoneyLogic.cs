@@ -63,7 +63,7 @@ public class MoneyLogic : MonoBehaviour, IDataPersistence
         data.Money = this.Money;
     }
     // end saving and getting saved data
-    public void Update()
+    public void LateUpdate()
     {
         StaticVariables.cash = Money;
         // roll speed
@@ -289,22 +289,6 @@ public class MoneyLogic : MonoBehaviour, IDataPersistence
             RollSpeedText.text = "Purchased";
             CurrentMoney.text = StaticVariables.cash.ToString("F2") + "$";
         }
-        //else if (StaticVariables.cash >= 25000 && BoughtRollSpeed == 6)
-        //{
-        //    StaticVariables.cash -= 25000;
-        //    RNGscript.RollSpeed = 0.15f;
-        //    BoughtRollSpeed = 7;
-        //    RollSpeedText.text = "50.000$";
-        //    CurrentMoney.text = StaticVariables.cash + "$";
-        //}
-        //else if (StaticVariables.cash >= 50000 && BoughtRollSpeed == 7)
-        //{
-        //    StaticVariables.cash -= 50000;
-        //    RNGscript.RollSpeed = 0.1f;
-        //    BoughtRollSpeed = 8;
-        //    RollSpeedText.text = "Purchased";
-        //    CurrentMoney.text = StaticVariables.cash + "$";
-        //}
     }
 
     public void BuyAutoRoll()

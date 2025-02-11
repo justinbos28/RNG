@@ -3,10 +3,13 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class XPScript : MonoBehaviour, IDataPersistence
 {
     public int XPCount;
+    public int MaxLevel = 100;
+    public int Rebirth;
     public int LevelCount = 1;
     public int XPMultiplier = 1;
     public float XPLuckMultiplier = 1;
@@ -15,9 +18,16 @@ public class XPScript : MonoBehaviour, IDataPersistence
     public Text ShowXp;
 
     public RNGscript RNGscript;
+    public MoneyLogic MoneyLogic;
+    public SavedOresCount SavedOres;
+    public DataPersistence DataPersistence;
+    public GameObject RebirthButton;
+    
 
     public void LoadData(GameData data)
     {
+        this.Rebirth = data.Rebirth;
+        this.MaxLevel = data.MaxLevel;
         this.XPCount = data.XPCount;
         this.LevelCount = data.LevelCount;
         this.XPNeeded = data.XPNeeded;
@@ -26,6 +36,8 @@ public class XPScript : MonoBehaviour, IDataPersistence
     }
     public void SaveData(ref GameData data)
     {
+        data.Rebirth = this.Rebirth;
+        data.MaxLevel = this.MaxLevel;
         data.XPCount = this.XPCount;
         data.LevelCount = this.LevelCount;
         data.XPNeeded = this.XPNeeded;
@@ -34,13 +46,15 @@ public class XPScript : MonoBehaviour, IDataPersistence
     }
     private void Update()
     {
-        if (LevelCount < 100)
+        if (LevelCount < MaxLevel)
         {
             ShowXp.text = "level " + LevelCount + ": " + XPCount + " / " + XPNeeded.ToString("F0");
         }
         else
         {
-             ShowXp.text = "level " + LevelCount + ": " + "Max";
+            XPMultiplier = 0;
+            RebirthButton.SetActive(true);
+            ShowXp.text = "level " + LevelCount + ": " + "Max";
         }
     }
     public void UpdateXP()
@@ -116,10 +130,99 @@ public class XPScript : MonoBehaviour, IDataPersistence
         }
         else if (LevelCount == 100)
         {
-            XPMultiplier = 0;
+            XPMultiplier = 11;
             XPLuckMultiplier = 2;
             RNGscript.RollSpeed -= 0.01f;
-            XPCount = 0;
         }
+        else if (LevelCount == 110)
+        {
+            XPMultiplier = 12;
+            XPLuckMultiplier = 2.2f;
+        }
+        else if (LevelCount == 120)
+        {
+            XPMultiplier = 13;
+            XPLuckMultiplier = 2.4f;
+        }
+        else if (LevelCount == 130)
+        {
+            XPMultiplier = 14;
+            XPLuckMultiplier = 2.6f;
+        }
+        else if (LevelCount == 140)
+        {
+            XPMultiplier = 15;
+            XPLuckMultiplier = 2.8f;
+        }
+        else if (LevelCount == 150)
+        {
+            XPMultiplier = 16;
+            XPLuckMultiplier = 3;
+        }
+        else if (LevelCount == 160)
+        {
+            XPMultiplier = 17;
+            XPLuckMultiplier = 3.4f;
+        }
+        else if (LevelCount == 170)
+        {
+            XPMultiplier = 18;
+            XPLuckMultiplier = 3.8f;
+        }
+        else if (LevelCount == 180)
+        {
+            XPMultiplier = 19;
+            XPLuckMultiplier = 4.2f;
+        }
+        else if (LevelCount == 190)
+        {
+            XPMultiplier = 20;
+            XPLuckMultiplier = 4.6f;
+        }
+        else if (LevelCount == 200)
+        {
+            XPLuckMultiplier = 5f;
+        }
+    }
+
+    public void PerformRebirth()
+    {
+        // all xp reset
+        RebirthButton.SetActive(false);
+        LevelCount = 1;
+        XPCount = 0;
+        XPLuckMultiplier = 1;
+        XPMultiplier = 1;
+        XPNeeded = 10;
+        MaxLevel += 50;
+        Rebirth++;
+
+        // rngscript reset
+        RNGscript.RollSkips = 5;
+        RNGscript.RollSpeed = 0.5f;
+        RNGscript.cardLimit = 1;
+        RNGscript.LuckMultiplier = 1;
+        RNGscript.LuckPercentage = 1;
+        RNGscript.MoneyMultiplier = 1;
+
+        for (int i = 0; i < RNGscript.allOres.Count; i++)
+        {
+            RNGscript.allOres[i].StorageAmount = 0;
+        }
+        
+        // money logic reset
+        MoneyLogic.BoughtAutoRoll = false;
+        MoneyLogic.BoughtLuckMultiplier = 0;
+        MoneyLogic.BoughtMoneyMultiplier = 0;
+        MoneyLogic.BoughtLuckPercentage = 0;
+        MoneyLogic.BoughtRollAmount = 0;
+        MoneyLogic.BoughtRollSkips = 0;
+        MoneyLogic.BoughtRollSpeed = 0;
+        MoneyLogic.BoughtStorageAmount = 0;
+        MoneyLogic.Money = 0;
+
+        // orecount reset
+        DataPersistence.SaveGame();
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 }

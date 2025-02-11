@@ -27,15 +27,17 @@ public class GameData
     public int BoughtMoneyMultiplier;
     public int BoughtStorageAmount;
 
-    public List<int> OresCount = new List<int>();
-
     [Header("Values from Xpscript")]
     public int XPCount;
     public int LevelCount;
     public int XPMultiplier = 1;
+    public int MaxLevel = 100;
+    public int Rebirth;
 
     public float XPNeeded;
     public float XPLuckMultiplier = 1;
+
+    public List<int> OresCount = new List<int>();
 
     public GameData()
     {
@@ -59,6 +61,9 @@ public class GameData
         this.XPNeeded = 10;
         this.XPMultiplier = 1;
         this.XPLuckMultiplier = 1;
+        this.MaxLevel = 100;
+        this.Rebirth = 0;
+
         this.OresCount = new List<int>();  
     }
 }

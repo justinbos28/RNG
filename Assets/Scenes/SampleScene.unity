@@ -8464,7 +8464,7 @@ MonoBehaviour:
   StatTextTwo: {fileID: 1990738108}
   RNGscript: {fileID: 1546723946}
   OreStorage: {fileID: 987623140}
-  XPScript: {fileID: 987623144}
+  XPScript: {fileID: 2085766772}
 --- !u!1 &662705565
 GameObject:
   m_ObjectHideFlags: 0
@@ -12047,7 +12047,6 @@ GameObject:
   - component: {fileID: 987623140}
   - component: {fileID: 987623142}
   - component: {fileID: 987623143}
-  - component: {fileID: 987623144}
   m_Layer: 0
   m_Name: OreStorageLogic
   m_TagString: Untagged
@@ -12226,25 +12225,6 @@ MonoBehaviour:
     background: {fileID: 138399281}
   RNGscript: {fileID: 1546723946}
   IndexCount: 0
---- !u!114 &987623144
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 987623138}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3bccc2448f212624295a032129177fe8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  XPCount: 0
-  LevelCount: 1
-  XPMultiplier: 1
-  XPLuckMultiplier: 1
-  XPNeeded: 0
-  ShowXp: {fileID: 1080634120}
-  RNGscript: {fileID: 1546723946}
 --- !u!1 &989356331
 GameObject:
   m_ObjectHideFlags: 0
@@ -14351,7 +14331,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 987623144}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: XPScript, Assembly-CSharp
         m_MethodName: LeveledUp
         m_Mode: 1
@@ -20448,7 +20428,7 @@ MonoBehaviour:
   RollingText: {fileID: 531839743}
   CurrentMoney: {fileID: 221748838}
   MoneyLogic: {fileID: 1546723948}
-  XPScript: {fileID: 987623144}
+  XPScript: {fileID: 2085766772}
   OreStorage: {fileID: 987623140}
   RollButton: {fileID: 983420770}
   RollButton1: {fileID: 557897852}
@@ -26674,6 +26654,63 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2075765473}
   m_CullTransparentMesh: 1
+--- !u!1 &2085766771
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2085766773}
+  - component: {fileID: 2085766772}
+  m_Layer: 0
+  m_Name: XPLogic
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &2085766772
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2085766771}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3bccc2448f212624295a032129177fe8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  XPCount: 0
+  MaxLevel: 100
+  Rebirth: 0
+  LevelCount: 1
+  XPMultiplier: 1
+  XPLuckMultiplier: 1
+  XPNeeded: 10
+  ShowXp: {fileID: 1080634120}
+  RNGscript: {fileID: 1546723946}
+  MoneyLogic: {fileID: 1546723948}
+  SavedOres: {fileID: 987623142}
+  DataPersistence: {fileID: 1950076375}
+  RebirthButton: {fileID: 2091459040}
+--- !u!4 &2085766773
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2085766771}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2086489836
 GameObject:
   m_ObjectHideFlags: 0
@@ -26762,12 +26799,12 @@ GameObject:
   - component: {fileID: 2091459043}
   - component: {fileID: 2091459042}
   m_Layer: 5
-  m_Name: Settings (1)
+  m_Name: Rebirth
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &2091459041
 RectTransform:
   m_ObjectHideFlags: 0
@@ -26830,7 +26867,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 2091459043}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 2085766772}
+        m_TargetAssemblyTypeName: XPScript, Assembly-CSharp
+        m_MethodName: PerformRebirth
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &2091459043
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -27568,3 +27617,4 @@ SceneRoots:
   - {fileID: 1950076376}
   - {fileID: 649251858}
   - {fileID: 987623141}
+  - {fileID: 2085766773}

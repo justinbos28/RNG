@@ -28,6 +28,8 @@ public class StatsScript : MonoBehaviour
             + "Mythic ore storage = " + OreStorage.MaxMythicOres + "\n";
 
         StatTextTwo.text = "Xp Multiplier = " + XPScript.XPMultiplier + "\n"
-            + "Xp Luck Multiplier = " + XPScript.XPLuckMultiplier.ToString("F1") + "\n";
+            + "Xp Luck Multiplier = " + XPScript.XPLuckMultiplier.ToString("F1") + "\n"
+            + "Max Level = " + XPScript.MaxLevel + "\n"
+            + "Rebirth = " + XPScript.Rebirth;
     }
 }
