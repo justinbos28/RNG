@@ -20403,6 +20403,511 @@ MonoBehaviour:
     OrePrice: 400000
     rarityEffectColor: {r: 1, g: 0, b: 0, a: 0}
     Color: {r: 1, g: 0, b: 0, a: 1}
+  allOres2:
+  - name: 
+    description: 
+    rarityTitle: 
+    OrePicture: {fileID: 0}
+    XP: 0
+    OreID: 0
+    chance: 0
+    StorageAmount: 0
+    Percentage: 0
+    OrePrice: 0
+    rarityEffectColor: {r: 0, g: 0, b: 0, a: 0}
+    Color: {r: 0, g: 0, b: 0, a: 0}
+  - name: 
+    description: 
+    rarityTitle: 
+    OrePicture: {fileID: 0}
+    XP: 0
+    OreID: 0
+    chance: 0
+    StorageAmount: 0
+    Percentage: 0
+    OrePrice: 0
+    rarityEffectColor: {r: 0, g: 0, b: 0, a: 0}
+    Color: {r: 0, g: 0, b: 0, a: 0}
+  - name: 
+    description: 
+    rarityTitle: 
+    OrePicture: {fileID: 0}
+    XP: 0
+    OreID: 0
+    chance: 0
+    StorageAmount: 0
+    Percentage: 0
+    OrePrice: 0
+    rarityEffectColor: {r: 0, g: 0, b: 0, a: 0}
+    Color: {r: 0, g: 0, b: 0, a: 0}
+  - name: 
+    description: 
+    rarityTitle: 
+    OrePicture: {fileID: 0}
+    XP: 0
+    OreID: 0
+    chance: 0
+    StorageAmount: 0
+    Percentage: 0
+    OrePrice: 0
+    rarityEffectColor: {r: 0, g: 0, b: 0, a: 0}
+    Color: {r: 0, g: 0, b: 0, a: 0}
+  - name: 
+    description: 
+    rarityTitle: 
+    OrePicture: {fileID: 0}
+    XP: 0
+    OreID: 0
+    chance: 0
+    StorageAmount: 0
+    Percentage: 0
+    OrePrice: 0
+    rarityEffectColor: {r: 0, g: 0, b: 0, a: 0}
+    Color: {r: 0, g: 0, b: 0, a: 0}
+  - name: 
+    description: 
+    rarityTitle: 
+    OrePicture: {fileID: 0}
+    XP: 0
+    OreID: 0
+    chance: 0
+    StorageAmount: 0
+    Percentage: 0
+    OrePrice: 0
+    rarityEffectColor: {r: 0, g: 0, b: 0, a: 0}
+    Color: {r: 0, g: 0, b: 0, a: 0}
+  - name: 
+    description: 
+    rarityTitle: 
+    OrePicture: {fileID: 0}
+    XP: 0
+    OreID: 0
+    chance: 0
+    StorageAmount: 0
+    Percentage: 0
+    OrePrice: 0
+    rarityEffectColor: {r: 0, g: 0, b: 0, a: 0}
+    Color: {r: 0, g: 0, b: 0, a: 0}
+  - name: 
+    description: 
+    rarityTitle: 
+    OrePicture: {fileID: 0}
+    XP: 0
+    OreID: 0
+    chance: 0
+    StorageAmount: 0
+    Percentage: 0
+    OrePrice: 0
+    rarityEffectColor: {r: 0, g: 0, b: 0, a: 0}
+    Color: {r: 0, g: 0, b: 0, a: 0}
+  - name: 
+    description: 
+    rarityTitle: 
+    OrePicture: {fileID: 0}
+    XP: 0
+    OreID: 0
+    chance: 0
+    StorageAmount: 0
+    Percentage: 0
+    OrePrice: 0
+    rarityEffectColor: {r: 0, g: 0, b: 0, a: 0}
+    Color: {r: 0, g: 0, b: 0, a: 0}
+  - name: 
+    description: 
+    rarityTitle: 
+    OrePicture: {fileID: 0}
+    XP: 0
+    OreID: 0
+    chance: 0
+    StorageAmount: 0
+    Percentage: 0
+    OrePrice: 0
+    rarityEffectColor: {r: 0, g: 0, b: 0, a: 0}
+    Color: {r: 0, g: 0, b: 0, a: 0}
+  - name: 
+    description: 
+    rarityTitle: 
+    OrePicture: {fileID: 0}
+    XP: 0
+    OreID: 0
+    chance: 0
+    StorageAmount: 0
+    Percentage: 0
+    OrePrice: 0
+    rarityEffectColor: {r: 0, g: 0, b: 0, a: 0}
+    Color: {r: 0, g: 0, b: 0, a: 0}
+  - name: 
+    description: 
+    rarityTitle: 
+    OrePicture: {fileID: 0}
+    XP: 0
+    OreID: 0
+    chance: 0
+    StorageAmount: 0
+    Percentage: 0
+    OrePrice: 0
+    rarityEffectColor: {r: 0, g: 0, b: 0, a: 0}
+    Color: {r: 0, g: 0, b: 0, a: 0}
+  - name: 
+    description: 
+    rarityTitle: 
+    OrePicture: {fileID: 0}
+    XP: 0
+    OreID: 0
+    chance: 0
+    StorageAmount: 0
+    Percentage: 0
+    OrePrice: 0
+    rarityEffectColor: {r: 0, g: 0, b: 0, a: 0}
+    Color: {r: 0, g: 0, b: 0, a: 0}
+  - name: 
+    description: 
+    rarityTitle: 
+    OrePicture: {fileID: 0}
+    XP: 0
+    OreID: 0
+    chance: 0
+    StorageAmount: 0
+    Percentage: 0
+    OrePrice: 0
+    rarityEffectColor: {r: 0, g: 0, b: 0, a: 0}
+    Color: {r: 0, g: 0, b: 0, a: 0}
+  - name: 
+    description: 
+    rarityTitle: 
+    OrePicture: {fileID: 0}
+    XP: 0
+    OreID: 0
+    chance: 0
+    StorageAmount: 0
+    Percentage: 0
+    OrePrice: 0
+    rarityEffectColor: {r: 0, g: 0, b: 0, a: 0}
+    Color: {r: 0, g: 0, b: 0, a: 0}
+  - name: 
+    description: 
+    rarityTitle: 
+    OrePicture: {fileID: 0}
+    XP: 0
+    OreID: 0
+    chance: 0
+    StorageAmount: 0
+    Percentage: 0
+    OrePrice: 0
+    rarityEffectColor: {r: 0, g: 0, b: 0, a: 0}
+    Color: {r: 0, g: 0, b: 0, a: 0}
+  - name: 
+    description: 
+    rarityTitle: 
+    OrePicture: {fileID: 0}
+    XP: 0
+    OreID: 0
+    chance: 0
+    StorageAmount: 0
+    Percentage: 0
+    OrePrice: 0
+    rarityEffectColor: {r: 0, g: 0, b: 0, a: 0}
+    Color: {r: 0, g: 0, b: 0, a: 0}
+  - name: 
+    description: 
+    rarityTitle: 
+    OrePicture: {fileID: 0}
+    XP: 0
+    OreID: 0
+    chance: 0
+    StorageAmount: 0
+    Percentage: 0
+    OrePrice: 0
+    rarityEffectColor: {r: 0, g: 0, b: 0, a: 0}
+    Color: {r: 0, g: 0, b: 0, a: 0}
+  - name: 
+    description: 
+    rarityTitle: 
+    OrePicture: {fileID: 0}
+    XP: 0
+    OreID: 0
+    chance: 0
+    StorageAmount: 0
+    Percentage: 0
+    OrePrice: 0
+    rarityEffectColor: {r: 0, g: 0, b: 0, a: 0}
+    Color: {r: 0, g: 0, b: 0, a: 0}
+  - name: 
+    description: 
+    rarityTitle: 
+    OrePicture: {fileID: 0}
+    XP: 0
+    OreID: 0
+    chance: 0
+    StorageAmount: 0
+    Percentage: 0
+    OrePrice: 0
+    rarityEffectColor: {r: 0, g: 0, b: 0, a: 0}
+    Color: {r: 0, g: 0, b: 0, a: 0}
+  - name: 
+    description: 
+    rarityTitle: 
+    OrePicture: {fileID: 0}
+    XP: 0
+    OreID: 0
+    chance: 0
+    StorageAmount: 0
+    Percentage: 0
+    OrePrice: 0
+    rarityEffectColor: {r: 0, g: 0, b: 0, a: 0}
+    Color: {r: 0, g: 0, b: 0, a: 0}
+  - name: 
+    description: 
+    rarityTitle: 
+    OrePicture: {fileID: 0}
+    XP: 0
+    OreID: 0
+    chance: 0
+    StorageAmount: 0
+    Percentage: 0
+    OrePrice: 0
+    rarityEffectColor: {r: 0, g: 0, b: 0, a: 0}
+    Color: {r: 0, g: 0, b: 0, a: 0}
+  - name: 
+    description: 
+    rarityTitle: 
+    OrePicture: {fileID: 0}
+    XP: 0
+    OreID: 0
+    chance: 0
+    StorageAmount: 0
+    Percentage: 0
+    OrePrice: 0
+    rarityEffectColor: {r: 0, g: 0, b: 0, a: 0}
+    Color: {r: 0, g: 0, b: 0, a: 0}
+  - name: 
+    description: 
+    rarityTitle: 
+    OrePicture: {fileID: 0}
+    XP: 0
+    OreID: 0
+    chance: 0
+    StorageAmount: 0
+    Percentage: 0
+    OrePrice: 0
+    rarityEffectColor: {r: 0, g: 0, b: 0, a: 0}
+    Color: {r: 0, g: 0, b: 0, a: 0}
+  - name: 
+    description: 
+    rarityTitle: 
+    OrePicture: {fileID: 0}
+    XP: 0
+    OreID: 0
+    chance: 0
+    StorageAmount: 0
+    Percentage: 0
+    OrePrice: 0
+    rarityEffectColor: {r: 0, g: 0, b: 0, a: 0}
+    Color: {r: 0, g: 0, b: 0, a: 0}
+  - name: 
+    description: 
+    rarityTitle: 
+    OrePicture: {fileID: 0}
+    XP: 0
+    OreID: 0
+    chance: 0
+    StorageAmount: 0
+    Percentage: 0
+    OrePrice: 0
+    rarityEffectColor: {r: 0, g: 0, b: 0, a: 0}
+    Color: {r: 0, g: 0, b: 0, a: 0}
+  - name: 
+    description: 
+    rarityTitle: 
+    OrePicture: {fileID: 0}
+    XP: 0
+    OreID: 0
+    chance: 0
+    StorageAmount: 0
+    Percentage: 0
+    OrePrice: 0
+    rarityEffectColor: {r: 0, g: 0, b: 0, a: 0}
+    Color: {r: 0, g: 0, b: 0, a: 0}
+  - name: 
+    description: 
+    rarityTitle: 
+    OrePicture: {fileID: 0}
+    XP: 0
+    OreID: 0
+    chance: 0
+    StorageAmount: 0
+    Percentage: 0
+    OrePrice: 0
+    rarityEffectColor: {r: 0, g: 0, b: 0, a: 0}
+    Color: {r: 0, g: 0, b: 0, a: 0}
+  - name: 
+    description: 
+    rarityTitle: 
+    OrePicture: {fileID: 0}
+    XP: 0
+    OreID: 0
+    chance: 0
+    StorageAmount: 0
+    Percentage: 0
+    OrePrice: 0
+    rarityEffectColor: {r: 0, g: 0, b: 0, a: 0}
+    Color: {r: 0, g: 0, b: 0, a: 0}
+  - name: 
+    description: 
+    rarityTitle: 
+    OrePicture: {fileID: 0}
+    XP: 0
+    OreID: 0
+    chance: 0
+    StorageAmount: 0
+    Percentage: 0
+    OrePrice: 0
+    rarityEffectColor: {r: 0, g: 0, b: 0, a: 0}
+    Color: {r: 0, g: 0, b: 0, a: 0}
+  - name: 
+    description: 
+    rarityTitle: 
+    OrePicture: {fileID: 0}
+    XP: 0
+    OreID: 0
+    chance: 0
+    StorageAmount: 0
+    Percentage: 0
+    OrePrice: 0
+    rarityEffectColor: {r: 0, g: 0, b: 0, a: 0}
+    Color: {r: 0, g: 0, b: 0, a: 0}
+  - name: 
+    description: 
+    rarityTitle: 
+    OrePicture: {fileID: 0}
+    XP: 0
+    OreID: 0
+    chance: 0
+    StorageAmount: 0
+    Percentage: 0
+    OrePrice: 0
+    rarityEffectColor: {r: 0, g: 0, b: 0, a: 0}
+    Color: {r: 0, g: 0, b: 0, a: 0}
+  - name: 
+    description: 
+    rarityTitle: 
+    OrePicture: {fileID: 0}
+    XP: 0
+    OreID: 0
+    chance: 0
+    StorageAmount: 0
+    Percentage: 0
+    OrePrice: 0
+    rarityEffectColor: {r: 0, g: 0, b: 0, a: 0}
+    Color: {r: 0, g: 0, b: 0, a: 0}
+  - name: 
+    description: 
+    rarityTitle: 
+    OrePicture: {fileID: 0}
+    XP: 0
+    OreID: 0
+    chance: 0
+    StorageAmount: 0
+    Percentage: 0
+    OrePrice: 0
+    rarityEffectColor: {r: 0, g: 0, b: 0, a: 0}
+    Color: {r: 0, g: 0, b: 0, a: 0}
+  - name: 
+    description: 
+    rarityTitle: 
+    OrePicture: {fileID: 0}
+    XP: 0
+    OreID: 0
+    chance: 0
+    StorageAmount: 0
+    Percentage: 0
+    OrePrice: 0
+    rarityEffectColor: {r: 0, g: 0, b: 0, a: 0}
+    Color: {r: 0, g: 0, b: 0, a: 0}
+  - name: 
+    description: 
+    rarityTitle: 
+    OrePicture: {fileID: 0}
+    XP: 0
+    OreID: 0
+    chance: 0
+    StorageAmount: 0
+    Percentage: 0
+    OrePrice: 0
+    rarityEffectColor: {r: 0, g: 0, b: 0, a: 0}
+    Color: {r: 0, g: 0, b: 0, a: 0}
+  - name: 
+    description: 
+    rarityTitle: 
+    OrePicture: {fileID: 0}
+    XP: 0
+    OreID: 0
+    chance: 0
+    StorageAmount: 0
+    Percentage: 0
+    OrePrice: 0
+    rarityEffectColor: {r: 0, g: 0, b: 0, a: 0}
+    Color: {r: 0, g: 0, b: 0, a: 0}
+  - name: 
+    description: 
+    rarityTitle: 
+    OrePicture: {fileID: 0}
+    XP: 0
+    OreID: 0
+    chance: 0
+    StorageAmount: 0
+    Percentage: 0
+    OrePrice: 0
+    rarityEffectColor: {r: 0, g: 0, b: 0, a: 0}
+    Color: {r: 0, g: 0, b: 0, a: 0}
+  - name: 
+    description: 
+    rarityTitle: 
+    OrePicture: {fileID: 0}
+    XP: 0
+    OreID: 0
+    chance: 0
+    StorageAmount: 0
+    Percentage: 0
+    OrePrice: 0
+    rarityEffectColor: {r: 0, g: 0, b: 0, a: 0}
+    Color: {r: 0, g: 0, b: 0, a: 0}
+  - name: 
+    description: 
+    rarityTitle: 
+    OrePicture: {fileID: 0}
+    XP: 0
+    OreID: 0
+    chance: 0
+    StorageAmount: 0
+    Percentage: 0
+    OrePrice: 0
+    rarityEffectColor: {r: 0, g: 0, b: 0, a: 0}
+    Color: {r: 0, g: 0, b: 0, a: 0}
+  - name: 
+    description: 
+    rarityTitle: 
+    OrePicture: {fileID: 0}
+    XP: 0
+    OreID: 0
+    chance: 0
+    StorageAmount: 0
+    Percentage: 0
+    OrePrice: 0
+    rarityEffectColor: {r: 0, g: 0, b: 0, a: 0}
+    Color: {r: 0, g: 0, b: 0, a: 0}
+  - name: 
+    description: 
+    rarityTitle: 
+    OrePicture: {fileID: 0}
+    XP: 0
+    OreID: 0
+    chance: 0
+    StorageAmount: 0
+    Percentage: 0
+    OrePrice: 0
+    rarityEffectColor: {r: 0, g: 0, b: 0, a: 0}
+    Color: {r: 0, g: 0, b: 0, a: 0}
   CommonOres: []
   UncommonOres: []
   RareOres: []
