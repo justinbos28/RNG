@@ -8,14 +8,13 @@ using UnityEngine.UI;
 public class RNGscript : MonoBehaviour, IDataPersistence
 {
     public List<OreClass> allOres = new List<OreClass>();
-    public List<OreClass> allOres2 = new List<OreClass>();
     public List<OreClass> CommonOres = new List<OreClass>();
     public List<OreClass> UncommonOres = new List<OreClass>();
     public List<OreClass> RareOres = new List<OreClass>();
     public List<OreClass> EpicOres = new List<OreClass>();
     public List<OreClass> LegendaryOres = new List<OreClass>();
     public List<OreClass> MythicOres = new List<OreClass>();
-    public List<OreClass> UnrealOres = new List<OreClass>();
+    public List<OreClass> ExoticOres = new List<OreClass>();
 
     public List<OreClass> playerHand = new List<OreClass>();
     public int cardLimit = 1;
@@ -122,142 +121,77 @@ public class RNGscript : MonoBehaviour, IDataPersistence
     // assign the ored to list by level
     public void AssignRarity()
     {
-        // when the player has not rebirthed
-        // assign the basic ores
-        if (XPScript.Rebirth == 0)
+        for (int i = 0; i < allOres.Count; i++)
         {
-            for (int i = 0; i < allOres.Count; i++)
-            {
-                allOres[i].OreID = i + 1;
-            }
-            foreach (OreClass card in allOres)
-            {
-                switch (card.OreID)
-                {
-                    case 1:
-                    case 2:
-                    case 3:
-                    case 4:
-                    case 5:
-                    case 6:
-                    case 7:
-                        CommonOres.Add(card);
-                        break;
-                    case 8:
-                    case 9:
-                    case 10:
-                    case 11:
-                    case 12:
-                    case 13:
-                    case 14:
-                        UncommonOres.Add(card);
-                        break;
-                    case 15:
-                    case 16:
-                    case 17:
-                    case 18:
-                    case 19:
-                    case 20:
-                    case 21:
-                        RareOres.Add(card);
-                        break;
-                    case 22:
-                    case 23:
-                    case 24:
-                    case 25:
-                    case 26:
-                    case 27:
-                    case 28:
-                        EpicOres.Add(card);
-                        break;
-                    case 29:
-                    case 30:
-                    case 31:
-                    case 32:
-                    case 33:
-                    case 34:
-                    case 35:
-                        LegendaryOres.Add(card);
-                        break;
-                    case 36:
-                    case 37:
-                    case 38:
-                    case 39:
-                    case 40:
-                    case 41:
-                    case 42:
-                        MythicOres.Add(card);
-                        break;
-                }
-            }
+            allOres[i].OreID = i + 1;
         }
-        // when the player has rebirthed for the first time
-        // assign new ores to the list including the old ones except for common and add unreal ores
-        else if (XPScript.Rebirth == 1)
+        foreach (OreClass card in allOres)
         {
-            for (int i = 0; i < allOres.Count; i++)
+            switch (card.OreID)
             {
-                allOres[i].OreID = i + 1;
-            }
-            foreach (OreClass card in allOres)
-            {
-                switch (card.OreID)
-                {
-                    case 1:
-                    case 2:
-                    case 3:
-                    case 4:
-                    case 5:
-                    case 6:
-                    case 7:
-                        UncommonOres.Add(card);
-                        break;
-                    case 8:
-                    case 9:
-                    case 10:
-                    case 11:
-                    case 12:
-                    case 13:
-                    case 14:
-                        RareOres.Add(card);
-                        break;
-                    case 15:
-                    case 16:
-                    case 17:
-                    case 18:
-                    case 19:
-                    case 20:
-                    case 21:
-                        EpicOres.Add(card);
-                        break;
-                    case 22:
-                    case 23:
-                    case 24:
-                    case 25:
-                    case 26:
-                    case 27:
-                    case 28:
-                        LegendaryOres.Add(card);
-                        break;
-                    case 29:
-                    case 30:
-                    case 31:
-                    case 32:
-                    case 33:
-                    case 34:
-                    case 35:
-                        MythicOres.Add(card);
-                        break;
-                    case 36:
-                    case 37:
-                    case 38:
-                    case 39:
-                    case 40:
-                    case 41:
-                    case 42:
-                        UnrealOres.Add(card);
-                        break;
-                }
+                case 1:
+                case 2:
+                case 3:
+                case 4:
+                case 5:
+                case 6:
+                case 7:
+                    CommonOres.Add(card);
+                    break;
+                case 8:
+                case 9:
+                case 10:
+                case 11:
+                case 12:
+                case 13:
+                case 14:
+                    UncommonOres.Add(card);
+                    break;
+                case 15:
+                case 16:
+                case 17:
+                case 18:
+                case 19:
+                case 20:
+                case 21:
+                    RareOres.Add(card);
+                    break;
+                case 22:
+                case 23:
+                case 24:
+                case 25:
+                case 26:
+                case 27:
+                case 28:
+                    EpicOres.Add(card);
+                    break;
+                case 29:
+                case 30:
+                case 31:
+                case 32:
+                case 33:
+                case 34:
+                case 35:
+                    LegendaryOres.Add(card);
+                    break;
+                case 36:
+                case 37:
+                case 38:
+                case 39:
+                case 40:
+                case 41:
+                case 42:
+                    MythicOres.Add(card);
+                    break;
+                case 43:
+                case 44:
+                case 45:
+                case 46:
+                case 47:
+                case 48:
+                case 49:
+                    ExoticOres.Add(card);
+                    break;
             }
         }
     }
@@ -336,7 +270,7 @@ public class RNGscript : MonoBehaviour, IDataPersistence
                         switch (oreRarityResult.Key)
                         {
                             case >= 36 and <= 42:
-                                AddOreToHand(UnrealOres, hand);
+                                AddOreToHand(ExoticOres, hand);
                                 break;
                             case >= 29 and <= 35:
                                 AddOreToHand(MythicOres, hand);
@@ -404,17 +338,21 @@ public class RNGscript : MonoBehaviour, IDataPersistence
     {
         AssignRarity();
     }
-
-    public void Update()
+    // Simply adds commas to numbers
+    private string NumberFormatter(float number)
     {
-        if (MoneyLogic.Money < 1000)
+        if (number < 1000)
         {
-            CurrentMoney.text = StaticVariables.cash.ToString("F2") + "$";
+            return string.Format("{0:n}", number);
         }
         else
         {
-            CurrentMoney.text = StaticVariables.cash.ToString("F0") + "$";
+            return string.Format("{0:n0}", number);
         }
+    }
+    public void Update()
+    {
+        CurrentMoney.text = NumberFormatter(StaticVariables.cash) + "$";
 
         // timers for auto rolling, animation
         if (StartTimer == AutoTimer)

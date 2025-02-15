@@ -11,6 +11,7 @@ public class OreStorage : MonoBehaviour
 {
     [Header("storage")]
     public int InventoryStatus = 0;
+    public int InventoryOres = 5;
 
     public int MaxCommonOres = 500;
     public int MaxUncommonOres = 250;
@@ -34,152 +35,89 @@ public class OreStorage : MonoBehaviour
 
     public void SwitchInventory()
     {
-        for(int j = 0; j < InputFields.Count; j++)
+        // reset the input fields
+        ResetInputFields();
+
+        List<OreClass> currentOres = GetCurrentOres();
+        UpdateUIWithOres(currentOres);
+
+        InventoryStatus++;
+        if (InventoryStatus > InventoryOres)
+        {
+            InventoryStatus = 0;
+        }
+    }
+    public void UpdateInventory()
+    {
+        List<OreClass> currentOres = GetCurrentInventory();
+        UpdateUiInventory(currentOres);
+    }
+    public void SellSelectedOres()
+    {
+        List<OreClass> currentOres = GetCurrentInventory();
+        SellSelectedOresFromUI(currentOres);
+    }
+    private void ResetInputFields()
+    {
+        for (int j = 0; j < InputFields.Count; j++)
         {
             InputFields[j].text = "";
             InputFields[j].textComponent.color = new Vector4(0, 0, 0, 1);
         }
-        if (InventoryStatus == 0)
-        {
-            for (int i = 0; i < RNGscript.CommonOres.Count; i++)
-            {
-                Name[i].text = RNGscript.CommonOres[i].name;
-                Color[i].color = RNGscript.CommonOres[i].Color;
-                Image[i].sprite = RNGscript.CommonOres[i].OrePicture;
-                Price[i].text = RNGscript.CommonOres[i].OrePrice.ToString();
-                Storage[i].text = RNGscript.CommonOres[i].StorageAmount.ToString();
-                Description[i].text = RNGscript.CommonOres[i].description;
-                InputFields[i].enabled = true;
-            }
+    }
 
-            for (int i = RNGscript.CommonOres.Count; i < Name.Count; i++)
-            {
-                Name[i].text = "Empty";
-                Color[i].color = RNGscript.CommonOres[i].Color;
-                Image[i].sprite = null;
-                Price[i].text = "0";
-                Storage[i].text = "0";
-                Description[i].text = "Empty";
-                InputFields[i].enabled = false;
-            }
-        }
-        else if (InventoryStatus == 1)
+    private List<OreClass> GetCurrentInventory()
+    {
+        switch (InventoryStatus)
         {
-            for (int i = 0; i < RNGscript.UncommonOres.Count; i++)
-            {
-                Name[i].text = RNGscript.UncommonOres[i].name;
-                Color[i].color = RNGscript.UncommonOres[i].Color;
-                Image[i].sprite = RNGscript.UncommonOres[i].OrePicture;
-                Price[i].text = RNGscript.UncommonOres[i].OrePrice.ToString();
-                Storage[i].text = RNGscript.UncommonOres[i].StorageAmount.ToString();
-                Description[i].text = RNGscript.UncommonOres[i].description;
-                InputFields[i].enabled = true;
-            }
-            for (int i = RNGscript.UncommonOres.Count; i < Name.Count; i++)
-            {
-                Name[i].text = "Empty";
-                Color[i].color = RNGscript.CommonOres[i].Color;
-                Image[i].sprite = null;
-                Price[i].text = "0";
-                Storage[i].text = "0";
-                Description[i].text = "Empty";
-                InputFields[i].enabled = false;
-            }
+            case 1: return RNGscript.CommonOres;
+            case 2: return RNGscript.UncommonOres;
+            case 3: return RNGscript.RareOres;
+            case 4: return RNGscript.EpicOres;
+            case 5: return RNGscript.LegendaryOres;
+            case 6: return RNGscript.MythicOres;
+            case 0: return RNGscript.ExoticOres;
+            default: return new List<OreClass>();
         }
-        else if (InventoryStatus == 2)
+    }
+    private List<OreClass> GetCurrentOres()
+    {
+        switch (InventoryStatus)
         {
-            for (int i = 0; i < RNGscript.RareOres.Count; i++)
-            {
-                Name[i].text = RNGscript.RareOres[i].name;
-                Color[i].color = RNGscript.RareOres[i].Color;
-                Image[i].sprite = RNGscript.RareOres[i].OrePicture;
-                Price[i].text = RNGscript.RareOres[i].OrePrice.ToString();
-                Storage[i].text = RNGscript.RareOres[i].StorageAmount.ToString();
-                Description[i].text = RNGscript.RareOres[i].description;
-                InputFields[i].enabled = true;
-            }
-            for (int i = RNGscript.RareOres.Count; i < Name.Count; i++)
-            {
-                Name[i].text = "Empty";
-                Color[i].color = RNGscript.CommonOres[i].Color;
-                Image[i].sprite = null;
-                Price[i].text = "0";
-                Storage[i].text = "0";
-                Description[i].text = "Empty";
-                InputFields[i].enabled = false;
-            }
+            case 0: return RNGscript.CommonOres;
+            case 1: return RNGscript.UncommonOres;
+            case 2: return RNGscript.RareOres;
+            case 3: return RNGscript.EpicOres;
+            case 4: return RNGscript.LegendaryOres;
+            case 5: return RNGscript.MythicOres;
+            case 6: return RNGscript.ExoticOres;
+            default: return new List<OreClass>();
         }
-        else if (InventoryStatus == 3)
+    }
+
+    private void UpdateUIWithOres(List<OreClass> ores)
+    {
+        for (int i = 0; i < ores.Count; i++)
         {
-            for (int i = 0; i < RNGscript.EpicOres.Count; i++)
-            {
-                Name[i].text = RNGscript.EpicOres[i].name;
-                Color[i].color = RNGscript.EpicOres[i].Color;
-                Image[i].sprite = RNGscript.EpicOres[i].OrePicture;
-                Price[i].text = RNGscript.EpicOres[i].OrePrice.ToString();
-                Storage[i].text = RNGscript.EpicOres[i].StorageAmount.ToString();
-                Description[i].text = RNGscript.EpicOres[i].description;
-                InputFields[i].enabled = true;
-            }
-            for (int i = RNGscript.EpicOres.Count; i < Name.Count; i++)
-            {
-                Name[i].text = "Empty";
-                Color[i].color = RNGscript.CommonOres[i].Color;
-                Image[i].sprite = null;
-                Price[i].text = "0";
-                Storage[i].text = "0";
-                Description[i].text = "Empty";
-                InputFields[i].enabled = false;
-            }
+            Name[i].text = ores[i].name;
+            Color[i].color = ores[i].Color;
+            Image[i].sprite = ores[i].OrePicture;
+            Price[i].text = ores[i].OrePrice.ToString();
+            Storage[i].text = ores[i].StorageAmount.ToString();
+            Description[i].text = ores[i].description;
+            InputFields[i].enabled = true;
         }
-        else if (InventoryStatus == 4)
+
+        for (int i = ores.Count; i < Name.Count; i++)
         {
-            for (int i = 0; i < RNGscript.LegendaryOres.Count; i++)
-            {
-                Name[i].text = RNGscript.LegendaryOres[i].name;
-                Color[i].color = RNGscript.LegendaryOres[i].Color;
-                Image[i].sprite = RNGscript.LegendaryOres[i].OrePicture;
-                Price[i].text = RNGscript.LegendaryOres[i].OrePrice.ToString();
-                Storage[i].text = RNGscript.LegendaryOres[i].StorageAmount.ToString();
-                Description[i].text = RNGscript.LegendaryOres[i].description;
-                InputFields[i].enabled = true;
-            }
-            for (int i = RNGscript.LegendaryOres.Count; i < Name.Count; i++)
-            {
-                Name[i].text = "Empty";
-                Color[i].color = RNGscript.CommonOres[i].Color;
-                Image[i].sprite = null;
-                Price[i].text = "0";
-                Storage[i].text = "0";
-                Description[i].text = "Empty";
-                InputFields[i].enabled = false;
-            }
+            Name[i].text = "Empty";
+            Color[i].color = RNGscript.CommonOres[0].Color;
+            Image[i].sprite = null;
+            Price[i].text = "0";
+            Storage[i].text = "0";
+            Description[i].text = "Empty";
+            InputFields[i].enabled = false;
         }
-        else if (InventoryStatus == 5)
-        {
-            for (int i = 0; i < RNGscript.MythicOres.Count; i++)
-            {
-                Name[i].text = RNGscript.MythicOres[i].name;
-                Color[i].color = RNGscript.MythicOres[i].Color;
-                Image[i].sprite = RNGscript.MythicOres[i].OrePicture;
-                Price[i].text = RNGscript.MythicOres[i].OrePrice.ToString();
-                Storage[i].text = RNGscript.MythicOres[i].StorageAmount.ToString();
-                Description[i].text = RNGscript.MythicOres[i].description;
-                InventoryStatus = -1;
-                InputFields[i].enabled = true;
-            }
-            for (int i = RNGscript.MythicOres.Count; i < Name.Count; i++)
-            {
-                Name[i].text = "Empty";
-                Color[i].color = RNGscript.CommonOres[i].Color;
-                Image[i].sprite = null;
-                Price[i].text = "0";
-                Storage[i].text = "0";
-                Description[i].text = "Empty";
-                InputFields[i].enabled = false;
-            }
-        }
-        InventoryStatus++;
     }
 
     public void SetToDefault()
@@ -208,194 +146,38 @@ public class OreStorage : MonoBehaviour
         }
     }
 
-    public void UpdateInventory()
+    
+
+    private void UpdateUiInventory(List<OreClass> ores)
     {
-        if (InventoryStatus == 1)
+        for (int i = 0; i < ores.Count; i++)
         {
-            for (int i = 0; i < RNGscript.CommonOres.Count; i++)
-            {
-                Storage[i].text = RNGscript.CommonOres[i].StorageAmount.ToString();
-            }
-        }
-        else if (InventoryStatus == 2)
-        {
-            for (int i = 0; i < RNGscript.UncommonOres.Count; i++)
-            {
-                Storage[i].text = RNGscript.UncommonOres[i].StorageAmount.ToString();
-            }
-        }
-        else if (InventoryStatus == 3)
-        {
-            for (int i = 0; i < RNGscript.RareOres.Count; i++)
-            {
-                Storage[i].text = RNGscript.RareOres[i].StorageAmount.ToString();
-            }
-        }
-        else if (InventoryStatus == 4)
-        {
-            for (int i = 0; i < RNGscript.EpicOres.Count; i++)
-            {
-                Storage[i].text = RNGscript.EpicOres[i].StorageAmount.ToString();
-            }
-        }
-        else if (InventoryStatus == 5)
-        {
-            for (int i = 0; i < RNGscript.LegendaryOres.Count; i++)
-            {
-                Storage[i].text = RNGscript.LegendaryOres[i].StorageAmount.ToString();
-            }
-        }
-        else if (InventoryStatus == 0)
-        {
-            for (int i = 0; i < RNGscript.MythicOres.Count; i++)
-            {
-                Storage[i].text = RNGscript.MythicOres[i].StorageAmount.ToString();
-            }
+            Storage[i].text = ores[i].StorageAmount.ToString();
         }
     }
 
-    public void SellSelectedOres()
+    private void SellSelectedOresFromUI(List<OreClass> ores)
     {
-        if (InventoryStatus == 1)
+        for (int i = 0; i < InputFields.Count; i++) // Loop through SellOres
         {
-            for (int j = 0; j < InputFields.Count; j++) // Loop through SellOres
+            int sellAmount;
+            if (!int.TryParse(InputFields[i].text, out sellAmount) || sellAmount <= 0)
             {
-                int sellAmount;
-                if (!int.TryParse(InputFields[j].text, out sellAmount) || sellAmount <= 0)
-                {
-                    continue; // Skip invalid inputs
-                }
-
-                if (sellAmount > RNGscript.CommonOres[j].StorageAmount)
-                {
-                    InputFields[j].textComponent.color = new Vector4(1, 0, 0, 1);
-                }
-                else
-                {
-                    RNGscript.CommonOres[j].StorageAmount -= sellAmount;
-                    InputFields[j].textComponent.color = new Vector4(0, 0, 0, 1);
-                    InputFields[j].text = "";
-                    MoneyLogic.Money += RNGscript.CommonOres[j].OrePrice * RNGscript.MoneyMultiplier * sellAmount;
-
-                }
+                continue; // Skip invalid inputs
             }
-        }
-        if (InventoryStatus == 2)
-        {
-            for (int j = 0; j < InputFields.Count; j++) // Loop through SellOres
-            {
-                int sellAmount;
-                if (!int.TryParse(InputFields[j].text, out sellAmount) || sellAmount <= 0)
-                {
-                    continue; // Skip invalid inputs
-                }
 
-                if (sellAmount > RNGscript.UncommonOres[j].StorageAmount)
-                {
-                    InputFields[j].textComponent.color = new Vector4(1, 0, 0, 1);
-                }
-                else
-                {
-                    RNGscript.UncommonOres[j].StorageAmount -= sellAmount;
-                    InputFields[j].textComponent.color = new Vector4(0, 0, 0, 1);
-                    InputFields[j].text = "";
-                    MoneyLogic.Money += RNGscript.UncommonOres[j].OrePrice * RNGscript.MoneyMultiplier * sellAmount;
-                }
+            if (sellAmount > ores[i].StorageAmount)
+            {
+                InputFields[i].textComponent.color = new Vector4(1, 0, 0, 1);
             }
-        }
-        if (InventoryStatus == 3)
-        {
-            for (int j = 0; j < InputFields.Count; j++) // Loop through SellOres
+            else
             {
-                int sellAmount;
-                if (!int.TryParse(InputFields[j].text, out sellAmount) || sellAmount <= 0)
-                {
-                    continue; // Skip invalid inputs
-                }
+                ores[i].StorageAmount -= sellAmount;
+                InputFields[i].textComponent.color = new Vector4(0, 0, 0, 1);
+                InputFields[i].text = "";
+                MoneyLogic.Money += ores[i].OrePrice * RNGscript.MoneyMultiplier * sellAmount;
 
-                if (sellAmount > RNGscript.RareOres[j].StorageAmount)
-                {
-                    InputFields[j].textComponent.color = new Vector4(1, 0, 0, 1);
-                }
-                else
-                {
-                    RNGscript.RareOres[j].StorageAmount -= sellAmount;
-                    InputFields[j].textComponent.color = new Vector4(0, 0, 0, 1);
-                    InputFields[j].text = "";
-                    MoneyLogic.Money += RNGscript.RareOres[j].OrePrice * RNGscript.MoneyMultiplier * sellAmount;
-
-                }
-            }
-        }
-        if (InventoryStatus == 4)
-        {
-            for (int j = 0; j < InputFields.Count; j++) // Loop through SellOres
-            {
-                int sellAmount;
-                if (!int.TryParse(InputFields[j].text, out sellAmount) || sellAmount <= 0)
-                {
-                    continue; // Skip invalid inputs
-                }
-
-                if (sellAmount > RNGscript.EpicOres[j].StorageAmount)
-                {
-                    InputFields[j].textComponent.color = new Vector4(1, 0, 0, 1);
-                }
-                else
-                {
-                    RNGscript.EpicOres[j].StorageAmount -= sellAmount;
-                    InputFields[j].textComponent.color = new Vector4(0, 0, 0, 1);
-                    InputFields[j].text = "";
-                    MoneyLogic.Money += RNGscript.EpicOres[j].OrePrice * RNGscript.MoneyMultiplier * sellAmount;
-                }
-            }
-        }
-        if (InventoryStatus == 5)
-        {
-            for (int j = 0; j < InputFields.Count; j++) // Loop through SellOres
-            {
-                int sellAmount;
-                if (!int.TryParse(InputFields[j].text, out sellAmount) || sellAmount <= 0)
-                {
-                    continue; // Skip invalid inputs
-                }
-
-                if (sellAmount > RNGscript.LegendaryOres[j].StorageAmount)
-                {
-                    InputFields[j].textComponent.color = new Vector4(1, 0, 0, 1);
-                }
-                else
-                {
-                    RNGscript.LegendaryOres[j].StorageAmount -= sellAmount;
-                    InputFields[j].textComponent.color = new Vector4(0, 0, 0, 1);
-                    InputFields[j].text = "";
-                    MoneyLogic.Money += RNGscript.LegendaryOres[j].OrePrice * RNGscript.MoneyMultiplier * sellAmount;
-                }
-            }
-        }
-        if (InventoryStatus == 0)
-        {
-            for (int j = 0; j < InputFields.Count; j++) // Loop through SellOres
-            {
-                int sellAmount;
-                if (!int.TryParse(InputFields[j].text, out sellAmount) || sellAmount <= 0)
-                {
-                    continue; // Skip invalid inputs
-                }
-
-                if (sellAmount > RNGscript.MythicOres[j].StorageAmount)
-                {
-                    InputFields[j].textComponent.color = new Vector4(1, 0, 0, 1);
-                }
-                else
-                {
-                    RNGscript.MythicOres[j].StorageAmount -= sellAmount;
-                    InputFields[j].textComponent.color = new Vector4(0, 0, 0, 1);
-                    InputFields[j].text = "";
-                    MoneyLogic.Money += RNGscript.MythicOres[j].OrePrice * RNGscript.MoneyMultiplier * sellAmount;
-                }
             }
         }
     }
-
 }

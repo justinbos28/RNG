@@ -19,6 +19,7 @@ public class XPScript : MonoBehaviour, IDataPersistence
 
     public RNGscript RNGscript;
     public MoneyLogic MoneyLogic;
+    public OreStorage OreStorage;
     public SavedOresCount SavedOres;
     public DataPersistence DataPersistence;
     public GameObject RebirthButton;
@@ -55,6 +56,13 @@ public class XPScript : MonoBehaviour, IDataPersistence
             XPMultiplier = 0;
             RebirthButton.SetActive(true);
             ShowXp.text = "level " + LevelCount + ": " + "Max";
+        }
+    }
+    private void Start()
+    {
+        if (Rebirth == 1)
+        {
+            OreStorage.InventoryOres = 6;
         }
     }
     public void UpdateXP()

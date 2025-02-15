@@ -12067,6 +12067,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   InventoryStatus: 0
+  InventoryOres: 5
   MaxCommonOres: 500
   MaxUncommonOres: 250
   MaxRareOres: 125
@@ -12158,7 +12159,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7efcbc371d2ce714c831074bf2145d48, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  OresCount: 000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
+  OresCount: 00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
   RNGscript: {fileID: 1546723946}
   OreStorage: {fileID: 987623140}
 --- !u!114 &987623143
@@ -20250,7 +20251,7 @@ MonoBehaviour:
   - name: Sapphire
     description: A valuable blue gem
     rarityTitle: Legendary
-    OrePicture: {fileID: 21300000, guid: 7f01c970fc1f0264ab18095cd6047f3e, type: 3}
+    OrePicture: {fileID: 21300000, guid: 9d00a51cc58ec434d9f97d952eafcb65, type: 3}
     XP: 25
     OreID: 0
     chance: 240000
@@ -20403,518 +20404,97 @@ MonoBehaviour:
     OrePrice: 400000
     rarityEffectColor: {r: 1, g: 0, b: 0, a: 0}
     Color: {r: 1, g: 0, b: 0, a: 1}
-  allOres2:
-  - name: 
-    description: 
-    rarityTitle: 
-    OrePicture: {fileID: 0}
-    XP: 0
+  - name: Test
+    description: Test
+    rarityTitle: Mythic
+    OrePicture: {fileID: 21300000, guid: 160b64c452bcdb345a0c113287a07b0f, type: 3}
+    XP: 100
     OreID: 0
-    chance: 0
+    chance: 9900000
     StorageAmount: 0
-    Percentage: 0
-    OrePrice: 0
-    rarityEffectColor: {r: 0, g: 0, b: 0, a: 0}
-    Color: {r: 0, g: 0, b: 0, a: 0}
-  - name: 
-    description: 
-    rarityTitle: 
-    OrePicture: {fileID: 0}
-    XP: 0
+    Percentage: 0.000067
+    OrePrice: 400000
+    rarityEffectColor: {r: 0.70645, g: 0, b: 1, a: 0}
+    Color: {r: 0.7058824, g: 0, b: 1, a: 1}
+  - name: Test
+    description: Test
+    rarityTitle: Mythic
+    OrePicture: {fileID: 21300000, guid: 160b64c452bcdb345a0c113287a07b0f, type: 3}
+    XP: 100
     OreID: 0
-    chance: 0
+    chance: 9900000
     StorageAmount: 0
-    Percentage: 0
-    OrePrice: 0
-    rarityEffectColor: {r: 0, g: 0, b: 0, a: 0}
-    Color: {r: 0, g: 0, b: 0, a: 0}
-  - name: 
-    description: 
-    rarityTitle: 
-    OrePicture: {fileID: 0}
-    XP: 0
+    Percentage: 0.000067
+    OrePrice: 400000
+    rarityEffectColor: {r: 0.70645, g: 0, b: 1, a: 0}
+    Color: {r: 0.7058824, g: 0, b: 1, a: 1}
+  - name: Test
+    description: Test
+    rarityTitle: Mythic
+    OrePicture: {fileID: 21300000, guid: 160b64c452bcdb345a0c113287a07b0f, type: 3}
+    XP: 100
     OreID: 0
-    chance: 0
+    chance: 9900000
     StorageAmount: 0
-    Percentage: 0
-    OrePrice: 0
-    rarityEffectColor: {r: 0, g: 0, b: 0, a: 0}
-    Color: {r: 0, g: 0, b: 0, a: 0}
-  - name: 
-    description: 
-    rarityTitle: 
-    OrePicture: {fileID: 0}
-    XP: 0
+    Percentage: 0.000067
+    OrePrice: 400000
+    rarityEffectColor: {r: 0.70645, g: 0, b: 1, a: 0}
+    Color: {r: 0.7058824, g: 0, b: 1, a: 1}
+  - name: Test
+    description: Test
+    rarityTitle: Mythic
+    OrePicture: {fileID: 21300000, guid: 160b64c452bcdb345a0c113287a07b0f, type: 3}
+    XP: 100
     OreID: 0
-    chance: 0
+    chance: 9900000
     StorageAmount: 0
-    Percentage: 0
-    OrePrice: 0
-    rarityEffectColor: {r: 0, g: 0, b: 0, a: 0}
-    Color: {r: 0, g: 0, b: 0, a: 0}
-  - name: 
-    description: 
-    rarityTitle: 
-    OrePicture: {fileID: 0}
-    XP: 0
+    Percentage: 0.000067
+    OrePrice: 400000
+    rarityEffectColor: {r: 0.70645, g: 0, b: 1, a: 0}
+    Color: {r: 0.7058824, g: 0, b: 1, a: 1}
+  - name: Test
+    description: Test
+    rarityTitle: Mythic
+    OrePicture: {fileID: 21300000, guid: 160b64c452bcdb345a0c113287a07b0f, type: 3}
+    XP: 100
     OreID: 0
-    chance: 0
+    chance: 9900000
     StorageAmount: 0
-    Percentage: 0
-    OrePrice: 0
-    rarityEffectColor: {r: 0, g: 0, b: 0, a: 0}
-    Color: {r: 0, g: 0, b: 0, a: 0}
-  - name: 
-    description: 
-    rarityTitle: 
-    OrePicture: {fileID: 0}
-    XP: 0
+    Percentage: 0.000067
+    OrePrice: 400000
+    rarityEffectColor: {r: 0.70645, g: 0, b: 1, a: 0}
+    Color: {r: 0.7058824, g: 0, b: 1, a: 1}
+  - name: Test
+    description: Test
+    rarityTitle: Mythic
+    OrePicture: {fileID: 21300000, guid: 160b64c452bcdb345a0c113287a07b0f, type: 3}
+    XP: 100
     OreID: 0
-    chance: 0
+    chance: 9900000
     StorageAmount: 0
-    Percentage: 0
-    OrePrice: 0
-    rarityEffectColor: {r: 0, g: 0, b: 0, a: 0}
-    Color: {r: 0, g: 0, b: 0, a: 0}
-  - name: 
-    description: 
-    rarityTitle: 
-    OrePicture: {fileID: 0}
-    XP: 0
+    Percentage: 0.000067
+    OrePrice: 400000
+    rarityEffectColor: {r: 0.70645, g: 0, b: 1, a: 0}
+    Color: {r: 0.7058824, g: 0, b: 1, a: 1}
+  - name: Test
+    description: Test
+    rarityTitle: Mythic
+    OrePicture: {fileID: 21300000, guid: 160b64c452bcdb345a0c113287a07b0f, type: 3}
+    XP: 100
     OreID: 0
-    chance: 0
+    chance: 9900000
     StorageAmount: 0
-    Percentage: 0
-    OrePrice: 0
-    rarityEffectColor: {r: 0, g: 0, b: 0, a: 0}
-    Color: {r: 0, g: 0, b: 0, a: 0}
-  - name: 
-    description: 
-    rarityTitle: 
-    OrePicture: {fileID: 0}
-    XP: 0
-    OreID: 0
-    chance: 0
-    StorageAmount: 0
-    Percentage: 0
-    OrePrice: 0
-    rarityEffectColor: {r: 0, g: 0, b: 0, a: 0}
-    Color: {r: 0, g: 0, b: 0, a: 0}
-  - name: 
-    description: 
-    rarityTitle: 
-    OrePicture: {fileID: 0}
-    XP: 0
-    OreID: 0
-    chance: 0
-    StorageAmount: 0
-    Percentage: 0
-    OrePrice: 0
-    rarityEffectColor: {r: 0, g: 0, b: 0, a: 0}
-    Color: {r: 0, g: 0, b: 0, a: 0}
-  - name: 
-    description: 
-    rarityTitle: 
-    OrePicture: {fileID: 0}
-    XP: 0
-    OreID: 0
-    chance: 0
-    StorageAmount: 0
-    Percentage: 0
-    OrePrice: 0
-    rarityEffectColor: {r: 0, g: 0, b: 0, a: 0}
-    Color: {r: 0, g: 0, b: 0, a: 0}
-  - name: 
-    description: 
-    rarityTitle: 
-    OrePicture: {fileID: 0}
-    XP: 0
-    OreID: 0
-    chance: 0
-    StorageAmount: 0
-    Percentage: 0
-    OrePrice: 0
-    rarityEffectColor: {r: 0, g: 0, b: 0, a: 0}
-    Color: {r: 0, g: 0, b: 0, a: 0}
-  - name: 
-    description: 
-    rarityTitle: 
-    OrePicture: {fileID: 0}
-    XP: 0
-    OreID: 0
-    chance: 0
-    StorageAmount: 0
-    Percentage: 0
-    OrePrice: 0
-    rarityEffectColor: {r: 0, g: 0, b: 0, a: 0}
-    Color: {r: 0, g: 0, b: 0, a: 0}
-  - name: 
-    description: 
-    rarityTitle: 
-    OrePicture: {fileID: 0}
-    XP: 0
-    OreID: 0
-    chance: 0
-    StorageAmount: 0
-    Percentage: 0
-    OrePrice: 0
-    rarityEffectColor: {r: 0, g: 0, b: 0, a: 0}
-    Color: {r: 0, g: 0, b: 0, a: 0}
-  - name: 
-    description: 
-    rarityTitle: 
-    OrePicture: {fileID: 0}
-    XP: 0
-    OreID: 0
-    chance: 0
-    StorageAmount: 0
-    Percentage: 0
-    OrePrice: 0
-    rarityEffectColor: {r: 0, g: 0, b: 0, a: 0}
-    Color: {r: 0, g: 0, b: 0, a: 0}
-  - name: 
-    description: 
-    rarityTitle: 
-    OrePicture: {fileID: 0}
-    XP: 0
-    OreID: 0
-    chance: 0
-    StorageAmount: 0
-    Percentage: 0
-    OrePrice: 0
-    rarityEffectColor: {r: 0, g: 0, b: 0, a: 0}
-    Color: {r: 0, g: 0, b: 0, a: 0}
-  - name: 
-    description: 
-    rarityTitle: 
-    OrePicture: {fileID: 0}
-    XP: 0
-    OreID: 0
-    chance: 0
-    StorageAmount: 0
-    Percentage: 0
-    OrePrice: 0
-    rarityEffectColor: {r: 0, g: 0, b: 0, a: 0}
-    Color: {r: 0, g: 0, b: 0, a: 0}
-  - name: 
-    description: 
-    rarityTitle: 
-    OrePicture: {fileID: 0}
-    XP: 0
-    OreID: 0
-    chance: 0
-    StorageAmount: 0
-    Percentage: 0
-    OrePrice: 0
-    rarityEffectColor: {r: 0, g: 0, b: 0, a: 0}
-    Color: {r: 0, g: 0, b: 0, a: 0}
-  - name: 
-    description: 
-    rarityTitle: 
-    OrePicture: {fileID: 0}
-    XP: 0
-    OreID: 0
-    chance: 0
-    StorageAmount: 0
-    Percentage: 0
-    OrePrice: 0
-    rarityEffectColor: {r: 0, g: 0, b: 0, a: 0}
-    Color: {r: 0, g: 0, b: 0, a: 0}
-  - name: 
-    description: 
-    rarityTitle: 
-    OrePicture: {fileID: 0}
-    XP: 0
-    OreID: 0
-    chance: 0
-    StorageAmount: 0
-    Percentage: 0
-    OrePrice: 0
-    rarityEffectColor: {r: 0, g: 0, b: 0, a: 0}
-    Color: {r: 0, g: 0, b: 0, a: 0}
-  - name: 
-    description: 
-    rarityTitle: 
-    OrePicture: {fileID: 0}
-    XP: 0
-    OreID: 0
-    chance: 0
-    StorageAmount: 0
-    Percentage: 0
-    OrePrice: 0
-    rarityEffectColor: {r: 0, g: 0, b: 0, a: 0}
-    Color: {r: 0, g: 0, b: 0, a: 0}
-  - name: 
-    description: 
-    rarityTitle: 
-    OrePicture: {fileID: 0}
-    XP: 0
-    OreID: 0
-    chance: 0
-    StorageAmount: 0
-    Percentage: 0
-    OrePrice: 0
-    rarityEffectColor: {r: 0, g: 0, b: 0, a: 0}
-    Color: {r: 0, g: 0, b: 0, a: 0}
-  - name: 
-    description: 
-    rarityTitle: 
-    OrePicture: {fileID: 0}
-    XP: 0
-    OreID: 0
-    chance: 0
-    StorageAmount: 0
-    Percentage: 0
-    OrePrice: 0
-    rarityEffectColor: {r: 0, g: 0, b: 0, a: 0}
-    Color: {r: 0, g: 0, b: 0, a: 0}
-  - name: 
-    description: 
-    rarityTitle: 
-    OrePicture: {fileID: 0}
-    XP: 0
-    OreID: 0
-    chance: 0
-    StorageAmount: 0
-    Percentage: 0
-    OrePrice: 0
-    rarityEffectColor: {r: 0, g: 0, b: 0, a: 0}
-    Color: {r: 0, g: 0, b: 0, a: 0}
-  - name: 
-    description: 
-    rarityTitle: 
-    OrePicture: {fileID: 0}
-    XP: 0
-    OreID: 0
-    chance: 0
-    StorageAmount: 0
-    Percentage: 0
-    OrePrice: 0
-    rarityEffectColor: {r: 0, g: 0, b: 0, a: 0}
-    Color: {r: 0, g: 0, b: 0, a: 0}
-  - name: 
-    description: 
-    rarityTitle: 
-    OrePicture: {fileID: 0}
-    XP: 0
-    OreID: 0
-    chance: 0
-    StorageAmount: 0
-    Percentage: 0
-    OrePrice: 0
-    rarityEffectColor: {r: 0, g: 0, b: 0, a: 0}
-    Color: {r: 0, g: 0, b: 0, a: 0}
-  - name: 
-    description: 
-    rarityTitle: 
-    OrePicture: {fileID: 0}
-    XP: 0
-    OreID: 0
-    chance: 0
-    StorageAmount: 0
-    Percentage: 0
-    OrePrice: 0
-    rarityEffectColor: {r: 0, g: 0, b: 0, a: 0}
-    Color: {r: 0, g: 0, b: 0, a: 0}
-  - name: 
-    description: 
-    rarityTitle: 
-    OrePicture: {fileID: 0}
-    XP: 0
-    OreID: 0
-    chance: 0
-    StorageAmount: 0
-    Percentage: 0
-    OrePrice: 0
-    rarityEffectColor: {r: 0, g: 0, b: 0, a: 0}
-    Color: {r: 0, g: 0, b: 0, a: 0}
-  - name: 
-    description: 
-    rarityTitle: 
-    OrePicture: {fileID: 0}
-    XP: 0
-    OreID: 0
-    chance: 0
-    StorageAmount: 0
-    Percentage: 0
-    OrePrice: 0
-    rarityEffectColor: {r: 0, g: 0, b: 0, a: 0}
-    Color: {r: 0, g: 0, b: 0, a: 0}
-  - name: 
-    description: 
-    rarityTitle: 
-    OrePicture: {fileID: 0}
-    XP: 0
-    OreID: 0
-    chance: 0
-    StorageAmount: 0
-    Percentage: 0
-    OrePrice: 0
-    rarityEffectColor: {r: 0, g: 0, b: 0, a: 0}
-    Color: {r: 0, g: 0, b: 0, a: 0}
-  - name: 
-    description: 
-    rarityTitle: 
-    OrePicture: {fileID: 0}
-    XP: 0
-    OreID: 0
-    chance: 0
-    StorageAmount: 0
-    Percentage: 0
-    OrePrice: 0
-    rarityEffectColor: {r: 0, g: 0, b: 0, a: 0}
-    Color: {r: 0, g: 0, b: 0, a: 0}
-  - name: 
-    description: 
-    rarityTitle: 
-    OrePicture: {fileID: 0}
-    XP: 0
-    OreID: 0
-    chance: 0
-    StorageAmount: 0
-    Percentage: 0
-    OrePrice: 0
-    rarityEffectColor: {r: 0, g: 0, b: 0, a: 0}
-    Color: {r: 0, g: 0, b: 0, a: 0}
-  - name: 
-    description: 
-    rarityTitle: 
-    OrePicture: {fileID: 0}
-    XP: 0
-    OreID: 0
-    chance: 0
-    StorageAmount: 0
-    Percentage: 0
-    OrePrice: 0
-    rarityEffectColor: {r: 0, g: 0, b: 0, a: 0}
-    Color: {r: 0, g: 0, b: 0, a: 0}
-  - name: 
-    description: 
-    rarityTitle: 
-    OrePicture: {fileID: 0}
-    XP: 0
-    OreID: 0
-    chance: 0
-    StorageAmount: 0
-    Percentage: 0
-    OrePrice: 0
-    rarityEffectColor: {r: 0, g: 0, b: 0, a: 0}
-    Color: {r: 0, g: 0, b: 0, a: 0}
-  - name: 
-    description: 
-    rarityTitle: 
-    OrePicture: {fileID: 0}
-    XP: 0
-    OreID: 0
-    chance: 0
-    StorageAmount: 0
-    Percentage: 0
-    OrePrice: 0
-    rarityEffectColor: {r: 0, g: 0, b: 0, a: 0}
-    Color: {r: 0, g: 0, b: 0, a: 0}
-  - name: 
-    description: 
-    rarityTitle: 
-    OrePicture: {fileID: 0}
-    XP: 0
-    OreID: 0
-    chance: 0
-    StorageAmount: 0
-    Percentage: 0
-    OrePrice: 0
-    rarityEffectColor: {r: 0, g: 0, b: 0, a: 0}
-    Color: {r: 0, g: 0, b: 0, a: 0}
-  - name: 
-    description: 
-    rarityTitle: 
-    OrePicture: {fileID: 0}
-    XP: 0
-    OreID: 0
-    chance: 0
-    StorageAmount: 0
-    Percentage: 0
-    OrePrice: 0
-    rarityEffectColor: {r: 0, g: 0, b: 0, a: 0}
-    Color: {r: 0, g: 0, b: 0, a: 0}
-  - name: 
-    description: 
-    rarityTitle: 
-    OrePicture: {fileID: 0}
-    XP: 0
-    OreID: 0
-    chance: 0
-    StorageAmount: 0
-    Percentage: 0
-    OrePrice: 0
-    rarityEffectColor: {r: 0, g: 0, b: 0, a: 0}
-    Color: {r: 0, g: 0, b: 0, a: 0}
-  - name: 
-    description: 
-    rarityTitle: 
-    OrePicture: {fileID: 0}
-    XP: 0
-    OreID: 0
-    chance: 0
-    StorageAmount: 0
-    Percentage: 0
-    OrePrice: 0
-    rarityEffectColor: {r: 0, g: 0, b: 0, a: 0}
-    Color: {r: 0, g: 0, b: 0, a: 0}
-  - name: 
-    description: 
-    rarityTitle: 
-    OrePicture: {fileID: 0}
-    XP: 0
-    OreID: 0
-    chance: 0
-    StorageAmount: 0
-    Percentage: 0
-    OrePrice: 0
-    rarityEffectColor: {r: 0, g: 0, b: 0, a: 0}
-    Color: {r: 0, g: 0, b: 0, a: 0}
-  - name: 
-    description: 
-    rarityTitle: 
-    OrePicture: {fileID: 0}
-    XP: 0
-    OreID: 0
-    chance: 0
-    StorageAmount: 0
-    Percentage: 0
-    OrePrice: 0
-    rarityEffectColor: {r: 0, g: 0, b: 0, a: 0}
-    Color: {r: 0, g: 0, b: 0, a: 0}
-  - name: 
-    description: 
-    rarityTitle: 
-    OrePicture: {fileID: 0}
-    XP: 0
-    OreID: 0
-    chance: 0
-    StorageAmount: 0
-    Percentage: 0
-    OrePrice: 0
-    rarityEffectColor: {r: 0, g: 0, b: 0, a: 0}
-    Color: {r: 0, g: 0, b: 0, a: 0}
-  - name: 
-    description: 
-    rarityTitle: 
-    OrePicture: {fileID: 0}
-    XP: 0
-    OreID: 0
-    chance: 0
-    StorageAmount: 0
-    Percentage: 0
-    OrePrice: 0
-    rarityEffectColor: {r: 0, g: 0, b: 0, a: 0}
-    Color: {r: 0, g: 0, b: 0, a: 0}
+    Percentage: 0.000067
+    OrePrice: 400000
+    rarityEffectColor: {r: 0.70645, g: 0, b: 1, a: 0}
+    Color: {r: 0.7058824, g: 0, b: 1, a: 1}
   CommonOres: []
   UncommonOres: []
   RareOres: []
   EpicOres: []
   LegendaryOres: []
   MythicOres: []
-  UnrealOres: []
+  ExoticOres: []
   playerHand: []
   cardLimit: 1
   timer: 0
@@ -27198,6 +26778,7 @@ MonoBehaviour:
   ShowXp: {fileID: 1080634120}
   RNGscript: {fileID: 1546723946}
   MoneyLogic: {fileID: 1546723948}
+  OreStorage: {fileID: 987623140}
   SavedOres: {fileID: 987623142}
   DataPersistence: {fileID: 1950076375}
   RebirthButton: {fileID: 2091459040}
