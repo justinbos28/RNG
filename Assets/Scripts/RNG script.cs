@@ -15,6 +15,7 @@ public class RNGscript : MonoBehaviour, IDataPersistence
     public List<OreClass> LegendaryOres = new List<OreClass>();
     public List<OreClass> MythicOres = new List<OreClass>();
     public List<OreClass> ExoticOres = new List<OreClass>();
+    public List<OreClass> DivineOres = new List<OreClass>();
 
     public List<OreClass> playerHand = new List<OreClass>();
     public int cardLimit = 1;
@@ -76,10 +77,6 @@ public class RNGscript : MonoBehaviour, IDataPersistence
     public List<Text> rarity = new List<Text>();
     public List<Image> OrePicture = new List<Image>();
     public List<SpriteRenderer> OreSpriteRenderer = new List<SpriteRenderer>();
-
-    // Calulates the chance of something happening by percent simple use a chance from 1 to 10 else chance is 1 to 100
-    // <param name="percent"></param>
-    // <param name="simple"></param>
 
     // saving data and getting saved data
     public void LoadData(GameData data)
@@ -192,6 +189,15 @@ public class RNGscript : MonoBehaviour, IDataPersistence
                 case 49:
                     ExoticOres.Add(card);
                     break;
+                case 50:
+                case 51:
+                case 52:
+                case 53:
+                case 54:
+                case 55:
+                case 56:
+                    DivineOres.Add(card);
+                    break;
             }
         }
     }
@@ -289,8 +295,33 @@ public class RNGscript : MonoBehaviour, IDataPersistence
                                 break;
                         }
                     }
+                    else
+                    {
+                        switch (oreRarityResult.Key)
+                        {
+                            case >= 36 and <= 42:
+                                AddOreToHand(DivineOres, hand);
+                                break;
+                            case >= 29 and <= 35:
+                                AddOreToHand(ExoticOres, hand);
+                                break;
+                            case >= 22 and <= 28:
+                                AddOreToHand(MythicOres, hand);
+                                break;
+                            case >= 15 and <= 21:
+                                AddOreToHand(LegendaryOres, hand);
+                                break;
+                            case >= 8 and <= 14:
+                                AddOreToHand(EpicOres, hand);
+                                break;
+                            case >= 1 and <= 7:
+                                AddOreToHand(RareOres, hand);
+                                break;
+                        }
+                    }
                     oreAdded = true;
                     break; // Stop after adding one ore
+
                 }
             }
 
@@ -303,6 +334,10 @@ public class RNGscript : MonoBehaviour, IDataPersistence
             else if (!oreAdded && XPScript.Rebirth == 1)
             {
                 AddOreToHand(UncommonOres, hand);
+            }
+            else if (!oreAdded && XPScript.Rebirth >= 2)
+            {
+                AddOreToHand(RareOres, hand);
             }
         }
         foreach (int ID in hand)

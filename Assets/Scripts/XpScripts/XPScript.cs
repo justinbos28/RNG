@@ -22,6 +22,8 @@ public class XPScript : MonoBehaviour, IDataPersistence
     public OreStorage OreStorage;
     public SavedOresCount SavedOres;
     public DataPersistence DataPersistence;
+    public IndexManager IndexManager;
+
     public GameObject RebirthButton;
     
 
@@ -63,6 +65,12 @@ public class XPScript : MonoBehaviour, IDataPersistence
         if (Rebirth == 1)
         {
             OreStorage.InventoryOres = 6;
+            IndexManager.MaxIndexCount = 6;
+        }
+        else if (Rebirth >= 2)
+        {
+            OreStorage.InventoryOres = 7;
+            IndexManager.MaxIndexCount = 7;
         }
     }
     public void UpdateXP()

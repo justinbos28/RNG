@@ -19,6 +19,8 @@ public class OreStorage : MonoBehaviour
     public int MaxEpicOres = 75;
     public int MaxLegendaryOres = 25;
     public int MaxMythicOres = 5;
+    public int MaxExoticOres = 2;
+    public int MaxDivineOres = 1;
 
     [Header("lists")]
     public List<Text> Storage = new List<Text>();
@@ -76,7 +78,8 @@ public class OreStorage : MonoBehaviour
             case 4: return RNGscript.EpicOres;
             case 5: return RNGscript.LegendaryOres;
             case 6: return RNGscript.MythicOres;
-            case 0: return RNGscript.ExoticOres;
+            case 7: return RNGscript.ExoticOres;
+            case 0: return RNGscript.DivineOres;
             default: return new List<OreClass>();
         }
     }
@@ -91,6 +94,7 @@ public class OreStorage : MonoBehaviour
             case 4: return RNGscript.LegendaryOres;
             case 5: return RNGscript.MythicOres;
             case 6: return RNGscript.ExoticOres;
+            case 7: return RNGscript.DivineOres;
             default: return new List<OreClass>();
         }
     }

@@ -7,6 +7,7 @@ public class IndexManager : MonoBehaviour
     public List<IndexClass> IndexList = new List<IndexClass>();
     public RNGscript RNGscript;
     public int IndexCount;
+    public int MaxIndexCount = 5;
 
     public void OpenIndex()
     {
@@ -30,6 +31,12 @@ public class IndexManager : MonoBehaviour
                 break;
             case 5:
                 ores = RNGscript.MythicOres;
+                break;
+            case 6:
+                ores = RNGscript.ExoticOres;
+                break;
+            case 7:
+                ores = RNGscript.DivineOres;
                 break;
             default:
                 ores = new List<OreClass>();
@@ -59,7 +66,7 @@ public class IndexManager : MonoBehaviour
             }
         }
 
-        if (IndexCount == 5) { IndexCount = -1; }
+        if (IndexCount == MaxIndexCount) { IndexCount = -1; }
         IndexCount++;
     }
 }

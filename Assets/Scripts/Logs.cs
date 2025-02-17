@@ -20,12 +20,14 @@
 // 16. nerf money, luck, speed ect
 
 // ores: luck, chance, rarity, prices
-// 5 common - 1 to 100
-// 5 uncommon - 100 to 1000
-// 5 rare - 1000 to 10.000
-// 5 epic - 10.000 to 100.000
-// 5 legendary - 100.000 to 1.000.000
-// 1 mythic - 1.000.000 - 10.000.000
+// 7 common - 1 to 100
+// 7 uncommon - 100 to 1000
+// 7 rare - 1000 to 10.000
+// 7 epic - 10.000 to 100.000
+// 7 legendary - 100.000 to 1.000.000
+// 7 mythic - 1.000.000 - 10.000.000
+// 7 exotic - 10.000.000 - 100.000.000
+// 7 divine - 100.000.000 - 1.000.000.000
 
 // common -------
 // stone 1/1
@@ -86,4 +88,23 @@
 // Mythic gem 1/8.000.000 - new
 // 01001001 1/9.900.000 - new
 
-// 42 total ores
+// exotic ------
+// Darkstone 1/11.000.000
+// luminite 1/20.000.000
+// moonstone 1/30.000.000
+// starlight gem 1/55.000.000
+// forbidden gem 1/70.000.000
+// ruined gem 1/85.000.000
+// Lost rune 1/100.000.000
+
+
+// divine ------
+// magma gem 1/120.000.000
+// glowstone 1/240.000.000
+// burnite 1/360.000.000
+// infernium 1/400.000.000
+// lava gem 1/650.000.000
+// hellfire 1/910.000.000
+// dragonite 1/1.000.000.000
+
+// 56 total ores

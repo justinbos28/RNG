@@ -1673,7 +1673,7 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 14
+    m_FontSize: 12
     m_FontStyle: 1
     m_BestFit: 0
     m_MinSize: 1
@@ -3356,10 +3356,10 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 20
+    m_FontSize: 18
     m_FontStyle: 1
     m_BestFit: 0
-    m_MinSize: 2
+    m_MinSize: 1
     m_MaxSize: 40
     m_Alignment: 4
     m_AlignByGeometry: 0
@@ -4175,7 +4175,7 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 14
+    m_FontSize: 12
     m_FontStyle: 1
     m_BestFit: 0
     m_MinSize: 1
@@ -4616,10 +4616,10 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 20
+    m_FontSize: 18
     m_FontStyle: 1
     m_BestFit: 0
-    m_MinSize: 2
+    m_MinSize: 1
     m_MaxSize: 40
     m_Alignment: 4
     m_AlignByGeometry: 0
@@ -7297,7 +7297,7 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 14
+    m_FontSize: 12
     m_FontStyle: 1
     m_BestFit: 0
     m_MinSize: 1
@@ -8813,10 +8813,10 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 20
+    m_FontSize: 18
     m_FontStyle: 1
     m_BestFit: 0
-    m_MinSize: 2
+    m_MinSize: 1
     m_MaxSize: 40
     m_Alignment: 4
     m_AlignByGeometry: 0
@@ -9256,10 +9256,10 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 20
+    m_FontSize: 18
     m_FontStyle: 1
     m_BestFit: 0
-    m_MinSize: 2
+    m_MinSize: 1
     m_MaxSize: 40
     m_Alignment: 4
     m_AlignByGeometry: 0
@@ -9722,7 +9722,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 079201596fb59f0458c930a47ded240f, type: 3}
+  m_Sprite: {fileID: 21300000, guid: c85566177204cb2439505fe7b751f534, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -10119,7 +10119,7 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 14
+    m_FontSize: 12
     m_FontStyle: 1
     m_BestFit: 0
     m_MinSize: 1
@@ -12074,6 +12074,8 @@ MonoBehaviour:
   MaxEpicOres: 75
   MaxLegendaryOres: 25
   MaxMythicOres: 5
+  MaxExoticOres: 2
+  MaxDivineOres: 1
   Storage:
   - {fileID: 1468832781}
   - {fileID: 868731499}
@@ -12159,7 +12161,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7efcbc371d2ce714c831074bf2145d48, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  OresCount: 00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
+  OresCount: 0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
   RNGscript: {fileID: 1546723946}
   OreStorage: {fileID: 987623140}
 --- !u!114 &987623143
@@ -12226,6 +12228,7 @@ MonoBehaviour:
     background: {fileID: 138399281}
   RNGscript: {fileID: 1546723946}
   IndexCount: 0
+  MaxIndexCount: 5
 --- !u!1 &989356331
 GameObject:
   m_ObjectHideFlags: 0
@@ -14229,7 +14232,7 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 14
+    m_FontSize: 12
     m_FontStyle: 1
     m_BestFit: 0
     m_MinSize: 1
@@ -15020,7 +15023,7 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 14
+    m_FontSize: 12
     m_FontStyle: 1
     m_BestFit: 0
     m_MinSize: 1
@@ -17649,10 +17652,10 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 20
+    m_FontSize: 18
     m_FontStyle: 1
     m_BestFit: 0
-    m_MinSize: 2
+    m_MinSize: 1
     m_MaxSize: 40
     m_Alignment: 4
     m_AlignByGeometry: 0
@@ -18829,7 +18832,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: P-Shop
+  m_Text: Crafter
 --- !u!222 &1495928831
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -20352,7 +20355,7 @@ MonoBehaviour:
     OreID: 0
     chance: 2700000
     StorageAmount: 0
-    Percentage: 0.000067
+    Percentage: 0.000037
     OrePrice: 240000
     rarityEffectColor: {r: 1, g: 0, b: 0, a: 0}
     Color: {r: 1, g: 0, b: 0, a: 1}
@@ -20364,7 +20367,7 @@ MonoBehaviour:
     OreID: 0
     chance: 4000000
     StorageAmount: 0
-    Percentage: 0.000067
+    Percentage: 0.000025
     OrePrice: 300000
     rarityEffectColor: {r: 1, g: 0, b: 0, a: 0}
     Color: {r: 1, g: 0, b: 0, a: 1}
@@ -20376,7 +20379,7 @@ MonoBehaviour:
     OreID: 0
     chance: 6000000
     StorageAmount: 0
-    Percentage: 0.000067
+    Percentage: 0.000017
     OrePrice: 350000
     rarityEffectColor: {r: 1, g: 0, b: 0, a: 0}
     Color: {r: 1, g: 0, b: 0, a: 1}
@@ -20388,7 +20391,7 @@ MonoBehaviour:
     OreID: 0
     chance: 8000000
     StorageAmount: 0
-    Percentage: 0.000067
+    Percentage: 0.000013
     OrePrice: 400000
     rarityEffectColor: {r: 1, g: 0, b: 0, a: 0}
     Color: {r: 1, g: 0, b: 0, a: 1}
@@ -20400,94 +20403,178 @@ MonoBehaviour:
     OreID: 0
     chance: 9900000
     StorageAmount: 0
-    Percentage: 0.000067
+    Percentage: 0.00001
     OrePrice: 400000
     rarityEffectColor: {r: 1, g: 0, b: 0, a: 0}
     Color: {r: 1, g: 0, b: 0, a: 1}
-  - name: Test
-    description: Test
-    rarityTitle: Mythic
-    OrePicture: {fileID: 21300000, guid: 160b64c452bcdb345a0c113287a07b0f, type: 3}
+  - name: Darkstone
+    description: A stone from the deep caves
+    rarityTitle: Exotic
+    OrePicture: {fileID: 21300000, guid: 3c2d288cd53fe67408c880a5a5eee9de, type: 3}
     XP: 100
     OreID: 0
-    chance: 9900000
+    chance: 11000000
     StorageAmount: 0
-    Percentage: 0.000067
-    OrePrice: 400000
-    rarityEffectColor: {r: 0.70645, g: 0, b: 1, a: 0}
-    Color: {r: 0.7058824, g: 0, b: 1, a: 1}
-  - name: Test
-    description: Test
-    rarityTitle: Mythic
-    OrePicture: {fileID: 21300000, guid: 160b64c452bcdb345a0c113287a07b0f, type: 3}
+    Percentage: 0.000009
+    OrePrice: 600000
+    rarityEffectColor: {r: 1, g: 0.51204026, b: 0, a: 0}
+    Color: {r: 1, g: 0.5137255, b: 0, a: 1}
+  - name: Luminite
+    description: One of the brighest minerals
+    rarityTitle: Exotic
+    OrePicture: {fileID: 21300000, guid: e38221094def0ea4c95b61056e565d5c, type: 3}
     XP: 100
     OreID: 0
-    chance: 9900000
+    chance: 20000000
     StorageAmount: 0
-    Percentage: 0.000067
-    OrePrice: 400000
-    rarityEffectColor: {r: 0.70645, g: 0, b: 1, a: 0}
-    Color: {r: 0.7058824, g: 0, b: 1, a: 1}
-  - name: Test
-    description: Test
-    rarityTitle: Mythic
-    OrePicture: {fileID: 21300000, guid: 160b64c452bcdb345a0c113287a07b0f, type: 3}
+    Percentage: 0.000005
+    OrePrice: 800000
+    rarityEffectColor: {r: 1, g: 0.5137255, b: 0, a: 0}
+    Color: {r: 1, g: 0.5137255, b: 0, a: 1}
+  - name: Moonstone
+    description: A piece of the moon down here?
+    rarityTitle: Exotic
+    OrePicture: {fileID: 21300000, guid: 62449f1aa2ce08d44964970ceeddeddf, type: 3}
     XP: 100
     OreID: 0
-    chance: 9900000
+    chance: 30000000
     StorageAmount: 0
-    Percentage: 0.000067
-    OrePrice: 400000
-    rarityEffectColor: {r: 0.70645, g: 0, b: 1, a: 0}
-    Color: {r: 0.7058824, g: 0, b: 1, a: 1}
-  - name: Test
-    description: Test
-    rarityTitle: Mythic
-    OrePicture: {fileID: 21300000, guid: 160b64c452bcdb345a0c113287a07b0f, type: 3}
+    Percentage: 0.0000033
+    OrePrice: 1000000
+    rarityEffectColor: {r: 1, g: 0.5137255, b: 0, a: 0}
+    Color: {r: 1, g: 0.5137255, b: 0, a: 1}
+  - name: Starlight gem
+    description: A bright star found in the darkest mines
+    rarityTitle: Exotic
+    OrePicture: {fileID: 21300000, guid: 838a507d1ec86c443a83e5dab11e4905, type: 3}
     XP: 100
     OreID: 0
-    chance: 9900000
+    chance: 55000000
     StorageAmount: 0
-    Percentage: 0.000067
-    OrePrice: 400000
-    rarityEffectColor: {r: 0.70645, g: 0, b: 1, a: 0}
-    Color: {r: 0.7058824, g: 0, b: 1, a: 1}
-  - name: Test
-    description: Test
-    rarityTitle: Mythic
-    OrePicture: {fileID: 21300000, guid: 160b64c452bcdb345a0c113287a07b0f, type: 3}
+    Percentage: 0.0000018
+    OrePrice: 1100000
+    rarityEffectColor: {r: 1, g: 0.5137255, b: 0, a: 0}
+    Color: {r: 1, g: 0.5137255, b: 0, a: 1}
+  - name: Forbidden gem
+    description: Found deep in the caves. no one knows its purpose
+    rarityTitle: Exotic
+    OrePicture: {fileID: 21300000, guid: 0751aec8e2b5d854c8bbc7507e991480, type: 3}
     XP: 100
     OreID: 0
-    chance: 9900000
+    chance: 70000000
     StorageAmount: 0
-    Percentage: 0.000067
-    OrePrice: 400000
-    rarityEffectColor: {r: 0.70645, g: 0, b: 1, a: 0}
-    Color: {r: 0.7058824, g: 0, b: 1, a: 1}
-  - name: Test
-    description: Test
-    rarityTitle: Mythic
-    OrePicture: {fileID: 21300000, guid: 160b64c452bcdb345a0c113287a07b0f, type: 3}
+    Percentage: 0.0000014
+    OrePrice: 1300000
+    rarityEffectColor: {r: 1, g: 0.5137255, b: 0, a: 0}
+    Color: {r: 1, g: 0.5137255, b: 0, a: 1}
+  - name: Ruined gem
+    description: Left to rot but still powerful
+    rarityTitle: Exotic
+    OrePicture: {fileID: 21300000, guid: a6d1e0bca99b3d147b419d5f845c5c5c, type: 3}
     XP: 100
     OreID: 0
-    chance: 9900000
+    chance: 85000000
     StorageAmount: 0
-    Percentage: 0.000067
-    OrePrice: 400000
-    rarityEffectColor: {r: 0.70645, g: 0, b: 1, a: 0}
-    Color: {r: 0.7058824, g: 0, b: 1, a: 1}
-  - name: Test
-    description: Test
-    rarityTitle: Mythic
-    OrePicture: {fileID: 21300000, guid: 160b64c452bcdb345a0c113287a07b0f, type: 3}
+    Percentage: 0.0000012
+    OrePrice: 1500000
+    rarityEffectColor: {r: 1, g: 0.5137255, b: 0, a: 0}
+    Color: {r: 1, g: 0.5137255, b: 0, a: 1}
+  - name: Lost rune
+    description: 'This rune probably has a use but no one knows for what '
+    rarityTitle: Exotic
+    OrePicture: {fileID: 21300000, guid: 81557c19c57cbd6428dd7711210c789c, type: 3}
     XP: 100
     OreID: 0
-    chance: 9900000
+    chance: 100000000
     StorageAmount: 0
-    Percentage: 0.000067
-    OrePrice: 400000
-    rarityEffectColor: {r: 0.70645, g: 0, b: 1, a: 0}
-    Color: {r: 0.7058824, g: 0, b: 1, a: 1}
+    Percentage: 0.000001
+    OrePrice: 1700000
+    rarityEffectColor: {r: 1, g: 0.5137255, b: 0, a: 0}
+    Color: {r: 1, g: 0.5137255, b: 0, a: 1}
+  - name: Magma gem
+    description: Molten rock
+    rarityTitle: Divine
+    OrePicture: {fileID: 21300000, guid: 3d9a110a96a7f074aa118d8d7652a5b3, type: 3}
+    XP: 200
+    OreID: 0
+    chance: 120000000
+    StorageAmount: 0
+    Percentage: 0.00000083
+    OrePrice: 2000000
+    rarityEffectColor: {r: 1, g: 0.9132484, b: 0, a: 0}
+    Color: {r: 1, g: 0.9137255, b: 0, a: 1}
+  - name: Glowstone
+    description: A bright material found in a hot place
+    rarityTitle: Divine
+    OrePicture: {fileID: 21300000, guid: 67d3c8f32f67dce4f861c34a1115dc2d, type: 3}
+    XP: 200
+    OreID: 0
+    chance: 240000000
+    StorageAmount: 0
+    Percentage: 0.00000042
+    OrePrice: 2500000
+    rarityEffectColor: {r: 1, g: 0.9132484, b: 0, a: 0}
+    Color: {r: 1, g: 0.9137255, b: 0, a: 1}
+  - name: Burnite
+    description: Eternally burning
+    rarityTitle: Divine
+    OrePicture: {fileID: 21300000, guid: c981a67e428f9904fb9f028c48b39c11, type: 3}
+    XP: 200
+    OreID: 0
+    chance: 360000000
+    StorageAmount: 0
+    Percentage: 0.00000027
+    OrePrice: 3500000
+    rarityEffectColor: {r: 1, g: 0.9132484, b: 0, a: 0}
+    Color: {r: 1, g: 0.9137255, b: 0, a: 1}
+  - name: Infernium
+    description: One of the hotest materials known to men
+    rarityTitle: Divine
+    OrePicture: {fileID: 21300000, guid: 31192fba16e80c14da438bb169d59551, type: 3}
+    XP: 200
+    OreID: 0
+    chance: 400000000
+    StorageAmount: 0
+    Percentage: 0.00000025
+    OrePrice: 500000
+    rarityEffectColor: {r: 1, g: 0.9132484, b: 0, a: 0}
+    Color: {r: 1, g: 0.9137255, b: 0, a: 1}
+  - name: Lava gem
+    description: A very hot gem. Wonder what it can be used for
+    rarityTitle: Divine
+    OrePicture: {fileID: 21300000, guid: 098215c96f1e43246bcf9b8dc5442ab3, type: 3}
+    XP: 200
+    OreID: 0
+    chance: 650000000
+    StorageAmount: 0
+    Percentage: 0.00000015
+    OrePrice: 6500000
+    rarityEffectColor: {r: 1, g: 0.9132484, b: 0, a: 0}
+    Color: {r: 1, g: 0.9137255, b: 0, a: 1}
+  - name: Hellfire
+    description: Straight from hell itself
+    rarityTitle: Divine
+    OrePicture: {fileID: 21300000, guid: 50c261ea438359140aa37830fda6ab4f, type: 3}
+    XP: 200
+    OreID: 0
+    chance: 910000000
+    StorageAmount: 0
+    Percentage: 0.00000011
+    OrePrice: 8500000
+    rarityEffectColor: {r: 1, g: 0.9132484, b: 0, a: 0}
+    Color: {r: 1, g: 0.9137255, b: 0, a: 1}
+  - name: Dragonite
+    description: Why is a dragon even considered a gem?
+    rarityTitle: Divine
+    OrePicture: {fileID: 21300000, guid: 8bce843f16e0df4449a5fbe8e4878e9a, type: 3}
+    XP: 200
+    OreID: 0
+    chance: 1000000000
+    StorageAmount: 0
+    Percentage: 0.0000001
+    OrePrice: 10000000
+    rarityEffectColor: {r: 1, g: 0.9132484, b: 0, a: 0}
+    Color: {r: 1, g: 0.9137255, b: 0, a: 1}
   CommonOres: []
   UncommonOres: []
   RareOres: []
@@ -20495,6 +20582,7 @@ MonoBehaviour:
   LegendaryOres: []
   MythicOres: []
   ExoticOres: []
+  DivineOres: []
   playerHand: []
   cardLimit: 1
   timer: 0
@@ -20624,6 +20712,7 @@ MonoBehaviour:
   RNGscript: {fileID: 1546723946}
   OreStorage: {fileID: 987623140}
   AutoRollButton: {fileID: 1032464898}
+  XPScript: {fileID: 2085766772}
   AutoSellButton: {fileID: 1657349031}
   AutoRollButtonColor: {fileID: 93507715}
 --- !u!114 &1546723950
@@ -20814,10 +20903,10 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 20
+    m_FontSize: 18
     m_FontStyle: 1
     m_BestFit: 0
-    m_MinSize: 2
+    m_MinSize: 1
     m_MaxSize: 40
     m_Alignment: 4
     m_AlignByGeometry: 0
@@ -26781,6 +26870,7 @@ MonoBehaviour:
   OreStorage: {fileID: 987623140}
   SavedOres: {fileID: 987623142}
   DataPersistence: {fileID: 1950076375}
+  IndexManager: {fileID: 987623143}
   RebirthButton: {fileID: 2091459040}
 --- !u!4 &2085766773
 Transform:
@@ -27354,7 +27444,7 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 14
+    m_FontSize: 12
     m_FontStyle: 1
     m_BestFit: 0
     m_MinSize: 1

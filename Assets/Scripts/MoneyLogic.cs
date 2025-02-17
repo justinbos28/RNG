@@ -28,9 +28,12 @@ public class MoneyLogic : MonoBehaviour, IDataPersistence
     public Text LuckMultiplierText;
     public Text MoneyMultiplier;
     public Text StorageAmount;
+
     public RNGscript RNGscript;
     public OreStorage OreStorage;
     public GameObject AutoRollButton;
+    public XPScript XPScript;
+
     public Image AutoSellButton;
     public Image AutoRollButtonColor;
 
@@ -226,6 +229,8 @@ public class MoneyLogic : MonoBehaviour, IDataPersistence
             OreStorage.MaxEpicOres = 150;
             OreStorage.MaxLegendaryOres = 50;
             OreStorage.MaxMythicOres = 10;
+            OreStorage.MaxExoticOres = 5;
+            OreStorage.MaxDivineOres = 2;
             StorageAmount.text = "100.000$";
         }
         else if (BoughtStorageAmount == 2)
@@ -236,6 +241,70 @@ public class MoneyLogic : MonoBehaviour, IDataPersistence
             OreStorage.MaxEpicOres = 300;
             OreStorage.MaxLegendaryOres = 100;
             OreStorage.MaxMythicOres = 20;
+            OreStorage.MaxExoticOres = 10;
+            OreStorage.MaxDivineOres = 5;
+            if (XPScript.Rebirth >= 1)
+            {
+                StorageAmount.text = "1.000.000$";
+            }
+            else
+            {
+                StorageAmount.text = "Purchased";
+            }
+        }
+        else if (BoughtStorageAmount == 3)
+        {
+            OreStorage.MaxCommonOres = 3000;
+            OreStorage.MaxUncommonOres = 1500;
+            OreStorage.MaxRareOres = 750;
+            OreStorage.MaxEpicOres = 450;
+            OreStorage.MaxLegendaryOres = 150;
+            OreStorage.MaxMythicOres = 30;
+            OreStorage.MaxExoticOres = 20;
+            OreStorage.MaxDivineOres = 10;
+            StorageAmount.text = "5.0000.000";
+        }
+        else if (BoughtStorageAmount == 4)
+        {
+            OreStorage.MaxCommonOres = 4000;
+            OreStorage.MaxUncommonOres = 3000;
+            OreStorage.MaxRareOres = 1000;
+            OreStorage.MaxEpicOres = 750;
+            OreStorage.MaxLegendaryOres = 300;
+            OreStorage.MaxMythicOres = 60;
+            OreStorage.MaxExoticOres = 40;
+            OreStorage.MaxDivineOres = 20;
+            if (XPScript.Rebirth >= 2)
+            {
+                StorageAmount.text = "10.000.000$";
+            }
+            else
+            {
+                StorageAmount.text = "Purchased";
+            }
+        }
+        else if (BoughtStorageAmount == 5)
+        {
+            OreStorage.MaxCommonOres = 5000;
+            OreStorage.MaxUncommonOres = 4000;
+            OreStorage.MaxRareOres = 2000;
+            OreStorage.MaxEpicOres = 1000;
+            OreStorage.MaxLegendaryOres = 600;
+            OreStorage.MaxMythicOres = 100;
+            OreStorage.MaxExoticOres = 80;
+            OreStorage.MaxDivineOres = 40;
+            StorageAmount.text = "50.000.000$";
+        }
+        else if (BoughtStorageAmount == 6)
+        {
+            OreStorage.MaxCommonOres = 10000;
+            OreStorage.MaxUncommonOres = 5000;
+            OreStorage.MaxRareOres = 4000;
+            OreStorage.MaxEpicOres = 1500;
+            OreStorage.MaxLegendaryOres = 800;
+            OreStorage.MaxMythicOres = 150;
+            OreStorage.MaxExoticOres = 100;
+            OreStorage.MaxDivineOres = 50;
             StorageAmount.text = "Purchased";
         }
     }
@@ -613,7 +682,30 @@ public class MoneyLogic : MonoBehaviour, IDataPersistence
             OreStorage.MaxEpicOres = 300;
             OreStorage.MaxLegendaryOres = 100;
             OreStorage.MaxMythicOres = 20;
-            StorageAmount.text = "Purchased";
+            CurrentMoney.text = StaticVariables.cash.ToString("F2") + "$";
+        }
+        else if (StaticVariables.cash >= 1000000 && BoughtStorageAmount == 2 && XPScript.Rebirth >= 1)
+        {
+            Money -= 1000000;
+            BoughtStorageAmount = 3;
+            CurrentMoney.text = StaticVariables.cash.ToString("F2") + "$";
+        }
+        else if (StaticVariables.cash >= 5000000 && BoughtStorageAmount == 3 && XPScript.Rebirth >= 1)
+        {
+            Money -= 5000000;
+            BoughtStorageAmount = 4;
+            CurrentMoney.text = StaticVariables.cash.ToString("F2") + "$";
+        }
+        else if (StaticVariables.cash >= 10000000 && BoughtStorageAmount == 4 && XPScript.Rebirth >= 2)
+        {
+            Money -= 10000000;
+            BoughtStorageAmount = 5;
+            CurrentMoney.text = StaticVariables.cash.ToString("F2") + "$";
+        }
+        else if (StaticVariables.cash >= 50000000 && BoughtStorageAmount == 5 && XPScript.Rebirth >= 2)
+        {
+            Money -= 50000000;
+            BoughtStorageAmount = 6;
             CurrentMoney.text = StaticVariables.cash.ToString("F2") + "$";
         }
     }
