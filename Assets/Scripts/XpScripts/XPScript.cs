@@ -1,6 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
@@ -25,7 +22,7 @@ public class XPScript : MonoBehaviour, IDataPersistence
     public IndexManager IndexManager;
 
     public GameObject RebirthButton;
-    
+
 
     public void LoadData(GameData data)
     {
@@ -79,7 +76,7 @@ public class XPScript : MonoBehaviour, IDataPersistence
         {
             XPCount += RNGscript.playerHand[i].XP * XPMultiplier;
         }
-        if (XPCount >= XPNeeded) 
+        if (XPCount >= XPNeeded)
         {
             XPCount = 0;
             LeveledUp();
@@ -90,114 +87,20 @@ public class XPScript : MonoBehaviour, IDataPersistence
         XPNeeded += (2 * 1.1f) * LevelCount;
         LevelCount++;
         ShowXp.text = "level " + LevelCount + ": " + XPCount + " / " + XPNeeded.ToString("F0");
-        if (LevelCount == 10)
+        ApplyLevelBonuses();
+    }
+    private void ApplyLevelBonuses()
+    {
+        if (LevelCount % 10 == 0 && LevelCount <= 100)
         {
-            XPMultiplier = 2;
-            XPLuckMultiplier = 1.1f;
+            XPMultiplier = LevelCount / 10 + 1;
+            XPLuckMultiplier = 1 + (LevelCount / 100.0f);
             RNGscript.RollSpeed -= 0.01f;
         }
-        else if (LevelCount == 20)
+        else if (LevelCount % 10 == 0 && LevelCount > 100)
         {
-            XPMultiplier = 3;
-            XPLuckMultiplier = 1.2f;
-            RNGscript.RollSpeed -= 0.01f;
-        }
-        else if (LevelCount == 30)
-        {
-            XPMultiplier = 4;
-            XPLuckMultiplier = 1.3f;
-            RNGscript.RollSpeed -= 0.01f;
-        }
-        else if (LevelCount == 40)
-        {
-            XPMultiplier = 5;
-            XPLuckMultiplier = 1.4f;
-            RNGscript.RollSpeed -= 0.01f;
-        }
-        else if (LevelCount == 50)
-        {
-            XPMultiplier = 6;
-            XPLuckMultiplier = 1.5f;
-            RNGscript.RollSpeed -= 0.01f;
-        }
-        else if (LevelCount == 60)
-        {
-            XPMultiplier = 7;
-            XPLuckMultiplier = 1.6f;
-            RNGscript.RollSpeed -= 0.01f;
-        }
-        else if (LevelCount == 70)
-        {
-            XPMultiplier = 8;
-            XPLuckMultiplier = 1.7f;
-            RNGscript.RollSpeed -= 0.01f;
-        }
-        else if (LevelCount == 80)
-        {
-            XPMultiplier = 9;
-            XPLuckMultiplier = 1.8f;
-            RNGscript.RollSpeed -= 0.01f;
-        }
-        else if (LevelCount == 90)
-        {
-            XPMultiplier = 10;
-            XPLuckMultiplier = 1.9f;
-            RNGscript.RollSpeed -= 0.01f;
-        }
-        else if (LevelCount == 100)
-        {
-            XPMultiplier = 11;
-            XPLuckMultiplier = 2;
-            RNGscript.RollSpeed -= 0.01f;
-        }
-        else if (LevelCount == 110)
-        {
-            XPMultiplier = 12;
-            XPLuckMultiplier = 2.2f;
-        }
-        else if (LevelCount == 120)
-        {
-            XPMultiplier = 13;
-            XPLuckMultiplier = 2.4f;
-        }
-        else if (LevelCount == 130)
-        {
-            XPMultiplier = 14;
-            XPLuckMultiplier = 2.6f;
-        }
-        else if (LevelCount == 140)
-        {
-            XPMultiplier = 15;
-            XPLuckMultiplier = 2.8f;
-        }
-        else if (LevelCount == 150)
-        {
-            XPMultiplier = 16;
-            XPLuckMultiplier = 3;
-        }
-        else if (LevelCount == 160)
-        {
-            XPMultiplier = 17;
-            XPLuckMultiplier = 3.4f;
-        }
-        else if (LevelCount == 170)
-        {
-            XPMultiplier = 18;
-            XPLuckMultiplier = 3.8f;
-        }
-        else if (LevelCount == 180)
-        {
-            XPMultiplier = 19;
-            XPLuckMultiplier = 4.2f;
-        }
-        else if (LevelCount == 190)
-        {
-            XPMultiplier = 20;
-            XPLuckMultiplier = 4.6f;
-        }
-        else if (LevelCount == 200)
-        {
-            XPLuckMultiplier = 5f;
+            XPMultiplier = LevelCount / 10 + 1;
+            XPLuckMultiplier = 1 + (LevelCount / 100.0f);
         }
     }
 
