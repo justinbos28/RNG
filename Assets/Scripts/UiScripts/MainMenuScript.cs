@@ -1,10 +1,14 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class MainMenuScript : MonoBehaviour
 {
     public GameObject mainMenu;
+    public Image Image;
+    public List<Sprite> Images;
+    public XPScript XPScript;
+
     public void ExitGame()
     {
         Application.Quit();
@@ -24,6 +28,15 @@ public class MainMenuScript : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Escape))
         {
             mainMenu.SetActive(true);
+        }
+
+        if (XPScript.Rebirth > 1)
+        {
+            Image.sprite = Images[2];
+        }
+        else
+        {
+            Image.sprite = Images[XPScript.Rebirth];
         }
     }
 }

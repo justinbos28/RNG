@@ -9,18 +9,23 @@ public class Uimanager : MonoBehaviour
     public GameObject Shop;
     public GameObject Index;
     public GameObject Stats;
+    public GameObject Crafter;
     public bool ShopPanel;
     public bool OpenIndex;
     public bool InventoryPanel;
     public bool OpenStats;
+    public bool OpenCrafter;
     public void ShopButton()
     {
         if (ShopPanel == false)
         {
             Shop.SetActive(true);
             ShopPanel = true;
+
             InventoryPanel = false;
+            OpenCrafter = false;
             Inventory.SetActive(false);
+            Crafter.SetActive(false);
         }
         else
         {
@@ -34,13 +39,35 @@ public class Uimanager : MonoBehaviour
         {
             ShopPanel = false;
             Inventory.SetActive(true);
+
             InventoryPanel = true;
+            OpenCrafter = false;
             Shop.SetActive(false);
+            Crafter.SetActive(false);
         }
         else
         {
             Inventory.SetActive(false);
             InventoryPanel = false;
+        }
+    }
+
+    public void CrafterButton()
+    {
+        if (OpenCrafter == false)
+        {
+            OpenCrafter = true;
+            Crafter.SetActive(true);
+
+            InventoryPanel = false;
+            ShopPanel = false;
+            Inventory.SetActive(false);
+            Shop.SetActive(false);
+        }
+        else
+        {
+            OpenCrafter = false;
+            Crafter.SetActive(false);
         }
     }
 

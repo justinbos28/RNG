@@ -15,6 +15,8 @@ public class StatsScript : MonoBehaviour
     public string Mine;
     public Image RebirthImage;
     public List <Sprite> RebirthImages;
+    public List <Material> Skyboxes;
+    public Skybox Skybox;   
 
     public GameObject RebirthMenu;
     // Update is called once per frame
@@ -36,7 +38,9 @@ public class StatsScript : MonoBehaviour
             + "Rare ore storage = " + OreStorage.MaxRareOres + "\n"
             + "Epic ore storage = " + OreStorage.MaxEpicOres + "\n"
             + "Legendary ore storage = " + OreStorage.MaxLegendaryOres + "\n"
-            + "Mythic ore storage = " + OreStorage.MaxMythicOres + "\n";
+            + "Mythic ore storage = " + OreStorage.MaxMythicOres + "\n"
+            + "Exotix ore storage = " + OreStorage.MaxExoticOres + "\n"
+            + "Divine ore storage = " + OreStorage.MaxDivineOres;
 
         if (XPScript.Rebirth == 0)
         {
@@ -50,6 +54,15 @@ public class StatsScript : MonoBehaviour
         {
             Mine = "No new mine";
         }
+
+        if (XPScript.Rebirth > 1)
+        {
+            Skybox.material = Skyboxes[2];
+        }
+        else
+        {
+            Skybox.material = Skyboxes[XPScript.Rebirth];
+        }
     }
 
     public void OpenRebirthMenu()
@@ -58,10 +71,12 @@ public class StatsScript : MonoBehaviour
         if (XPScript.Rebirth > 1)
         {
             RebirthImage.sprite = RebirthImages[1];
+            Skybox.material = Skyboxes[1];
         }
         else
         {
             RebirthImage.sprite = RebirthImages[XPScript.Rebirth];
+            Skybox.material = Skyboxes[XPScript.Rebirth];
         }
 
         RebirthText.text = "Rebirth " + (XPScript.Rebirth + 1) + "\n"

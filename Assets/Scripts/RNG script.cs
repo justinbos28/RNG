@@ -517,6 +517,24 @@ public class RNGscript : MonoBehaviour, IDataPersistence
                         playerHand[i].StorageAmount = OreStorage.MaxMythicOres;
                     }
                 }
+                // autosell for exotic ores
+                if (new int[] { 43, 44, 45, 46, 47, 48, 49 }.Contains(playerHand[i].OreID))
+                {
+                    if (playerHand[i].StorageAmount >= OreStorage.MaxExoticOres)
+                    {
+                        MoneyLogic.Money += playerHand[i].OrePrice * MoneyMultiplier;
+                        playerHand[i].StorageAmount = OreStorage.MaxExoticOres;
+                    }
+                }
+                // autosell for divine ores
+                if (new int[] { 50, 51, 52, 53, 54, 55, 56 }.Contains(playerHand[i].OreID))
+                {
+                    if (playerHand[i].StorageAmount >= OreStorage.MaxDivineOres)
+                    {
+                        MoneyLogic.Money += playerHand[i].OrePrice * MoneyMultiplier;
+                        playerHand[i].StorageAmount = OreStorage.MaxDivineOres;
+                    }
+                }
             }
             // updates the inventory and xp
             OreStorage.UpdateInventory();

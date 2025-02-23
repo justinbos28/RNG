@@ -5,19 +5,21 @@
 /// 3. ore textures - done
 /// 4. more ores - done
 /// 5. make actual ores, rarities - done
-// 6. stats - delayed
+/// 6. stats - done
 /// 7. background - done
 // 8. sounds
 /// 9. remove test objects - done
 /// 10. balance money - done?
 /// 11. begin ore texture (dice?) - done
 /// 12. luck textures shop - done
-// 13. 2 more upgrades for money and inv space - done except for inv space
+/// 13. 2 more upgrades for money and inv space - done 
 
 /// new
-// 14. index - progress
-// 15. crafting ( like being able  to make necklaces, ect with the gems and other materials)
-// 16. nerf money, luck, speed ect
+/// 14. index - done
+// 15. crafting ( like being able  to make necklaces, ect with the gems and other materials) 
+// 15.5. drills
+// 16. nerf money, luck, speed ect - included in the crafting
+/// 17. rebirth - done
 
 // ores: luck, chance, rarity, prices
 // 7 common - 1 to 100
