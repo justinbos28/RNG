@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using Unity.VisualScripting;
 
 public class XPScript : MonoBehaviour, IDataPersistence
 {
@@ -11,9 +12,10 @@ public class XPScript : MonoBehaviour, IDataPersistence
     public int LevelCount = 1;
     public int XPMultiplier = 1;
     public float XPLuckMultiplier = 1;
-
     public float XPNeeded = 10;
+    
     public Text ShowXp;
+    public InputField WorldNumber;
 
     public RNGscript RNGscript;
     public MoneyLogic MoneyLogic;
@@ -60,12 +62,12 @@ public class XPScript : MonoBehaviour, IDataPersistence
     }
     private void Start()
     {
-        if (Rebirth == 1)
+        if (SavedRebirth == 1)
         {
             OreStorage.InventoryOres = 6;
             IndexManager.MaxIndexCount = 6;
         }
-        else if (Rebirth >= 2)
+        else if (SavedRebirth >= 2)
         {
             OreStorage.InventoryOres = 7;
             IndexManager.MaxIndexCount = 7;
@@ -104,6 +106,14 @@ public class XPScript : MonoBehaviour, IDataPersistence
         {
             XPMultiplier = LevelCount / 10 + 1;
             XPLuckMultiplier = 1 + (LevelCount / 100.0f);
+        }
+    }
+
+    public void SwitchWorld()
+    {
+        if (int.Parse(WorldNumber.text) <= SavedRebirth && int.Parse(WorldNumber.text) >= 0)
+        {
+            Rebirth = int.Parse(WorldNumber.text);
         }
     }
 

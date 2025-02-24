@@ -219,7 +219,7 @@ public class RNGscript : MonoBehaviour, IDataPersistence
         {
             Dictionary<int, float> oreRarityChances = new Dictionary<int, float>
             {
-                { 43, 0.0000001f }, // ooh
+                { 43, 0.000005f }, // ooh
                 { 42, 0.00001f }, { 41, 0.000013f }, { 40, 0.000017f }, { 39, 0.000025f }, { 38, 0.000037f }, { 37, 0.000067f }, { 36, 0.0001f }, // mythic ores
                 { 35, 0.00011f }, { 34, 0.00015f }, { 33, 0.00018f }, { 32, 0.00022f }, { 31, 0.00028f }, { 30, 0.0004f }, { 29, 0.00067f }, // legendary ores
                 { 28, 0.001f }, { 27, 0.0011f }, { 26, 0.0013f }, { 25, 0.0015f }, { 24, 0.0022f }, { 23, 0.0035f }, { 22, 0.0067f }, // epic ores
@@ -474,7 +474,7 @@ public class RNGscript : MonoBehaviour, IDataPersistence
                     playerHand[i].StorageAmount++;
                 }
                 // changes the color of the ore text if the texture is black
-                if (new int[] { 2, 11, 23, 36, 37, 42 }.Contains(playerHand[i].OreID))
+                if (new int[] { 2, 11, 23, 36, 37, 42, 57 }.Contains(playerHand[i].OreID))
                 {
                     titles[i].color = Color.white;
                     effects[i].color = Color.white;

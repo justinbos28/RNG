@@ -31,7 +31,7 @@ public class StatsScript : MonoBehaviour
             + "Xp Multiplier = " + XPScript.XPMultiplier + "\n"
             + "Xp Luck Multiplier = " + XPScript.XPLuckMultiplier.ToString("F1") + "\n"
             + "Max Level = " + XPScript.MaxLevel + "\n"
-            + "Rebirth = " + XPScript.Rebirth;
+            + "Rebirth = " + XPScript.SavedRebirth;
 
         StatTextTwo.text = "Common ore storage = " + OreStorage.MaxCommonOres + "\n"
             + "Uncommon ore storage = " + OreStorage.MaxUncommonOres + "\n"
