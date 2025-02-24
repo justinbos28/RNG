@@ -30,10 +30,13 @@ public class OreStorage : MonoBehaviour
     public List<Text> Name = new List<Text>();
     public List<Text> Price = new List<Text>();
 
+    public List<OreClass> lastOre = new List<OreClass>();
+
     [Header("selling")]
     public List<InputField> InputFields = new List<InputField>();
     public RNGscript RNGscript;
     public MoneyLogic MoneyLogic;
+    public XPScript XPScript;
 
     public void SwitchInventory()
     {
@@ -70,8 +73,16 @@ public class OreStorage : MonoBehaviour
 
     private List<OreClass> GetCurrentInventory()
     {
+        switch (XPScript.Rebirth)
+        {
+            case 0: return lastOre = RNGscript.MythicOres;
+            case 1: return lastOre = RNGscript.ExoticOres;
+            case 2: return lastOre = RNGscript.DivineOres;
+        }
+            
         switch (InventoryStatus)
         {
+            case 0: return lastOre;
             case 1: return RNGscript.CommonOres;
             case 2: return RNGscript.UncommonOres;
             case 3: return RNGscript.RareOres;
@@ -79,7 +90,7 @@ public class OreStorage : MonoBehaviour
             case 5: return RNGscript.LegendaryOres;
             case 6: return RNGscript.MythicOres;
             case 7: return RNGscript.ExoticOres;
-            case 0: return RNGscript.DivineOres;
+            case 8: return RNGscript.DivineOres;
             default: return new List<OreClass>();
         }
     }
@@ -149,8 +160,6 @@ public class OreStorage : MonoBehaviour
             InputFields[i].enabled = false;
         }
     }
-
-    
 
     private void UpdateUiInventory(List<OreClass> ores)
     {

@@ -69,4 +69,30 @@ public class IndexManager : MonoBehaviour
         if (IndexCount == MaxIndexCount) { IndexCount = -1; }
         IndexCount++;
     }
+
+    public void SetIndexDefault()
+    {
+        for (int i = 0; i < IndexList.Count; i++)
+        {
+            if (i < RNGscript.allOres.Count)
+            {
+                IndexList[i].Name.text = RNGscript.CommonOres[i].name;
+                IndexList[i].Description.text = RNGscript.CommonOres[i].description;
+                IndexList[i].Percentage.text = RNGscript.CommonOres[i].Percentage.ToString() + "%";
+                IndexList[i].Price.text = "Ore Price = " + RNGscript.CommonOres[i].OrePrice.ToString();
+                IndexList[i].Rarity.text = "1 / " + RNGscript.CommonOres[i].chance.ToString();
+                IndexList[i].Image.sprite = RNGscript.CommonOres[i].OrePicture;
+                IndexList[i].background.color = RNGscript.CommonOres[i].Color;
+            }
+            else
+            {
+                IndexList[i].Name.text = "Empty";
+                IndexList[i].Description.text = "No Description";
+                IndexList[i].Percentage.text = "0%";
+                IndexList[i].Price.text = "Ore Price = 0";
+                IndexList[i].Rarity.text = "0 / 0";
+                IndexList[i].Image.sprite = null;
+            }
+        }
+    }
 }

@@ -17,6 +17,7 @@ public class GameData
     public float LuckPercentage;
     public float LuckMultiplier;
     public float MoneyMultiplier;
+    public bool Test = false;
 
     [Header("Values from MoneyLogic")]
     public int BoughtRollSpeed;
@@ -32,7 +33,7 @@ public class GameData
     public int LevelCount;
     public int XPMultiplier = 1;
     public int MaxLevel = 100;
-    public int Rebirth;
+    public int SavedRebirth;
 
     public float XPNeeded;
     public float XPLuckMultiplier = 1;
@@ -62,7 +63,8 @@ public class GameData
         this.XPMultiplier = 1;
         this.XPLuckMultiplier = 1;
         this.MaxLevel = 100;
-        this.Rebirth = 0;
+        this.SavedRebirth = 0;
+        this.Test = false;
 
         this.OresCount = new List<int>();  
     }

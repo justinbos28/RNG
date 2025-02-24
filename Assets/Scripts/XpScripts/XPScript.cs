@@ -7,6 +7,7 @@ public class XPScript : MonoBehaviour, IDataPersistence
     public int XPCount;
     public int MaxLevel = 100;
     public int Rebirth;
+    public int SavedRebirth;
     public int LevelCount = 1;
     public int XPMultiplier = 1;
     public float XPLuckMultiplier = 1;
@@ -26,7 +27,7 @@ public class XPScript : MonoBehaviour, IDataPersistence
 
     public void LoadData(GameData data)
     {
-        this.Rebirth = data.Rebirth;
+        this.SavedRebirth = data.SavedRebirth;
         this.MaxLevel = data.MaxLevel;
         this.XPCount = data.XPCount;
         this.LevelCount = data.LevelCount;
@@ -36,7 +37,7 @@ public class XPScript : MonoBehaviour, IDataPersistence
     }
     public void SaveData(ref GameData data)
     {
-        data.Rebirth = this.Rebirth;
+        data.SavedRebirth = this.SavedRebirth;
         data.MaxLevel = this.MaxLevel;
         data.XPCount = this.XPCount;
         data.LevelCount = this.LevelCount;
@@ -69,6 +70,8 @@ public class XPScript : MonoBehaviour, IDataPersistence
             OreStorage.InventoryOres = 7;
             IndexManager.MaxIndexCount = 7;
         }
+
+        Rebirth = SavedRebirth;
     }
     public void UpdateXP()
     {
