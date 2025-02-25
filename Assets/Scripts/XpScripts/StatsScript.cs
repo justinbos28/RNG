@@ -12,6 +12,7 @@ public class StatsScript : MonoBehaviour
     public RNGscript RNGscript;
     public OreStorage OreStorage;
     public XPScript XPScript;
+    public Uimanager Uimanager;
     public string Mine;
     public Image RebirthImage;
     public List <Sprite> RebirthImages;
@@ -39,7 +40,7 @@ public class StatsScript : MonoBehaviour
             + "Epic ore storage = " + OreStorage.MaxEpicOres + "\n"
             + "Legendary ore storage = " + OreStorage.MaxLegendaryOres + "\n"
             + "Mythic ore storage = " + OreStorage.MaxMythicOres + "\n"
-            + "Exotix ore storage = " + OreStorage.MaxExoticOres + "\n"
+            + "Exotic ore storage = " + OreStorage.MaxExoticOres + "\n"
             + "Divine ore storage = " + OreStorage.MaxDivineOres;
 
         if (XPScript.Rebirth == 0)
@@ -67,6 +68,14 @@ public class StatsScript : MonoBehaviour
 
     public void OpenRebirthMenu()
     {
+        if (Uimanager.OpenPortal == true || Uimanager.Stats == true)
+        {
+            Uimanager.OpenPortal = false;
+            Uimanager.Teleporter.SetActive(false);
+
+            Uimanager.OpenStats = false;
+            Uimanager.Stats.SetActive(false);
+        }
         RebirthMenu.SetActive(true);
         if (XPScript.Rebirth > 1)
         {

@@ -2,6 +2,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using Unity.VisualScripting;
+using System.Collections.Generic;
 
 public class XPScript : MonoBehaviour, IDataPersistence
 {
@@ -15,7 +16,7 @@ public class XPScript : MonoBehaviour, IDataPersistence
     public float XPNeeded = 10;
     
     public Text ShowXp;
-    public InputField WorldNumber;
+    public List<WorldClass> Worlds = new List<WorldClass>();
 
     public RNGscript RNGscript;
     public MoneyLogic MoneyLogic;
@@ -74,6 +75,8 @@ public class XPScript : MonoBehaviour, IDataPersistence
         }
 
         Rebirth = SavedRebirth;
+
+        SelectWorld();
     }
     public void UpdateXP()
     {
@@ -109,11 +112,29 @@ public class XPScript : MonoBehaviour, IDataPersistence
         }
     }
 
-    public void SwitchWorld()
+    public void SelectWorld()
     {
-        if (int.Parse(WorldNumber.text) <= SavedRebirth && int.Parse(WorldNumber.text) >= 0)
+        for (int i = 0; i < Worlds.Count; i++)
         {
-            Rebirth = int.Parse(WorldNumber.text);
+            Worlds[i].IsSelected = false;
+            Worlds[i].text.color = Color.white;
+            int index = i;
+            Worlds[i].button.onClick.AddListener(() =>
+            {
+                Worlds[index].IsSelected = true;
+                Worlds[index].text.color = Color.green;
+            });
+        }
+    }
+
+    public void LoadWorld()
+    {
+        for (int i = 0; i < Worlds.Count; i++)
+        {
+            if (Worlds[i].IsSelected)
+            {
+                Rebirth = Worlds[i].ID;
+            }
         }
     }
 

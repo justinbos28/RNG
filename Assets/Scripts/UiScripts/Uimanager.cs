@@ -10,11 +10,15 @@ public class Uimanager : MonoBehaviour
     public GameObject Index;
     public GameObject Stats;
     public GameObject Crafter;
+    public GameObject Teleporter;
     public bool ShopPanel;
     public bool OpenIndex;
     public bool InventoryPanel;
     public bool OpenStats;
     public bool OpenCrafter;
+    public bool OpenPortal;
+
+    public StatsScript StatsScript;
     public void ShopButton()
     {
         if (ShopPanel == false)
@@ -92,6 +96,9 @@ public class Uimanager : MonoBehaviour
         {
             OpenStats = true;
             Stats.SetActive(true);
+            Teleporter.SetActive(false);
+            OpenPortal = false;
+            StatsScript.RebirthMenu.SetActive(false);
         }
         else
         {
@@ -99,4 +106,22 @@ public class Uimanager : MonoBehaviour
             Stats.SetActive(false);
         }
     }
+
+    public void OpenTeleporter()
+    {
+        if (OpenPortal == false)
+        {
+            StatsScript.RebirthMenu.SetActive(false);
+            OpenStats = false;
+            Stats.SetActive(false);
+            Teleporter.SetActive(true);
+            OpenPortal = true;
+        }
+        else
+        {
+            Teleporter.SetActive(false);
+            OpenPortal = false;
+        }
+    }
+    
 }
