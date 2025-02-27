@@ -47,7 +47,7 @@ public class IndexManager : MonoBehaviour
         {
             if (i < ores.Count)
             {
-                IndexList[i].Name.text = ores[i].name;
+                IndexList[i].Name.text = ores[i].Name;
                 IndexList[i].Description.text = ores[i].description;
                 IndexList[i].Percentage.text = ores[i].Percentage.ToString() + "%";
                 IndexList[i].Price.text = "Ore Price = " + ores[i].OrePrice.ToString();
@@ -76,7 +76,7 @@ public class IndexManager : MonoBehaviour
         {
             if (i < RNGscript.allOres.Count)
             {
-                IndexList[i].Name.text = RNGscript.CommonOres[i].name;
+                IndexList[i].Name.text = RNGscript.CommonOres[i].Name;
                 IndexList[i].Description.text = RNGscript.CommonOres[i].description;
                 IndexList[i].Percentage.text = RNGscript.CommonOres[i].Percentage.ToString() + "%";
                 IndexList[i].Price.text = "Ore Price = " + RNGscript.CommonOres[i].OrePrice.ToString();

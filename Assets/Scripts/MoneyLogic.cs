@@ -243,7 +243,7 @@ public class MoneyLogic : MonoBehaviour, IDataPersistence
             OreStorage.MaxMythicOres = 20;
             OreStorage.MaxExoticOres = 10;
             OreStorage.MaxDivineOres = 5;
-            if (XPScript.Rebirth >= 1)
+            if (XPScript.SavedRebirth >= 1)
             {
                 StorageAmount.text = "1.000.000$";
             }
@@ -274,7 +274,7 @@ public class MoneyLogic : MonoBehaviour, IDataPersistence
             OreStorage.MaxMythicOres = 60;
             OreStorage.MaxExoticOres = 40;
             OreStorage.MaxDivineOres = 20;
-            if (XPScript.Rebirth >= 2)
+            if (XPScript.SavedRebirth >= 2)
             {
                 StorageAmount.text = "10.000.000$";
             }
@@ -684,25 +684,25 @@ public class MoneyLogic : MonoBehaviour, IDataPersistence
             OreStorage.MaxMythicOres = 20;
             CurrentMoney.text = StaticVariables.cash.ToString("F2") + "$";
         }
-        else if (StaticVariables.cash >= 1000000 && BoughtStorageAmount == 2 && XPScript.Rebirth >= 1)
+        else if (StaticVariables.cash >= 1000000 && BoughtStorageAmount == 2 && XPScript.SavedRebirth >= 1)
         {
             Money -= 1000000;
             BoughtStorageAmount = 3;
             CurrentMoney.text = StaticVariables.cash.ToString("F2") + "$";
         }
-        else if (StaticVariables.cash >= 5000000 && BoughtStorageAmount == 3 && XPScript.Rebirth >= 1)
+        else if (StaticVariables.cash >= 5000000 && BoughtStorageAmount == 3 && XPScript.SavedRebirth >= 1)
         {
             Money -= 5000000;
             BoughtStorageAmount = 4;
             CurrentMoney.text = StaticVariables.cash.ToString("F2") + "$";
         }
-        else if (StaticVariables.cash >= 10000000 && BoughtStorageAmount == 4 && XPScript.Rebirth >= 2)
+        else if (StaticVariables.cash >= 10000000 && BoughtStorageAmount == 4 && XPScript.SavedRebirth >= 2)
         {
             Money -= 10000000;
             BoughtStorageAmount = 5;
             CurrentMoney.text = StaticVariables.cash.ToString("F2") + "$";
         }
-        else if (StaticVariables.cash >= 50000000 && BoughtStorageAmount == 5 && XPScript.Rebirth >= 2)
+        else if (StaticVariables.cash >= 50000000 && BoughtStorageAmount == 5 && XPScript.SavedRebirth >= 2)
         {
             Money -= 50000000;
             BoughtStorageAmount = 6;

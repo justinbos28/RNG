@@ -114,6 +114,7 @@ public class XPScript : MonoBehaviour, IDataPersistence
 
     public void SelectWorld()
     {
+        
         for (int i = 0; i < Worlds.Count; i++)
         {
             Worlds[i].IsSelected = false;
@@ -133,7 +134,14 @@ public class XPScript : MonoBehaviour, IDataPersistence
         {
             if (Worlds[i].IsSelected)
             {
-                Rebirth = Worlds[i].ID;
+                if (Worlds[i].ID >= SavedRebirth)
+                {
+                    Rebirth = SavedRebirth;
+                }
+                else
+                {
+                    Rebirth = Worlds[i].ID;
+                }    
             }
         }
     }
@@ -148,7 +156,7 @@ public class XPScript : MonoBehaviour, IDataPersistence
         XPMultiplier = 1;
         XPNeeded = 10;
         MaxLevel += 50;
-        Rebirth++;
+        SavedRebirth++;
 
         // rngscript reset
         RNGscript.RollSkips = 5;

@@ -66,15 +66,25 @@ public class OreStorage : MonoBehaviour
         }
     }
 
+    private void Update()
+    {
+        if(XPScript.Rebirth == 0)
+        {
+            lastOre = RNGscript.MythicOres;
+        }
+        else if (XPScript.Rebirth == 1)
+        {
+            lastOre = RNGscript.ExoticOres;
+        }
+        else if (XPScript.Rebirth >= 2)
+        {
+            lastOre = RNGscript.DivineOres;
+        }
+    }
+
     private List<OreClass> GetCurrentInventory()
     {
-        switch (XPScript.Rebirth)
-        {
-            case 0: return lastOre = RNGscript.MythicOres;
-            case 1: return lastOre = RNGscript.ExoticOres;
-            case 2: return lastOre = RNGscript.DivineOres;
-        }
-            
+
         switch (InventoryStatus)
         {
             case 0: return lastOre;
@@ -89,6 +99,7 @@ public class OreStorage : MonoBehaviour
             default: return new List<OreClass>();
         }
     }
+
     private List<OreClass> GetCurrentOres()
     {
         switch (InventoryStatus)
@@ -109,7 +120,7 @@ public class OreStorage : MonoBehaviour
     {
         for (int i = 0; i < ores.Count; i++)
         {
-            Name[i].text = ores[i].name;
+            Name[i].text = ores[i].Name;
             Color[i].color = ores[i].Color;
             Image[i].sprite = ores[i].OrePicture;
             Price[i].text = ores[i].OrePrice.ToString();
@@ -135,7 +146,7 @@ public class OreStorage : MonoBehaviour
         InventoryStatus = 1;
         for (int i = 0; i < RNGscript.CommonOres.Count; i++)
         {
-            Name[i].text = RNGscript.CommonOres[i].name;
+            Name[i].text = RNGscript.CommonOres[i].Name;
             Color[i].color = RNGscript.CommonOres[i].Color;
             Image[i].sprite = RNGscript.CommonOres[i].OrePicture;
             Price[i].text = RNGscript.CommonOres[i].OrePrice.ToString();

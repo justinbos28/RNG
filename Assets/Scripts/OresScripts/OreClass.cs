@@ -5,7 +5,7 @@ using UnityEngine;
 [System.Serializable]
 public class OreClass
 {
-    public string name;
+    public string Name;
     public string description;
     public string rarityTitle;
     public Sprite OrePicture;

@@ -43,11 +43,11 @@ public class StatsScript : MonoBehaviour
             + "Exotic ore storage = " + OreStorage.MaxExoticOres + "\n"
             + "Divine ore storage = " + OreStorage.MaxDivineOres;
 
-        if (XPScript.Rebirth == 0)
+        if (XPScript.SavedRebirth == 0)
         {
             Mine = "The Forgotten Mine";
         }
-        else if (XPScript.Rebirth == 1)
+        else if (XPScript.SavedRebirth == 1)
         {
             Mine = "The Inferno";
         }
@@ -77,7 +77,7 @@ public class StatsScript : MonoBehaviour
             Uimanager.Stats.SetActive(false);
         }
         RebirthMenu.SetActive(true);
-        if (XPScript.Rebirth > 1)
+        if (XPScript.SavedRebirth > 1)
         {
             RebirthImage.sprite = RebirthImages[1];
             Skybox.material = Skyboxes[1];
@@ -88,7 +88,7 @@ public class StatsScript : MonoBehaviour
             Skybox.material = Skyboxes[XPScript.Rebirth];
         }
 
-        RebirthText.text = "Rebirth " + (XPScript.Rebirth + 1) + "\n"
+        RebirthText.text = "Rebirth " + (XPScript.SavedRebirth + 1) + "\n"
           + "Max Level " + (XPScript.MaxLevel + 50) + "\n"
           + "Mine: " + Mine;
     }

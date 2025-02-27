@@ -378,7 +378,7 @@ public class RNGscript : MonoBehaviour, IDataPersistence
     {
         for (int i = 0; i < playerHand.Count; i++)
         {
-            titles[i].text = playerHand[i].name;
+            titles[i].text = playerHand[i].Name;
             OreSpriteRenderer[i].color = playerHand[i].rarityEffectColor;
             effects[i].text = "1 in " + playerHand[i].chance;
             rarity[i].text = playerHand[i].rarityTitle;

@@ -1,28 +1,178 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
+using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Minerscript : MonoBehaviour
 {
-    public Camera mainCamera;
-    public Camera minerCamera;
-    public Canvas mainCanvas;
-    public Canvas minerCanvas;
-    public void GoToDrills()
-    {
-        mainCamera.enabled = false;
-        minerCamera.enabled = true;
 
-        mainCanvas.enabled = false;
-        minerCanvas.enabled = true;
+    public List<CraftingClass> Materials = new List<CraftingClass>();
+    public List<ButtonClass> UnlockButtons = new List<ButtonClass>();
+    public List<GameObject> UnlockPanels = new List<GameObject>();
+    public Text DrillNumber;
+    public Text DrillPrice;
+    public GameObject DrillPanel;
+
+    public MinerUiSwitch MinerUiSwitch;
+    public RNGscript RNGscript;
+
+    public int MaterialAmount;
+    public string MaterialName;
+
+    public Dictionary<string, int> RequiredGems = new Dictionary<string, int>
+        {
+            { "Stone", 0 },
+            { "Coal", 0 },
+            { "Sand", 0 },
+            { "Wood", 0 },
+            { "Stone Gem", 0 },
+            { "Rusty Gem", 0 },
+            { "Iron", 500 },
+            { "Steel", 250 }
+        };
+
+    public int savedIndex;
+
+
+    private void LogRequiredGems()
+    {
+        foreach (var gem in RequiredGems)
+        {
+            Debug.Log($"Gem: {gem.Key}, Amount: {gem.Value}");
+        }
+    }
+    public void UnlockDrill()
+    {  
+        if (DrillPanel.activeSelf == false)
+        {
+            DrillPanel.SetActive(true);
+        }
+        else
+        {
+            DrillPanel.SetActive(false);
+        }
+        for (int i = 0; i < UnlockButtons.Count; i++)
+        {
+            UnlockButtons[i].button.interactable = false;
+        }
+        ResetRequirements();
+        GetPressedButton();
     }
 
-    public void GoToMain()
+    private void GetPressedButton()
     {
-        mainCamera.enabled = true;
-        minerCamera.enabled = false;
+        for (int i = 0; i < UnlockButtons.Count; i++)
+        {
+            int index = i;
+            UnlockButtons[i].button.onClick.AddListener(() =>
+            {
+                savedIndex = index;
+                DrillNumber.text = "Unlock drill " + (index + 1);
+                DrillPrice.text = "Price: " + MaterialAmount + MaterialName + "\n"
+                + "1 DrillHead \n 1 Generator \n 250 Steel \n 500 Iron \n 30 Wires \n 10 engine";
 
-        mainCanvas.enabled = true;
-        minerCanvas.enabled = false;
+                NewRequirement();
+            });
+        }
+    }
+
+    private void NewRequirement()
+    {
+        switch (savedIndex)
+        {
+            case 0: MaterialAmount = 1000; MaterialName = " Stone"; RequiredGems["Stone"] = 1000; break;
+            case 1: MaterialAmount = 1500; MaterialName = " Coal"; RequiredGems["Coal"] = 1500; break;
+            case 2: MaterialAmount = 1000; MaterialName = " Sand"; RequiredGems["Sand"] = 1000; break;
+            case 3: MaterialAmount = 800; MaterialName = " Wood"; RequiredGems["Wood"] = 800; break;
+            case 4: MaterialAmount = 1500; MaterialName = " Iron"; RequiredGems["Iron"] = 2000; break;
+            case 5: MaterialAmount = 1400; MaterialName = " Stone Gem"; RequiredGems["Stone Gem"] = 1400; break;
+            case 6: MaterialAmount = 2000; MaterialName = " Rusty Gem"; RequiredGems["Rusty Gem"] = 2000; break;
+        }
+    }
+
+    private void ResetRequirements()
+    {
+        for (int i = 0; i < UnlockButtons.Count; i++)
+        {
+            switch (i)
+            {
+                case 0: RequiredGems["Stone"] = 0; break;
+                case 1: RequiredGems["Coal"] = 0; break;
+                case 2: RequiredGems["Sand"] = 0; break;
+                case 3: RequiredGems["Wood"] = 0; break;
+                case 4: RequiredGems["Iron"] = 500; break;
+                case 5: RequiredGems["Stone Gem"] = 0; break;
+                case 6: RequiredGems["Rusty Gem"] = 0; break;
+            }
+        }
+    }
+
+
+    public void BuyDrill()
+    {
+        var requiredMaterials = new Dictionary<string, int>
+        {
+            { "DrillHead", 1 }, 
+            { "Generator", 1 }, 
+            { "Wires", 30 }, 
+            { "Engine", 10 } 
+        };
+
+        bool hasEnoughMaterials = requiredMaterials.All(material =>
+            Materials.Any(m => m.Name == material.Key && m.StorageAmount >= material.Value));
+
+        bool HasEnoughGems = RequiredGems.All(Gems =>
+            RNGscript.allOres.Any(G => G.Name == Gems.Key && G.StorageAmount >= Gems.Value));
+
+        if (hasEnoughMaterials && HasEnoughGems)
+        {
+            foreach (var material in requiredMaterials)
+            {
+                var item = Materials.First(m => m.Name == material.Key);
+                item.StorageAmount -= material.Value;
+            }
+            foreach (var gem in RequiredGems)
+            {
+                var Ores = RNGscript.allOres.First(G => G.Name == gem.Key);
+                Ores.StorageAmount -= gem.Value;
+            }
+            Debug.Log("Purchased");
+            DrillPanel.SetActive(false);
+            for (int i = 0; i < UnlockButtons.Count; i++)
+            {
+                UnlockButtons[i].button.interactable = true;
+                UnlockPanels[savedIndex].SetActive(false);
+            }
+        }
+        else
+        {
+            DrillPanel.SetActive(false);
+            for (int i = 0; i < UnlockButtons.Count; i++)
+            {
+                UnlockButtons[i].button.interactable = true;
+            }
+            Debug.Log("Not enough materials");
+        }
+    }
+
+    private void Start()
+    {
+        UnlockDrill();
+        DrillPanel.SetActive(false);
+        for (int i = 0; i < UnlockButtons.Count; i++)
+        {
+            UnlockButtons[i].ID = i;
+            UnlockButtons[i].button.interactable = true;
+        }
+
+        for (int i = 0; i < Materials.Count; i++)
+        {
+            Materials[i].ID = i;
+        }
+
+        ResetRequirements();
     }
 }
