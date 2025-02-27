@@ -1,8 +1,5 @@
-using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -16,25 +13,25 @@ public class Minerscript : MonoBehaviour
     public Text DrillPrice;
     public GameObject DrillPanel;
 
-    public MinerUiSwitch MinerUiSwitch;
     public RNGscript RNGscript;
+    public DrillUnlocked DrillUnlocked;
 
     public int MaterialAmount;
     public string MaterialName;
+    public int savedIndex;
 
     public Dictionary<string, int> RequiredGems = new Dictionary<string, int>
-        {
-            { "Stone", 0 },
-            { "Coal", 0 },
-            { "Sand", 0 },
-            { "Wood", 0 },
-            { "Stone Gem", 0 },
-            { "Rusty Gem", 0 },
-            { "Iron", 500 },
-            { "Steel", 250 }
-        };
+    {
+        { "Stone", 0 },
+        { "Coal", 0 },
+        { "Sand", 0 },
+        { "Wood", 0 },
+        { "Stone Gem", 0 },
+        { "Rusty Gem", 0 },
+        { "Iron", 500 },
+        { "Steel", 250 }
+    };
 
-    public int savedIndex;
 
 
     private void LogRequiredGems()
@@ -71,8 +68,6 @@ public class Minerscript : MonoBehaviour
             {
                 savedIndex = index;
                 DrillNumber.text = "Unlock drill " + (index + 1);
-                DrillPrice.text = "Price: " + MaterialAmount + MaterialName + "\n"
-                + "1 DrillHead \n 1 Generator \n 250 Steel \n 500 Iron \n 30 Wires \n 10 engine";
 
                 NewRequirement();
             });
@@ -91,6 +86,8 @@ public class Minerscript : MonoBehaviour
             case 5: MaterialAmount = 1400; MaterialName = " Stone Gem"; RequiredGems["Stone Gem"] = 1400; break;
             case 6: MaterialAmount = 2000; MaterialName = " Rusty Gem"; RequiredGems["Rusty Gem"] = 2000; break;
         }
+        DrillPrice.text = "Price: " + MaterialAmount + MaterialName + "\n"
+                + "1 DrillHead \n 1 Generator \n 250 Steel \n 500 Iron \n 30 Wires \n 10 engine";
     }
 
     private void ResetRequirements()
@@ -139,8 +136,11 @@ public class Minerscript : MonoBehaviour
                 var Ores = RNGscript.allOres.First(G => G.Name == gem.Key);
                 Ores.StorageAmount -= gem.Value;
             }
-            Debug.Log("Purchased");
+
             DrillPanel.SetActive(false);
+            DrillUnlocked.DrillList[savedIndex].IsUnlocked = true;
+            DrillUnlocked.DrillList[savedIndex].IsActive = true;
+
             for (int i = 0; i < UnlockButtons.Count; i++)
             {
                 UnlockButtons[i].button.interactable = true;

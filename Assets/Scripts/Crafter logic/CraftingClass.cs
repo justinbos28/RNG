@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.Drawing;
 using UnityEngine.UI;
 
@@ -25,4 +26,19 @@ public class Requirements
 {
     public int MaterialAmount;
     public string MaterialName;
+}
+[System.Serializable]
+public class drills
+{
+    public int ID;
+    public float Timer;
+    public int MaxTime;
+    public int Upgrade;
+    public bool IsActive;
+    public bool AutoSell;
+    public bool IsUnlocked;
+    public Text Text;
+    public Button UpgradeButton;
+    public Button AutoSellButton;
+    public Button Activate;
 }
