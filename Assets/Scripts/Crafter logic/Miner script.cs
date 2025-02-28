@@ -64,6 +64,7 @@ public class Minerscript : MonoBehaviour
         for (int i = 0; i < UnlockButtons.Count; i++)
         {
             int index = i;
+            UnlockButtons[i].button.onClick.RemoveAllListeners();
             UnlockButtons[i].button.onClick.AddListener(() =>
             {
                 savedIndex = index;
@@ -154,7 +155,7 @@ public class Minerscript : MonoBehaviour
             {
                 UnlockButtons[i].button.interactable = true;
             }
-            Debug.Log("Not enough materials");
+            DrillUnlocked.FailedRequirements = true;
         }
     }
 

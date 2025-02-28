@@ -34,10 +34,12 @@ public class drills
     public float Timer;
     public int MaxTime;
     public int Upgrade;
+    public float OrePrice;
     public bool IsActive;
     public bool AutoSell;
     public bool IsUnlocked;
     public Text Text;
+    public Text Active;
     public Button UpgradeButton;
     public Button AutoSellButton;
     public Button Activate;

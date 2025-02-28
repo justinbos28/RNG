@@ -8,6 +8,9 @@ public class MinerUiSwitch : MonoBehaviour
     public Camera minerCamera;
     public Canvas mainCanvas;
     public Canvas minerCanvas;
+
+    public DrillUnlocked drillUnlocked;
+    public Minerscript minerscript;
     public void GoToDrills()
     {
         mainCamera.enabled = false;
@@ -24,5 +27,18 @@ public class MinerUiSwitch : MonoBehaviour
 
         mainCanvas.enabled = true;
         minerCanvas.enabled = false;
+    }
+
+    public void ExitUpgrade()
+    {
+        drillUnlocked.UpgradePanel.SetActive(false);
+    }
+    public void ExitPurchase()
+    {
+        minerscript.DrillPanel.SetActive(false);
+        for (int i = 0; i < minerscript.UnlockButtons.Count; i++)
+        {
+            minerscript.UnlockButtons[i].button.interactable = true;
+        }
     }
 }
