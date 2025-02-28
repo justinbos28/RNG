@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class Minerscript : MonoBehaviour
 {
 
-    public List<CraftingClass> Materials = new List<CraftingClass>();
+    public List<OreClass> Materials = new List<OreClass>();
     public List<ButtonClass> UnlockButtons = new List<ButtonClass>();
     public List<GameObject> UnlockPanels = new List<GameObject>();
     public Text DrillNumber;
@@ -171,7 +171,7 @@ public class Minerscript : MonoBehaviour
 
         for (int i = 0; i < Materials.Count; i++)
         {
-            Materials[i].ID = i;
+            Materials[i].OreID = i;
         }
 
         ResetRequirements();

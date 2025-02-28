@@ -26,13 +26,21 @@ public class DrillUnlocked : MonoBehaviour, IDataPersistence
 
     public void LoadData(GameData data)
     {
-        this.DrillList = data.DrillList;
+        if (data.DrillList == null || data.DrillList.Count == 0)
+        {
+            data.DrillList = new List<drills>(DrillList.Count);
+        }
+        else
+        {
+            this.DrillList = new List<drills>(data.DrillList);
+        }
         LoadAllData();
     }
-    
+
+
     public void SaveData(ref GameData data)
     {
-        data.DrillList = this.DrillList;
+        data.DrillList = new List<drills>(DrillList);
     }
     public void GetUpgrade()
     {
