@@ -40,6 +40,7 @@ public class GameData
 
     public List<drills> DrillList = new List<drills>();
     public List<int> OresCount = new List<int>();
+    public List<int> MaterialCount = new List<int>();
 
     public GameData()
     {
@@ -68,6 +69,7 @@ public class GameData
         this.Test = false;
 
         this.DrillList = new List<drills>();
-        this.OresCount = new List<int>();  
+        this.OresCount = new List<int>();
+        this.MaterialCount = new List<int>();
     }
 }

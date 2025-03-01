@@ -88,7 +88,7 @@ public class Minerscript : MonoBehaviour
             case 6: MaterialAmount = 2000; MaterialName = " Rusty Gem"; RequiredGems["Rusty Gem"] = 2000; break;
         }
         DrillPrice.text = "Price: " + MaterialAmount + MaterialName + "\n"
-                + "1 DrillHead \n 1 Generator \n 250 Steel \n 500 Iron \n 30 Wires \n 10 engine";
+                + "1 DrillHead \n 1 Generator \n 250 Steel \n 500 Iron \n 30 Wires \n 2 engine";
     }
 
     private void ResetRequirements()
@@ -116,7 +116,7 @@ public class Minerscript : MonoBehaviour
             { "DrillHead", 1 }, 
             { "Generator", 1 }, 
             { "Wires", 30 }, 
-            { "Engine", 10 } 
+            { "Engine", 2 } 
         };
 
         bool hasEnoughMaterials = requiredMaterials.All(material =>

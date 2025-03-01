@@ -11,6 +11,9 @@ public class Uimanager : MonoBehaviour
     public GameObject Stats;
     public GameObject Crafter;
     public GameObject Teleporter;
+    
+    public CraftingRecipes CraftingRecipes;
+
     public bool ShopPanel;
     public bool OpenIndex;
     public bool InventoryPanel;
@@ -67,6 +70,7 @@ public class Uimanager : MonoBehaviour
             ShopPanel = false;
             Inventory.SetActive(false);
             Shop.SetActive(false);
+            CraftingRecipes.UpdateUi();
         }
         else
         {
