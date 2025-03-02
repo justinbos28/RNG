@@ -1110,7 +1110,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: New Text
+  m_Text: Drill Off
 --- !u!222 &45331786
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -6382,7 +6382,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &321805323
 RectTransform:
   m_ObjectHideFlags: 0
@@ -19484,7 +19484,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: New Text
+  m_Text: Drill Off
 --- !u!222 &1052972423
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -22270,6 +22270,21 @@ MonoBehaviour:
     UpgradeButton: {fileID: 731627967}
     AutoSellButton: {fileID: 613908597}
     Activate: {fileID: 1187604460}
+  SavedDrillData:
+  - Unlocked: 0
+    Upgrade: 0
+  - Unlocked: 0
+    Upgrade: 0
+  - Unlocked: 0
+    Upgrade: 0
+  - Unlocked: 0
+    Upgrade: 0
+  - Unlocked: 0
+    Upgrade: 0
+  - Unlocked: 0
+    Upgrade: 0
+  - Unlocked: 0
+    Upgrade: 0
   Title: {fileID: 1542101300}
   Requirement: {fileID: 1042793170}
   NotEnough: {fileID: 96882076}
@@ -26333,7 +26348,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: New Text
+  m_Text: Drill Off
 --- !u!222 &1422934582
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -34227,7 +34242,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: New Text
+  m_Text: Drill Off
 --- !u!222 &1748907680
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -34483,7 +34498,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: New Text
+  m_Text: Drill Off
 --- !u!222 &1752174742
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -34858,7 +34873,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.75, y: 0.2}
   m_AnchorMax: {x: 1, y: 0.45}
-  m_AnchoredPosition: {x: -1.7000427, y: 4.4999485}
+  m_AnchoredPosition: {x: -1.7000427, y: 4.499941}
   m_SizeDelta: {x: -14.690002, y: -8.76001}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1762248028
@@ -35891,7 +35906,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: New Text
+  m_Text: Drill Off
 --- !u!222 &1861604251
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -36164,7 +36179,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: New Text
+  m_Text: Drill Off
 --- !u!222 &1898496241
 CanvasRenderer:
   m_ObjectHideFlags: 0

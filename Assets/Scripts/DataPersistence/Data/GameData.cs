@@ -38,9 +38,9 @@ public class GameData
     public float XPNeeded;
     public float XPLuckMultiplier = 1;
 
-    public List<drills> DrillList = new List<drills>();
     public List<int> OresCount = new List<int>();
     public List<int> MaterialCount = new List<int>();
+    public List<savedDrillData> SavedDrillData = new List<savedDrillData>();
 
     public GameData()
     {
@@ -68,8 +68,8 @@ public class GameData
         this.SavedRebirth = 0;
         this.Test = false;
 
-        this.DrillList = new List<drills>();
         this.OresCount = new List<int>();
         this.MaterialCount = new List<int>();
+        this.SavedDrillData = new List<savedDrillData>();
     }
 }

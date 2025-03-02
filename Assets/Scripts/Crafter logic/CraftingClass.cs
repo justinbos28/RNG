@@ -44,3 +44,9 @@ public class drills
     public Button AutoSellButton;
     public Button Activate;
 }
+[System.Serializable]
+public class savedDrillData
+{
+    public bool Unlocked;
+    public int Upgrade;
+}

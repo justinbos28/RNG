@@ -10,6 +10,7 @@ public class DrillUnlocked : MonoBehaviour, IDataPersistence
     public MoneyLogic MoneyLogic;
     public OreStorage OreStorage;
     public List<drills> DrillList = new List<drills>();
+    public List<savedDrillData> SavedDrillData = new List<savedDrillData>();
 
     public Text Title;
     public Text Requirement;
@@ -26,13 +27,18 @@ public class DrillUnlocked : MonoBehaviour, IDataPersistence
 
     public void LoadData(GameData data)
     {
-        if (data.DrillList == null || data.DrillList.Count == 0)
+        if (data.SavedDrillData == null || data.SavedDrillData.Count == 0)
         {
-            data.DrillList = new List<drills>(DrillList.Count);
+            data.SavedDrillData = new List<savedDrillData>(SavedDrillData.Count);
         }
         else
         {
-            this.DrillList = new List<drills>(data.DrillList);
+            this.SavedDrillData = new List<savedDrillData>(data.SavedDrillData);
+            for (int i = 0; i < DrillList.Count; i++)
+            {
+                DrillList[i].IsUnlocked = SavedDrillData[i].Unlocked;
+                DrillList[i].Upgrade = SavedDrillData[i].Upgrade;
+            }
         }
         LoadAllData();
     }
@@ -40,7 +46,12 @@ public class DrillUnlocked : MonoBehaviour, IDataPersistence
 
     public void SaveData(ref GameData data)
     {
-        data.DrillList = new List<drills>(DrillList);
+        for (int i = 0; i < DrillList.Count; i++)
+        {
+            SavedDrillData[i].Unlocked = DrillList[i].IsUnlocked;
+            SavedDrillData[i].Upgrade = DrillList[i].Upgrade;
+            data.SavedDrillData = new List<savedDrillData>(SavedDrillData);
+        }
     }
     public void GetUpgrade()
     {
@@ -234,16 +245,15 @@ public class DrillUnlocked : MonoBehaviour, IDataPersistence
             {
                 Minerscript.UnlockPanels[i].SetActive(false);
             }
-
-            if (DrillList[i].AutoSell)
+            
+            if (DrillList[i].Upgrade == 1)
             {
-                DrillList[i].Active.text = "on";
+                DrillList[i].MaxTime = 45;
             }
-
-            if (DrillList[i].IsActive == false)
+            else if (DrillList[i].Upgrade == 2)
             {
-                DrillList[i].Text.text = "Drill off";
-            }  
+                DrillList[i].MaxTime = 30;
+            }
         }
     }
 
@@ -259,7 +269,7 @@ public class DrillUnlocked : MonoBehaviour, IDataPersistence
                 if (DrillList[IndexValueActivate].IsActive)
                 {
                     DrillList[IndexValueActivate].IsActive = false;
-                    DrillList[IndexValueActivate].Text.text = "Drill off";
+                    DrillList[IndexValueActivate].Text.text = "Drill Off";
                 }
                 else
                 {
@@ -281,11 +291,11 @@ public class DrillUnlocked : MonoBehaviour, IDataPersistence
                 if (DrillList[IndexValueAutosell].AutoSell)
                 {
                     DrillList[IndexValueAutosell].AutoSell = false;
-                    DrillList[IndexValueAutosell].Active.text = "off";
+                    DrillList[IndexValueAutosell].Active.text = "Off";
                 }
                 else
                 {
-                    DrillList[IndexValueAutosell].Active.text = "on";
+                    DrillList[IndexValueAutosell].Active.text = "On";
                     DrillList[IndexValueAutosell].AutoSell = true;
                 }
             });
