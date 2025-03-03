@@ -14,12 +14,13 @@ public class CraftingRecipes : MonoBehaviour, IDataPersistence
     public Text MaterialAmount;
     public Text MaterialPrice;
     public Text MaterialRequirements;
+    public Text Output;
     public Image MaterialImage;
     public Image IsInvalid;
 
     public string recipeName;
     public int CurrentRecipe;
-    public int CraftingAmount;
+    public int CraftingAmount = 1;
 
     public List<OreClass> Materials = new List<OreClass>();
     public List<int> MaterialCount = new List<int>();
@@ -156,6 +157,7 @@ public class CraftingRecipes : MonoBehaviour, IDataPersistence
             CurrentRecipe--;
         }
         IsInvalid.color = Color.white;
+        SetAmount();
         UpdateUi();
     }
     public void Forward()
@@ -169,6 +171,7 @@ public class CraftingRecipes : MonoBehaviour, IDataPersistence
             CurrentRecipe++;
         }
         IsInvalid.color = Color.white;
+        SetAmount();
         UpdateUi();
     }
 
@@ -179,6 +182,7 @@ public class CraftingRecipes : MonoBehaviour, IDataPersistence
         MaterialPrice.text = Minerscript.Materials[CurrentRecipe].OrePrice.ToString();
         MaterialImage.sprite = Minerscript.Materials[CurrentRecipe].OrePicture;
         MaterialRequirements.text = string.Join("\n", Recipes.ElementAt(CurrentRecipe).Value.Select(r => $"{r.Key}: {r.Value}"));
+        Output.text = "Output: " + CraftingAmount.ToString();
     }
 
     private void Start()

@@ -195,7 +195,6 @@ public class OreStorage : MonoBehaviour
                 InputFields[i].textComponent.color = new Vector4(0, 0, 0, 1);
                 InputFields[i].text = "";
                 MoneyLogic.Money += ores[i].OrePrice * RNGscript.MoneyMultiplier * sellAmount;
-
             }
         }
     }

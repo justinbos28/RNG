@@ -206,7 +206,16 @@ public class DrillUnlocked : MonoBehaviour, IDataPersistence
                 }
                 else
                 {
-                    RNGscript.allOres[i].StorageAmount += 1;
+                    if (RNGscript.allOres[i].StorageAmount >= OreStorage.MaxCommonOres)
+                    {
+                        RNGscript.allOres[i].StorageAmount = OreStorage.MaxCommonOres;
+                        DrillList[i].AutoSell = true;
+                        MoneyLogic.Money += DrillList[i].OrePrice * (RNGscript.MoneyMultiplier * 1.5f);
+                    }
+                    else
+                    {
+                        RNGscript.allOres[i].StorageAmount += 1;
+                    }
                     OreStorage.UpdateInventory();
                 }
                 DrillList[i].Timer = DrillList[i].MaxTime;
