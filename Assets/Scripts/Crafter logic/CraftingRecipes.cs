@@ -26,11 +26,11 @@ public class CraftingRecipes : MonoBehaviour, IDataPersistence
     public List<int> MaterialCount = new List<int>();
     public Dictionary<string, Dictionary<string, int>> Recipes = new Dictionary<string, Dictionary<string, int>>
     {
-        { "DrillHead", new Dictionary<string, int> { {"Steel", 200}, {"Iron", 150}, {"Tungsten", 2} } },
+        { "DrillHead", new Dictionary<string, int> { {"Steel", 100}, {"Iron", 300}, {"Tungsten", 2} } },
         { "Glass", new Dictionary<string, int> { {"Coal", 10}, {"Sand", 25} } },
         { "Wires", new Dictionary<string, int> { {"Copper", 20}, {"Plastic", 10} } },
         { "Plastic", new Dictionary<string, int> { {"Petroleum", 10}, {"Coal", 20} } },
-        { "Motor", new Dictionary<string, int> { {"Steel", 30}, {"Iron", 10}, {"Silver", 1}, {"Petroleum", 2}, {"SteelFrame", 1} } },
+        { "Motor", new Dictionary<string, int> { {"Steel", 10}, {"Iron", 30}, {"Silver", 1}, {"Petroleum", 2}, {"SteelFrame", 1} } },
         { "SteelFrame", new Dictionary<string, int> { {"Steel", 10}, {"Iron", 50} } },
         { "Engine", new Dictionary<string, int> { {"Motor", 10}, {"Titanium", 2}, {"Iron", 20}, {"Petroleum", 1}, {"Copper", 5}, {"Gold", 1}, {"SteelFrame", 5} } },
         { "Generator", new Dictionary<string, int> { {"Copper", 20}, {"Wires", 10}, {"Motor", 1}, {"Iron", 50}, {"SteelFrame", 10}, {"Power Gem", 1} } },
