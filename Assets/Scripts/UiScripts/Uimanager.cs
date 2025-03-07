@@ -12,7 +12,7 @@ public class Uimanager : MonoBehaviour
     public GameObject Stats;
     public GameObject Crafter;
     public GameObject Teleporter;
-    
+
     public CraftingRecipes CraftingRecipes;
 
     public bool ShopPanel;
@@ -128,9 +128,5 @@ public class Uimanager : MonoBehaviour
             OpenPortal = false;
         }
     }
-    
-    public void OnMouseEnter()
-    {
 
-    }
 }

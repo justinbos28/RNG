@@ -400,6 +400,7 @@ public class MoneyLogic : MonoBehaviour, IDataPersistence
             RNGscript.cardLimit = 2;
             BoughtRollAmount = 1;
             RollAmountText.text = "3.500$";
+            RNGscript.RollForHand();
             CurrentMoney.text = StaticVariables.cash.ToString("F2") + "$";
         }
         else if (StaticVariables.cash >= 3500 && BoughtRollAmount == 1)
@@ -408,6 +409,7 @@ public class MoneyLogic : MonoBehaviour, IDataPersistence
             RNGscript.cardLimit = 3;
             BoughtRollAmount = 2;
             RollAmountText.text = "5.000$";
+            RNGscript.RollForHand();
             CurrentMoney.text = StaticVariables.cash.ToString("F2") + "$";
         }
         else if (StaticVariables.cash >= 5000 && BoughtRollAmount == 2)
@@ -416,6 +418,7 @@ public class MoneyLogic : MonoBehaviour, IDataPersistence
             RNGscript.cardLimit = 4;
             BoughtRollAmount = 3;
             RollAmountText.text = "12.000$";
+            RNGscript.RollForHand();
             CurrentMoney.text = StaticVariables.cash.ToString("F2") + "$";
         }
         else if (StaticVariables.cash >= 12000 && BoughtRollAmount == 3)
@@ -424,6 +427,7 @@ public class MoneyLogic : MonoBehaviour, IDataPersistence
             RNGscript.cardLimit = 5;
             BoughtRollAmount = 4;
             RollAmountText.text = "25.000$";
+            RNGscript.RollForHand();
             CurrentMoney.text = StaticVariables.cash.ToString("F2") + "$";
         }
         else if (StaticVariables.cash >= 25000 && BoughtRollAmount == 4)
@@ -431,7 +435,8 @@ public class MoneyLogic : MonoBehaviour, IDataPersistence
             Money -= 25000;
             RNGscript.cardLimit = 6;
             BoughtRollAmount = 5;
-            RollAmountText.text = "Purchased";
+            RollAmountText.text = "Purchased"; 
+            RNGscript.RollForHand();
             CurrentMoney.text = StaticVariables.cash.ToString("F2") + "$";
         }
     }
@@ -441,6 +446,7 @@ public class MoneyLogic : MonoBehaviour, IDataPersistence
         {
             Money -= 1000;
             RNGscript.RollSkips = 4;
+            RNGscript.StoneStatus = 4;
             BoughtRollSkips = 1;
             RollSkipsText.text = "5.500$";
             CurrentMoney.text = StaticVariables.cash.ToString("F2") + "$";
@@ -449,6 +455,7 @@ public class MoneyLogic : MonoBehaviour, IDataPersistence
         {
             Money -= 5500;
             RNGscript.RollSkips = 3;
+            RNGscript.StoneStatus = 3;
             BoughtRollSkips = 2;
             RollSkipsText.text = "15.000$";
             CurrentMoney.text = StaticVariables.cash.ToString("F2") + "$";
@@ -457,6 +464,7 @@ public class MoneyLogic : MonoBehaviour, IDataPersistence
         {
             Money -= 15000;
             RNGscript.RollSkips = 2;
+            RNGscript.StoneStatus = 2;
             BoughtRollSkips = 3;
             RollSkipsText.text = "Purchased";
             CurrentMoney.text = StaticVariables.cash.ToString("F2") + "$";

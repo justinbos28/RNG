@@ -72,6 +72,7 @@ public class IndexManager : MonoBehaviour
 
     public void SetIndexDefault()
     {
+        IndexCount = 0;
         for (int i = 0; i < IndexList.Count; i++)
         {
             if (i < RNGscript.allOres.Count)
