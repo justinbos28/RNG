@@ -79,13 +79,13 @@ public class Minerscript : MonoBehaviour
     {
         switch (savedIndex)
         {
-            case 0: MaterialAmount = 1000; MaterialName = " Stone"; RequiredGems["Stone"] = 1000; break;
-            case 1: MaterialAmount = 1500; MaterialName = " Coal"; RequiredGems["Coal"] = 1500; break;
-            case 2: MaterialAmount = 1000; MaterialName = " Sand"; RequiredGems["Sand"] = 1000; break;
-            case 3: MaterialAmount = 800; MaterialName = " Wood"; RequiredGems["Wood"] = 800; break;
-            case 4: MaterialAmount = 1500; MaterialName = " Iron"; RequiredGems["Iron"] = 2000; break;
-            case 5: MaterialAmount = 1400; MaterialName = " Stone Gem"; RequiredGems["Stone Gem"] = 1400; break;
-            case 6: MaterialAmount = 2000; MaterialName = " Rusty Gem"; RequiredGems["Rusty Gem"] = 2000; break;
+            case 0: MaterialAmount = 450; MaterialName = " Stone"; RequiredGems["Stone"] = 450; break;
+            case 1: MaterialAmount = 500; MaterialName = " Coal"; RequiredGems["Coal"] = 500; break;
+            case 2: MaterialAmount = 350; MaterialName = " Sand"; RequiredGems["Sand"] = 350; break;
+            case 3: MaterialAmount = 400; MaterialName = " Wood"; RequiredGems["Wood"] = 400; break;
+            case 4: MaterialAmount = 1000; MaterialName = " Iron"; RequiredGems["Iron"] = 500; break;
+            case 5: MaterialAmount = 1000; MaterialName = " Stone Gem"; RequiredGems["Stone Gem"] = 1000; break;
+            case 6: MaterialAmount = 1000; MaterialName = " Rusty Gem"; RequiredGems["Rusty Gem"] = 1000; break;
         }
         DrillPrice.text = "Price: " + MaterialAmount + MaterialName + "\n"
                 + "1 DrillHead \n 1 Generator \n 250 Steel \n 500 Iron \n 30 Wires \n 2 engine";

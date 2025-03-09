@@ -33,9 +33,9 @@ public class CraftingRecipes : MonoBehaviour, IDataPersistence
         { "Motor", new Dictionary<string, int> { {"Steel", 10}, {"Iron", 30}, {"Silver", 1}, {"Petroleum", 2}, {"SteelFrame", 1} } },
         { "SteelFrame", new Dictionary<string, int> { {"Steel", 10}, {"Iron", 50} } },
         { "Engine", new Dictionary<string, int> { {"Motor", 10}, {"Titanium", 2}, {"Iron", 20}, {"Petroleum", 1}, {"Copper", 5}, {"Gold", 1}, {"SteelFrame", 5} } },
-        { "Generator", new Dictionary<string, int> { {"Copper", 20}, {"Wires", 10}, {"Motor", 1}, {"Iron", 50}, {"SteelFrame", 10}, {"Power Gem", 1} } },
+        { "Generator", new Dictionary<string, int> { {"Copper", 20}, {"Wires", 10}, {"Motor", 1}, {"Iron", 50}, {"SteelFrame", 10} } },
         { "WoodFrame", new Dictionary<string, int> { {"Wood", 50} } },
-        { "CircuitBoard", new Dictionary<string, int> { {"Copper", 10}, {"Gold", 1}, {"Steel", 20}, {"Fast Gem", 15}, {"Power Gem", 5} } }
+        { "CircuitBoard", new Dictionary<string, int> { {"Copper", 10}, {"Silver", 1}, {"Steel", 20}, {"Fast Gem", 10} } }
     };
 
     // start of saving and loading data

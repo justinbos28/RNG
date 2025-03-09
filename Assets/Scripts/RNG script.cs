@@ -641,6 +641,18 @@ public class RNGscript : MonoBehaviour, IDataPersistence
         RollButton.SetActive(false);
         RollingText.enabled = true;
 
+        for (int i = 0; i < playerHand.Count; i++)
+        {
+            titles[i].color = Color.black;
+            effects[i].color = Color.black;
+            rarity[i].color = Color.black;
+
+            titles[i].text = "";
+            effects[i].text = "";
+            rarity[i].text = "";
+            OrePicture[i].sprite = Stones[0];
+        }
+
         RollingText.text = "Mining...";
     }
     void SetRollButtonActive(GameObject button, Vector3 position)
