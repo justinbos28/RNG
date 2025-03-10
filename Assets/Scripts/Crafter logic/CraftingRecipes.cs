@@ -35,7 +35,16 @@ public class CraftingRecipes : MonoBehaviour, IDataPersistence
         { "Engine", new Dictionary<string, int> { {"Motor", 10}, {"Titanium", 2}, {"Iron", 20}, {"Petroleum", 1}, {"Copper", 5}, {"Gold", 1}, {"SteelFrame", 5} } },
         { "Generator", new Dictionary<string, int> { {"Copper", 20}, {"Wires", 10}, {"Motor", 1}, {"Iron", 50}, {"SteelFrame", 10} } },
         { "WoodFrame", new Dictionary<string, int> { {"Wood", 50} } },
-        { "CircuitBoard", new Dictionary<string, int> { {"Copper", 10}, {"Silver", 1}, {"Steel", 20}, {"Fast Gem", 10} } }
+        { "CircuitBoard", new Dictionary<string, int> { {"Copper", 10}, {"Silver", 1}, {"Steel", 20}, {"Fast Gem", 10} } },
+        { "Clean Gem", new Dictionary<string, int> { {"Rusty Gem", 25}, { "Stone Gem", 5 }, { "Water Gem", 1 }, { "Wood", 1} } },
+        { "Hardened Steel", new Dictionary<string, int> { { "Petroleum", 10 }, { "Steel", 5 }, { "Heat Gem", 1 } } },
+        { "Small Drill", new Dictionary<string, int> { {"Steel", 2}, {"Iron", 10 } } },
+        { "Coal Generator", new Dictionary<string, int> { {"Wood", 25}, { "Coal", 10 }, { "Iron", 20 } } },
+        { "Bolts", new Dictionary<string, int> { {"Iron", 6} } },
+        { "Medium Drill", new Dictionary<string, int> { {"Steel", 10}, { "Iron", 25 }, { "Titanium", 1 } } },
+        { "Small Generator", new Dictionary<string, int> { {"SteelFrame", 1}, { "Petroleum", 10 }, { "Plastic", 10 }, { "Heat Gem", 1 } } },
+        { "Standard Drill", new Dictionary<string, int> { {"Iron", 50}, { "Steel", 25 }, { "Wires", 5 }, { "Titanium", 5 } } },
+        { "Heat Generator", new Dictionary<string, int> { {"Generator", 1}, { "Hardened Steel", 10 }, { "Heat Gem", 50 }, { "Fire Gem", 5 }, { "Quartz", 10 } } }
     };
 
     // start of saving and loading data
@@ -45,6 +54,15 @@ public class CraftingRecipes : MonoBehaviour, IDataPersistence
         if (data.MaterialCount.Count != this.MaterialCount.Count)
         {
             int difference = this.MaterialCount.Count - data.MaterialCount.Count;
+            for (int i = 0; i < difference; i++)
+            {
+                data.MaterialCount.Add(0);
+            }
+        }
+
+        if (data.MaterialCount.Count != this.Minerscript.Materials.Count)
+        {
+            int difference = this.Minerscript.Materials.Count - data.MaterialCount.Count;
             for (int i = 0; i < difference; i++)
             {
                 data.MaterialCount.Add(0);
@@ -142,6 +160,15 @@ public class CraftingRecipes : MonoBehaviour, IDataPersistence
             case 7: CraftingAmount = 1; break;
             case 8: CraftingAmount = 10; break;
             case 9: CraftingAmount = 1; break;
+            case 10: CraftingAmount = 1; break;
+            case 11: CraftingAmount = 5; break;
+            case 12: CraftingAmount = 1; break;
+            case 13: CraftingAmount = 1; break;
+            case 14: CraftingAmount = 6; break;
+            case 15: CraftingAmount = 1; break;
+            case 16: CraftingAmount = 1; break;
+            case 17: CraftingAmount = 1; break;
+            case 18: CraftingAmount = 1; break;
             default: CraftingAmount = 1; break;
         }
     }
