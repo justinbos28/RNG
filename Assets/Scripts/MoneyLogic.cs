@@ -20,7 +20,7 @@ public class MoneyLogic : MonoBehaviour, IDataPersistence
     public int UpgradeStage; // 0, 1, 2, 3, 4, 5, 6, 7
 
     public float Money;
-    public string UpgradeName;
+    public string UpgradeName = "Speed Upgrade 1";
     public bool AutoRoll;
     public bool BoughtAutoRoll;
 
@@ -94,6 +94,7 @@ public class MoneyLogic : MonoBehaviour, IDataPersistence
 
         this.Money = data.Money;
         CurrentMoney.text = StaticVariables.cash.ToString("F2") + "$";
+        UpgradeName = "Speed Upgrade 1";
     }
     public void SaveData(ref GameData data)
     {
@@ -177,26 +178,30 @@ public class MoneyLogic : MonoBehaviour, IDataPersistence
         }
 
     }
-    public void BuyUpgrade()
+    public void UpdateEverything()
     {
         UpdateStage();
+        Costs();
+        UpdateUpgradeUI();
+    }
+    public void BuyUpgrade()
+    {
         CheckUpgrade(UpgradeName);
+        UpdateStage();
     }
 
-    private void PurchaseSpeed(string UpgradeName)
+    private void PurchaseStrenght(string UpgradeName)
     {
-        if (SpeedUpgrades.ContainsKey(UpgradeName))
+        if (StrenghtUpgrades.ContainsKey(UpgradeName))
         {
-            var Upgrade = SpeedUpgrades[UpgradeName];
-
+            var Upgrade = StrenghtUpgrades[UpgradeName];
             bool hasEnoughMaterials = Upgrade.All(material =>
                 CraftingRecipes.Materials.Any(m => m.Name == material.Key && m.StorageAmount >= material.Value));
-
             if (hasEnoughMaterials && Money >= UpgradeCost)
             {
                 Money -= UpgradeCost;
-                RNGscript.RollSpeed -= 0.05f;
-                BoughtRollSpeed++;
+                BoughtRollSkips--;
+                RNGscript.StoneStatus--;
                 CurrentMoney.text = StaticVariables.cash.ToString("F2") + "$";
                 Costs();
                 UpdateUpgradeUI();
@@ -220,19 +225,98 @@ public class MoneyLogic : MonoBehaviour, IDataPersistence
             Debug.Log("Upgrade not found");
         }
     }
-    private void CheckUpgrade(string UpgradeName)
+    private void PurchaseAmount(string UpgradeName)
     {
+        if (AmountUpgrades.ContainsKey(UpgradeName))
+        {
+            var Upgrade = AmountUpgrades[UpgradeName];
+            bool hasEnoughMaterials = Upgrade.All(material =>
+                CraftingRecipes.Materials.Any(m => m.Name == material.Key && m.StorageAmount >= material.Value));
+            if (hasEnoughMaterials && Money >= UpgradeCost)
+            {
+                Money -= UpgradeCost;
+                RNGscript.cardLimit++;
+                BoughtRollAmount++;
+                RNGscript.RollForHand();
+                CurrentMoney.text = StaticVariables.cash.ToString("F2") + "$";
+                Costs();
+                UpdateUpgradeUI();
+                foreach (var material in Upgrade)
+                {
+                    var ore = CraftingRecipes.Materials.FirstOrDefault(m => m.Name == material.Key);
+                    ore.StorageAmount -= material.Value;
+                }
+            }
+            else if (hasEnoughMaterials == false)
+            {
+                Debug.Log("Not enough materials");
+            }
+            else
+            {
+                Debug.Log("Upgrade not found");
+            }
+        }
+        else
+        {
+            Debug.Log("Upgrade not found");
+        }
+    }
+    private void PurchaseSpeed(string UpgradeName)
+    {
+        Debug.Log("Speed selected");
         if (SpeedUpgrades.ContainsKey(UpgradeName))
         {
+            var Upgrade = SpeedUpgrades[UpgradeName];
+
+            bool hasEnoughMaterials = Upgrade.All(material =>
+                CraftingRecipes.Materials.Any(m => m.Name == material.Key && m.StorageAmount >= material.Value));
+
+            Debug.Log(hasEnoughMaterials);
+            if (hasEnoughMaterials && Money >= UpgradeCost)
+            {
+                Money -= UpgradeCost;
+                RNGscript.RollSpeed -= 0.05f;
+                BoughtRollSpeed++;
+                CurrentMoney.text = StaticVariables.cash.ToString("F2") + "$";
+                Costs();
+                UpdateUpgradeUI();
+                foreach (var material in Upgrade)
+                {
+                    var ore = CraftingRecipes.Materials.FirstOrDefault(m => m.Name == material.Key);
+                    ore.StorageAmount -= material.Value;
+                }
+            }
+            else if (hasEnoughMaterials == false)
+            {
+                Debug.Log("Not enough materials");
+            }
+            else
+            {
+                Debug.Log("Not Enough Cash");
+            }
+        }
+        else
+        {
+            Debug.Log("Upgrade not found");
+        }
+    }
+    private void CheckUpgrade(string UpgradeName)
+    {
+        UpdateStage();
+        if (SpeedUpgrades.ContainsKey(UpgradeName))
+        {
+            Debug.Log("Speed upgrade");
             PurchaseSpeed(UpgradeName);
         }
         else if (AmountUpgrades.ContainsKey(UpgradeName))
         {
-
+            Debug.Log("Amount upgrade");
+            PurchaseAmount(UpgradeName);
         }
         else if (StrenghtUpgrades.ContainsKey(UpgradeName))
         {
-
+            Debug.Log("Strenght upgrade");
+            PurchaseStrenght(UpgradeName);
         }
         else if (AutoDrillUpgrades.ContainsKey(UpgradeName))
         {
@@ -242,8 +326,6 @@ public class MoneyLogic : MonoBehaviour, IDataPersistence
         {
             Debug.Log("Upgrade not found");
         }
-        UpdateStage();
-        UpdateUpgradeUI();
     }
     private void Start()
     {
@@ -257,6 +339,7 @@ public class MoneyLogic : MonoBehaviour, IDataPersistence
     {
         if (SpeedUpgrades.ContainsKey(UpgradeName))
         {
+            Debug.Log("Speed Update");
             switch (BoughtRollSpeed)
             {
                 case 0: UpgradeName = SpeedUpgrades.ElementAt(0).Key; UpgradeStage = 0; break;

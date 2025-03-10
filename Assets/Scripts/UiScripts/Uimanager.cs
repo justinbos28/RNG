@@ -14,6 +14,7 @@ public class Uimanager : MonoBehaviour
     public GameObject Teleporter;
 
     public CraftingRecipes CraftingRecipes;
+    public MoneyLogic MoneyLogic;
 
     public bool ShopPanel;
     public bool OpenIndex;
@@ -29,6 +30,7 @@ public class Uimanager : MonoBehaviour
         {
             Shop.SetActive(true);
             ShopPanel = true;
+            MoneyLogic.UpdateEverything();
 
             InventoryPanel = false;
             OpenCrafter = false;
