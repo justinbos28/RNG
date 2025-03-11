@@ -18,12 +18,21 @@ public class MoneyLogic : MonoBehaviour, IDataPersistence
     public int UpgradeCost;
     public int CurrentUpgrade; //speed, amount, strenght, auto, luck, money, storage
     public int UpgradeStage; // 0, 1, 2, 3, 4, 5, 6, 7
+    public int MaxRuntime = 300;
+    public int MaxCooldown = 600;
 
     public float Money;
+    public float Cooldown = 600;
+    public float Runtime = 300;
+
     public string UpgradeName = "Speed Upgrade 1";
     public bool AutoRoll;
     public bool BoughtAutoRoll;
+    public bool enableRuntime;
+    public bool enableCooldown;
+    public bool hasNoCooldown;
 
+    public Text AutoDrillText;
     public Text Title;
     public Text Requirements;
     public Text Information;
@@ -35,6 +44,7 @@ public class MoneyLogic : MonoBehaviour, IDataPersistence
     public Minerscript Minerscript;
     public CraftingRecipes CraftingRecipes;
     public GameObject AutoRollButton;
+    public GameObject CooldownPanel;
     public XPScript XPScript;
 
     public Image UpgradeImage;
@@ -78,6 +88,7 @@ public class MoneyLogic : MonoBehaviour, IDataPersistence
         { "Drill Upgrade 4", new Dictionary<string, int> { {"Tungsten", 1 }, {"Bolts", 25}, {"Plastic", 5}, {"Wires", 15 } } },
         { "Drill Upgrade 5", new Dictionary<string, int> { { "Diamond", 1 }, { "Wires", 30 }, { "Plastic", 5 }, {"Bolts", 50 }, { "Heat Generator", 1 }, { "DrillHead", 1 } } }
     };
+
 
 
     // saving data and getting saved data
@@ -190,18 +201,22 @@ public class MoneyLogic : MonoBehaviour, IDataPersistence
         UpdateStage();
     }
 
-    private void PurchaseStrenght(string UpgradeName)
+    private void PurchaseSpeed(string UpgradeName)
     {
-        if (StrenghtUpgrades.ContainsKey(UpgradeName))
+        Debug.Log("Speed selected");
+        if (SpeedUpgrades.ContainsKey(UpgradeName))
         {
-            var Upgrade = StrenghtUpgrades[UpgradeName];
+            var Upgrade = SpeedUpgrades[UpgradeName];
+
             bool hasEnoughMaterials = Upgrade.All(material =>
                 CraftingRecipes.Materials.Any(m => m.Name == material.Key && m.StorageAmount >= material.Value));
+
+            Debug.Log(hasEnoughMaterials);
             if (hasEnoughMaterials && Money >= UpgradeCost)
             {
                 Money -= UpgradeCost;
-                BoughtRollSkips--;
-                RNGscript.StoneStatus--;
+                RNGscript.RollSpeed -= 0.05f;
+                BoughtRollSpeed++;
                 CurrentMoney.text = StaticVariables.cash.ToString("F2") + "$";
                 Costs();
                 UpdateUpgradeUI();
@@ -217,7 +232,7 @@ public class MoneyLogic : MonoBehaviour, IDataPersistence
             }
             else
             {
-                Debug.Log("Upgrade not found");
+                Debug.Log("Not Enough Cash");
             }
         }
         else
@@ -261,22 +276,18 @@ public class MoneyLogic : MonoBehaviour, IDataPersistence
             Debug.Log("Upgrade not found");
         }
     }
-    private void PurchaseSpeed(string UpgradeName)
+    private void PurchaseStrenght(string UpgradeName)
     {
-        Debug.Log("Speed selected");
-        if (SpeedUpgrades.ContainsKey(UpgradeName))
+        if (StrenghtUpgrades.ContainsKey(UpgradeName))
         {
-            var Upgrade = SpeedUpgrades[UpgradeName];
-
+            var Upgrade = StrenghtUpgrades[UpgradeName];
             bool hasEnoughMaterials = Upgrade.All(material =>
                 CraftingRecipes.Materials.Any(m => m.Name == material.Key && m.StorageAmount >= material.Value));
-
-            Debug.Log(hasEnoughMaterials);
             if (hasEnoughMaterials && Money >= UpgradeCost)
             {
                 Money -= UpgradeCost;
-                RNGscript.RollSpeed -= 0.05f;
-                BoughtRollSpeed++;
+                BoughtRollSkips--;
+                RNGscript.StoneStatus--;
                 CurrentMoney.text = StaticVariables.cash.ToString("F2") + "$";
                 Costs();
                 UpdateUpgradeUI();
@@ -292,7 +303,7 @@ public class MoneyLogic : MonoBehaviour, IDataPersistence
             }
             else
             {
-                Debug.Log("Not Enough Cash");
+                Debug.Log("Upgrade not found");
             }
         }
         else
@@ -300,6 +311,61 @@ public class MoneyLogic : MonoBehaviour, IDataPersistence
             Debug.Log("Upgrade not found");
         }
     }
+    private void PurchaseAutoDrill(string UpgradeName)
+    {
+        if (AutoDrillUpgrades.ContainsKey(UpgradeName))
+        {
+            var Upgrade = AutoDrillUpgrades[UpgradeName];
+            bool hasEnoughMaterials = Upgrade.All(material =>
+                CraftingRecipes.Materials.Any(m => m.Name == material.Key && m.StorageAmount >= material.Value));
+            if (hasEnoughMaterials && Money >= UpgradeCost)
+            {
+                Money -= UpgradeCost;
+                if (!AutoRoll && BoughtAutoRollUpgrade >= 0)
+                {
+                    BoughtAutoRollUpgrade++;
+                    RNGscript.AutoTimer = 0;
+                    AutoRoll = true;
+                    AutoRollButton.SetActive(true);
+                    RNGscript.RollButton.SetActive(false);
+                    enableRuntime = true;
+                    AutoRollButtonColor.color = Color.green;
+                }
+                else
+                {
+                    switch (BoughtAutoRollUpgrade)
+                    {
+                        case 1: MaxCooldown = 600; MaxRuntime = 300; break;
+                        case 2: MaxCooldown = 900; MaxRuntime = 900; break;
+                        case 3: MaxCooldown = 300; MaxRuntime = 1200; break;
+                        case 4: MaxCooldown = 300; MaxRuntime = 1500; break;
+                        case 5: hasNoCooldown = true; NoCooldown(); break;
+                    }
+                }
+                    CurrentMoney.text = StaticVariables.cash.ToString("F2") + "$";
+                Costs();
+                UpdateUpgradeUI();
+                foreach (var material in Upgrade)
+                {
+                    var ore = CraftingRecipes.Materials.FirstOrDefault(m => m.Name == material.Key);
+                    ore.StorageAmount -= material.Value;
+                }
+            }
+            else if (hasEnoughMaterials == false)
+            {
+                Debug.Log("Not enough materials");
+            }
+            else
+            {
+                Debug.Log("Upgrade not found");
+            }
+        }
+        else
+        {
+            Debug.Log("Upgrade not found");
+        }
+    }
+
     private void CheckUpgrade(string UpgradeName)
     {
         UpdateStage();
@@ -320,7 +386,8 @@ public class MoneyLogic : MonoBehaviour, IDataPersistence
         }
         else if (AutoDrillUpgrades.ContainsKey(UpgradeName))
         {
-
+            Debug.Log("AutoDrill upgrade");
+            PurchaseAutoDrill(UpgradeName);
         }
         else
         {
@@ -330,10 +397,61 @@ public class MoneyLogic : MonoBehaviour, IDataPersistence
     private void Start()
     {
         Costs();
+        // Delete next update
+        if (BoughtAutoRoll)
+        {
+            if (BoughtAutoRollUpgrade == 0)
+            {
+                BoughtAutoRollUpgrade = 1;
+                AutoRollButton.SetActive(true);
+                AutoRollButtonColor.color = Color.green;
+            }
+        }
     }
-    private void LateUpdate()
+
+    private void NoCooldown()
+    {
+        RNGscript.AutoTimer = 0;
+        AutoRoll = true;
+        AutoRollButton.SetActive(true);
+        RNGscript.RollButton.SetActive(false);
+        AutoRollButtonColor.color = Color.green;
+    }
+    private void Update()
     {
         StaticVariables.cash = Money;
+        if (!hasNoCooldown)
+        {
+            if (AutoRoll)
+            {
+                if (enableRuntime)
+                {
+                    Runtime -= Time.deltaTime;
+                    if (Runtime >= 0)
+                    {
+                        Runtime = MaxRuntime;
+                        enableCooldown = true;
+                        enableRuntime = false;
+                        AutoRoll = false;
+                        RNGscript.AutoTimer = 1;
+                        CooldownPanel.SetActive(true);
+                        AutoDrillText.text = Mathf.Floor(Runtime / 60).ToString("F0") + "m";
+                    }
+                }
+            }
+            if (enableCooldown)
+            {
+                Cooldown -= Time.deltaTime;
+                if (Cooldown >= 0)
+                {
+                    Cooldown = MaxCooldown;
+                    enableRuntime = true;
+                    enableCooldown = false;
+                    CooldownPanel.SetActive(false);
+                    AutoDrillText.text = Mathf.Floor(Cooldown / 60).ToString("F0") + "m";
+                }
+            }
+        }
     }
     private void UpdateStage()
     {
@@ -426,6 +544,7 @@ public class MoneyLogic : MonoBehaviour, IDataPersistence
         UpdateStage();
         Costs();
     }
+
 
     // auto roll
     public void BuyAutoRoll()
@@ -605,6 +724,23 @@ public class MoneyLogic : MonoBehaviour, IDataPersistence
         CurrentMoney.text = StaticVariables.cash.ToString("F2") + "$";
     }
     // save
+    public void AutoRollToggle()
+    {
+        if (AutoRoll == false)
+        {
+            RNGscript.AutoTimer = 0;
+            RNGscript.RollButton.SetActive(false);
+            AutoRoll = true;
+            AutoRollButtonColor.color = Color.green;
+        }
+        else if (AutoRoll == true)
+        {
+            RNGscript.AutoTimer = 1;
+            RNGscript.RollButton.SetActive(true);
+            AutoRoll = false;
+            AutoRollButtonColor.color = Color.red;
+        }
+    }
     public void AutoSellActive()
     {
         if (RNGscript.AutoSell == false)

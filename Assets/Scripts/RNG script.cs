@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.XR;
@@ -30,7 +31,7 @@ public class RNGscript : MonoBehaviour, IDataPersistence
     public float timer2 = 0;
     public float fuckuper = 1;
 
-    public float RollSpeed = 0.5f;
+    public float RollSpeed = 0.65f;
     public float LuckPercentage = 1;
     public float LuckMultiplier = 1;
     public float MoneyMultiplier = 1;
@@ -400,6 +401,7 @@ public class RNGscript : MonoBehaviour, IDataPersistence
             return string.Format("{0:n0}", number);
         }
     }
+
     public void Update()
     {
         CurrentMoney.text = NumberFormatter(StaticVariables.cash) + "$";
@@ -423,13 +425,35 @@ public class RNGscript : MonoBehaviour, IDataPersistence
         {
             if (timer2 > fuckuper) // bigger
             {
-                if (MoneyLogic.AutoRoll == true)
+                if (MoneyLogic.AutoRoll)
                 {
                     RollButton.SetActive(false);
                 }
                 else
                 {
                     RollButton.SetActive(true);
+                }
+                if (AutoTimer == 0)
+                {
+                    for (int i = 0; i < RarityEffectSprite.Count; i++)
+                    {
+                        RarityEffectSprite[i].color = new Color(RarityEffectSprite[i].color.r, RarityEffectSprite[i].color.g, RarityEffectSprite[i].color.b, 0);
+                        RarityEffectSprite2[i].color = new Color(RarityEffectSprite[i].color.r, RarityEffectSprite[i].color.g, RarityEffectSprite[i].color.b, 0);
+                    }                  
+                    RollingText.enabled = true;
+                    for (int i = 0; i < playerHand.Count; i++)
+                    {
+                        titles[i].color = Color.black;
+                        effects[i].color = Color.black;
+                        rarity[i].color = Color.black;
+
+                        titles[i].text = "";
+                        effects[i].text = "";
+                        rarity[i].text = "";
+                        OrePicture[i].sprite = Stones[0];
+                    }
+
+                    RollingText.text = "Mining...";
                 }
                 RollStatus = 0;
                 AutoRollTimer = false;
@@ -441,7 +465,6 @@ public class RNGscript : MonoBehaviour, IDataPersistence
                 timer = 0;
                 AutoRollTimer = true;
             }
-
         }
         // showing the ore and giving the price
         if (RollStatus == RollSkips)

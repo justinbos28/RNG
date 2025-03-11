@@ -48,7 +48,7 @@ public class GameData
 
         this.CardLimit = 1;
         this.RollSkips = 5;
-        this.RollSpeed = 0.5f;
+        this.RollSpeed = 0.65f;
         this.LuckPercentage = 1;
         this.LuckMultiplier = 1;
         this.MoneyMultiplier = 1;
