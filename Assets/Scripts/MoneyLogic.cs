@@ -94,6 +94,7 @@ public class MoneyLogic : MonoBehaviour, IDataPersistence
     // saving data and getting saved data
     public void LoadData(GameData data)
     {
+        this.BoughtAutoRollUpgrade = data.BoughtAutoRollUpgrade;
         this.BoughtRollSpeed = data.BoughtRollSpeed;
         this.BoughtMoneyMultiplier = data.BoughtMoneyMultiplier;
         this.BoughtLuckPercentage = data.BoughtLuckPercentage;
@@ -103,12 +104,21 @@ public class MoneyLogic : MonoBehaviour, IDataPersistence
         this.BoughtAutoRoll = data.BoughtAutoRoll;
         this.BoughtStorageAmount = data.BoughtStorageAmount;
 
+        this.enableRuntime = data.enableRuntime;
+        this.enableCooldown = data.enableCooldown;
+        this.hasNoCooldown = data.hasNoCooldown;
+        this.MaxRuntime = data.MaxRuntime;
+        this.MaxCooldown = data.MaxCooldown;
+        this.Runtime = data.Runtime;
+        this.Cooldown = data.Cooldown;
         this.Money = data.Money;
         CurrentMoney.text = StaticVariables.cash.ToString("F2") + "$";
         UpgradeName = "Speed Upgrade 1";
+        LoadDrill();
     }
     public void SaveData(ref GameData data)
     {
+        data.BoughtAutoRollUpgrade = this.BoughtAutoRollUpgrade;
         data.BoughtRollSpeed = this.BoughtRollSpeed;
         data.BoughtMoneyMultiplier = this.BoughtMoneyMultiplier;
         data.BoughtLuckPercentage = this.BoughtLuckPercentage;
@@ -118,6 +128,13 @@ public class MoneyLogic : MonoBehaviour, IDataPersistence
         data.BoughtAutoRoll = this.BoughtAutoRoll;
         data.BoughtStorageAmount = this.BoughtStorageAmount;
 
+        data.enableRuntime = this.enableRuntime;
+        data.enableCooldown = this.enableCooldown;
+        data.hasNoCooldown = this.hasNoCooldown;
+        data.MaxRuntime = this.MaxRuntime;
+        data.MaxCooldown = this.MaxCooldown;
+        data.Runtime = this.Runtime;
+        data.Cooldown = this.Cooldown;
         data.Money = this.Money;
     }
     // end saving and getting saved data
@@ -326,6 +343,7 @@ public class MoneyLogic : MonoBehaviour, IDataPersistence
                     BoughtAutoRollUpgrade++;
                     RNGscript.AutoTimer = 0;
                     AutoRoll = true;
+                    BoughtAutoRoll = true;
                     AutoRollButton.SetActive(true);
                     RNGscript.RollButton.SetActive(false);
                     enableRuntime = true;
@@ -397,18 +415,18 @@ public class MoneyLogic : MonoBehaviour, IDataPersistence
     private void Start()
     {
         Costs();
-        // Delete next update
+    }
+    private void LoadDrill()
+    {
         if (BoughtAutoRoll)
         {
-            if (BoughtAutoRollUpgrade == 0)
-            {
-                BoughtAutoRollUpgrade = 1;
-                AutoRollButton.SetActive(true);
-                AutoRollButtonColor.color = Color.green;
-            }
+            AutoRollButton.SetActive(true);
+        }
+        if (enableCooldown)
+        {
+            CooldownPanel.SetActive(true);
         }
     }
-
     private void NoCooldown()
     {
         RNGscript.AutoTimer = 0;
@@ -426,8 +444,11 @@ public class MoneyLogic : MonoBehaviour, IDataPersistence
             {
                 if (enableRuntime)
                 {
+                    int minutes = Mathf.FloorToInt(Runtime / 60);
+                    int seconds = Mathf.FloorToInt(Runtime % 60);
+                    AutoDrillText.text = $"{minutes:D2}:{seconds:D2}";
                     Runtime -= Time.deltaTime;
-                    if (Runtime >= 0)
+                    if (Runtime <= 0)
                     {
                         Runtime = MaxRuntime;
                         enableCooldown = true;
@@ -435,20 +456,26 @@ public class MoneyLogic : MonoBehaviour, IDataPersistence
                         AutoRoll = false;
                         RNGscript.AutoTimer = 1;
                         CooldownPanel.SetActive(true);
-                        AutoDrillText.text = Mathf.Floor(Runtime / 60).ToString("F0") + "m";
+                        RNGscript.RollButton.SetActive(true);
                     }
                 }
             }
             if (enableCooldown)
             {
+                int minutes = Mathf.FloorToInt(Cooldown / 60);
+                int seconds = Mathf.FloorToInt(Cooldown % 60);
+                AutoDrillText.text = $"{minutes:D2}:{seconds:D2}";
                 Cooldown -= Time.deltaTime;
-                if (Cooldown >= 0)
+                if (Cooldown <= 0)
                 {
                     Cooldown = MaxCooldown;
                     enableRuntime = true;
                     enableCooldown = false;
                     CooldownPanel.SetActive(false);
-                    AutoDrillText.text = Mathf.Floor(Cooldown / 60).ToString("F0") + "m";
+                    RNGscript.AutoTimer = 0;
+                    RNGscript.RollButton.SetActive(false);
+                    AutoRoll = true;
+                    AutoRollButtonColor.color = Color.green;
                 }
             }
         }
