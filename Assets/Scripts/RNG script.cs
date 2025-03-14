@@ -40,8 +40,8 @@ public class RNGscript : MonoBehaviour, IDataPersistence
     public int RollSkips = 5;
     public int StoneStatus;
 
-    public int StartTimer;
-    public int AutoTimer = 1;
+    public bool StartTimer;
+    public bool AutoTimer = true;
     public bool AutoSell = false;
     public bool Timer2Active = false;
     public bool AutoRollTimer = false;
@@ -425,6 +425,7 @@ public class RNGscript : MonoBehaviour, IDataPersistence
         {
             if (timer2 > fuckuper) // bigger
             {
+                MoneyLogic.CheckDrillStatus();
                 if (MoneyLogic.AutoRoll)
                 {
                     RollButton.SetActive(false);
@@ -433,7 +434,7 @@ public class RNGscript : MonoBehaviour, IDataPersistence
                 {
                     RollButton.SetActive(true);
                 }
-                if (AutoTimer == 0)
+                if (AutoTimer == StartTimer)
                 {
                     for (int i = 0; i < RarityEffectSprite.Count; i++)
                     {
@@ -461,7 +462,7 @@ public class RNGscript : MonoBehaviour, IDataPersistence
             }
             else if (timer2 < fuckuper) // smaller
             {
-                StartTimer = 0;
+                StartTimer = !AutoTimer;
                 timer = 0;
                 AutoRollTimer = true;
             }
@@ -659,7 +660,7 @@ public class RNGscript : MonoBehaviour, IDataPersistence
             RarityEffectSprite2[i].color = new Color(RarityEffectSprite[i].color.r, RarityEffectSprite[i].color.g, RarityEffectSprite[i].color.b, 0);
         }
         timer = 0;
-        StartTimer = 1;
+        StartTimer = AutoTimer;
         //RollForHand();
         RollButton.SetActive(false);
         RollingText.enabled = true;

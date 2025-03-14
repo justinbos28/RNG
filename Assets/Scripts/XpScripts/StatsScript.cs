@@ -23,25 +23,25 @@ public class StatsScript : MonoBehaviour
     // Update is called once per frame
     void LateUpdate()
     {
-        StatText.text = "Roll Amount = " + RNGscript.cardLimit + "\n" 
-            + "Roll speed = " + RNGscript.RollSpeed.ToString("F2") + "\n"
-            + "Roll skips = " + RNGscript.RollSkips + "\n"
-            + "Luck Percentage = " + RNGscript.LuckPercentage.ToString("F1") + " (1 = 100%)" + "\n"
-            + "Luck Multiplier = " + RNGscript.LuckMultiplier + "\n"
-            + "Money Multiplier = " + RNGscript.MoneyMultiplier + "\n" + "\n"
-            + "Xp Multiplier = " + XPScript.XPMultiplier + "\n"
-            + "Xp Luck Multiplier = " + XPScript.XPLuckMultiplier.ToString("F1") + "\n"
+        StatText.text = "Mining Amount = " + RNGscript.cardLimit + "\n" 
+            + "Mining Speed = " + (RNGscript.RollSpeed * 100).ToString("F0") + " Seconds\n"
+            + "Mining Strenght = " + RNGscript.RollSkips + "\n"
+            + "Luck Percentage = " + (RNGscript.LuckPercentage * 100).ToString("F0") + "%\n"
+            + "Luck Multiplier = " + RNGscript.LuckMultiplier + "X\n"
+            + "Money Multiplier = " + RNGscript.MoneyMultiplier + "X\n \n"
+            + "Xp Multiplier = " + XPScript.XPMultiplier + "X\n"
+            + "Xp Luck Multiplier = " + XPScript.XPLuckMultiplier.ToString("F1") + "X\n"
             + "Max Level = " + XPScript.MaxLevel + "\n"
             + "Rebirth = " + XPScript.SavedRebirth;
 
-        StatTextTwo.text = "Common ore storage = " + OreStorage.MaxCommonOres + "\n"
-            + "Uncommon ore storage = " + OreStorage.MaxUncommonOres + "\n"
-            + "Rare ore storage = " + OreStorage.MaxRareOres + "\n"
-            + "Epic ore storage = " + OreStorage.MaxEpicOres + "\n"
-            + "Legendary ore storage = " + OreStorage.MaxLegendaryOres + "\n"
-            + "Mythic ore storage = " + OreStorage.MaxMythicOres + "\n"
-            + "Exotic ore storage = " + OreStorage.MaxExoticOres + "\n"
-            + "Divine ore storage = " + OreStorage.MaxDivineOres;
+        StatTextTwo.text = "Common gem storage = " + OreStorage.MaxCommonOres + "\n"
+            + "Uncommon gem storage = " + OreStorage.MaxUncommonOres + "\n"
+            + "Rare gem storage = " + OreStorage.MaxRareOres + "\n"
+            + "Epic gem storage = " + OreStorage.MaxEpicOres + "\n"
+            + "Legendary gem storage = " + OreStorage.MaxLegendaryOres + "\n"
+            + "Mythic gem storage = " + OreStorage.MaxMythicOres + "\n"
+            + "Exotic gem storage = " + OreStorage.MaxExoticOres + "\n"
+            + "Divine gem storage = " + OreStorage.MaxDivineOres;
 
         if (XPScript.SavedRebirth == 0)
         {
