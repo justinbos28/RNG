@@ -37,6 +37,17 @@ public class GameData
     public bool enableCooldown;
     public bool hasNoCooldown;
 
+    [Header("Values from Orestorage")]
+
+    public int MaxCommonOres;
+    public int MaxUncommonOres;
+    public int MaxRareOres;
+    public int MaxEpicOres;
+    public int MaxLegendaryOres;
+    public int MaxMythicOres;
+    public int MaxExoticOres;
+    public int MaxDivineOres ;
+
     [Header("Values from Xpscript")]
     public int XPCount;
     public int LevelCount;
@@ -77,6 +88,16 @@ public class GameData
         this.BoughtRollAmount = 0;
         this.BoughtRollSkips = 0;
         this.BoughtRollSpeed = 0;
+
+        this.MaxCommonOres = 500;
+        this.MaxUncommonOres = 250;
+        this.MaxRareOres = 125;
+        this.MaxEpicOres = 75;
+        this.MaxLegendaryOres = 40;
+        this.MaxMythicOres = 20;
+        this.MaxExoticOres = 10;
+        this.MaxDivineOres = 5;
+
         this.XPCount = 0;
         this.LevelCount = 1;
         this.XPNeeded = 10;

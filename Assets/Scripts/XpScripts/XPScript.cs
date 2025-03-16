@@ -24,6 +24,8 @@ public class XPScript : MonoBehaviour, IDataPersistence
     public SavedOresCount SavedOres;
     public DataPersistence DataPersistence;
     public IndexManager IndexManager;
+    public CraftingRecipes CraftingRecipes;
+    public DrillUnlocked DrillUnlocked;
 
     public GameObject RebirthButton;
 
@@ -170,7 +172,11 @@ public class XPScript : MonoBehaviour, IDataPersistence
         {
             RNGscript.allOres[i].StorageAmount = 0;
         }
-        
+        for (int i = 0; i < CraftingRecipes.Materials.Count; i++)
+        {
+            CraftingRecipes.Materials[i].StorageAmount = 0;
+        }
+
         // money logic reset
         MoneyLogic.BoughtAutoRoll = false;
         MoneyLogic.BoughtLuckMultiplier = 0;
@@ -180,9 +186,32 @@ public class XPScript : MonoBehaviour, IDataPersistence
         MoneyLogic.BoughtRollSkips = 0;
         MoneyLogic.BoughtRollSpeed = 0;
         MoneyLogic.BoughtStorageAmount = 0;
+        MoneyLogic.BoughtAutoRollUpgrade = 0;
         MoneyLogic.Money = 0;
 
+        MoneyLogic.enableRuntime = false;
+        MoneyLogic.enableCooldown = false;
+        MoneyLogic.hasNoCooldown = false;
+        MoneyLogic.MaxRuntime = 300;
+        MoneyLogic.MaxCooldown = 600;
+        MoneyLogic.Runtime = 300;
+        MoneyLogic.Cooldown = 600;
+
         // orecount reset
+        OreStorage.MaxCommonOres = 500;
+        OreStorage.MaxUncommonOres = 250;
+        OreStorage.MaxRareOres = 125;
+        OreStorage.MaxEpicOres = 75;
+        OreStorage.MaxLegendaryOres = 40;
+        OreStorage.MaxMythicOres = 20;
+        OreStorage.MaxExoticOres = 10;
+        OreStorage.MaxDivineOres = 5;
+        for (int i = 0; i < DrillUnlocked.SavedDrillData.Count; i++)
+        {
+            DrillUnlocked.SavedDrillData[i].Upgrade = 0;
+            DrillUnlocked.SavedDrillData[i].Unlocked = false;
+        }
+
         DataPersistence.SaveGame();
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }

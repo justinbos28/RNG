@@ -6447,7 +6447,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &321805323
 RectTransform:
   m_ObjectHideFlags: 0
@@ -12054,7 +12054,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.75, y: 0.2}
   m_AnchorMax: {x: 1, y: 0.45}
-  m_AnchoredPosition: {x: -0.41531372, y: 4.574938}
+  m_AnchoredPosition: {x: -0.41531372, y: 4.574909}
   m_SizeDelta: {x: -15.2599945, y: -9.01001}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &613908597
@@ -18613,10 +18613,10 @@ MonoBehaviour:
   MaxUncommonOres: 250
   MaxRareOres: 125
   MaxEpicOres: 75
-  MaxLegendaryOres: 25
-  MaxMythicOres: 5
-  MaxExoticOres: 2
-  MaxDivineOres: 1
+  MaxLegendaryOres: 40
+  MaxMythicOres: 20
+  MaxExoticOres: 10
+  MaxDivineOres: 5
   Storage:
   - {fileID: 1468832781}
   - {fileID: 868731499}
@@ -19399,7 +19399,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0.2}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -78.66501, y: -48.085}
+  m_AnchoredPosition: {x: -78.66501, y: -48.08499}
   m_SizeDelta: {x: 157.33, y: -96.169}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1010180707
@@ -22831,7 +22831,7 @@ MonoBehaviour:
     OrePrice: 10000
     rarityEffectColor: {r: 0, g: 0, b: 0, a: 0}
     Color: {r: 0, g: 0, b: 0, a: 0}
-  - Name: glass
+  - Name: Glass
     description: 
     rarityTitle: 
     OrePicture: {fileID: 21300000, guid: 39055c6819d8ec24b98f37c2ec3fdec6, type: 3}
@@ -26270,7 +26270,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.75, y: 0.2}
   m_AnchorMax: {x: 1, y: 0.45}
-  m_AnchoredPosition: {x: -1.0151825, y: 4.5749073}
+  m_AnchoredPosition: {x: -1.0151825, y: 4.5748787}
   m_SizeDelta: {x: -16.059998, y: -9.01001}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1354005393
@@ -29165,7 +29165,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -0.00000035763}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 150, y: 304.81}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1491348680
@@ -31649,6 +31649,10 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 9b12375433f530746923fad7205fbbad, type: 3}
   - {fileID: 21300000, guid: e9500b3425bed14458066dedd7d80590, type: 3}
   - {fileID: 21300000, guid: 9b98cf775fabae84bb8ceec9b01697ed, type: 3}
+  - {fileID: 21300000, guid: 3642f0652557a0a4497d346cdc3b0143, type: 3}
+  - {fileID: 21300000, guid: 72037d587dbf1a24d91400545cfc91f7, type: 3}
+  - {fileID: 21300000, guid: ddd25c60de0ce7b438fdd47a24fa6658, type: 3}
+  - {fileID: 21300000, guid: 694e455931114a14d8c76a8c08609eeb, type: 3}
 --- !u!114 &1546723950
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -32831,7 +32835,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.75, y: 0.2}
   m_AnchorMax: {x: 1, y: 0.45}
-  m_AnchoredPosition: {x: -0.05255127, y: 4.574938}
+  m_AnchoredPosition: {x: -0.05255127, y: 4.574909}
   m_SizeDelta: {x: -15.184998, y: -9.01001}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1600167253
@@ -34544,7 +34548,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -179.00002, y: -24.160004}
+  m_AnchoredPosition: {x: -179, y: -24.160004}
   m_SizeDelta: {x: -388, y: -48.390015}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1687452676
@@ -36867,7 +36871,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.75, y: 0.2}
   m_AnchorMax: {x: 1, y: 0.45}
-  m_AnchoredPosition: {x: -1.7000427, y: 4.4998474}
+  m_AnchoredPosition: {x: -1.7000427, y: 4.499834}
   m_SizeDelta: {x: -14.690002, y: -8.76001}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1762248028
@@ -37812,7 +37816,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.75, y: 0.2}
   m_AnchorMax: {x: 1, y: 0.45}
-  m_AnchoredPosition: {x: -0.30003357, y: 4.574938}
+  m_AnchoredPosition: {x: -0.30003357, y: 4.574909}
   m_SizeDelta: {x: -15.48999, y: -9.01001}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1842316529
@@ -42592,6 +42596,8 @@ MonoBehaviour:
   SavedOres: {fileID: 987623142}
   DataPersistence: {fileID: 1950076375}
   IndexManager: {fileID: 987623143}
+  CraftingRecipes: {fileID: 0}
+  DrillUnlocked: {fileID: 0}
   RebirthButton: {fileID: 2091459040}
 --- !u!4 &2085766773
 Transform:

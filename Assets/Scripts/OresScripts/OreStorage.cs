@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class OreStorage : MonoBehaviour
+public class OreStorage : MonoBehaviour, IDataPersistence
 {
     [Header("storage")]
     public int InventoryStatus = 0;
@@ -12,10 +12,10 @@ public class OreStorage : MonoBehaviour
     public int MaxUncommonOres = 250;
     public int MaxRareOres = 125;
     public int MaxEpicOres = 75;
-    public int MaxLegendaryOres = 25;
-    public int MaxMythicOres = 5;
-    public int MaxExoticOres = 2;
-    public int MaxDivineOres = 1;
+    public int MaxLegendaryOres = 40;
+    public int MaxMythicOres = 20;
+    public int MaxExoticOres = 10;
+    public int MaxDivineOres = 5;
 
     [Header("lists")]
     public List<Text> Storage = new List<Text>();
@@ -32,6 +32,29 @@ public class OreStorage : MonoBehaviour
     public RNGscript RNGscript;
     public MoneyLogic MoneyLogic;
     public XPScript XPScript;
+
+    public void LoadData(GameData data)
+    {
+        this.MaxCommonOres = data.MaxCommonOres;
+        this.MaxUncommonOres = data.MaxUncommonOres;
+        this.MaxRareOres = data.MaxRareOres;
+        this.MaxEpicOres = data.MaxEpicOres;
+        this.MaxLegendaryOres = data.MaxLegendaryOres;
+        this.MaxMythicOres = data.MaxMythicOres;
+        this.MaxExoticOres = data.MaxExoticOres;
+        this.MaxDivineOres = data.MaxDivineOres;
+    }
+    public void SaveData(ref GameData data)
+    {
+        data.MaxCommonOres = this.MaxCommonOres;
+        data.MaxUncommonOres = this.MaxUncommonOres;
+        data.MaxRareOres = this.MaxRareOres;
+        data.MaxEpicOres = this.MaxEpicOres;
+        data.MaxLegendaryOres = this.MaxLegendaryOres;
+        data.MaxMythicOres = this.MaxMythicOres;
+        data.MaxExoticOres = this.MaxExoticOres;
+        data.MaxDivineOres = this.MaxDivineOres;
+    }
 
     public void SwitchInventory()
     {
