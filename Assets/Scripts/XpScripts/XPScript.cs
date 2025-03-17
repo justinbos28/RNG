@@ -1,7 +1,6 @@
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
-using Unity.VisualScripting;
 using System.Collections.Generic;
 
 public class XPScript : MonoBehaviour, IDataPersistence
@@ -25,11 +24,8 @@ public class XPScript : MonoBehaviour, IDataPersistence
     public DataPersistence DataPersistence;
     public IndexManager IndexManager;
     public CraftingRecipes CraftingRecipes;
-    public DrillUnlocked DrillUnlocked;
 
     public GameObject RebirthButton;
-
-
     public void LoadData(GameData data)
     {
         this.SavedRebirth = data.SavedRebirth;
@@ -113,7 +109,6 @@ public class XPScript : MonoBehaviour, IDataPersistence
             XPLuckMultiplier = 1 + (LevelCount / 100.0f);
         }
     }
-
     public void SelectWorld()
     {
         
@@ -162,7 +157,7 @@ public class XPScript : MonoBehaviour, IDataPersistence
 
         // rngscript reset
         RNGscript.RollSkips = 5;
-        RNGscript.RollSpeed = 0.5f;
+        RNGscript.RollSpeed = 0.65f;
         RNGscript.cardLimit = 1;
         RNGscript.LuckMultiplier = 1;
         RNGscript.LuckPercentage = 1;
@@ -206,11 +201,6 @@ public class XPScript : MonoBehaviour, IDataPersistence
         OreStorage.MaxMythicOres = 20;
         OreStorage.MaxExoticOres = 10;
         OreStorage.MaxDivineOres = 5;
-        for (int i = 0; i < DrillUnlocked.SavedDrillData.Count; i++)
-        {
-            DrillUnlocked.SavedDrillData[i].Upgrade = 0;
-            DrillUnlocked.SavedDrillData[i].Unlocked = false;
-        }
 
         DataPersistence.SaveGame();
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);

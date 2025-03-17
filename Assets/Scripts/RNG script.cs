@@ -1,11 +1,7 @@
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using System.Runtime.CompilerServices;
 using UnityEngine;
 using UnityEngine.UI;
-using UnityEngine.XR;
-
 
 public class RNGscript : MonoBehaviour, IDataPersistence
 {
@@ -404,7 +400,7 @@ public class RNGscript : MonoBehaviour, IDataPersistence
 
     public void Update()
     {
-        CurrentMoney.text = NumberFormatter(StaticVariables.cash) + "$";
+        CurrentMoney.text = NumberFormatter(MoneyLogic.Money) + "$";
 
         // timers for auto rolling, animation
         if (StartTimer == AutoTimer)

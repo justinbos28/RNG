@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -25,7 +24,7 @@ public class StatsScript : MonoBehaviour
     {
         StatText.text = "Mining Amount = " + RNGscript.cardLimit + "\n" 
             + "Mining Speed = " + (RNGscript.RollSpeed * 100).ToString("F0") + " Seconds\n"
-            + "Mining Strenght = " + RNGscript.RollSkips + "\n"
+            + "Mining Strenght = " + (6 - RNGscript.RollSkips) + "\n"
             + "Luck Percentage = " + (RNGscript.LuckPercentage * 100).ToString("F0") + "%\n"
             + "Luck Multiplier = " + RNGscript.LuckMultiplier + "X\n"
             + "Money Multiplier = " + RNGscript.MoneyMultiplier + "X\n \n"

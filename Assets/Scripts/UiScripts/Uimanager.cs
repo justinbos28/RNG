@@ -1,8 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class Uimanager : MonoBehaviour 
 {
@@ -15,6 +11,7 @@ public class Uimanager : MonoBehaviour
 
     public CraftingRecipes CraftingRecipes;
     public MoneyLogic MoneyLogic;
+    public StatsScript StatsScript;
 
     public bool ShopPanel;
     public bool OpenIndex;
@@ -23,9 +20,20 @@ public class Uimanager : MonoBehaviour
     public bool OpenCrafter;
     public bool OpenPortal;
 
-    public StatsScript StatsScript;
     public void ShopButton()
     {
+        if (Shop == null)
+        {
+            Debug.LogError("Shop GameObject is not assigned.");
+            return;
+        }
+
+        if (MoneyLogic == null)
+        {
+            Debug.LogError("MoneyLogic script is not assigned.");
+            return;
+        }
+
         if (ShopPanel == false)
         {
             Shop.SetActive(true);

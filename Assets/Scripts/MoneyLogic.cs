@@ -1,9 +1,7 @@
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 using System.Linq;
 using UnityEngine.UI;
-using UnityEditor.Experimental.GraphView;
 
 public class MoneyLogic : MonoBehaviour, IDataPersistence
 {
@@ -164,7 +162,7 @@ public class MoneyLogic : MonoBehaviour, IDataPersistence
         this.Runtime = data.Runtime;
         this.Cooldown = data.Cooldown;
         this.Money = data.Money;
-        CurrentMoney.text = StaticVariables.cash.ToString("F2") + "$";
+        CurrentMoney.text = Money.ToString("F2") + "$";
         UpgradeName = "Speed Upgrade 1";
         LoadDrill();
     }
@@ -199,11 +197,11 @@ public class MoneyLogic : MonoBehaviour, IDataPersistence
             case 0:
                 switch (BoughtRollSpeed)
                 {
-                    case 0: UpgradeText.text = "10$"; UpgradeCost = 10; break;
-                    case 1: UpgradeText.text = "75$"; UpgradeCost = 75; break;
-                    case 2: UpgradeText.text = "250$"; UpgradeCost = 250; break;
-                    case 3: UpgradeText.text = "1000$"; UpgradeCost = 1000; break;
-                    case 4: UpgradeText.text = "3000$"; UpgradeCost = 3000; break;
+                    case 0: UpgradeText.text = "25$"; UpgradeCost = 25; break;
+                    case 1: UpgradeText.text = "150$"; UpgradeCost = 150; break;
+                    case 2: UpgradeText.text = "500$"; UpgradeCost = 500; break;
+                    case 3: UpgradeText.text = "5000$"; UpgradeCost = 5000; break;
+                    case 4: UpgradeText.text = "10000$"; UpgradeCost = 10000; break;
                     case 5: UpgradeText.text = "Purchased"; UpgradeCost = 0; break;
                 }
                 break;
@@ -211,56 +209,56 @@ public class MoneyLogic : MonoBehaviour, IDataPersistence
                 switch (BoughtRollAmount)
                 {
                     case 0: UpgradeText.text = "250$"; UpgradeCost = 250; break;
-                    case 1: UpgradeText.text = "1000$"; UpgradeCost = 1000; break;
-                    case 2: UpgradeText.text = "2000$"; UpgradeCost = 2000; break;
-                    case 3: UpgradeText.text = "4000$"; UpgradeCost = 4000; break;
-                    case 4: UpgradeText.text = "6000$"; UpgradeCost = 6000; break;
+                    case 1: UpgradeText.text = "1500$"; UpgradeCost = 1500; break;
+                    case 2: UpgradeText.text = "5000$"; UpgradeCost = 4000; break;
+                    case 3: UpgradeText.text = "7500$"; UpgradeCost = 7500; break;
+                    case 4: UpgradeText.text = "15000$"; UpgradeCost = 15000; break;
                     case 5: UpgradeText.text = "Purchased"; UpgradeCost = 0; break;
                 }
                 break;
             case 2: switch (BoughtRollSkips)
                 {
-                    case 0: UpgradeText.text = "400$"; UpgradeCost = 400; break;
-                    case 1: UpgradeText.text = "1000$"; UpgradeCost = 1000; break;
-                    case 2: UpgradeText.text = "2250$"; UpgradeCost = 2250; break;
+                    case 0: UpgradeText.text = "1000$"; UpgradeCost = 1000; break;
+                    case 1: UpgradeText.text = "2250$"; UpgradeCost = 2250; break;
+                    case 2: UpgradeText.text = "7500$"; UpgradeCost = 7500; break;
                     case 3: UpgradeText.text = "Purchased"; UpgradeCost = 0; break;
                 }
                 break;
             case 3:
                 switch (BoughtAutoRollUpgrade)
                 {
-                    case 0: UpgradeText.text = "100$"; UpgradeCost = 100; break;
-                    case 1: UpgradeText.text = "350$"; UpgradeCost = 350; break;
-                    case 2: UpgradeText.text = "800$"; UpgradeCost = 800; break;
-                    case 3: UpgradeText.text = "1500$"; UpgradeCost = 1500; break;
-                    case 4: UpgradeText.text = "4500$"; UpgradeCost = 4500; break;
+                    case 0: UpgradeText.text = "250$"; UpgradeCost = 250; break;
+                    case 1: UpgradeText.text = "1000$"; UpgradeCost = 1000; break;
+                    case 2: UpgradeText.text = "4500$"; UpgradeCost = 4500; break;
+                    case 3: UpgradeText.text = "9500$"; UpgradeCost = 9500; break;
+                    case 4: UpgradeText.text = "12500$"; UpgradeCost = 12500; break;
                     case 5: UpgradeText.text = "Purchased"; UpgradeCost = 0; break;
                 }
                 break;
             case 4:
                 switch (BoughtLuckPercentage)
                 {
-                    case 0: UpgradeText.text = "10$"; UpgradeCost = 10; break;
-                    case 1: UpgradeText.text = "25$"; UpgradeCost = 25; break;
-                    case 2: UpgradeText.text = "75$"; UpgradeCost = 75; break;
-                    case 3: UpgradeText.text = "150$"; UpgradeCost = 150; break;
-                    case 4: UpgradeText.text = "250$"; UpgradeCost = 250; break;
-                    case 5: UpgradeText.text = "400$"; UpgradeCost = 400; break;
-                    case 6: UpgradeText.text = "750$"; UpgradeCost = 750; break;
-                    case 7: UpgradeText.text = "1000$"; UpgradeCost = 1000; break;
-                    case 8: UpgradeText.text = "1250$"; UpgradeCost = 1250; break;
-                    case 9: UpgradeText.text = "1500$"; UpgradeCost = 1500; break;
+                    case 0: UpgradeText.text = "20$"; UpgradeCost = 20; break;
+                    case 1: UpgradeText.text = "100$"; UpgradeCost = 100; break;
+                    case 2: UpgradeText.text = "250$"; UpgradeCost = 250; break;
+                    case 3: UpgradeText.text = "500$"; UpgradeCost = 500; break;
+                    case 4: UpgradeText.text = "950$"; UpgradeCost = 950; break;
+                    case 5: UpgradeText.text = "1500$"; UpgradeCost = 1500; break;
+                    case 6: UpgradeText.text = "3250$"; UpgradeCost = 3250; break;
+                    case 7: UpgradeText.text = "4500$"; UpgradeCost = 4500; break;
+                    case 8: UpgradeText.text = "6750$"; UpgradeCost = 6750; break;
+                    case 9: UpgradeText.text = "1000$"; UpgradeCost = 10000; break;
                     case 10: UpgradeText.text = "Purchased"; UpgradeCost = 0; break;
                 }
                 break;
             case 5:
                 switch (BoughtLuckMultiplier)
                 {
-                    case 0: UpgradeText.text = "50$"; UpgradeCost = 50; break;
-                    case 1: UpgradeText.text = "150$"; UpgradeCost = 150; break;
-                    case 2: UpgradeText.text = "300$"; UpgradeCost = 300; break;
-                    case 3: UpgradeText.text = "500$"; UpgradeCost = 500; break;
-                    case 4: UpgradeText.text = "750$"; UpgradeCost = 750; break;
+                    case 0: UpgradeText.text = "250$"; UpgradeCost = 250; break;
+                    case 1: UpgradeText.text = "650$"; UpgradeCost = 650; break;
+                    case 2: UpgradeText.text = "1150$"; UpgradeCost = 1150; break;
+                    case 3: UpgradeText.text = "3450$"; UpgradeCost = 3450; break;
+                    case 4: UpgradeText.text = "7550$"; UpgradeCost = 7550; break;
                     case 5: UpgradeText.text = "Purchased"; UpgradeCost = 0; break;
                 }
                 break;
@@ -268,22 +266,22 @@ public class MoneyLogic : MonoBehaviour, IDataPersistence
                 switch (BoughtMoneyMultiplier)
                 {
                     case 0: UpgradeText.text = "30$"; UpgradeCost = 30; break;
-                    case 1: UpgradeText.text = "75$"; UpgradeCost = 75; break;
-                    case 2: UpgradeText.text = "225$"; UpgradeCost = 225; break;
-                    case 3: UpgradeText.text = "450$"; UpgradeCost = 450; break;
-                    case 4: UpgradeText.text = "600$"; UpgradeCost = 600; break;
+                    case 1: UpgradeText.text = "125$"; UpgradeCost = 125; break;
+                    case 2: UpgradeText.text = "675$"; UpgradeCost = 675; break;
+                    case 3: UpgradeText.text = "1150$"; UpgradeCost = 1150; break;
+                    case 4: UpgradeText.text = "3560$"; UpgradeCost = 3560; break;
                     case 5: UpgradeText.text = "Purchased"; UpgradeCost = 0; break;
                 }
                 break;
             case 7:
                 switch (BoughtStorageAmount)
                 {
-                    case 0: UpgradeText.text = "500$"; UpgradeCost = 500; break;
-                    case 1: UpgradeText.text = "1500$"; UpgradeCost = 1500; break;
-                    case 2: UpgradeText.text = "5000$"; UpgradeCost = 5000; break;
+                    case 0: UpgradeText.text = "2500$"; UpgradeCost = 2500; break;
+                    case 1: UpgradeText.text = "15000$"; UpgradeCost = 15000; break;
+                    case 2: UpgradeText.text = "15000$"; UpgradeCost = 15000; break;
                     case 3: UpgradeText.text = "15000$"; UpgradeCost = 15000; break;
-                    case 4: UpgradeText.text = "50000$"; UpgradeCost = 50000; break;
-                    case 5: UpgradeText.text = "100000$"; UpgradeCost = 100000; break;
+                    case 4: UpgradeText.text = "450000$"; UpgradeCost = 450000; break;
+                    case 5: UpgradeText.text = "1000000$"; UpgradeCost = 1000000; break;
                     case 6: UpgradeText.text = "Purchased"; UpgradeCost = 0; break;
                 }
                 break;
@@ -333,7 +331,7 @@ public class MoneyLogic : MonoBehaviour, IDataPersistence
                 Money -= UpgradeCost;
                 RNGscript.RollSpeed -= 0.05f;
                 BoughtRollSpeed++;
-                CurrentMoney.text = StaticVariables.cash.ToString("F2") + "$";
+                CurrentMoney.text = Money.ToString("F2") + "$";
                 UpdateUpgradeUI();
                 Costs();
                 UpdateStage();
@@ -379,7 +377,7 @@ public class MoneyLogic : MonoBehaviour, IDataPersistence
                 RNGscript.cardLimit++;
                 BoughtRollAmount++;
                 RNGscript.RollForHand();
-                CurrentMoney.text = StaticVariables.cash.ToString("F2") + "$";
+                CurrentMoney.text = Money.ToString("F2") + "$";
                 UpdateUpgradeUI();
                 Costs();
                 UpdateStage();
@@ -425,7 +423,7 @@ public class MoneyLogic : MonoBehaviour, IDataPersistence
                 BoughtRollSkips++;
                 RNGscript.StoneStatus--;
                 RNGscript.RollSkips--;
-                CurrentMoney.text = StaticVariables.cash.ToString("F2") + "$";
+                CurrentMoney.text = Money.ToString("F2") + "$";
                 UpdateUpgradeUI();
                 Costs();
                 UpdateStage();
@@ -468,7 +466,7 @@ public class MoneyLogic : MonoBehaviour, IDataPersistence
             if (hasEnoughMaterials && Money >= UpgradeCost && BoughtAutoRollUpgrade <= (AutoDrillUpgrades.Count - 1))
             {
                 Money -= UpgradeCost;
-                if (!AutoRoll && BoughtAutoRollUpgrade >= 0)
+                if (!AutoRoll && BoughtAutoRollUpgrade == 0)
                 {
                     BoughtAutoRollUpgrade++;
                     RNGscript.AutoTimer = false;
@@ -484,14 +482,14 @@ public class MoneyLogic : MonoBehaviour, IDataPersistence
                     BoughtAutoRollUpgrade++;
                     switch (BoughtAutoRollUpgrade)
                     {
-                        case 1: MaxCooldown = 600; MaxRuntime = 300; break;
-                        case 2: MaxCooldown = 900; MaxRuntime = 900; break;
-                        case 3: MaxCooldown = 300; MaxRuntime = 1200; break;
-                        case 4: MaxCooldown = 300; MaxRuntime = 1500; break;
+                        case 1: MaxCooldown = 600; MaxRuntime = 300; Cooldown = 600; Runtime = 300; break;
+                        case 2: MaxCooldown = 900; MaxRuntime = 900; Cooldown = 900; Runtime = 900; break;
+                        case 3: MaxCooldown = 600; MaxRuntime = 1200; Cooldown = 600; Runtime = 1200; break;
+                        case 4: MaxCooldown = 300; MaxRuntime = 1500; Cooldown = 300; Runtime = 1500; break;
                         case 5: hasNoCooldown = true; NoCooldown(); break;
                     }
                 }
-                CurrentMoney.text = StaticVariables.cash.ToString("F2") + "$";
+                CurrentMoney.text = Money.ToString("F2") + "$";
                 UpdateUpgradeUI();
                 Costs();
                 UpdateStage();
@@ -536,7 +534,7 @@ public class MoneyLogic : MonoBehaviour, IDataPersistence
                 Money -= UpgradeCost;
                 BoughtLuckPercentage++;
                 RNGscript.LuckPercentage += 0.15f;
-                CurrentMoney.text = StaticVariables.cash.ToString("F2") + "$";
+                CurrentMoney.text = Money.ToString("F2") + "$";
                 UpdateUpgradeUI();
                 Costs();
                 UpdateStage();
@@ -581,7 +579,7 @@ public class MoneyLogic : MonoBehaviour, IDataPersistence
                 Money -= UpgradeCost;
                 BoughtLuckMultiplier++;
                 RNGscript.LuckMultiplier += 0.2f;
-                CurrentMoney.text = StaticVariables.cash.ToString("F2") + "$";
+                CurrentMoney.text = Money.ToString("F2") + "$";
                 UpdateUpgradeUI();
                 Costs();
                 UpdateStage();
@@ -626,7 +624,7 @@ public class MoneyLogic : MonoBehaviour, IDataPersistence
                 Money -= UpgradeCost;
                 BoughtMoneyMultiplier++;
                 RNGscript.MoneyMultiplier += 0.2f;
-                CurrentMoney.text = StaticVariables.cash.ToString("F2") + "$";
+                CurrentMoney.text = Money.ToString("F2") + "$";
                 UpdateUpgradeUI();
                 Costs();
                 UpdateStage();
@@ -680,7 +678,7 @@ public class MoneyLogic : MonoBehaviour, IDataPersistence
                 OreStorage.MaxExoticOres += 20;
                 OreStorage.MaxDivineOres += 10;
 
-                CurrentMoney.text = StaticVariables.cash.ToString("F2") + "$";
+                CurrentMoney.text = Money.ToString("F2") + "$";
                 UpdateUpgradeUI();
                 Costs();
                 UpdateStage();
@@ -784,11 +782,14 @@ public class MoneyLogic : MonoBehaviour, IDataPersistence
         AutoRoll = true;
         AutoRollButton.SetActive(true);
         RNGscript.RollButton.SetActive(false);
+        CooldownPanel.SetActive(false);
+        AutoDrillText.text = "Inf";
+        enableRuntime = true;
+        enableCooldown = false;
         AutoRollButtonColor.color = Color.green;
     }
     private void Update()
     {
-        StaticVariables.cash = Money;
         if (!hasNoCooldown)
         {
             if (AutoRoll)
@@ -1056,6 +1057,10 @@ public class MoneyLogic : MonoBehaviour, IDataPersistence
             RNGscript.RollButton.SetActive(false);
             AutoRoll = true;
             AutoRollButtonColor.color = Color.green;
+            if (hasNoCooldown)
+            {
+                AutoDrillText.text = "Inf";
+            }
         }
         else if (AutoRoll == true)
         {

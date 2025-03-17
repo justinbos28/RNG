@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
@@ -31,11 +30,11 @@ public class CraftingRecipes : MonoBehaviour, IDataPersistence
         { "Wires", new Dictionary<string, int> { {"Copper", 20}, {"Plastic", 10} } },
         { "Plastic", new Dictionary<string, int> { {"Petroleum", 10}, {"Coal", 20} } },
         { "Motor", new Dictionary<string, int> { {"Steel", 10}, {"Iron", 30}, {"Silver", 1}, {"Petroleum", 2}, {"SteelFrame", 1} } },
-        { "SteelFrame", new Dictionary<string, int> { {"Steel", 10}, {"Iron", 50} } },
+        { "SteelFrame", new Dictionary<string, int> { {"Steel", 10}, {"Iron", 25} } },
         { "Engine", new Dictionary<string, int> { {"Motor", 10}, {"Titanium", 2}, {"Iron", 20}, {"Petroleum", 1}, {"Copper", 5}, {"Gold", 1}, {"SteelFrame", 5} } },
         { "Generator", new Dictionary<string, int> { {"Copper", 20}, {"Wires", 10}, {"Motor", 1}, {"Iron", 50}, {"SteelFrame", 10} } },
         { "WoodFrame", new Dictionary<string, int> { {"Wood", 10} } },
-        { "CircuitBoard", new Dictionary<string, int> { {"Copper", 10}, {"Silver", 1}, {"Steel", 20}, {"Fast Gem", 10} } },
+        { "CircuitBoard", new Dictionary<string, int> { {"Copper", 10}, {"Silver", 1}, {"Steel", 20}, {"Fast Gem", 5} } },
         { "Clean Gem", new Dictionary<string, int> { {"Rusty Gem", 10}, { "Stone Gem", 5 }, { "Water Gem", 1 }, { "Wood", 1} } },
         { "Hardened Steel", new Dictionary<string, int> { { "Petroleum", 10 }, { "Steel", 5 }, { "Heat Gem", 1 } } },
         { "Small Drill", new Dictionary<string, int> { {"WoodFrame", 5}, {"Iron", 6 } } },
@@ -45,7 +44,8 @@ public class CraftingRecipes : MonoBehaviour, IDataPersistence
         { "Small Generator", new Dictionary<string, int> { {"SteelFrame", 1}, { "Petroleum", 10 }, { "Plastic", 10 }, { "Heat Gem", 1 } } },
         { "Standard Drill", new Dictionary<string, int> { {"Iron", 50}, { "Steel", 25 }, { "Wires", 5 }, { "Titanium", 5 } } },
         { "Heat Generator", new Dictionary<string, int> { {"Generator", 1}, { "Hardened Steel", 10 }, { "Heat Gem", 50 }, { "Fire Gem", 5 }, { "Quartz", 10 } } },
-        { "Duplicator", new Dictionary<string, int> { {"Generator", 1}, { "Motor", 1 }, { "Copper", 10 }, { "Wires", 5 }, { "SteelFrame", 10 } } }
+        { "Duplicator", new Dictionary<string, int> { {"Generator", 1}, { "Motor", 1 }, { "Copper", 10 }, { "Wires", 5 }, { "SteelFrame", 10 } } },
+        { "steel", new Dictionary<string, int> { {"Coal", 10}, {"Iron", 5 } } }
     };
 
     // start of saving and loading data
@@ -132,7 +132,15 @@ public class CraftingRecipes : MonoBehaviour, IDataPersistence
                     var ore = Materials.FirstOrDefault(m => m.Name == material.Key);
                     ore.StorageAmount -= material.Value;
                 }
-                Minerscript.Materials[CurrentRecipe].StorageAmount += CraftingAmount;
+
+                if (CurrentRecipe == 20)
+                {
+                    RNGscript.allOres[13].StorageAmount += CraftingAmount;
+                }
+                else
+                {
+                    Minerscript.Materials[CurrentRecipe].StorageAmount += CraftingAmount;
+                }
                 UpdateUi();
                 IsInvalid.color = Color.white;
             }
@@ -156,7 +164,7 @@ public class CraftingRecipes : MonoBehaviour, IDataPersistence
             case 2: CraftingAmount = 5; break;
             case 3: CraftingAmount = 10; break;
             case 4: CraftingAmount = 1; break;
-            case 5: CraftingAmount = 5; break;
+            case 5: CraftingAmount = 10; break;
             case 6: CraftingAmount = 1; break;
             case 7: CraftingAmount = 1; break;
             case 8: CraftingAmount = 10; break;
@@ -170,6 +178,8 @@ public class CraftingRecipes : MonoBehaviour, IDataPersistence
             case 16: CraftingAmount = 1; break;
             case 17: CraftingAmount = 1; break;
             case 18: CraftingAmount = 1; break;
+            case 19: CraftingAmount = 1; break;
+            case 20: CraftingAmount = 2; break;
             default: CraftingAmount = 1; break;
         }
     }
@@ -178,7 +188,7 @@ public class CraftingRecipes : MonoBehaviour, IDataPersistence
     {
         if (CurrentRecipe <= 0)
         {
-            CurrentRecipe = 0;
+            CurrentRecipe = Recipes.Count - 1;
         }
         else
         {
@@ -192,7 +202,7 @@ public class CraftingRecipes : MonoBehaviour, IDataPersistence
     {
         if (CurrentRecipe >= (Recipes.Count - 1))
         {
-            CurrentRecipe = (Recipes.Count - 1);
+            CurrentRecipe = 0;
         }
         else
         {
@@ -205,12 +215,24 @@ public class CraftingRecipes : MonoBehaviour, IDataPersistence
 
     public void UpdateUi()
     {
-        MaterialName.text = Minerscript.Materials[CurrentRecipe].Name;
-        MaterialAmount.text = "Stored: " + Minerscript.Materials[CurrentRecipe].StorageAmount.ToString();
-        MaterialPrice.text = Minerscript.Materials[CurrentRecipe].OrePrice.ToString();
-        MaterialImage.sprite = Minerscript.Materials[CurrentRecipe].OrePicture;
-        MaterialRequirements.text = string.Join("\n", Recipes.ElementAt(CurrentRecipe).Value.Select(r => $"{r.Key}: {r.Value}"));
-        Output.text = "Output: " + CraftingAmount.ToString();
+        if (CurrentRecipe == 20)
+        {
+            MaterialName.text = Minerscript.Materials[CurrentRecipe].Name;
+            MaterialAmount.text = "Stored: " + RNGscript.allOres[13].StorageAmount.ToString();
+            MaterialPrice.text = Minerscript.Materials[CurrentRecipe].OrePrice.ToString();
+            MaterialImage.sprite = Minerscript.Materials[CurrentRecipe].OrePicture;
+            MaterialRequirements.text = string.Join("\n", Recipes.ElementAt(CurrentRecipe).Value.Select(r => $"{r.Key}: {r.Value}"));
+            Output.text = "Output: " + CraftingAmount.ToString();
+        } 
+        else
+        {
+            MaterialName.text = Minerscript.Materials[CurrentRecipe].Name;
+            MaterialAmount.text = "Stored: " + Minerscript.Materials[CurrentRecipe].StorageAmount.ToString();
+            MaterialPrice.text = Minerscript.Materials[CurrentRecipe].OrePrice.ToString();
+            MaterialImage.sprite = Minerscript.Materials[CurrentRecipe].OrePicture;
+            MaterialRequirements.text = string.Join("\n", Recipes.ElementAt(CurrentRecipe).Value.Select(r => $"{r.Key}: {r.Value}"));
+            Output.text = "Output: " + CraftingAmount.ToString();
+        }
     }
 
     private void Start()
