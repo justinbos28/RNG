@@ -5,7 +5,7 @@ using System.Linq;
 public class DataPersistence : MonoBehaviour
 {
     [Header("File Storage Config")]
-    [SerializeField] private string fileName;
+    private string fileName;
     private GameData gameData;
     private List<IDataPersistence> dataPersistenceObjects;
     private FileDataHandler dataHandler;
@@ -22,6 +22,7 @@ public class DataPersistence : MonoBehaviour
 
     private void Start()
     {
+        fileName = MainMenuScript.CurrentFile;
         this.dataHandler = new FileDataHandler(Application.persistentDataPath, fileName);
         this.dataPersistenceObjects = FindAllDataPersistenceObjects();
         LoadGame();

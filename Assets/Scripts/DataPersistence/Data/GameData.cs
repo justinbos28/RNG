@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+
 [System.Serializable]
 public class GameData
 {
@@ -63,6 +64,9 @@ public class GameData
     public List<int> MaterialCount = new List<int>();
     public List<savedDrillData> SavedDrillData = new List<savedDrillData>();
 
+    [Header("Saved data for the main menu")]
+    public List<SaveFile> SaveFiles = new List<SaveFile>();
+
     public GameData()
     {
         this.Money = 0;
@@ -110,5 +114,6 @@ public class GameData
         this.OresCount = new List<int>();
         this.MaterialCount = new List<int>();
         this.SavedDrillData = new List<savedDrillData>();
+        this.SaveFiles = new List<SaveFile>();
     }
 }
