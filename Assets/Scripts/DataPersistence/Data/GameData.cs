@@ -18,6 +18,7 @@ public class GameData
     public float LuckPercentage;
     public float LuckMultiplier;
     public float MoneyMultiplier;
+    public float TotalTimePlayed;
     public bool Test = false;
 
     [Header("Values from MoneyLogic")]
@@ -84,7 +85,8 @@ public class GameData
         this.LuckPercentage = 1;
         this.LuckMultiplier = 1;
         this.MoneyMultiplier = 1;
-        
+        this.TotalTimePlayed = 0;
+
         this.BoughtAutoRollUpgrade = 0;
         this.BoughtLuckMultiplier = 0;
         this.BoughtMoneyMultiplier = 0;
