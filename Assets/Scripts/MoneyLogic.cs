@@ -44,6 +44,7 @@ public class MoneyLogic : MonoBehaviour, IDataPersistence
     public Minerscript Minerscript;
     public CraftingRecipes CraftingRecipes;
     public XPScript XPScript;
+    public TutorialManager TutorialManager;
 
     public GameObject ErrorPanel;
     public GameObject AutoRollButton;
@@ -67,7 +68,6 @@ public class MoneyLogic : MonoBehaviour, IDataPersistence
         { "Speed Upgrade 5", new Dictionary<string, int> { {"CircuitBoard", 1 }, {"SteelFrame", 5}, {"Petroleum", 5}, {"Steel", 10 }, {"Plastic", 10 } } },
         { "Speed Upgrade 6", new Dictionary<string, int> { } }
     };
-
     public Dictionary<string, Dictionary<string, int>> AmountUpgrades = new Dictionary<string, Dictionary<string, int>>
     {
         { "Amount Upgrade 1", new Dictionary<string, int> { {"Iron", 25}, {"Wood", 40} } },
@@ -77,7 +77,6 @@ public class MoneyLogic : MonoBehaviour, IDataPersistence
         { "Amount Upgrade 5", new Dictionary<string, int> { { "Tungsten", 1 }, { "Titanium", 25 }, { "Stone", 250 }, {"Duplicator", 1 } } },
         { "Amount Upgrade 6", new Dictionary<string, int> { } }
     };
-
     public Dictionary<string, Dictionary<string, int>> StrenghtUpgrades = new Dictionary<string, Dictionary<string, int>>
     {
         { "Strenght Upgrade 1", new Dictionary<string, int> { {"Hardened Steel", 5}, {"Heat Gem", 10}, { "Iron", 25 } } },
@@ -85,7 +84,6 @@ public class MoneyLogic : MonoBehaviour, IDataPersistence
         { "Strenght Upgrade 3", new Dictionary<string, int> { { "Hardened Steel", 20 }, { "Titanium", 5 }, { "Iron", 75 }, { "Tungsten", 1 } } },
         { "Strenght Upgrade 4", new Dictionary<string, int> { } }
     };
-
     public Dictionary<string, Dictionary<string, int>> AutoDrillUpgrades = new Dictionary<string, Dictionary<string, int>>
     {
         { "Drill Upgrade 1", new Dictionary<string, int> { {"Small Drill", 1}, {"Coal Generator", 1},{ "Bolts", 5 } } },
@@ -95,6 +93,7 @@ public class MoneyLogic : MonoBehaviour, IDataPersistence
         { "Drill Upgrade 5", new Dictionary<string, int> { { "Diamond", 1 }, { "Wires", 30 }, { "Plastic", 5 }, {"Bolts", 50 }, { "Heat Generator", 1 }, { "DrillHead", 1 } } },
         { "Drill Upgrade 6", new Dictionary<string, int> { } }
     };
+
     public Dictionary<string, Dictionary<string, int>> LuckPercentUpgrades = new Dictionary<string, Dictionary<string, int>>
     {
         { "Luck Percent Upgrade 1", new Dictionary<string, int> { {"Sand", 10}, {"Iron", 5},{ "Coal", 5 } } },
@@ -109,7 +108,6 @@ public class MoneyLogic : MonoBehaviour, IDataPersistence
         { "Luck Percent Upgrade 10", new Dictionary<string, int> { { "SteelFrame", 40 }, { "Wires", 30 }, { "Uranium", 1 }, {"Emerald", 1 }, { "Quartz", 10 } } },
         { "Luck Percent Upgrade 11", new Dictionary<string, int> { } }
     };
-
     public Dictionary<string, Dictionary<string, int>> LuckMultUpgrades = new Dictionary<string, Dictionary<string, int>>
     {
         { "Luck multiplier Upgrade 1", new Dictionary<string, int> { {"Iron", 20}, {"Stone", 50},{ "Coal", 5 } } },
@@ -306,6 +304,7 @@ public class MoneyLogic : MonoBehaviour, IDataPersistence
     }
     public void UpdateEverything()
     {
+        TutorialManager.UpdateRequirementsText();
         GetName();
         UpdateStage();
         Costs();
@@ -718,7 +717,15 @@ public class MoneyLogic : MonoBehaviour, IDataPersistence
         UpdateStage();
         if (SpeedUpgrades.ContainsKey(UpgradeName))
         {
-            PurchaseSpeed(UpgradeName);
+            if (UpgradeName == "Speed Upgrade 1" && !TutorialManager.ClaimedReward)
+            {
+                TutorialManager.TutorialText.text = "Claim your reward first";
+                TutorialManager.ClaimReward();
+            }
+            else
+            {
+                PurchaseSpeed(UpgradeName);
+            }
         }
         else if (AmountUpgrades.ContainsKey(UpgradeName))
         {
@@ -1083,6 +1090,4 @@ public class MoneyLogic : MonoBehaviour, IDataPersistence
             AutoSellButton.color = Color.red;
         }
     }
-    // end
-   
 }

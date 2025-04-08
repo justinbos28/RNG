@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -67,6 +66,9 @@ public class GameData
 
     [Header("Saved data for the main menu")]
     public List<SaveFile> SaveFiles = new List<SaveFile>();
+    public int Index;
+
+    public bool HasSeenTutorial;
 
     public GameData()
     {
@@ -74,6 +76,7 @@ public class GameData
         this.enableRuntime = false;
         this.enableCooldown = false;
         this.hasNoCooldown = false;
+        this.HasSeenTutorial = false;
         this.MaxRuntime = 300;
         this.MaxCooldown = 600;
         this.Runtime = 300;
@@ -112,6 +115,7 @@ public class GameData
         this.MaxLevel = 100;
         this.SavedRebirth = 0;
         this.Test = false;
+        this.Index = 0;
 
         this.OresCount = new List<int>();
         this.MaterialCount = new List<int>();

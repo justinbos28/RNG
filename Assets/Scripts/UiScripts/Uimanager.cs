@@ -53,6 +53,8 @@ public class Uimanager : MonoBehaviour
     }
     public void InventoryButton()
     {
+        OreStorage OreStorage = FindObjectOfType<OreStorage>();
+        OreStorage.SetToDefault();
         if (InventoryPanel == false)
         {
             ShopPanel = false;
@@ -90,7 +92,7 @@ public class Uimanager : MonoBehaviour
         }
     }
 
-    public void SwitchToIndex()
+    public void OpenIndexSwitch()
     {
         if (OpenIndex == false)
         {

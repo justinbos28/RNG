@@ -8,8 +8,9 @@ public class IndexManager : MonoBehaviour
     public int IndexCount;
     public int MaxIndexCount = 5;
 
-    public void OpenIndex()
+    public void SwitchIndex()
     {
+        if (IndexCount >= MaxIndexCount) { IndexCount = MaxIndexCount; }
         List<OreClass> ores;
         switch (IndexCount)
         {
@@ -64,9 +65,6 @@ public class IndexManager : MonoBehaviour
                 IndexList[i].Image.sprite = null;
             }
         }
-
-        if (IndexCount == MaxIndexCount) { IndexCount = -1; }
-        IndexCount++;
     }
 
     public void SetIndexDefault()

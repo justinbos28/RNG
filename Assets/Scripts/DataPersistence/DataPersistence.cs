@@ -1,8 +1,8 @@
 using System.Collections.Generic;
-using UnityEngine;
-using System.Linq;
-using UnityEngine.SceneManagement;
 using System.IO;
+using System.Linq;
+using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class DataPersistence : MonoBehaviour
 {
@@ -96,7 +96,8 @@ public class DataPersistence : MonoBehaviour
         }
         else
         {
-            Debug.LogWarning("File not found.");
+            MainMenuScript.DeletedSavefile();
+            MainMenuScript.NameSetText.text = "No file found to delete.";
         }
     }
 

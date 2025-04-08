@@ -1,11 +1,10 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-public class MainMenuScript : MonoBehaviour,IDataPersistence
+public class MainMenuScript : MonoBehaviour, IDataPersistence
 {
     public GameObject mainMenu;
     public XPScript XPScript;
@@ -13,40 +12,87 @@ public class MainMenuScript : MonoBehaviour,IDataPersistence
 
     [SerializeField] public string MainMenuFile = "SavedGameFiles.Data";
     public static string CurrentFile = "None";
+    public static int TotalPLaytime;
+    public float TotalTimePlayed = 0;
     public int Index;
     
     public Text CurrentFileName;
     public Text NameSetText;
     public List<Button> SaveFileButtons = new List<Button>();
     public List<Text> SaveFileTexts = new List<Text>();
+    public List<Text> SaveFilePlaytime = new List<Text>();
     public List<SaveFile> SaveFiles = new List<SaveFile>();
+    public List<Image> SaveFileImages = new List<Image>();
 
     public GameObject SaveFilePanel;
     public GameObject DeletionPanel;
     public InputField SaveFileInputField;
     public void LoadData(GameData data)
     {
-        if (data.SaveFiles.Count != this.SaveFiles.Count)
+        this.TotalTimePlayed = data.TotalTimePlayed;
+        this.Index = data.Index;
+
+        while (data.SaveFiles.Count < this.SaveFiles.Count)
         {
-            int difference = this.SaveFiles.Count - data.SaveFiles.Count;
-            for (int i = 0; i < difference; i++)
-            {
-                data.SaveFiles.Add(new SaveFile());
-                SaveFileTexts[i].text = SaveFiles[i].FileName;
-            }
+            data.SaveFiles.Add(new SaveFile());
+        }
+        while (data.SaveFiles.Count > this.SaveFiles.Count)
+        {
+            data.SaveFiles.RemoveAt(data.SaveFiles.Count - 1);
         }
         this.SaveFiles = new List<SaveFile>(data.SaveFiles);
+        LoadAllData();
     }
-
     public void SaveData(ref GameData data)
     {
+        data.TotalTimePlayed = this.TotalTimePlayed;
+        data.Index = this.Index;
+
         data.SaveFiles = this.SaveFiles;
     }
 
+    private void LoadAllData()
+    {
+        for (int i = 0; i < SaveFiles.Count; i++)
+        {
+            int index = i;
+            if (SaveFiles[index].FileName == "")
+            {
+                SaveFileTexts[index].text = "SaveFile " + (index + 1);
+            }
+            else
+            {
+                SaveFileTexts[index].text = SaveFiles[index].FileName;
+            }
+            if (SaveFiles[index].isSelected == true)
+            {
+                CurrentFile = SaveFiles[index].FileName;
+                CurrentFileName.text = "Current Savefile: " + CurrentFile;
+            }
 
+            if (SaveFiles.Count > 0)
+            {
+                if (TotalPLaytime > 0)
+                {
+                    SaveFiles[Index].PlayTimeFile = TotalPLaytime;
+                }
+                else
+                {
+                    Debug.Log("playtime is 0");
+                }
+            }
+            else
+            {
+                Debug.Log("No savefiles found or not in the main menu");
+            }
+
+            SaveFilePlaytime[i].text = "Playtime: " + SaveFiles[i].PlayTimeFile;
+        }
+    }
     public void ExitGame()
     {
         Application.Quit();
+        SaveFiles[Index].PlayTimeFile = TotalPLaytime;
     }
     public void PlayGame()
     {
@@ -56,6 +102,7 @@ public class MainMenuScript : MonoBehaviour,IDataPersistence
         }
         else
         {
+            DataPersistence.SaveGame();
             StartCoroutine(LoadingSavefile());
             CurrentFileName.text = "Loading Savefile: " + CurrentFile;
             SceneManager.LoadScene("Game");
@@ -64,14 +111,20 @@ public class MainMenuScript : MonoBehaviour,IDataPersistence
 
     IEnumerator LoadingSavefile()
     {
-        DataPersistence.SaveGame();
         yield return new WaitForSeconds(5);
     }
     public void GoToSaveFiles()
     {
         if (mainMenu.activeSelf == false)
         {
-            mainMenu.SetActive(true);
+            if (CurrentFile == "" || CurrentFile == "None" || CurrentFile == null)
+            {
+                NameSetText.text = "No file selected";
+            }
+            else
+            {
+                mainMenu.SetActive(true);
+            }
         }
         else
         {
@@ -86,9 +139,23 @@ public class MainMenuScript : MonoBehaviour,IDataPersistence
 
     public void Update()
     {
+        TotalTimePlayed += Time.deltaTime;
+
         if (Input.GetKeyDown(KeyCode.Escape))
         {
             BackToMainMenu();
+        }
+        TotalPLaytime = Mathf.FloorToInt(TotalTimePlayed);
+        if (CurrentFileName != null)
+        {
+            if (CurrentFile == "" || CurrentFile == "None" || CurrentFile == null)
+            {
+                CurrentFileName.text = "Current Savefile: None";
+            }
+            else
+            {
+                CurrentFileName.text = "Current Savefile: " + CurrentFile;
+            }
         }
     }
     private void Start()
@@ -98,10 +165,6 @@ public class MainMenuScript : MonoBehaviour,IDataPersistence
             SaveFiles[i].ID = i;
         }
         SetFile();
-        if (CurrentFileName != null)
-        {
-            CurrentFileName.text = "Current Savefile: " + CurrentFile;
-        }
         DataPersistence.UpdateFileName();
         Debug.Log(CurrentFile);
     }
@@ -117,6 +180,9 @@ public class MainMenuScript : MonoBehaviour,IDataPersistence
             SaveFiles[Index].isSelected = true;
             SaveFileTexts[Index].text = SaveFiles[Index].FileName;
             SaveFileInputField.text = "";
+            CurrentFile = SaveFiles[Index].FileName;
+            DataPersistence.UpdateFileName();
+            GoToSaveFiles();
         }
         else
         {
@@ -139,24 +205,36 @@ public class MainMenuScript : MonoBehaviour,IDataPersistence
 
     public void DeletedSavefile()
     {
+        for (int i = 0; i < SaveFiles.Count; i++)
+        {
+            if (SaveFiles[i].isSelected == true)
+            {
+                int index = i;
+                SaveFileTexts[index].text = "Savefile " + (index + 1);
+            }
+        }
         SaveFiles[Index].FileName = "";
         SaveFiles[Index].PlayTimeFile = 0;
         SaveFiles[Index].RebirthFile = 0;
         SaveFiles[Index].isSelected = false;
         NameSetText.text = "Savefile deleted";
+        CurrentFile = "None";
+        CurrentFileName.text = "Current Savefile: " + CurrentFile;
+        SaveFilePlaytime[Index].text = "Playtime: " + SaveFiles[Index].PlayTimeFile;
     }
 
     public void SetFile()
     {
         for (int i = 0; i < SaveFiles.Count; i++)
         {
-            SaveFiles[i].isSelected = false;
             SaveFileButtons[i].onClick.RemoveAllListeners();
+            SaveFileImages[i].color = new Vector4(0.8f ,0.8f ,0.8f ,1);
 
             int index = i;
             SaveFileButtons[index].onClick.AddListener(() => 
             {
                 SaveFiles[index].isSelected = true;
+                SaveFileImages[index].color = Color.green;
                 Index = SaveFiles[index].ID;
                 if (SaveFiles[index].FileName == "" || SaveFiles[index].FileName == null)
                 {
@@ -172,7 +250,15 @@ public class MainMenuScript : MonoBehaviour,IDataPersistence
             });
         }
     }
+    public void ResetSelected()
+    {
+        for (int i = 0; i < SaveFiles.Count; i++)
+        {
+            SaveFiles[i].isSelected = false;
+        }
+    }
 }
+
 
 
 [System.Serializable]

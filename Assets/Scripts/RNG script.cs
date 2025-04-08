@@ -26,7 +26,6 @@ public class RNGscript : MonoBehaviour, IDataPersistence
     public float timer = 0;
     public float timer2 = 0;
     public float fuckuper = 1;
-    public float TotalTimePlayed = 0;
 
     public float RollSpeed = 0.65f;
     public float LuckPercentage = 1;
@@ -82,7 +81,6 @@ public class RNGscript : MonoBehaviour, IDataPersistence
         this.LuckMultiplier = data.LuckMultiplier;
         this.LuckPercentage = data.LuckPercentage;
         this.MoneyMultiplier = data.MoneyMultiplier;
-        this.TotalTimePlayed = data.TotalTimePlayed;
         this.Test = data.Test;
         RollForHand();
         StoneStatus = RollSkips;
@@ -95,7 +93,6 @@ public class RNGscript : MonoBehaviour, IDataPersistence
         data.MoneyMultiplier = this.MoneyMultiplier;
         data.RollSkips = this.RollSkips;
         data.RollSpeed = this.RollSpeed;
-        data.TotalTimePlayed = this.TotalTimePlayed;
         data.Test = this.Test;
     }
     // end saving and getting saved data
@@ -211,7 +208,6 @@ public class RNGscript : MonoBehaviour, IDataPersistence
     {
         playerHand.Clear();
         List<int> hand = new List<int>();
-
         for (int i = 0; i < cardLimit; i++) // Ensure we don't go over cardLimit
         {
             Dictionary<int, float> oreRarityChances = new Dictionary<int, float>
@@ -366,7 +362,6 @@ public class RNGscript : MonoBehaviour, IDataPersistence
                 }
             }
         }
-
         DisplayCard();
     }
 
@@ -403,7 +398,6 @@ public class RNGscript : MonoBehaviour, IDataPersistence
 
     public void Update()
     {
-        TotalTimePlayed += Time.deltaTime;
 
         CurrentMoney.text = NumberFormatter(MoneyLogic.Money) + "$";
 

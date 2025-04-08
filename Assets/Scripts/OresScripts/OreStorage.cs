@@ -5,6 +5,7 @@ using UnityEngine.UI;
 public class OreStorage : MonoBehaviour, IDataPersistence
 {
     [Header("storage")]
+    public int CurrentRarity;
     public int InventoryStatus = 0;
     public int InventoryOres = 5;
 
@@ -17,6 +18,10 @@ public class OreStorage : MonoBehaviour, IDataPersistence
     public int MaxExoticOres = 10;
     public int MaxDivineOres = 5;
 
+    public GameObject InventoryPanel;
+    public Text Exotictext;
+    public Text Divinetext;
+
     [Header("lists")]
     public List<Text> Storage = new List<Text>();
     public List<Text> Description = new List<Text>();
@@ -25,13 +30,12 @@ public class OreStorage : MonoBehaviour, IDataPersistence
     public List<Text> Name = new List<Text>();
     public List<Text> Price = new List<Text>();
 
-    public List<OreClass> lastOre = new List<OreClass>();
-
     [Header("selling")]
     public List<InputField> InputFields = new List<InputField>();
     public RNGscript RNGscript;
     public MoneyLogic MoneyLogic;
     public XPScript XPScript;
+    public TutorialManager TutorialManager;
 
     public void LoadData(GameData data)
     {
@@ -58,26 +62,64 @@ public class OreStorage : MonoBehaviour, IDataPersistence
 
     public void SwitchInventory()
     {
+        InventoryPanel.SetActive(!InventoryPanel.activeSelf);
+        if (XPScript.SavedRebirth == 0)
+        {
+            Exotictext.text = "???";
+            Divinetext.text = "???";
+        }
+        else if (XPScript.SavedRebirth == 1)
+        {
+            Exotictext.text = "Exotic";
+            Divinetext.text = "???";
+        }
+        else if (XPScript.SavedRebirth >= 2)
+        {
+            Exotictext.text = "Exotic";
+            Divinetext.text = "Divine";
+        }
+    }
+
+    public void SelectRarity()
+    {
+        switch (XPScript.SavedRebirth)
+        {
+            case 0:
+                if (CurrentRarity >= 5)
+                {
+                    CurrentRarity = 5;
+                }
+                break;
+            case 1:
+                if (CurrentRarity >= 6)
+                {
+                    CurrentRarity = 6;
+                }
+                break;
+            case 2:
+                if (CurrentRarity >= 7)
+                {
+                    CurrentRarity = 7;
+                }
+                break;
+        }
+        InventoryStatus = CurrentRarity;
         // reset the input fields
         ResetInputFields();
 
         List<OreClass> currentOres = GetCurrentOres();
         UpdateUIWithOres(currentOres);
 
-        InventoryStatus++;
-        if (InventoryStatus > InventoryOres)
-        {
-            InventoryStatus = 0;
-        }
+        InventoryPanel.SetActive(!InventoryPanel.activeSelf);
     }
     public void UpdateInventory()
     {
-        List<OreClass> currentOres = GetCurrentInventory();
+        List<OreClass> currentOres = GetCurrentOres();
         UpdateUiInventory(currentOres);
     }
     public void SellSelectedOres()
     {
-        List<OreClass> currentOres = GetCurrentInventory();
+        List<OreClass> currentOres = GetCurrentOres();
         SellSelectedOresFromUI(currentOres);
     }
     private void ResetInputFields()
@@ -86,40 +128,6 @@ public class OreStorage : MonoBehaviour, IDataPersistence
         {
             InputFields[j].text = "";
             InputFields[j].textComponent.color = new Vector4(0, 0, 0, 1);
-        }
-    }
-
-    private void Update()
-    {
-        if(XPScript.Rebirth == 0)
-        {
-            lastOre = RNGscript.MythicOres;
-        }
-        else if (XPScript.Rebirth == 1)
-        {
-            lastOre = RNGscript.ExoticOres;
-        }
-        else if (XPScript.Rebirth >= 2)
-        {
-            lastOre = RNGscript.DivineOres;
-        }
-    }
-
-    private List<OreClass> GetCurrentInventory()
-    {
-
-        switch (InventoryStatus)
-        {
-            case 0: return lastOre;
-            case 1: return RNGscript.CommonOres;
-            case 2: return RNGscript.UncommonOres;
-            case 3: return RNGscript.RareOres;
-            case 4: return RNGscript.EpicOres;
-            case 5: return RNGscript.LegendaryOres;
-            case 6: return RNGscript.MythicOres;
-            case 7: return RNGscript.ExoticOres;
-            case 8: return RNGscript.DivineOres;
-            default: return new List<OreClass>();
         }
     }
 
@@ -166,7 +174,7 @@ public class OreStorage : MonoBehaviour, IDataPersistence
 
     public void SetToDefault()
     {
-        InventoryStatus = 1;
+        InventoryStatus = 0;
         for (int i = 0; i < RNGscript.CommonOres.Count; i++)
         {
             Name[i].text = RNGscript.CommonOres[i].Name;
@@ -195,6 +203,7 @@ public class OreStorage : MonoBehaviour, IDataPersistence
         for (int i = 0; i < ores.Count; i++)
         {
             Storage[i].text = ores[i].StorageAmount.ToString();
+            TutorialManager.UpdateRequirementsText();
         }
     }
 
@@ -218,6 +227,7 @@ public class OreStorage : MonoBehaviour, IDataPersistence
                 InputFields[i].textComponent.color = new Vector4(0, 0, 0, 1);
                 InputFields[i].text = "";
                 MoneyLogic.Money += ores[i].OrePrice * RNGscript.MoneyMultiplier * sellAmount;
+                TutorialManager.UpdateRequirementsText();
             }
         }
     }
