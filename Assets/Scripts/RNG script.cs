@@ -399,7 +399,7 @@ public class RNGscript : MonoBehaviour, IDataPersistence
     public void Update()
     {
 
-        CurrentMoney.text = NumberFormatter(MoneyLogic.Money) + "$";
+        CurrentMoney.text = "$" + NumberFormatter(MoneyLogic.Money);
 
         // timers for auto rolling, animation
         if (StartTimer == AutoTimer)

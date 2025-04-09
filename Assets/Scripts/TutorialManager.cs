@@ -6,7 +6,8 @@ using UnityEngine.UI;
 public class TutorialManager : MonoBehaviour, IDataPersistence
 {
     public bool hasSeenTutorial;
-    public bool ClaimedReward; 
+    public bool ClaimedReward1;
+    public bool ClaimedReward2;
 
     public GameObject tutorialPopup;
     public GameObject Tutorial;
@@ -14,6 +15,7 @@ public class TutorialManager : MonoBehaviour, IDataPersistence
     public int tutorialStep = 0;
     public Text TutorialText;
     public Text RequirementText;
+    public Text RewardText;
     [SerializeField] private Button RollButton;
 
     public MoneyLogic moneyLogic;
@@ -23,11 +25,15 @@ public class TutorialManager : MonoBehaviour, IDataPersistence
     public void LoadData(GameData data)
     {
         this.hasSeenTutorial = data.HasSeenTutorial;
+        this.ClaimedReward1 = data.ClaimedReward1;
+        this.ClaimedReward2 = data.ClaimedReward2;
         ShowStartPopup();
     }
     public void SaveData(ref GameData data)
     {
         data.HasSeenTutorial = this.hasSeenTutorial;
+        data.ClaimedReward1 = this.ClaimedReward1;
+        data.ClaimedReward2 = this.ClaimedReward2;
     }
 
     private void Start()
@@ -51,10 +57,11 @@ public class TutorialManager : MonoBehaviour, IDataPersistence
     public void CloseTutorial()
     {
         hasSeenTutorial = true;
-        ClaimedReward = true;
+        ClaimedReward1 = true;
         tutorialPopup.SetActive(false);
     }
 
+    // step 1
     public void ConfirmTutorialRequest()
     {
         //hasSeenTutorial = true;
@@ -63,6 +70,7 @@ public class TutorialManager : MonoBehaviour, IDataPersistence
         TutorialText.text = "Welcome to Gem RNG! Lets get started with the basics, click 'click me to mine' to roll your first Gem";
         tutorialStep = 1;
     }
+    // step 2
     public void OnClickRollButton()
     {
         if (tutorialStep == 1)
@@ -72,7 +80,7 @@ public class TutorialManager : MonoBehaviour, IDataPersistence
             tutorialStep = 2;
         }
     }
-
+    // step 3
     public void OnClickInventoryButton()
     {
         if (tutorialStep == 2)
@@ -93,59 +101,110 @@ public class TutorialManager : MonoBehaviour, IDataPersistence
 
     public void UpdateRequirementsText()
     {
-        if (moneyLogic.BoughtRollSpeed > 0)
+        if (moneyLogic.BoughtRollSpeed > 0 && tutorialStep == 4)
         {
-            RequirementText.text = "Hmm seems like you already have this upgrade. lets continue then";
-            // add more dialoge here
+            RequirementsPanel.SetActive(true);
+            RequirementText.text = "Seems like you already have this upgrade";
+            TutorialText.text = "You need money as well as gems to buy them but already know this. Click on the button with the 2 hammers to continue";
             tutorialStep = 5;
         }
         else
         {
-            //fancy if statement. ? stands for if true, : stands for if false
+            // fancy if statement. ? stands for if true, : stands for if false
             string moneyColor = moneyLogic.Money >= 25 ? "green" : "white";
             string stoneGemColor = rngScript.allOres[5].StorageAmount >= 5 ? "green" : "white";
             string rustyGemColor = rngScript.allOres[6].StorageAmount >= 1 ? "green" : "white";
-
-            RequirementText.text = "Requirements \n" +
+            string BoltsColor = minerScript.Materials[14].StorageAmount >= 5 ? "green" : "white";
+            if (tutorialStep == 4)
+            {
+                RequirementText.text = "Requirements \n" +
                                    $"<color={moneyColor}>Money: 25/{moneyLogic.Money}</color>\n" +
                                    $"<color={stoneGemColor}>Stone Gem: 5/{rngScript.allOres[5].StorageAmount}</color>\n" +
                                    $"<color={rustyGemColor}>Rusty Gem: 1/{rngScript.allOres[6].StorageAmount}</color>";
-            if (moneyLogic.Money >= 25 && rngScript.allOres[5].StorageAmount >= 5 && rngScript.allOres[6].StorageAmount >= 1)
+                if (moneyLogic.Money >= 25 && rngScript.allOres[5].StorageAmount >= 5 && rngScript.allOres[6].StorageAmount >= 1)
+                {
+                    RequirementsPanel.SetActive(true);
+                    TutorialText.text = "Looks like You have all the requirements, great! Now click the Purchase button to buy the 'Pickaxe speed' upgrade";
+                    tutorialStep = 5;
+                }
+
+            }
+            else if (tutorialStep == 7)
             {
-                TutorialText.text = "Looks like You have all the requirements, great! Now click the Purchase button to buy the 'Pickaxe speed' upgrade";
-                tutorialStep = 5;
+                RequirementText.text = $"Requirements \n<color={BoltsColor}>Bolts: 5/{minerScript.Materials[14].StorageAmount}</color>";
+                RewardText.text = "Reward \n $250";
             }
         }     
     }
+    public void onClickForCrafterButton()
+    {
+
+    }
     public void onClickForClaimRewards()
     {
-        StartCoroutine(ClaimReward());
+        if (tutorialStep == 5)
+        {
+            StartCoroutine(ClaimReward1);
+        }
+        else if (tutorialStep == 7)
+        {
+            StartCoroutine(ClaimReward2);
+        }
     }
-    public IEnumerator ClaimReward()
+    public IEnumerator ClaimReward2 
     {
-        Debug.Log("Claiming reward");
-        if (moneyLogic.Money >= 25 && rngScript.allOres[5].StorageAmount >= 5 && rngScript.allOres[6].StorageAmount >= 1 && ClaimedReward == false)
+        get
         {
-            Debug.Log("reward claimed");
-            RequirementText.text = "Reward claimed";
-            minerScript.Materials[10].StorageAmount++;
-            ClaimedReward = true;
-            yield return new WaitForSeconds(5f);
-            RequirementsPanel.SetActive(false);
+            if (minerScript.Materials[14].StorageAmount >= 5 && ClaimedReward2 == false)
+            {
+                TutorialText.text = "Great!, now the last part missing is the coal generator (click to continue)";
+                RequirementText.text = "Reward claimed";
+                moneyLogic.Money += 250;
+                ClaimedReward2 = true;
+                yield return new WaitForSeconds(5f);
+                RequirementsPanel.SetActive(false);
+                tutorialStep = 8;
+            }
+            else if (minerScript.Materials[14].StorageAmount >= 5 && ClaimedReward2 == true)
+            {
+                TutorialText.text = "You have already claimed this reward";
+                yield return new WaitForSeconds(5f);
+                TutorialText.text = "Great!, now the last part missing is the coal generator (click to continue)";
+                tutorialStep = 8;
+            }
+            else
+            {
+                TutorialText.text = "Looks like you dont have all the requirements yet, try to get them first";
+                yield return new WaitForSeconds(5f);
+                TutorialText.text = "Craft some bolts";
+            }
         }
-        else if (moneyLogic.Money >= 25 && rngScript.allOres[5].StorageAmount >= 5 && rngScript.allOres[6].StorageAmount >= 1 && ClaimedReward == true)
+    }
+    public IEnumerator ClaimReward1
+    {
+        get
         {
-            Debug.Log("reward already claimed");
-            TutorialText.text = "You have already claimed this reward";
-            yield return new WaitForSeconds(5f);
-            TutorialText.text = "Looks like You have all the requirements, great! Now click the Purchase button to buy the 'Pickaxe speed' upgrade";
-        }
-        else
-        {
-            Debug.Log("not enough resources");
-            TutorialText.text = "Looks like you dont have all the requirements yet, try to get them first";
-            yield return new WaitForSeconds(5f);
-            TutorialText.text = "As you can see you need money as well as gems to purchase upgrades. Lets try to get 'Pickaxe speed' first";
+            if (moneyLogic.Money >= 25 && rngScript.allOres[5].StorageAmount >= 5 && rngScript.allOres[6].StorageAmount >= 1 && ClaimedReward1 == false)
+            {
+                TutorialText.text = "Next click on the button with 2 hammers. This is the crafting menu. In here you can craft items for more expensive upgrades (click to continue)";
+                RequirementText.text = "Reward claimed";
+                minerScript.Materials[12].StorageAmount++;
+                ClaimedReward1 = true;
+                yield return new WaitForSeconds(5f);
+                RequirementsPanel.SetActive(false);
+            }
+            else if (moneyLogic.Money >= 25 && rngScript.allOres[5].StorageAmount >= 5 && rngScript.allOres[6].StorageAmount >= 1 && ClaimedReward1 == true)
+            {
+                TutorialText.text = "You have already claimed this reward";
+                yield return new WaitForSeconds(5f);
+                TutorialText.text = "Looks like You have all the requirements, great! Now click the Purchase button to buy the 'Pickaxe speed' upgrade";
+            }
+            else
+            {
+                TutorialText.text = "Looks like you dont have all the requirements yet, try to get them first";
+                yield return new WaitForSeconds(5f);
+                TutorialText.text = "As you can see you need money as well as gems to purchase upgrades. Lets try to get 'Pickaxe speed' first";
+            }
         }
     }
 
@@ -153,11 +212,38 @@ public class TutorialManager : MonoBehaviour, IDataPersistence
     {
         switch (tutorialStep)
         {
+            // step 4
             case 3:
                 if (Input.GetKeyDown(KeyCode.Mouse0))
                 {
-                    TutorialText.text = "Now click the shopping cart icon, here you can see upgrades to your pickaxe. Your pickaxe determines how fast you can mine, if you can do it automatically or how much luck you have";
+                    TutorialText.text = "Now click the shopping cart icon, here you can see upgrades to your pickaxe. Your pickaxe determines the speed, luck and money of your gems";
                     tutorialStep = 4;
+                }
+                break;
+            case 5:
+                if (Input.GetKeyDown(KeyCode.Mouse0) && ClaimedReward1)
+                {
+                    RequirementsPanel.SetActive(false);
+                    TutorialText.text = "If you click through it you see that you have the small drill. That is needed for the 'auto mine' upgrade (click to continue)";
+                    tutorialStep = 6;
+                }
+                break;
+            case 6:
+                if (Input.GetKeyDown(KeyCode.Mouse0))
+                {
+                    RequirementsPanel.SetActive(true);
+                    TutorialText.text = "I am helping you get it faster but you need to do some work yourself too. Craft some bolts. you need them for the upgrade. You may already have enough for it";
+                    tutorialStep = 7;
+                    UpdateRequirementsText();
+                }
+                break;
+            case 8:
+                if (Input.GetKeyDown(KeyCode.Mouse0))
+                {
+                    TutorialText.text = "I think you can do the rest yourself";
+                    tutorialStep = 9;
+                    RollButton.interactable = true;
+                    RequirementsPanel.SetActive(false);
                 }
                 break;
         }

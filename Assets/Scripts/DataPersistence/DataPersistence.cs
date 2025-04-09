@@ -28,12 +28,10 @@ public class DataPersistence : MonoBehaviour
     {
         if (SceneManager.GetActiveScene().name == "MainMenu")
         {
-            Debug.Log("main menu");
             currentFile = MainMenuScript.MainMenuFile;
         }
         else
         {
-            Debug.Log("game");
             currentFile = MainMenuScript.CurrentFile;
         }
         this.dataHandler = new FileDataHandler(Application.persistentDataPath, currentFile);
@@ -91,7 +89,6 @@ public class DataPersistence : MonoBehaviour
         if (File.Exists(filePath))
         {
             File.Delete(filePath);
-            Debug.Log("File deleted successfully.");
             MainMenuScript.DeletedSavefile();
         }
         else

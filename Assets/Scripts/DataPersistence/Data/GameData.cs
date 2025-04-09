@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.ComponentModel;
 using UnityEngine;
 
 
@@ -69,6 +70,8 @@ public class GameData
     public int Index;
 
     public bool HasSeenTutorial;
+    public bool ClaimedReward1;
+    public bool ClaimedReward2;
 
     public GameData()
     {
@@ -116,6 +119,9 @@ public class GameData
         this.SavedRebirth = 0;
         this.Test = false;
         this.Index = 0;
+
+        this.ClaimedReward1 = false;
+        this.ClaimedReward2 = false;
 
         this.OresCount = new List<int>();
         this.MaterialCount = new List<int>();

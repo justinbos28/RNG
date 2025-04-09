@@ -4736,7 +4736,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 0.0$
+  m_Text: $0.00
 --- !u!222 &221748839
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -4954,7 +4954,7 @@ GameObject:
   - component: {fileID: 239252384}
   - component: {fileID: 239252383}
   m_Layer: 5
-  m_Name: Requirements (1)
+  m_Name: rewards
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5012,7 +5012,9 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Small Drill (used to unlock autodrill)
+  m_Text: 'Reward:
+
+    Small Drill (used to unlock autodrill)'
 --- !u!222 &239252384
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -12740,6 +12742,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 649251861}
+        m_TargetAssemblyTypeName: TutorialManager, Assembly-CSharp
+        m_MethodName: UpdateRequirementsText
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &609667656
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13734,13 +13748,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hasSeenTutorial: 0
-  ClaimedReward: 0
+  ClaimedReward1: 0
+  ClaimedReward2: 0
   tutorialPopup: {fileID: 1292137042}
   Tutorial: {fileID: 946530672}
   RequirementsPanel: {fileID: 903364305}
   tutorialStep: 0
   TutorialText: {fileID: 0}
   RequirementText: {fileID: 0}
+  RewardText: {fileID: 239252383}
   RollButton: {fileID: 983420772}
   moneyLogic: {fileID: 1546723948}
   rngScript: {fileID: 1546723946}
@@ -30738,8 +30754,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 61.043, y: 0.000051498}
-  m_SizeDelta: {x: 317.71, y: 102.88}
+  m_AnchoredPosition: {x: 69.66, y: 0.000051498}
+  m_SizeDelta: {x: 300.47, y: 102.88}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1490509594
 MonoBehaviour:
@@ -31331,9 +31347,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 649251859}
-        m_TargetAssemblyTypeName: Uimanager, Assembly-CSharp
-        m_MethodName: ShopButton
+      - m_Target: {fileID: 649251861}
+        m_TargetAssemblyTypeName: TutorialManager, Assembly-CSharp
+        m_MethodName: OnClickUpgradeButton
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -31343,9 +31359,9 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 649251861}
-        m_TargetAssemblyTypeName: TutorialManager, Assembly-CSharp
-        m_MethodName: OnClickUpgradeButton
+      - m_Target: {fileID: 649251859}
+        m_TargetAssemblyTypeName: Uimanager, Assembly-CSharp
+        m_MethodName: ShopButton
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -38771,7 +38787,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.75, y: 0.2}
   m_AnchorMax: {x: 1, y: 0.45}
-  m_AnchoredPosition: {x: -1.7000427, y: 4.499796}
+  m_AnchoredPosition: {x: -1.7000427, y: 4.4997883}
   m_SizeDelta: {x: -14.690002, y: -8.76001}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1762248028
@@ -40168,7 +40184,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 0, b: 0, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -40177,10 +40193,10 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 14
-    m_FontStyle: 0
+    m_FontSize: 18
+    m_FontStyle: 1
     m_BestFit: 0
-    m_MinSize: 10
+    m_MinSize: 1
     m_MaxSize: 40
     m_Alignment: 4
     m_AlignByGeometry: 0
