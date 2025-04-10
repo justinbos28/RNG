@@ -203,7 +203,7 @@ public class OreStorage : MonoBehaviour, IDataPersistence
         for (int i = 0; i < ores.Count; i++)
         {
             Storage[i].text = ores[i].StorageAmount.ToString();
-            if (TutorialManager.tutorialStep == 4)
+            if (TutorialManager.tutorialStep == 4 || TutorialManager.tutorialStep == 9)
             {
                 TutorialManager.UpdateRequirementsText();
             }
@@ -230,7 +230,7 @@ public class OreStorage : MonoBehaviour, IDataPersistence
                 InputFields[i].textComponent.color = new Vector4(0, 0, 0, 1);
                 InputFields[i].text = "";
                 MoneyLogic.Money += ores[i].OrePrice * RNGscript.MoneyMultiplier * sellAmount;
-                if (TutorialManager.tutorialStep == 4)
+                if (TutorialManager.tutorialStep == 4 || TutorialManager.tutorialStep == 9)
                 {
                     TutorialManager.UpdateRequirementsText();
                 }

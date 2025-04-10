@@ -72,6 +72,7 @@ public class GameData
     public bool HasSeenTutorial;
     public bool ClaimedReward1;
     public bool ClaimedReward2;
+    public bool ClaimedReward3;
 
     public GameData()
     {
@@ -122,6 +123,7 @@ public class GameData
 
         this.ClaimedReward1 = false;
         this.ClaimedReward2 = false;
+        this.ClaimedReward3 = false;
 
         this.OresCount = new List<int>();
         this.MaterialCount = new List<int>();

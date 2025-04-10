@@ -7,6 +7,7 @@ public class CraftingRecipes : MonoBehaviour, IDataPersistence
 {
     public Minerscript Minerscript;
     public RNGscript RNGscript;
+    public TutorialManager TutorialManager;
     public Button craftButton;
 
     public Text MaterialName;
@@ -131,6 +132,7 @@ public class CraftingRecipes : MonoBehaviour, IDataPersistence
                 {
                     var ore = Materials.FirstOrDefault(m => m.Name == material.Key);
                     ore.StorageAmount -= material.Value;
+                    
                 }
 
                 if (CurrentRecipe == 20)
@@ -143,6 +145,7 @@ public class CraftingRecipes : MonoBehaviour, IDataPersistence
                 }
                 UpdateUi();
                 IsInvalid.color = Color.white;
+                TutorialManager.UpdateRequirementsText();
             }
             else
             {
@@ -237,6 +240,7 @@ public class CraftingRecipes : MonoBehaviour, IDataPersistence
 
     private void Start()
     {
+        TutorialManager = FindObjectOfType<TutorialManager>();
         RecipeIndex();
         Materials = Minerscript.Materials.Cast<OreClass>().Concat(RNGscript.allOres).ToList();
     }
