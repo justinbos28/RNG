@@ -1,7 +1,9 @@
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.Rendering;
 using UnityEngine.SceneManagement;
 
 public class DataPersistence : MonoBehaviour
@@ -74,8 +76,26 @@ public class DataPersistence : MonoBehaviour
 
     private void OnApplicationQuit()
     {
+        string thisfile = currentFile;
+        int playtime = MainMenuScript.TotalPLaytime;
+        string targetfile = "SavedGameFiles.Data";
+
+        // save the current file
         SaveGame();
+        // save the playtime from the current file to the target file
+        string targetPath = Path.Combine(Application.persistentDataPath, targetfile);
+        if (File.Exists(targetPath))
+        {
+            GameData targetData = dataHandler.Load();
+            targetData.TotalTimePlayed = playtime;
+            dataHandler.Save(targetData);
+        }
+        else
+        {
+            Debug.LogError($"Target file {targetfile} does not exist.");
+        }
     }
+
     private List<IDataPersistence> FindAllDataPersistenceObjects()
     {
         IEnumerable<IDataPersistence> dataPersistenceObjects = FindObjectsOfType<MonoBehaviour>()

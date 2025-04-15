@@ -6,11 +6,9 @@ public class IndexManager : MonoBehaviour
     public List<IndexClass> IndexList = new List<IndexClass>();
     public RNGscript RNGscript;
     public int IndexCount;
-    public int MaxIndexCount = 5;
 
     public void SwitchIndex()
     {
-        if (IndexCount >= MaxIndexCount) { IndexCount = MaxIndexCount; }
         List<OreClass> ores;
         switch (IndexCount)
         {
@@ -37,6 +35,9 @@ public class IndexManager : MonoBehaviour
                 break;
             case 7:
                 ores = RNGscript.DivineOres;
+                break;
+            case 8:
+                ores = RNGscript.SecretOres;
                 break;
             default:
                 ores = new List<OreClass>();

@@ -41,7 +41,7 @@ public class RNGscript : MonoBehaviour, IDataPersistence
     public bool AutoSell = false;
     public bool Timer2Active = false;
     public bool AutoRollTimer = false;
-    public bool Test = false;
+    public bool UnlockedSecret = false;
 
     public Text RollingText;
     public Text CurrentMoney;
@@ -81,7 +81,7 @@ public class RNGscript : MonoBehaviour, IDataPersistence
         this.LuckMultiplier = data.LuckMultiplier;
         this.LuckPercentage = data.LuckPercentage;
         this.MoneyMultiplier = data.MoneyMultiplier;
-        this.Test = data.Test;
+        this.UnlockedSecret = data.Test;
         RollForHand();
         StoneStatus = RollSkips;
     }
@@ -93,7 +93,7 @@ public class RNGscript : MonoBehaviour, IDataPersistence
         data.MoneyMultiplier = this.MoneyMultiplier;
         data.RollSkips = this.RollSkips;
         data.RollSpeed = this.RollSpeed;
-        data.Test = this.Test;
+        data.Test = this.UnlockedSecret;
     }
     // end saving and getting saved data
 
@@ -197,6 +197,12 @@ public class RNGscript : MonoBehaviour, IDataPersistence
                     DivineOres.Add(card);
                     break;
                 case 57:
+                case 58:
+                case 59:
+                case 60:
+                case 61:
+                case 62:
+                case 63:
                     SecretOres.Add(card);
                     break;
             }
@@ -362,6 +368,7 @@ public class RNGscript : MonoBehaviour, IDataPersistence
                 }
             }
         }
+
         DisplayCard();
     }
 
@@ -369,8 +376,14 @@ public class RNGscript : MonoBehaviour, IDataPersistence
     // displays all the ores
     public void DisplayCard()
     {
+
         for (int i = 0; i < playerHand.Count; i++)
         {
+            if (playerHand[i].OreID >= 57)
+            {
+                UnlockedSecret = true;
+            }
+
             titles[i].text = playerHand[i].Name;
             OreSpriteRenderer[i].color = playerHand[i].rarityEffectColor;
             effects[i].text = "1 in " + playerHand[i].chance;

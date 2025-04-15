@@ -61,17 +61,6 @@ public class XPScript : MonoBehaviour, IDataPersistence
     }
     private void Start()
     {
-        if (SavedRebirth == 1)
-        {
-            OreStorage.InventoryOres = 6;
-            IndexManager.MaxIndexCount = 6;
-        }
-        else if (SavedRebirth >= 2)
-        {
-            OreStorage.InventoryOres = 7;
-            IndexManager.MaxIndexCount = 7;
-        }
-
         Rebirth = SavedRebirth;
 
         SelectWorld();

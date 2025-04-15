@@ -85,8 +85,11 @@ public class MainMenuScript : MonoBehaviour, IDataPersistence
             {
                 Debug.Log("No savefiles found or not in the main menu");
             }
-
-            SaveFilePlaytime[i].text = "Playtime: " + SaveFiles[i].PlayTimeFile;
+            
+            int hours = SaveFiles[i].PlayTimeFile / 3600;
+            int minutes = (SaveFiles[i].PlayTimeFile % 3600) / 60;
+            int seconds = SaveFiles[i].PlayTimeFile % 60;
+            SaveFilePlaytime[i].text = $"Playtime: {hours:D2}:{minutes:D2}:{seconds:D2}";
         }
     }
     public void ExitGame()
@@ -217,6 +220,7 @@ public class MainMenuScript : MonoBehaviour, IDataPersistence
         SaveFiles[Index].PlayTimeFile = 0;
         SaveFiles[Index].RebirthFile = 0;
         SaveFiles[Index].isSelected = false;
+        SaveFileImages[Index].color = new Vector4(0.8f, 0.8f, 0.8f, 1);
         NameSetText.text = "Savefile deleted";
         CurrentFile = "None";
         CurrentFileName.text = "Current Savefile: " + CurrentFile;

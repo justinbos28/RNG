@@ -277,7 +277,7 @@ public class TutorialManager : MonoBehaviour, IDataPersistence
             bool boughtupgrade1 = moneyLogic.BoughtAutoRollUpgrade >= 1;
             if (boughtupgrade1 && !ClaimedReward3)
             {
-                TutorialText.text = "Fantastic! You got yourself an 'Auto mine'. Next i explain how to use it (click to continue)";
+                TutorialText.text = "Fantastic! You got yourself 'Auto mine'. Next i explain how to use it (click to continue)";
                 RequirementText.text = "Reward claimed";
                 rngScript.allOres[14].StorageAmount += 10;
                 ClaimedReward3 = true;

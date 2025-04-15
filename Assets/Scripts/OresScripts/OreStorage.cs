@@ -19,8 +19,9 @@ public class OreStorage : MonoBehaviour, IDataPersistence
     public int MaxDivineOres = 5;
 
     public GameObject InventoryPanel;
-    public Text Exotictext;
-    public Text Divinetext;
+    public GameObject ExoticUnlocked;
+    public GameObject DivineUnlocked;
+    public GameObject SecretUnlocked;
 
     [Header("lists")]
     public List<Text> Storage = new List<Text>();
@@ -63,46 +64,23 @@ public class OreStorage : MonoBehaviour, IDataPersistence
     public void SwitchInventory()
     {
         InventoryPanel.SetActive(!InventoryPanel.activeSelf);
-        if (XPScript.SavedRebirth == 0)
+        if (RNGscript.UnlockedSecret)
         {
-            Exotictext.text = "???";
-            Divinetext.text = "???";
+            SecretUnlocked.SetActive(true);
         }
-        else if (XPScript.SavedRebirth == 1)
+        if (XPScript.SavedRebirth == 1)
         {
-            Exotictext.text = "Exotic";
-            Divinetext.text = "???";
+            ExoticUnlocked.SetActive(true);
         }
         else if (XPScript.SavedRebirth >= 2)
         {
-            Exotictext.text = "Exotic";
-            Divinetext.text = "Divine";
+            ExoticUnlocked.SetActive(true);
+            DivineUnlocked.SetActive(true);
         }
     }
 
     public void SelectRarity()
     {
-        switch (XPScript.SavedRebirth)
-        {
-            case 0:
-                if (CurrentRarity >= 5)
-                {
-                    CurrentRarity = 5;
-                }
-                break;
-            case 1:
-                if (CurrentRarity >= 6)
-                {
-                    CurrentRarity = 6;
-                }
-                break;
-            case 2:
-                if (CurrentRarity >= 7)
-                {
-                    CurrentRarity = 7;
-                }
-                break;
-        }
         InventoryStatus = CurrentRarity;
         // reset the input fields
         ResetInputFields();
@@ -143,6 +121,7 @@ public class OreStorage : MonoBehaviour, IDataPersistence
             case 5: return RNGscript.MythicOres;
             case 6: return RNGscript.ExoticOres;
             case 7: return RNGscript.DivineOres;
+            case 8: return RNGscript.SecretOres;
             default: return new List<OreClass>();
         }
     }
