@@ -12900,7 +12900,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.75, y: 0.2}
   m_AnchorMax: {x: 1, y: 0.45}
-  m_AnchoredPosition: {x: -0.41531372, y: 4.574917}
+  m_AnchoredPosition: {x: -0.41531372, y: 4.574913}
   m_SizeDelta: {x: -15.2599945, y: -9.01001}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &613908597
@@ -24610,7 +24610,7 @@ MonoBehaviour:
   - Name: Clean Gem
     description: 
     rarityTitle: 
-    OrePicture: {fileID: 21300000, guid: c2d18e00b06502a4ebcb9a4dbce21900, type: 3}
+    OrePicture: {fileID: 21300000, guid: 389d980e4b566754eab13d6a12e6794d, type: 3}
     XP: 0
     OreID: 0
     chance: 0
@@ -24622,7 +24622,7 @@ MonoBehaviour:
   - Name: Hardened Steel
     description: 
     rarityTitle: 
-    OrePicture: {fileID: 21300000, guid: c2d18e00b06502a4ebcb9a4dbce21900, type: 3}
+    OrePicture: {fileID: 21300000, guid: 84df6d34d05b3b641a2ff50ddeba7f9e, type: 3}
     XP: 0
     OreID: 0
     chance: 0
@@ -24631,7 +24631,7 @@ MonoBehaviour:
     OrePrice: 10
     rarityEffectColor: {r: 0, g: 0, b: 0, a: 0}
     Color: {r: 0, g: 0, b: 0, a: 0}
-  - Name: Small Drill
+  - Name: Rusty Drill
     description: 
     rarityTitle: 
     OrePicture: {fileID: 21300000, guid: c2d18e00b06502a4ebcb9a4dbce21900, type: 3}
@@ -27844,7 +27844,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.75, y: 0.2}
   m_AnchorMax: {x: 1, y: 0.45}
-  m_AnchoredPosition: {x: -1.0151825, y: 4.5748863}
+  m_AnchoredPosition: {x: -1.0151825, y: 4.5748825}
   m_SizeDelta: {x: -16.059998, y: -9.01001}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1354005393
@@ -32345,7 +32345,7 @@ MonoBehaviour:
   - Name: Iron
     description: A strong material
     rarityTitle: Common
-    OrePicture: {fileID: 21300000, guid: 70ead2093dd7ac8478c42db6861af594, type: 3}
+    OrePicture: {fileID: 21300000, guid: e1871764dcdeddd43a0eceb1c24ca60a, type: 3}
     XP: 1
     OreID: 0
     chance: 20
@@ -32885,7 +32885,7 @@ MonoBehaviour:
   - Name: Magma Gem
     description: Molten rock
     rarityTitle: Divine
-    OrePicture: {fileID: 21300000, guid: 3d9a110a96a7f074aa118d8d7652a5b3, type: 3}
+    OrePicture: {fileID: 21300000, guid: 41f4a10cdc39b924389832389df37495, type: 3}
     XP: 200
     OreID: 0
     chance: 120000000
@@ -32976,8 +32976,8 @@ MonoBehaviour:
     StorageAmount: 0
     Percentage: 0
     OrePrice: 69420
-    rarityEffectColor: {r: 0.7178221, g: 1, b: 0, a: 0}
-    Color: {r: 0.6933266, g: 1, b: 0, a: 1}
+    rarityEffectColor: {r: 0, g: 0, b: 0, a: 0}
+    Color: {r: 1, g: 1, b: 1, a: 1}
   - Name: Lily
     description: I wonder why a flower is this hard to get
     rarityTitle: Secret
@@ -33036,20 +33036,20 @@ MonoBehaviour:
     StorageAmount: 0
     Percentage: 0
     OrePrice: 4008
-    rarityEffectColor: {r: 0, g: 0, b: 0, a: 0}
-    Color: {r: 0, g: 0, b: 0, a: 1}
-  - Name: The True Gem
+    rarityEffectColor: {r: 0.7176471, g: 1, b: 0, a: 0}
+    Color: {r: 0.7176471, g: 1, b: 0, a: 1}
+  - Name: Gem Gauntlet
     description: The purest and most valueable gem there is
     rarityTitle: Secret
-    OrePicture: {fileID: 21300000, guid: 54fdba9e88a57b24f995e4949ff1a1bb, type: 3}
+    OrePicture: {fileID: 21300000, guid: cb82027cfe375ff4bb9cfe3bb4f04003, type: 3}
     XP: 500
     OreID: 0
     chance: 0
     StorageAmount: 0
     Percentage: 0
     OrePrice: 12475322
-    rarityEffectColor: {r: 1, g: 0.8777145, b: 0, a: 0}
-    Color: {r: 1, g: 0.8784314, b: 0, a: 1}
+    rarityEffectColor: {r: 0.67576694, g: 0, b: 1, a: 0}
+    Color: {r: 0.6745098, g: 0, b: 1, a: 1}
   CommonOres: []
   UncommonOres: []
   RareOres: []
@@ -34554,7 +34554,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.75, y: 0.2}
   m_AnchorMax: {x: 1, y: 0.45}
-  m_AnchoredPosition: {x: -0.05255127, y: 4.574917}
+  m_AnchoredPosition: {x: -0.05255127, y: 4.574913}
   m_SizeDelta: {x: -15.184998, y: -9.01001}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1600167253
@@ -38590,7 +38590,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.75, y: 0.2}
   m_AnchorMax: {x: 1, y: 0.45}
-  m_AnchoredPosition: {x: -1.7000427, y: 4.499773}
+  m_AnchoredPosition: {x: -1.7000427, y: 4.4997654}
   m_SizeDelta: {x: -14.690002, y: -8.76001}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1762248028
@@ -39610,7 +39610,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.75, y: 0.2}
   m_AnchorMax: {x: 1, y: 0.45}
-  m_AnchoredPosition: {x: -0.30003357, y: 4.574917}
+  m_AnchoredPosition: {x: -0.30003357, y: 4.574913}
   m_SizeDelta: {x: -15.48999, y: -9.01001}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1842316529

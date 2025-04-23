@@ -38,7 +38,7 @@ public class CraftingRecipes : MonoBehaviour, IDataPersistence
         { "CircuitBoard", new Dictionary<string, int> { {"Copper", 10}, {"Silver", 1}, {"Steel", 20}, {"Fast Gem", 5} } },
         { "Clean Gem", new Dictionary<string, int> { {"Rusty Gem", 10}, { "Stone Gem", 5 }, { "Water Gem", 1 }, { "Wood", 1} } },
         { "Hardened Steel", new Dictionary<string, int> { { "Petroleum", 10 }, { "Steel", 5 }, { "Heat Gem", 1 } } },
-        { "Small Drill", new Dictionary<string, int> { {"WoodFrame", 5}, {"Iron", 6 } } },
+        { "Rusty Drill", new Dictionary<string, int> { {"WoodFrame", 5}, {"Iron", 6 } } },
         { "Coal Generator", new Dictionary<string, int> { {"Wood", 15}, { "Coal", 10 }, { "Iron", 10 } } },
         { "Bolts", new Dictionary<string, int> { {"Iron", 6} } },
         { "Medium Drill", new Dictionary<string, int> { {"Steel", 5}, { "Iron", 20 }, { "WoodFrame", 10 } } },

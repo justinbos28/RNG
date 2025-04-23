@@ -1,5 +1,4 @@
 using System.Collections;
-using UnityEditor.ShaderKeywordFilter;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -177,7 +176,7 @@ public class TutorialManager : MonoBehaviour, IDataPersistence
             RequirementText.text = "Requirements \n" +
                 $"<color={moneyColor}>Money: 250/{moneyLogic.Money}</color>\n" +
                 $"<color={boltsColor}>Bolts: 5/{minerScript.Materials[14].StorageAmount}</color>\n" +
-                $"<color={smallDrillColor}>Small Drill: 1/{minerScript.Materials[12].StorageAmount}</color>\n" +
+                $"<color={smallDrillColor}>Rusty Drill 1/{minerScript.Materials[12].StorageAmount}</color>\n" +
                 $"<color={coalGenererator}>Coal Generator: 1/{minerScript.Materials[13].StorageAmount}</color>\n" +
                 $"<color={drillColor}>Buy 'Auto mine' upgrade 1/{moneyLogic.BoughtAutoRollUpgrade}</color>";
 
@@ -195,7 +194,7 @@ public class TutorialManager : MonoBehaviour, IDataPersistence
         if (tutorialStep == 5 && ClaimedReward1)
         {
             RequirementsPanel.SetActive(false);
-            TutorialText.text = "If you click through it, you see that you have the small drill. That is needed for the 'Auto mine' upgrade (click to continue)";
+            TutorialText.text = "If you click through it, you see that you have the Rusty Drill. That is needed for the 'Auto mine' upgrade (click to continue)";
             tutorialStep = 6;
         }
     }
