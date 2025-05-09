@@ -131,6 +131,7 @@ public class RNGscript : MonoBehaviour, IDataPersistence
                 case 5:
                 case 6:
                 case 7:
+                case 64:
                     CommonOres.Add(card);
                     break;
                 case 8:
@@ -140,6 +141,7 @@ public class RNGscript : MonoBehaviour, IDataPersistence
                 case 12:
                 case 13:
                 case 14:
+                case 65:
                     UncommonOres.Add(card);
                     break;
                 case 15:
@@ -149,6 +151,7 @@ public class RNGscript : MonoBehaviour, IDataPersistence
                 case 19:
                 case 20:
                 case 21:
+                case 66:
                     RareOres.Add(card);
                     break;
                 case 22:
@@ -158,6 +161,7 @@ public class RNGscript : MonoBehaviour, IDataPersistence
                 case 26:
                 case 27:
                 case 28:
+                case 67:
                     EpicOres.Add(card);
                     break;
                 case 29:
@@ -167,6 +171,7 @@ public class RNGscript : MonoBehaviour, IDataPersistence
                 case 33:
                 case 34:
                 case 35:
+                case 68:
                     LegendaryOres.Add(card);
                     break;
                 case 36:
@@ -176,6 +181,7 @@ public class RNGscript : MonoBehaviour, IDataPersistence
                 case 40:
                 case 41:
                 case 42:
+                case 69:
                     MythicOres.Add(card);
                     break;
                 case 43:
@@ -185,6 +191,7 @@ public class RNGscript : MonoBehaviour, IDataPersistence
                 case 47:
                 case 48:
                 case 49:
+                case 70:
                     ExoticOres.Add(card);
                     break;
                 case 50:
@@ -194,6 +201,7 @@ public class RNGscript : MonoBehaviour, IDataPersistence
                 case 54:
                 case 55:
                 case 56:
+                case 71:
                     DivineOres.Add(card);
                     break;
                 case 57:
@@ -203,6 +211,7 @@ public class RNGscript : MonoBehaviour, IDataPersistence
                 case 61:
                 case 62:
                 case 63:
+                case 72:
                     SecretOres.Add(card);
                     break;
             }

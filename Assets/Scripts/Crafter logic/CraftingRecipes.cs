@@ -41,12 +41,15 @@ public class CraftingRecipes : MonoBehaviour, IDataPersistence
         { "Rusty Drill", new Dictionary<string, int> { {"WoodFrame", 5}, {"Iron", 6 } } },
         { "Coal Generator", new Dictionary<string, int> { {"Wood", 15}, { "Coal", 10 }, { "Iron", 10 } } },
         { "Bolts", new Dictionary<string, int> { {"Iron", 6} } },
-        { "Medium Drill", new Dictionary<string, int> { {"Steel", 5}, { "Iron", 20 }, { "WoodFrame", 10 } } },
+        { "Handheld Drill", new Dictionary<string, int> { {"Steel", 5}, { "Iron", 20 }, { "WoodFrame", 10 } } },
         { "Small Generator", new Dictionary<string, int> { {"SteelFrame", 1}, { "Petroleum", 10 }, { "Plastic", 10 }, { "Heat Gem", 1 } } },
-        { "Standard Drill", new Dictionary<string, int> { {"Iron", 50}, { "Steel", 25 }, { "Wires", 5 }, { "Titanium", 5 } } },
-        { "Heat Generator", new Dictionary<string, int> { {"Generator", 1}, { "Hardened Steel", 10 }, { "Heat Gem", 50 }, { "Fire Gem", 5 }, { "Quartz", 10 } } },
+        { "Standing Drill", new Dictionary<string, int> { {"Iron", 50}, { "Steel", 25 }, { "Wires", 5 }, { "Titanium", 5 } } },
+        { "Nuclear Generator", new Dictionary<string, int> { {"Generator", 1}, { "Hardened Steel", 10 }, { "Uranium", 2 }, { "Fire Gem", 5 }, { "Quartz", 10 } } },
         { "Duplicator", new Dictionary<string, int> { {"Generator", 1}, { "Motor", 1 }, { "Copper", 10 }, { "Wires", 5 }, { "SteelFrame", 10 } } },
-        { "steel", new Dictionary<string, int> { {"Coal", 10}, {"Iron", 5 } } }
+        { "steel", new Dictionary<string, int> { {"Coal", 10}, {"Iron", 5 } } },
+        { "Processor", new Dictionary<string, int> { {"Fast Gem", 15}, {"Silver", 10 }, {"Copper", 20 }, {"Wire", 5 } } },
+        { "RebirthMachine", new Dictionary<string, int> { {"SteelFrame", 10}, {"Hardened Steel", 5 }, {"Generator", 1 }, {"Uranium", 5 }, {"Processor", 2 }, {"Engine", 1 } } }
+
     };
 
     // start of saving and loading data
@@ -162,28 +165,30 @@ public class CraftingRecipes : MonoBehaviour, IDataPersistence
     {
         switch (CurrentRecipe)
         {
-            case 0: CraftingAmount = 1; break;
-            case 1: CraftingAmount = 10; break;
-            case 2: CraftingAmount = 5; break;
-            case 3: CraftingAmount = 10; break;
-            case 4: CraftingAmount = 1; break;
-            case 5: CraftingAmount = 10; break;
-            case 6: CraftingAmount = 1; break;
-            case 7: CraftingAmount = 1; break;
-            case 8: CraftingAmount = 10; break;
-            case 9: CraftingAmount = 1; break;
-            case 10: CraftingAmount = 1; break;
-            case 11: CraftingAmount = 5; break;
-            case 12: CraftingAmount = 1; break;
-            case 13: CraftingAmount = 1; break;
-            case 14: CraftingAmount = 6; break;
-            case 15: CraftingAmount = 1; break;
-            case 16: CraftingAmount = 1; break;
-            case 17: CraftingAmount = 1; break;
-            case 18: CraftingAmount = 1; break;
-            case 19: CraftingAmount = 1; break;
-            case 20: CraftingAmount = 2; break;
-            default: CraftingAmount = 1; break;
+            case 0: CraftingAmount = 1; break; // drill head
+            case 1: CraftingAmount = 10; break; // glass
+            case 2: CraftingAmount = 5; break; // wires
+            case 3: CraftingAmount = 10; break; // plastic
+            case 4: CraftingAmount = 1; break; // motor
+            case 5: CraftingAmount = 10; break; // steel frame
+            case 6: CraftingAmount = 1; break; // engine
+            case 7: CraftingAmount = 1; break; // generator
+            case 8: CraftingAmount = 10; break; // wood frame
+            case 9: CraftingAmount = 1; break; // circuit board
+            case 10: CraftingAmount = 1; break; // clean gem
+            case 11: CraftingAmount = 5; break; // hardened steel
+            case 12: CraftingAmount = 1; break; // rusty drill
+            case 13: CraftingAmount = 1; break; // coal generator
+            case 14: CraftingAmount = 6; break; // bolts
+            case 15: CraftingAmount = 1; break; // handheld drill
+            case 16: CraftingAmount = 1; break; // small generator
+            case 17: CraftingAmount = 1; break; // standing drill
+            case 18: CraftingAmount = 1; break; // nuclear generator
+            case 19: CraftingAmount = 1; break; // duplicator
+            case 20: CraftingAmount = 2; break; // steel
+            case 21: CraftingAmount = 1; break; // processor
+            case 22: CraftingAmount = 1; break; // rebirth machine
+            default: CraftingAmount = 1; break; 
         }
     }
 

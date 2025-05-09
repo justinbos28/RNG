@@ -61,7 +61,7 @@ public class GameData
     public float XPLuckMultiplier;
 
     [Header("Values from DrillScript")]
-    public List<int> OresCount = new List<int>();
+    public List<OresCountList> OresCount = new List<OresCountList>();
     public List<int> MaterialCount = new List<int>();
     public List<savedDrillData> SavedDrillData = new List<savedDrillData>();
 
@@ -125,7 +125,7 @@ public class GameData
         this.ClaimedReward2 = false;
         this.ClaimedReward3 = false;
 
-        this.OresCount = new List<int>();
+        this.OresCount = new List<OresCountList>();
         this.MaterialCount = new List<int>();
         this.SavedDrillData = new List<savedDrillData>();
         this.SaveFiles = new List<SaveFile>();

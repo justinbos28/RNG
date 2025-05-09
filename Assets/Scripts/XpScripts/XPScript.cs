@@ -11,6 +11,9 @@ public class XPScript : MonoBehaviour, IDataPersistence
     public int SavedRebirth;
     public int LevelCount = 1;
     public int XPMultiplier = 1;
+    public float MachineNeeded = 1;
+    public float MoneyNeeded = 100000;
+    public int LevelsNeeded = 100;
     public float XPLuckMultiplier = 1;
     public float XPNeeded = 10;
     
@@ -18,6 +21,7 @@ public class XPScript : MonoBehaviour, IDataPersistence
     public List<WorldClass> Worlds = new List<WorldClass>();
 
     public RNGscript RNGscript;
+    public Minerscript Minerscript;
     public MoneyLogic MoneyLogic;
     public OreStorage OreStorage;
     public SavedOresCount SavedOres;
@@ -55,7 +59,6 @@ public class XPScript : MonoBehaviour, IDataPersistence
         else
         {
             XPMultiplier = 0;
-            RebirthButton.SetActive(true);
             ShowXp.text = "level " + LevelCount + ": " + "Max";
         }
     }
@@ -132,66 +135,74 @@ public class XPScript : MonoBehaviour, IDataPersistence
         }
     }
 
+
     public void PerformRebirth()
     {
-        // all xp reset
-        RebirthButton.SetActive(false);
-        LevelCount = 1;
-        XPCount = 0;
-        XPLuckMultiplier = 1;
-        XPMultiplier = 1;
-        XPNeeded = 10;
-        MaxLevel += 50;
-        SavedRebirth++;
-
-        // rngscript reset
-        RNGscript.RollSkips = 5;
-        RNGscript.RollSpeed = 0.65f;
-        RNGscript.cardLimit = 1;
-        RNGscript.LuckMultiplier = 1;
-        RNGscript.LuckPercentage = 1;
-        RNGscript.MoneyMultiplier = 1;
-
-        for (int i = 0; i < RNGscript.allOres.Count; i++)
+        if (MoneyLogic.Money >= MoneyNeeded && Minerscript.Materials[21].StorageAmount >= MachineNeeded && LevelCount == MaxLevel)
         {
-            RNGscript.allOres[i].StorageAmount = 0;
+            // all xp reset
+            RebirthButton.SetActive(false);
+            LevelCount = 1;
+            XPCount = 0;
+            XPLuckMultiplier = 1;
+            XPMultiplier = 1;
+            XPNeeded = 10;
+            MaxLevel += 50;
+            SavedRebirth++;
+
+            // rngscript reset
+            RNGscript.RollSkips = 5;
+            RNGscript.RollSpeed = 0.65f;
+            RNGscript.cardLimit = 1;
+            RNGscript.LuckMultiplier = 1;
+            RNGscript.LuckPercentage = 1;
+            RNGscript.MoneyMultiplier = 1;
+
+            for (int i = 0; i < RNGscript.allOres.Count; i++)
+            {
+                RNGscript.allOres[i].StorageAmount = 0;
+            }
+            for (int i = 0; i < CraftingRecipes.Materials.Count; i++)
+            {
+                CraftingRecipes.Materials[i].StorageAmount = 0;
+            }
+
+            // money logic reset
+            MoneyLogic.BoughtAutoRoll = false;
+            MoneyLogic.BoughtLuckMultiplier = 0;
+            MoneyLogic.BoughtMoneyMultiplier = 0;
+            MoneyLogic.BoughtLuckPercentage = 0;
+            MoneyLogic.BoughtRollAmount = 0;
+            MoneyLogic.BoughtRollSkips = 0;
+            MoneyLogic.BoughtRollSpeed = 0;
+            MoneyLogic.BoughtStorageAmount = 0;
+            MoneyLogic.BoughtAutoRollUpgrade = 0;
+            MoneyLogic.Money = 0;
+
+            MoneyLogic.enableRuntime = false;
+            MoneyLogic.enableCooldown = false;
+            MoneyLogic.hasNoCooldown = false;
+            MoneyLogic.MaxRuntime = 300;
+            MoneyLogic.MaxCooldown = 600;
+            MoneyLogic.Runtime = 300;
+            MoneyLogic.Cooldown = 600;
+
+            // orecount reset
+            OreStorage.MaxCommonOres = 500;
+            OreStorage.MaxUncommonOres = 250;
+            OreStorage.MaxRareOres = 125;
+            OreStorage.MaxEpicOres = 75;
+            OreStorage.MaxLegendaryOres = 40;
+            OreStorage.MaxMythicOres = 20;
+            OreStorage.MaxExoticOres = 10;
+            OreStorage.MaxDivineOres = 5;
+
+            DataPersistence.SaveGame();
+            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         }
-        for (int i = 0; i < CraftingRecipes.Materials.Count; i++)
+        else
         {
-            CraftingRecipes.Materials[i].StorageAmount = 0;
+            Debug.Log("Not enough money or materials to rebirth");
         }
-
-        // money logic reset
-        MoneyLogic.BoughtAutoRoll = false;
-        MoneyLogic.BoughtLuckMultiplier = 0;
-        MoneyLogic.BoughtMoneyMultiplier = 0;
-        MoneyLogic.BoughtLuckPercentage = 0;
-        MoneyLogic.BoughtRollAmount = 0;
-        MoneyLogic.BoughtRollSkips = 0;
-        MoneyLogic.BoughtRollSpeed = 0;
-        MoneyLogic.BoughtStorageAmount = 0;
-        MoneyLogic.BoughtAutoRollUpgrade = 0;
-        MoneyLogic.Money = 0;
-
-        MoneyLogic.enableRuntime = false;
-        MoneyLogic.enableCooldown = false;
-        MoneyLogic.hasNoCooldown = false;
-        MoneyLogic.MaxRuntime = 300;
-        MoneyLogic.MaxCooldown = 600;
-        MoneyLogic.Runtime = 300;
-        MoneyLogic.Cooldown = 600;
-
-        // orecount reset
-        OreStorage.MaxCommonOres = 500;
-        OreStorage.MaxUncommonOres = 250;
-        OreStorage.MaxRareOres = 125;
-        OreStorage.MaxEpicOres = 75;
-        OreStorage.MaxLegendaryOres = 40;
-        OreStorage.MaxMythicOres = 20;
-        OreStorage.MaxExoticOres = 10;
-        OreStorage.MaxDivineOres = 5;
-
-        DataPersistence.SaveGame();
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 }

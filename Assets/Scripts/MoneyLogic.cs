@@ -87,10 +87,10 @@ public class MoneyLogic : MonoBehaviour, IDataPersistence
     public Dictionary<string, Dictionary<string, int>> AutoDrillUpgrades = new Dictionary<string, Dictionary<string, int>>
     {
         { "Drill Upgrade 1", new Dictionary<string, int> { { "Rusty Drill", 1}, {"Coal Generator", 1},{ "Bolts", 5 } } },
-        { "Drill Upgrade 2", new Dictionary<string, int> { {"Medium Drill", 1}, {"Small Generator", 1}, { "Bolts", 15},{ "Plastic", 5 } } },
-        { "Drill Upgrade 3", new Dictionary<string, int> { {"Standard Drill", 1 }, {"Generator", 1}, {"Bolts", 20}, { "Plastic", 5 } } },
+        { "Drill Upgrade 2", new Dictionary<string, int> { { "Handheld Drill", 1}, {"Small Generator", 1}, { "Bolts", 15},{ "Plastic", 5 } } },
+        { "Drill Upgrade 3", new Dictionary<string, int> { {"Standing Drill", 1 }, {"Generator", 1}, {"Bolts", 20}, { "Plastic", 5 } } },
         { "Drill Upgrade 4", new Dictionary<string, int> { {"Tungsten", 1 }, {"Bolts", 25}, {"Plastic", 5}, {"Wires", 15 } } },
-        { "Drill Upgrade 5", new Dictionary<string, int> { { "Diamond", 1 }, { "Wires", 30 }, { "Plastic", 5 }, {"Bolts", 50 }, { "Heat Generator", 1 }, { "DrillHead", 1 } } },
+        { "Drill Upgrade 5", new Dictionary<string, int> { { "Diamond", 1 }, { "Wires", 30 }, { "Plastic", 5 }, {"Bolts", 50 }, { "Nuclear Generator", 1 }, { "DrillHead", 1 } } },
         { "Drill Upgrade 6", new Dictionary<string, int> { } }
     };
 

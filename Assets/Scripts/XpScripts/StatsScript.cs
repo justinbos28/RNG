@@ -8,6 +8,8 @@ public class StatsScript : MonoBehaviour
     public Text StatText;
     public Text StatTextTwo;
     public Text RebirthText;
+    public Text RebirthRequirementsText;
+
     public RNGscript RNGscript;
     public OreStorage OreStorage;
     public XPScript XPScript;
@@ -87,12 +89,27 @@ public class StatsScript : MonoBehaviour
             Skybox.material = Skyboxes[XPScript.Rebirth];
         }
 
-        RebirthText.text = "Rebirth " + (XPScript.SavedRebirth + 1) + "\n"
-          + "Max Level " + (XPScript.MaxLevel + 50) + "\n"
-          + "Mine: " + Mine;
+        RebirthText.text = $"You will gain:\nRebirth {XPScript.SavedRebirth + 1}\n"
+          + $"Max Level {XPScript.MaxLevel + 50} \n"
+          + $"Mine: {Mine}";
+
+        if (XPScript.SavedRebirth % 5 == 0)
+        {
+            
+        }
+        XPScript.MachineNeeded = Mathf.FloorToInt((XPScript.SavedRebirth / 5) + 1);
+        float multiplier = XPScript.SavedRebirth / 0.5f;
+        if (XPScript.SavedRebirth > 0)
+        {
+            XPScript.MoneyNeeded = 100000 * (XPScript.SavedRebirth * multiplier);
+        }
+        XPScript.LevelsNeeded = XPScript.MaxLevel;
+
+        RebirthRequirementsText.text = $"Requirements: Rebirth machine {XPScript.MachineNeeded}\n Money: {XPScript.MoneyNeeded}\n Levels: {XPScript.LevelsNeeded}";
     }
     public void ExitRebirth()
     {
         RebirthMenu.SetActive(false);
     }
+
 }

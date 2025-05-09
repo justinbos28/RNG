@@ -177,15 +177,22 @@ public class MainMenuScript : MonoBehaviour, IDataPersistence
         string inputName = SaveFileInputField.text.Replace(" ", "");
         if (inputName.Length > 0)
         {
-            SaveFiles[Index].FileName = inputName;
-            SaveFilePanel.SetActive(false);
-            NameSetText.text = "Savefile created";
-            SaveFiles[Index].isSelected = true;
-            SaveFileTexts[Index].text = SaveFiles[Index].FileName;
-            SaveFileInputField.text = "";
-            CurrentFile = SaveFiles[Index].FileName;
-            DataPersistence.UpdateFileName();
-            GoToSaveFiles();
+            if (inputName != "None")
+            {
+                SaveFiles[Index].FileName = SaveFileInputField.text;
+                SaveFilePanel.SetActive(false);
+                NameSetText.text = "Savefile created";
+                SaveFiles[Index].isSelected = true;
+                SaveFileTexts[Index].text = SaveFiles[Index].FileName;
+                SaveFileInputField.text = "";
+                CurrentFile = SaveFiles[Index].FileName;
+                DataPersistence.UpdateFileName();
+                GoToSaveFiles();
+            }
+            else
+            {
+                NameSetText.text = "Name cannot be 'None'";
+            }
         }
         else
         {

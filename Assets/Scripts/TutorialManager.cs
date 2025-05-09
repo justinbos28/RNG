@@ -12,6 +12,14 @@ public class TutorialManager : MonoBehaviour, IDataPersistence
     public GameObject tutorialPopup;
     public GameObject Tutorial;
     public GameObject RequirementsPanel;
+
+    public GameObject RollButtonHighlight;
+    public GameObject InventoryHighlight;
+    public GameObject UpgradeHighlight;
+    public GameObject CrafterHighlight;
+    public GameObject StatsHighlight;
+    public GameObject RebirthHighlight;
+
     public int tutorialStep = 0;
     public Text TutorialText;
     public Text RequirementText;
@@ -68,10 +76,10 @@ public class TutorialManager : MonoBehaviour, IDataPersistence
     // step 1
     public void ConfirmTutorialRequest()
     {
-        hasSeenTutorial = true;
         tutorialPopup.SetActive(false);
         Tutorial.SetActive(true);
         TutorialText.text = "Welcome to Gem RNG! Lets get started with the basics, click 'click me to mine' to roll your first Gem";
+        RollButtonHighlight.SetActive(true);
         tutorialStep = 1;
     }
     // step 2
@@ -79,7 +87,11 @@ public class TutorialManager : MonoBehaviour, IDataPersistence
     {
         if (tutorialStep == 1)
         {
-            Tutorial.transform.position = new Vector3(0, 3.5f, 0);
+            RollButtonHighlight.SetActive(false);
+            InventoryHighlight.SetActive(true);
+            Tutorial.GetComponentInParent<RectTransform>().anchoredPosition = new Vector2(0, -140);
+            Tutorial.GetComponentInParent<RectTransform>().anchorMax = new Vector2(0.5f, 1);
+            Tutorial.GetComponentInParent<RectTransform>().anchorMin = new Vector2(0.5f, 1);
             TutorialText.text = "Great! Now you have a gem, click the backpack icon to the right to open the inventory. In here you can see your gems and you can sell them";
             tutorialStep = 2;
         }
@@ -89,6 +101,7 @@ public class TutorialManager : MonoBehaviour, IDataPersistence
     {
         if (tutorialStep == 2)
         {
+            InventoryHighlight.SetActive(false);
             TutorialText.text = "Now you can see your gems, in 'Enter amount' you can select the amount you would like to sell and then simply click 'Sell' (click to continue)";
             tutorialStep = 3;
         }
@@ -98,6 +111,7 @@ public class TutorialManager : MonoBehaviour, IDataPersistence
     {
         if (tutorialStep == 4)
         {
+            UpgradeHighlight.SetActive(false);
             TutorialText.text = "As you can see you need money as well as gems to purchase upgrades. Lets try to get 'Pickaxe speed' first";
             RequirementsPanel.SetActive(true);
             CheckRecuirementsCompletion();
@@ -116,6 +130,7 @@ public class TutorialManager : MonoBehaviour, IDataPersistence
             switch (tutorialStep)
             {
                 case 4:
+                    CrafterHighlight.SetActive(true);
                     TutorialText.text = "You need money as well as gems to buy them but already know this. Click on the button with the 2 hammers to continue";
                     tutorialStep = 5;
                     break;
@@ -147,21 +162,23 @@ public class TutorialManager : MonoBehaviour, IDataPersistence
         string drillColor = moneyLogic.BoughtAutoRollUpgrade >= 1 ? "green" : "white";
         if (tutorialStep == 4)
         {
+
             RequirementText.text = "Requirements \n" +
-                               $"<color={moneyColor}>Money: 25/{moneyLogic.Money}</color>\n" +
-                               $"<color={stoneGemColor}>Stone Gem: 5/{rngScript.allOres[5].StorageAmount}</color>\n" +
-                               $"<color={rustyGemColor}>Rusty Gem: 1/{rngScript.allOres[6].StorageAmount}</color>";
+                               $"<color={moneyColor}>Money: {moneyLogic.Money}/25</color>\n" +
+                               $"<color={stoneGemColor}>Stone Gem: {rngScript.allOres[5].StorageAmount}/5</color>\n" +
+                               $"<color={rustyGemColor}>Rusty Gem: {rngScript.allOres[6].StorageAmount}/1</color>";
             if (moneyLogic.Money >= 25 && rngScript.allOres[5].StorageAmount >= 5 && rngScript.allOres[6].StorageAmount >= 1)
             {
                 RequirementsPanel.SetActive(true);
                 TutorialText.text = "Looks like You have all the requirements, great! Now click the Purchase button to buy the 'Pickaxe speed' upgrade";
                 tutorialStep = 5;
+                CrafterHighlight.SetActive(true);
             }
 
         }
         else if (tutorialStep == 7)
         {
-            RequirementText.text = $"Requirements \n<color={boltsColor}>Bolts: 5/{minerScript.Materials[14].StorageAmount}</color>";
+            RequirementText.text = $"Requirements \n<color={boltsColor}>Bolts: {minerScript.Materials[14].StorageAmount}/5</color>";
             RewardText.text = "Reward \n $250";
             if (minerScript.Materials[14].StorageAmount >= 5)
             {
@@ -174,11 +191,11 @@ public class TutorialManager : MonoBehaviour, IDataPersistence
         {
             money = 250;
             RequirementText.text = "Requirements \n" +
-                $"<color={moneyColor}>Money: 250/{moneyLogic.Money}</color>\n" +
-                $"<color={boltsColor}>Bolts: 5/{minerScript.Materials[14].StorageAmount}</color>\n" +
-                $"<color={smallDrillColor}>Rusty Drill 1/{minerScript.Materials[12].StorageAmount}</color>\n" +
-                $"<color={coalGenererator}>Coal Generator: 1/{minerScript.Materials[13].StorageAmount}</color>\n" +
-                $"<color={drillColor}>Buy 'Auto mine' upgrade 1/{moneyLogic.BoughtAutoRollUpgrade}</color>";
+                $"<color={moneyColor}>Money: {moneyLogic.Money}/250</color>\n" +
+                $"<color={boltsColor}>Bolts: {minerScript.Materials[14].StorageAmount}/5</color>\n" +
+                $"<color={smallDrillColor}>Rusty Drill {minerScript.Materials[12].StorageAmount}/1</color>\n" +
+                $"<color={coalGenererator}>Coal Generator: {minerScript.Materials[13].StorageAmount}/1</color>\n" +
+                $"<color={drillColor}>Buy 'Auto mine' upgrade {moneyLogic.BoughtAutoRollUpgrade}/1</color>";
 
             RewardText.text = "Reward \n 10 Steel";
             if (moneyLogic.BoughtAutoRollUpgrade >= 1)
@@ -196,6 +213,7 @@ public class TutorialManager : MonoBehaviour, IDataPersistence
             RequirementsPanel.SetActive(false);
             TutorialText.text = "If you click through it, you see that you have the Rusty Drill. That is needed for the 'Auto mine' upgrade (click to continue)";
             tutorialStep = 6;
+            CrafterHighlight.SetActive(false);
         }
     }
     public void onClickForClaimRewards()
@@ -306,6 +324,7 @@ public class TutorialManager : MonoBehaviour, IDataPersistence
             case 3:
                 if (Input.GetKeyDown(KeyCode.Mouse0))
                 {
+                    UpgradeHighlight.SetActive(true);
                     TutorialText.text = "Now click the shopping cart icon, here you can see upgrades to your pickaxe. Your pickaxe determines the speed, luck and money of your gems";
                     tutorialStep = 4;
                 }
@@ -367,15 +386,17 @@ public class TutorialManager : MonoBehaviour, IDataPersistence
             case 14:
                 if (Input.GetKeyDown(KeyCode.Mouse0))
                 {
-                    TutorialText.text = "On the left side of the exp bar a rebirth button will appear when you reach level 100 (click to continue)";
+                    TutorialText.text = "On the left side of the exp bar is the rebirth button (click to continue)";
                     tutorialStep = 15;
+                    RebirthHighlight.SetActive(true);
                 }
                 break;
             case 15:
                 if (Input.GetKeyDown(KeyCode.Mouse0))
                 {
-                    TutorialText.text = "When you eventually rebirth you unlock a new world with better gems. This does mean common ores are replaced (click to continue)";
+                    TutorialText.text = "When you can eventually rebirth you will unlock a new world with better gems. This does mean common ores are replaced (click to continue)";
                     tutorialStep = 16;
+                    RebirthHighlight.SetActive(false);
                 }
                 break;
             case 16:
@@ -390,6 +411,7 @@ public class TutorialManager : MonoBehaviour, IDataPersistence
                 {
                     TutorialText.text = "One last thing before i leave you alone. On the other side of the xp bar is the stats menu. In here you can see your current stats (click to continue)";
                     tutorialStep = 18;
+                    StatsHighlight.SetActive(true);
                 }
                 break;
             case 18:
@@ -397,6 +419,7 @@ public class TutorialManager : MonoBehaviour, IDataPersistence
                 {
                     TutorialText.text = "Well thats about it. Enjoy your time here and goodluck! (click to end tutorial)";
                     tutorialStep = 19;
+                    StatsHighlight.SetActive(false);
                 }
                 break;
             case 19:
@@ -404,9 +427,15 @@ public class TutorialManager : MonoBehaviour, IDataPersistence
                 {
                     Tutorial.SetActive(false);
                     RequirementsPanel.SetActive(false);
+                    hasSeenTutorial = true;
                     tutorialStep = 20;
                 }
                 break;
         }
+    }
+
+    public void DebugTutorialStepUp()
+    {
+        tutorialStep++;
     }
 }

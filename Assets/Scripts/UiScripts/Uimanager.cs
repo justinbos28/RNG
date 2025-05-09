@@ -140,5 +140,8 @@ public class Uimanager : MonoBehaviour
             OpenPortal = false;
         }
     }
-
+    public void ExitStats()
+    {
+        Stats.SetActive(false);
+    }
 }
