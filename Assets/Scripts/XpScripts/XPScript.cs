@@ -89,16 +89,10 @@ public class XPScript : MonoBehaviour, IDataPersistence
     }
     private void ApplyLevelBonuses()
     {
-        if (LevelCount % 10 == 0 && LevelCount <= 100)
+        if (LevelCount % 10 == 0)
         {
-            XPMultiplier = LevelCount / 10 + 1;
             XPLuckMultiplier = 1 + (LevelCount / 100.0f);
             RNGscript.RollSpeed -= 0.01f;
-        }
-        else if (LevelCount % 10 == 0 && LevelCount > 100)
-        {
-            XPMultiplier = LevelCount / 10 + 1;
-            XPLuckMultiplier = 1 + (LevelCount / 100.0f);
         }
     }
     public void SelectWorld()

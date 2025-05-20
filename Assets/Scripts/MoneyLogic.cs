@@ -328,7 +328,7 @@ public class MoneyLogic : MonoBehaviour, IDataPersistence
             if (hasEnoughMaterials && Money >= UpgradeCost && BoughtRollSpeed <= (SpeedUpgrades.Count - 1))
             {
                 Money -= UpgradeCost;
-                RNGscript.RollSpeed -= 0.05f;
+                RNGscript.RollSpeed -= 0.1f;
                 BoughtRollSpeed++;
                 CurrentMoney.text = "$" + Money.ToString("F2");
                 UpdateUpgradeUI();
@@ -676,6 +676,7 @@ public class MoneyLogic : MonoBehaviour, IDataPersistence
                 OreStorage.MaxMythicOres += 30;
                 OreStorage.MaxExoticOres += 20;
                 OreStorage.MaxDivineOres += 10;
+                OreStorage.MaxSecretOres += 1;
 
                 CurrentMoney.text = "$" + Money.ToString("F2");
                 UpdateUpgradeUI();

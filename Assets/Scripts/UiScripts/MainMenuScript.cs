@@ -169,7 +169,7 @@ public class MainMenuScript : MonoBehaviour, IDataPersistence
         }
         SetFile();
         DataPersistence.UpdateFileName();
-        Debug.Log(CurrentFile);
+        Debug.Log("currentfile = "+CurrentFile);
     }
 
     public void SetNameToFile()

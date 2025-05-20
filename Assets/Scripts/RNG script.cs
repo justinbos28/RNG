@@ -5,6 +5,7 @@ using UnityEngine.UI;
 
 public class RNGscript : MonoBehaviour, IDataPersistence
 {
+    [Header("Ores")]
     public List<OreClass> allOres = new List<OreClass>();
     public List<OreClass> CommonOres = new List<OreClass>();
     public List<OreClass> UncommonOres = new List<OreClass>();
@@ -16,18 +17,28 @@ public class RNGscript : MonoBehaviour, IDataPersistence
     public List<OreClass> DivineOres = new List<OreClass>();
     public List<OreClass> SecretOres = new List<OreClass>();
 
+    [Header("Ore Ui")]
+    public List<GameObject> Dices = new List<GameObject>();
     public List<SpriteRenderer> RarityEffectSprite = new List<SpriteRenderer>();
     public List<SpriteRenderer> RarityEffectSprite2 = new List<SpriteRenderer>();
     public List<Sprite> Stones = new List<Sprite>();
+    [Header("Particle Effects")]
+    public List<Particles> RarityParticles = new List<Particles>();
+
 
     public List<OreClass> playerHand = new List<OreClass>();
-    public int cardLimit = 1;
+    [Header("Limit")] public int cardLimit = 1;
 
+    [Header("Others")]
+    public float LocalScale = 1;
     public float timer = 0;
     public float timer2 = 0;
-    public float fuckuper = 1;
+    public float DelayTimeBetweenRolls = 2;
+    public float DelayTimeBetweenRollsReference = 2f; // used for saving the delay time since when you get a rare ore the delay time will be longer so you have time to see what you got
+    public float TestSecretRarity = 0.0001f; // used for testing the secret ore chance
 
-    public float RollSpeed = 0.65f;
+    [Header("Ore upgrades")]
+    public float RollSpeed = 0.70f;
     public float LuckPercentage = 1;
     public float LuckMultiplier = 1;
     public float MoneyMultiplier = 1;
@@ -36,6 +47,8 @@ public class RNGscript : MonoBehaviour, IDataPersistence
     public int RollSkips = 5;
     public int StoneStatus;
 
+    [Header("Bools")]
+    public bool active = false;
     public bool StartTimer;
     public bool AutoTimer = true;
     public bool AutoSell = false;
@@ -49,7 +62,7 @@ public class RNGscript : MonoBehaviour, IDataPersistence
     public MoneyLogic MoneyLogic;
     public XPScript XPScript;
     public OreStorage OreStorage;
-
+    [Header("buttons and effects")]
     public GameObject RollButton;
     public GameObject RollButton1;
     public GameObject RollButton2;
@@ -82,7 +95,7 @@ public class RNGscript : MonoBehaviour, IDataPersistence
         this.LuckPercentage = data.LuckPercentage;
         this.MoneyMultiplier = data.MoneyMultiplier;
         this.UnlockedSecret = data.Test;
-        RollForHand();
+        
         StoneStatus = RollSkips;
     }
     public void SaveData(ref GameData data)
@@ -104,7 +117,6 @@ public class RNGscript : MonoBehaviour, IDataPersistence
         temp = Random.Range(0f, 100f);
         if (temp > 0 && temp < percent)
         {
-            //print(temp);
             return true;
         }
         else
@@ -223,23 +235,136 @@ public class RNGscript : MonoBehaviour, IDataPersistence
     {
         playerHand.Clear();
         List<int> hand = new List<int>();
-        for (int i = 0; i < cardLimit; i++) // Ensure we don't go over cardLimit
+        for (int i = 0; i < cardLimit; i++) 
         {
             Dictionary<int, float> oreRarityChances = new Dictionary<int, float>
             {
-                { 43, 0.000005f }, // ooh
-                { 42, 0.00001f }, { 41, 0.000013f }, { 40, 0.000017f }, { 39, 0.000025f }, { 38, 0.000037f }, { 37, 0.000067f }, { 36, 0.0001f }, // mythic ores
-                { 35, 0.00011f }, { 34, 0.00015f }, { 33, 0.00018f }, { 32, 0.00022f }, { 31, 0.00028f }, { 30, 0.0004f }, { 29, 0.00067f }, // legendary ores
-                { 28, 0.001f }, { 27, 0.0011f }, { 26, 0.0013f }, { 25, 0.0015f }, { 24, 0.0022f }, { 23, 0.0035f }, { 22, 0.0067f }, // epic ores
-                { 21, 0.01f }, { 20, 0.013f }, { 19, 0.015f }, { 18, 0.018f }, { 17, 0.022f }, { 16, 0.03f }, { 15, 0.074f }, // rare ores
-                { 14, 0.121f }, { 13, 0.15f }, { 12, 0.18f }, { 11, 0.25f }, { 10, 0.4f }, { 9, 0.66f }, { 8, 0.9f }, // uncommon ores
-                { 7, 1.4f }, { 6, 1.8f }, { 5, 4.8f }, { 4, 9.1f }, { 3, 14.3f }, { 2, 20f }, { 1, 50f } // common ores
+                { 12, 0.000001f }, { 11, 0.000099f }, // mythic ores
+                { 10, 0.00001f }, { 9, 0.00099f }, // legendary ores
+                { 8, 0.0001f }, { 7, 0.0099f }, // epic ores
+                { 6, 0.001f }, { 5, 0.099f }, // rare ores
+                { 4, 0.01f },{ 3, 0.99f }, // uncommon ores
+                { 2, 1f }, { 1, 100f } // common ores
             };
 
+            
             Dictionary<int, bool> oreRarityResults = oreRarityChances.ToDictionary(
                 kvp => kvp.Key,
                 kvp => CalulateRNGPercent(kvp.Value * LuckPercentage * LuckMultiplier * XPScript.XPLuckMultiplier)
             );
+
+            float temp;
+            temp = Random.Range(0f, 100f);
+            if (temp > 0 && temp < TestSecretRarity)
+            {
+                //print(temp);
+                AddOreToHand(SecretOres, hand);
+            }
+            else
+            {
+                //print(temp);
+                bool oreAdded = false;
+
+                foreach (var oreRarityResult in oreRarityResults)
+                {
+                    if (oreRarityResult.Value)
+                    {
+                        // assign basic ores if the player hasn't rebirthed
+                        if (XPScript.Rebirth == 0)
+                        {
+                            switch (oreRarityResult.Key)
+                            {
+                                case >= 11 and <= 12:
+                                    AddOreToHand(MythicOres, hand);
+                                    break;
+                                case >= 9 and <= 10:
+                                    AddOreToHand(LegendaryOres, hand);
+                                    break;
+                                case >= 7 and <= 8:
+                                    AddOreToHand(EpicOres, hand);
+                                    break;
+                                case >= 5 and <= 6:
+                                    AddOreToHand(RareOres, hand);
+                                    break;
+                                case >= 3 and <= 4:
+                                    AddOreToHand(UncommonOres, hand);
+                                    break;
+                                case >= 1 and <= 2:
+                                    AddOreToHand(CommonOres, hand);
+                                    break;
+                            }
+                        }
+                        // assign new ores if the player has rebirthed
+                        else if (XPScript.Rebirth == 1)
+                        {
+                            switch (oreRarityResult.Key)
+                            {
+                                case >= 11 and <= 12:
+                                    AddOreToHand(ExoticOres, hand);
+                                    break;
+                                case >= 9 and <= 10:
+                                    AddOreToHand(MythicOres, hand);
+                                    break;
+                                case >= 7 and <= 8:
+                                    AddOreToHand(LegendaryOres, hand);
+                                    break;
+                                case >= 5 and <= 6:
+                                    AddOreToHand(EpicOres, hand);
+                                    break;
+                                case >= 3 and <= 4:
+                                    AddOreToHand(RareOres, hand);
+                                    break;
+                                case >= 1 and <= 2:
+                                    AddOreToHand(UncommonOres, hand);
+                                    break;
+                            }
+                        }
+                        else
+                        {
+                            switch (oreRarityResult.Key)
+                            {
+                                case >= 11 and <= 12:
+                                    AddOreToHand(DivineOres, hand);
+                                    break;
+                                case >= 9 and <= 10:
+                                    AddOreToHand(ExoticOres, hand);
+                                    break;
+                                case >= 7 and <= 8:
+                                    AddOreToHand(MythicOres, hand);
+                                    break;
+                                case >= 5 and <= 6:
+                                    AddOreToHand(LegendaryOres, hand);
+                                    break;
+                                case >= 3 and <= 4:
+                                    AddOreToHand(EpicOres, hand);
+                                    break;
+                                case >= 1 and <= 2:
+                                    AddOreToHand(RareOres, hand);
+                                    break;
+                            }
+                        }
+                        oreAdded = true;
+                        break; // Stop after adding one ore
+
+                    }
+                }
+
+
+                // If no ore was added, guarantee a common ore for rebirth 0
+                if (!oreAdded && XPScript.Rebirth == 0)
+                {
+                    AddOreToHand(CommonOres, hand);
+                }
+                // If no ore was added, guarantee an uncommon ore for rebirth 1
+                else if (!oreAdded && XPScript.Rebirth == 1)
+                {
+                    AddOreToHand(UncommonOres, hand);
+                }
+                else if (!oreAdded && XPScript.Rebirth >= 2)
+                {
+                    AddOreToHand(RareOres, hand);
+                }
+            }
 
             void AddOreToHand(List<OreClass> oreList, List<int> hand)
             {
@@ -255,116 +380,7 @@ public class RNGscript : MonoBehaviour, IDataPersistence
                 }
             }
 
-            bool oreAdded = false;
 
-            foreach (var oreRarityResult in oreRarityResults)
-            {
-                if (oreRarityResult.Value)
-                {
-                    // assign basic ores if the player hasn't rebirthed
-                    if (XPScript.Rebirth == 0)
-                    {
-                        switch (oreRarityResult.Key)
-                        {
-                            case 43:
-                                AddOreToHand(SecretOres, hand);
-                                break;
-                            case >= 36 and <= 42:
-                                AddOreToHand(MythicOres, hand);
-                                break;
-                            case >= 29 and <= 35:
-                                AddOreToHand(LegendaryOres, hand);
-                                break;
-                            case >= 22 and <= 28:
-                                AddOreToHand(EpicOres, hand);
-                                break;
-                            case >= 15 and <= 21:
-                                AddOreToHand(RareOres, hand);
-                                break;
-                            case >= 8 and <= 14:
-                                AddOreToHand(UncommonOres, hand);
-                                break;
-                            case >= 1 and <= 7:
-                                AddOreToHand(CommonOres, hand);
-                                break;
-                        }
-                    }
-                    // assign new ores if the player has rebirthed
-                    else if (XPScript.Rebirth == 1)
-                    {
-                        switch (oreRarityResult.Key)
-                        {
-                            case 43:
-                                AddOreToHand(SecretOres, hand);
-                                break;
-                            case >= 36 and <= 42:
-                                AddOreToHand(ExoticOres, hand);
-                                break;
-                            case >= 29 and <= 35:
-                                AddOreToHand(MythicOres, hand);
-                                break;
-                            case >= 22 and <= 28:
-                                AddOreToHand(LegendaryOres, hand);
-                                break;
-                            case >= 15 and <= 21:
-                                AddOreToHand(EpicOres, hand);
-                                break;
-                            case >= 8 and <= 14:
-                                AddOreToHand(RareOres, hand);
-                                break;
-                            case >= 1 and <= 7:
-                                AddOreToHand(UncommonOres, hand);
-                                break;
-                        }
-                    }
-                    else
-                    {
-                        switch (oreRarityResult.Key)
-                        {
-                            case 43:
-                                AddOreToHand(SecretOres, hand);
-                                break;
-                            case >= 36 and <= 42:
-                                AddOreToHand(DivineOres, hand);
-                                break;
-                            case >= 29 and <= 35:
-                                AddOreToHand(ExoticOres, hand);
-                                break;
-                            case >= 22 and <= 28:
-                                AddOreToHand(MythicOres, hand);
-                                break;
-                            case >= 15 and <= 21:
-                                AddOreToHand(LegendaryOres, hand);
-                                break;
-                            case >= 8 and <= 14:
-                                AddOreToHand(EpicOres, hand);
-                                break;
-                            case >= 1 and <= 7:
-                                AddOreToHand(RareOres, hand);
-                                break;
-                        }
-                    }
-                    oreAdded = true;
-                    break; // Stop after adding one ore
-
-                }
-            }
-            
-
-            // If no ore was added, guarantee a common ore for rebirth 0
-            if (!oreAdded && XPScript.Rebirth == 0)
-            {
-                AddOreToHand(CommonOres, hand);
-            }
-            // If no ore was added, guarantee an uncommon ore for rebirth 1
-            else if (!oreAdded && XPScript.Rebirth == 1)
-            {
-                AddOreToHand(UncommonOres, hand);
-            }
-            else if (!oreAdded && XPScript.Rebirth >= 2)
-            {
-                AddOreToHand(RareOres, hand);
-            }
         }
         foreach (int ID in hand)
         {
@@ -388,9 +404,35 @@ public class RNGscript : MonoBehaviour, IDataPersistence
 
         for (int i = 0; i < playerHand.Count; i++)
         {
-            if (playerHand[i].OreID >= 57)
+            switch (playerHand[i].rarityTitle)
             {
-                UnlockedSecret = true;
+                case "Rare":
+                    RarityParticles[i].ParticlePrefab.GetComponentsInChildren<ParticleSystemRenderer>()[1].material.mainTexture = RarityParticles[0].ParticleImage;
+                    break;
+                case "Epic":
+                    RarityParticles[i].ParticlePrefab.GetComponentsInChildren<ParticleSystemRenderer>()[1].material.mainTexture = RarityParticles[1].ParticleImage;
+                    break;
+                case "Legendary":
+                    RarityParticles[i].ParticlePrefab.GetComponentsInChildren<ParticleSystemRenderer>()[0].material.mainTexture = RarityParticles[2].ParticleImage;
+                    RarityParticles[i].ParticlePrefab.GetComponentsInChildren<ParticleSystemRenderer>()[1].material.mainTexture = RarityParticles[2].ParticleImage;
+                    break;
+                case "Mythic":
+                    RarityParticles[i].ParticlePrefab.GetComponentsInChildren<ParticleSystemRenderer>()[0].material.mainTexture = RarityParticles[3].ParticleImage;
+                    RarityParticles[i].ParticlePrefab.GetComponentsInChildren<ParticleSystemRenderer>()[1].material.mainTexture = RarityParticles[3].ParticleImage;
+                    break;
+                case "Exotic":
+                    RarityParticles[i].ParticlePrefab.GetComponentsInChildren<ParticleSystemRenderer>()[0].material.mainTexture = RarityParticles[4].ParticleImage;
+                    RarityParticles[i].ParticlePrefab.GetComponentsInChildren<ParticleSystemRenderer>()[1].material.mainTexture = RarityParticles[4].ParticleImage;
+                    break;
+                case "Divine":
+                    RarityParticles[i].ParticlePrefab.GetComponentsInChildren<ParticleSystemRenderer>()[0].material.mainTexture = RarityParticles[5].ParticleImage;
+                    RarityParticles[i].ParticlePrefab.GetComponentsInChildren<ParticleSystemRenderer>()[1].material.mainTexture = RarityParticles[5].ParticleImage;
+                    break;
+                case "Secret":
+                    RarityParticles[i].ParticlePrefab.GetComponentsInChildren<ParticleSystemRenderer>()[0].material.mainTexture = RarityParticles[6].ParticleImage;
+                    RarityParticles[i].ParticlePrefab.GetComponentsInChildren<ParticleSystemRenderer>()[1].material.mainTexture = RarityParticles[6].ParticleImage;
+                    UnlockedSecret = true;
+                    break;
             }
 
             titles[i].text = playerHand[i].Name;
@@ -398,6 +440,27 @@ public class RNGscript : MonoBehaviour, IDataPersistence
             effects[i].text = "1 in " + playerHand[i].chance;
             rarity[i].text = playerHand[i].rarityTitle;
             OrePicture[i].sprite = playerHand[i].OrePicture;
+            if (new string[] { "Rare", "Epic", "Legendary", "Mythic", "Exotic", "Divine", "Secret" }.Contains(playerHand[i].rarityTitle) && RarityParticles[i].ParticlePrefab.activeSelf == true)
+            {
+                RarityParticles[i].ParticlePrefab.GetComponentsInChildren<ParticleSystem>()[1].Clear();
+                RarityParticles[i].ParticlePrefab.GetComponentsInChildren<ParticleSystem>()[1].Play();
+                if (new string[] { "Legendary", "Mythic", "Exotic", "Divine", "Secret" }.Contains(playerHand[i].rarityTitle))
+                {
+                    if (RarityParticles[i].ParticlePrefab.activeSelf == true)
+                    {
+                        RarityParticles[i].ParticlePrefab.GetComponentsInChildren<ParticleSystem>()[0].Clear();
+                        RarityParticles[i].ParticlePrefab.GetComponentsInChildren<ParticleSystem>()[0].Play();
+                    }
+                    else
+                    {
+                        RarityParticles[i].ParticlePrefab.SetActive(true);
+                    }
+                }
+            }
+            else
+            {
+                RarityParticles[i].ParticlePrefab.SetActive(true);
+            }
         }
     }
 
@@ -440,7 +503,7 @@ public class RNGscript : MonoBehaviour, IDataPersistence
         // delay after getting a ore
         if (RollStatus >= RollSkips)
         {
-            if (timer2 > fuckuper) // bigger
+            if (timer2 > DelayTimeBetweenRolls) // bigger
             {
                 MoneyLogic.CheckDrillStatus();
                 if (MoneyLogic.AutoRoll)
@@ -477,25 +540,51 @@ public class RNGscript : MonoBehaviour, IDataPersistence
                 AutoRollTimer = false;
                 timer2 = 0;
             }
-            else if (timer2 < fuckuper) // smaller
+            else if (timer2 < DelayTimeBetweenRolls) // smaller
             {
                 StartTimer = !AutoTimer;
                 timer = 0;
                 AutoRollTimer = true;
             }
         }
+
+        if (active)
+        {
+            if (LocalScale > 1)
+            {
+                LocalScale = 1;
+                active = false;
+            }
+            else
+            {
+                LocalScale += Time.deltaTime * 3;
+            }
+        }
+
+        for (int i = 0; i < Dices.Count; i++)
+        {
+            Dices[i].transform.localScale = new Vector3(LocalScale, LocalScale, LocalScale);
+        }
+
         // showing the ore and giving the price
         if (RollStatus == RollSkips)
         {
             StoneStatus = RollSkips;
             RollForHand();
             RollingText.text = "You found ";
-            for (int i = 0; i < RarityEffectSprite.Count; i++)
+            LocalScale = 0;
+            active = true;
+
+            for (int i = 0; i < Dices.Count; i++)
             {
-                RarityEffectSprite[i].color = new Color(RarityEffectSprite[i].color.r, RarityEffectSprite[i].color.g, RarityEffectSprite[i].color.b, 0.5f);
-                RarityEffectSprite2[i].color = new Color(RarityEffectSprite[i].color.r, RarityEffectSprite[i].color.g, RarityEffectSprite[i].color.b, 0.3f);
+                Dices[i].transform.localScale = new Vector3(LocalScale, LocalScale, LocalScale);
             }
 
+            for (int i = 0; i < RarityEffectSprite.Count; i++)
+            {
+                    RarityEffectSprite[i].color = new Color(RarityEffectSprite[i].color.r, RarityEffectSprite[i].color.g, RarityEffectSprite[i].color.b, 0.5f);
+                    RarityEffectSprite2[i].color = new Color(RarityEffectSprite[i].color.r, RarityEffectSprite[i].color.g, RarityEffectSprite[i].color.b, 0.3f);
+            }
             for (int i = 0; i < playerHand.Count; i++)
             {
                 // auto sells the ores
@@ -514,8 +603,9 @@ public class RNGscript : MonoBehaviour, IDataPersistence
                     effects[i].color = Color.white;
                     rarity[i].color = Color.white;
                 }
+                /// optimize this code in the future
                 // auto sells if ores are more then the common ore storage
-                if (new int[] { 1, 2, 3, 4, 5, 6, 7 }.Contains(playerHand[i].OreID))
+                if (playerHand[i].rarityTitle == "Common")
                 {
                     if (playerHand[i].StorageAmount >= OreStorage.MaxCommonOres)
                     {
@@ -524,7 +614,7 @@ public class RNGscript : MonoBehaviour, IDataPersistence
                     }
                 }
                 // autosell for uncommon ores
-                if (new int[] { 8, 9, 10, 11, 12, 13, 14 }.Contains(playerHand[i].OreID))
+                if (playerHand[i].rarityTitle == "Uncommon")
                 {
                     if (playerHand[i].StorageAmount >= OreStorage.MaxUncommonOres)
                     {
@@ -533,7 +623,7 @@ public class RNGscript : MonoBehaviour, IDataPersistence
                     }
                 }
                 // autosell for rare ores
-                if (new int[] { 15, 16, 17, 18, 19, 20, 21 }.Contains(playerHand[i].OreID))
+                if (playerHand[i].rarityTitle == "Rare")
                 {
                     if (playerHand[i].StorageAmount >= OreStorage.MaxRareOres)
                     {
@@ -542,7 +632,7 @@ public class RNGscript : MonoBehaviour, IDataPersistence
                     }
                 }
                 // autosell for epic ores
-                if (new int[] { 22, 23, 24, 25, 26, 27, 28 }.Contains(playerHand[i].OreID))
+                if (playerHand[i].rarityTitle == "Epic")
                 {
                     if (playerHand[i].StorageAmount >= OreStorage.MaxEpicOres)
                     {
@@ -551,7 +641,7 @@ public class RNGscript : MonoBehaviour, IDataPersistence
                     }
                 }
                 // autosell for legendary ores
-                if (new int[] { 29, 30, 31, 32, 33, 34, 35 }.Contains(playerHand[i].OreID))
+                if (playerHand[i].rarityTitle == "Legendary")
                 {
                     if (playerHand[i].StorageAmount >= OreStorage.MaxLegendaryOres)
                     {
@@ -560,7 +650,7 @@ public class RNGscript : MonoBehaviour, IDataPersistence
                     }
                 }
                 // autosell for mythic ores
-                if (new int[] { 36, 37, 38, 39, 40, 41, 42 }.Contains(playerHand[i].OreID))
+                if (playerHand[i].rarityTitle == "Mythic")
                 {
                     if (playerHand[i].StorageAmount >= OreStorage.MaxMythicOres)
                     {
@@ -569,7 +659,7 @@ public class RNGscript : MonoBehaviour, IDataPersistence
                     }
                 }
                 // autosell for exotic ores
-                if (new int[] { 43, 44, 45, 46, 47, 48, 49 }.Contains(playerHand[i].OreID))
+                if (playerHand[i].rarityTitle == "Exotic")
                 {
                     if (playerHand[i].StorageAmount >= OreStorage.MaxExoticOres)
                     {
@@ -578,7 +668,7 @@ public class RNGscript : MonoBehaviour, IDataPersistence
                     }
                 }
                 // autosell for divine ores
-                if (new int[] { 50, 51, 52, 53, 54, 55, 56 }.Contains(playerHand[i].OreID))
+                if (playerHand[i].rarityTitle == "Divine")
                 {
                     if (playerHand[i].StorageAmount >= OreStorage.MaxDivineOres)
                     {
@@ -586,6 +676,16 @@ public class RNGscript : MonoBehaviour, IDataPersistence
                         playerHand[i].StorageAmount = OreStorage.MaxDivineOres;
                     }
                 }
+                // autosell for secret ores
+                if (playerHand[i].rarityTitle == "Secret")
+                {
+                    if (playerHand[i].StorageAmount >= OreStorage.MaxSecretOres)
+                    {
+                        MoneyLogic.Money += playerHand[i].OrePrice * MoneyMultiplier;
+                        playerHand[i].StorageAmount = OreStorage.MaxSecretOres;
+                    }
+                }
+                /// end optimize this code in the future
             }
             // updates the inventory and xp
             OreStorage.UpdateInventory();

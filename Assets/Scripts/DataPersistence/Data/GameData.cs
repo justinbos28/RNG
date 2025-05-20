@@ -1,6 +1,6 @@
 using System.Collections.Generic;
-using System.ComponentModel;
 using UnityEngine;
+using UnityEngine.UI;
 
 
 [System.Serializable]
@@ -88,7 +88,7 @@ public class GameData
 
         this.CardLimit = 1;
         this.RollSkips = 5;
-        this.RollSpeed = 0.65f;
+        this.RollSpeed = 0.70f;
         this.LuckPercentage = 1;
         this.LuckMultiplier = 1;
         this.MoneyMultiplier = 1;
@@ -130,4 +130,11 @@ public class GameData
         this.SavedDrillData = new List<savedDrillData>();
         this.SaveFiles = new List<SaveFile>();
     }
+}
+
+[System.Serializable]
+public class Particles
+{
+    public GameObject ParticlePrefab;
+    public Texture ParticleImage;
 }

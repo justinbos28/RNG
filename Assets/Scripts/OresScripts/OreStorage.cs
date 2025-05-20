@@ -17,6 +17,7 @@ public class OreStorage : MonoBehaviour, IDataPersistence
     public int MaxMythicOres = 20;
     public int MaxExoticOres = 10;
     public int MaxDivineOres = 5;
+    public int MaxSecretOres = 1;
 
     public GameObject InventoryPanel;
     public GameObject ExoticUnlocked;
