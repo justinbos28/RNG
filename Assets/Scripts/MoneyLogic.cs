@@ -70,11 +70,11 @@ public class MoneyLogic : MonoBehaviour, IDataPersistence
     };
     public Dictionary<string, Dictionary<string, int>> AmountUpgrades = new Dictionary<string, Dictionary<string, int>>
     {
-        { "Amount Upgrade 1", new Dictionary<string, int> { {"Iron", 25}, {"Wood", 40} } },
-        { "Amount Upgrade 2", new Dictionary<string, int> { {"Steel", 10}, {"Iron", 75}, { "WoodFrame", 15} } },
-        { "Amount Upgrade 3", new Dictionary<string, int> { {"Titanium", 2 }, {"SteelFrame", 15}, {"Stone", 250}, { "Petroleum", 10 } } },
-        { "Amount Upgrade 4", new Dictionary<string, int> { {"Tungsten", 1 }, {"Titanium", 10}, {"SteelFrame", 20}, {"Stone", 250 } } },
-        { "Amount Upgrade 5", new Dictionary<string, int> { { "Tungsten", 1 }, { "Titanium", 25 }, { "Stone", 250 }, {"Duplicator", 1 } } },
+        { "Amount Upgrade 1", new Dictionary<string, int> { {"Iron", 25}, {"Wood", 40}, { "Dice Gem", 1 } } },
+        { "Amount Upgrade 2", new Dictionary<string, int> { {"Steel", 10}, {"Iron", 75}, { "WoodFrame", 15}, { "Dice Gem", 5 } } },
+        { "Amount Upgrade 3", new Dictionary<string, int> { {"Titanium", 2 }, {"SteelFrame", 15}, {"Stone", 250}, { "Dice Gem", 10 } } },
+        { "Amount Upgrade 4", new Dictionary<string, int> { {"Tungsten", 1 }, {"Titanium", 10}, {"SteelFrame", 20}, {"Stone", 250 }, { "Dice Gem", 15 } } },
+        { "Amount Upgrade 5", new Dictionary<string, int> { { "Tungsten", 1 }, { "Titanium", 25 }, { "Stone", 250 }, {"Duplicator", 1 }, { "Dice Gem", 20 } } },
         { "Amount Upgrade 6", new Dictionary<string, int> { } }
     };
     public Dictionary<string, Dictionary<string, int>> StrenghtUpgrades = new Dictionary<string, Dictionary<string, int>>
@@ -99,13 +99,13 @@ public class MoneyLogic : MonoBehaviour, IDataPersistence
         { "Luck Percent Upgrade 1", new Dictionary<string, int> { {"Sand", 10}, {"Iron", 5},{ "Coal", 5 } } },
         { "Luck Percent Upgrade 2", new Dictionary<string, int> { {"Glass", 5}, {"Iron", 10}, { "WoodFrame", 5} } },
         { "Luck Percent Upgrade 3", new Dictionary<string, int> { {"WoodFrame", 10 }, {"Stone Gem", 10}, {"Iron", 25}, { "Glass", 10 } } },
-        { "Luck Percent Upgrade 4", new Dictionary<string, int> { {"WoodFrame", 20 }, {"Iron", 40}, {"Glass", 10}, {"Shiny Gem", 1 }, { "Steel", 1 } } },
-        { "Luck Percent Upgrade 5", new Dictionary<string, int> { { "SteelFrame", 5 }, { "Iron", 10 }, { "Glass", 20 }, {"Shiny Gem", 2 } } },
+        { "Luck Percent Upgrade 4", new Dictionary<string, int> { {"WoodFrame", 20 }, {"Iron", 40}, {"Glass", 10}, {"Dice Gem", 1 }, { "Steel", 1 } } },
+        { "Luck Percent Upgrade 5", new Dictionary<string, int> { { "SteelFrame", 5 }, { "Iron", 10 }, { "Glass", 20 }, { "Dice Gem", 2 } } },
         { "Luck Percent Upgrade 6", new Dictionary<string, int> { { "SteelFrame", 10 }, { "Iron", 20 }, { "Glass", 25 }, {"Shiny Gem", 5 }, {"Quartz" ,1 } } },
         { "Luck Percent Upgrade 7", new Dictionary<string, int> { { "SteelFrame", 15 }, { "Wires", 5 }, { "Glass", 30 }, {"Shiny Gem", 10 }, { "Quartz", 1 } } },
-        { "Luck Percent Upgrade 8", new Dictionary<string, int> { { "SteelFrame", 20 }, { "Wires", 10 }, { "Clear Gem", 1 }, {"Shiny Gem", 20 }, { "Quartz", 5 } } },
-        { "Luck Percent Upgrade 9", new Dictionary<string, int> { { "SteelFrame", 30 }, { "Wires", 20 }, { "Uranium", 1 }, {"Shiny Gem", 30 }, { "Quartz", 5 } } },
-        { "Luck Percent Upgrade 10", new Dictionary<string, int> { { "SteelFrame", 40 }, { "Wires", 30 }, { "Uranium", 1 }, {"Emerald", 1 }, { "Quartz", 10 } } },
+        { "Luck Percent Upgrade 8", new Dictionary<string, int> { { "SteelFrame", 20 }, { "Wires", 10 }, { "Clear Gem", 1 }, {"Shiny Gem", 15 }, { "Quartz", 5 }, { "Dice Gem", 5 } } },
+        { "Luck Percent Upgrade 9", new Dictionary<string, int> { { "SteelFrame", 30 }, { "Wires", 20 }, { "Cloverium", 1 }, {"Shiny Gem", 30 }, { "Quartz", 5 } } },
+        { "Luck Percent Upgrade 10", new Dictionary<string, int> { { "SteelFrame", 40 }, { "Wires", 30 }, { "Cloverium", 1 }, {"Emerald", 1 }, { "Quartz", 10 } } },
         { "Luck Percent Upgrade 11", new Dictionary<string, int> { } }
     };
     public Dictionary<string, Dictionary<string, int>> LuckMultUpgrades = new Dictionary<string, Dictionary<string, int>>
@@ -113,8 +113,8 @@ public class MoneyLogic : MonoBehaviour, IDataPersistence
         { "Luck multiplier Upgrade 1", new Dictionary<string, int> { {"Iron", 20}, {"Stone", 50},{ "Coal", 5 } } },
         { "Luck multiplier Upgrade 2", new Dictionary<string, int> { {"Bolts", 15}, {"Iron", 10}, { "Coal", 25}, { "Yellow Gem", 1 } } },
         { "Luck multiplier Upgrade 3", new Dictionary<string, int> { {"Steel", 10 }, {"Iron", 15}, { "Coal", 35 }, { "Yellow Gem", 5 }, { "Bolts", 20 } } },
-        { "Luck multiplier Upgrade 4", new Dictionary<string, int> { {"Steel", 20 }, {"Iron", 30}, {"Yellow Gem", 10}, {"Amethyst", 1 } } },
-        { "Luck multiplier Upgrade 5", new Dictionary<string, int> { { "Yellow Gem", 15 }, { "Steel", 25 }, { "Iron", 30 }, { "Gold", 1 }, {"Amethyst", 1 } } },
+        { "Luck multiplier Upgrade 4", new Dictionary<string, int> { {"Steel", 20 }, {"Iron", 30}, {"Yellow Gem", 10}, {"Amethyst", 1 }, { "Cloverium", 1 } } },
+        { "Luck multiplier Upgrade 5", new Dictionary<string, int> { { "Yellow Gem", 15 }, { "Steel", 25 }, { "Iron", 30 }, { "Cloverium", 2 }, {"Amethyst", 1 } } },
         { "Luck multiplier Upgrade 6", new Dictionary<string, int> { } }
     };
     public Dictionary<string, Dictionary<string, int>> MoneyUpgrades = new Dictionary<string, Dictionary<string, int>>

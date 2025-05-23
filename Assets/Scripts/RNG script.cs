@@ -460,6 +460,8 @@ public class RNGscript : MonoBehaviour, IDataPersistence
             else
             {
                 RarityParticles[i].ParticlePrefab.SetActive(true);
+                RarityParticles[i].ParticlePrefab.GetComponentsInChildren<ParticleSystem>()[0].Stop();
+                RarityParticles[i].ParticlePrefab.GetComponentsInChildren<ParticleSystem>()[0].Clear();
             }
         }
     }

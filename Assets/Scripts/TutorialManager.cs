@@ -379,7 +379,7 @@ public class TutorialManager : MonoBehaviour, IDataPersistence
             case 13:
                 if (Input.GetKeyDown(KeyCode.Mouse0))
                 {
-                    TutorialText.text = "You have a exp bar as well. every 10 levels gives you a small luck and exp boost as well as mining speed (up to level 100) (click to continue)";
+                    TutorialText.text = "You have a exp bar as well. When you reach level 100 you can rebirth (click to continue)";
                     tutorialStep = 14;
                 }
                 break;
