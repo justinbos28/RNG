@@ -8,13 +8,15 @@ public class CraftingRecipes : MonoBehaviour, IDataPersistence
     public Minerscript Minerscript;
     public RNGscript RNGscript;
     public TutorialManager TutorialManager;
+    public Errormessages Errormessages;
+
+    public InputField CraftingAmountInput;
     public Button craftButton;
 
     public Text MaterialName;
     public Text MaterialAmount;
     public Text MaterialPrice;
     public Text MaterialRequirements;
-    public Text Output;
     public Image MaterialImage;
     public Image IsInvalid;
 
@@ -111,54 +113,60 @@ public class CraftingRecipes : MonoBehaviour, IDataPersistence
 
     public void RecipeIndex()
     {
-        craftButton.onClick.RemoveAllListeners();
-        craftButton.onClick.AddListener(() =>
-        {
-            recipeName = Recipes.ElementAt(CurrentRecipe).Key;
-            SetAmount();
-            GetRecipe(recipeName);
-        });
+        recipeName = Recipes.ElementAt(CurrentRecipe).Key;
+        SetAmount();
+        GetRecipe(recipeName);
     }
 
     private void GetRecipe(string recipeName)
     {
-        if (Recipes.ContainsKey(recipeName))
+        int quantity = 0;
+        if (int.TryParse(CraftingAmountInput.text, out quantity) && quantity > 0)
         {
-            var recipe = Recipes[recipeName];
-
-            bool hasEnoughMaterials = recipe.All(material =>
-                Materials.Any(m => m.Name == material.Key && m.StorageAmount >= material.Value));
-
-            if (hasEnoughMaterials)
+            if (Recipes.ContainsKey(recipeName))
             {
-                foreach (var material in recipe)
-                {
-                    var ore = Materials.FirstOrDefault(m => m.Name == material.Key);
-                    ore.StorageAmount -= material.Value;
-                    
-                }
+                var recipe = Recipes[recipeName];
 
-                if (CurrentRecipe == 20)
+                bool hasEnoughMaterials = recipe.All(material =>
+                    Materials.Any(m => m.Name == material.Key && m.StorageAmount >= material.Value * quantity));
+
+                if (hasEnoughMaterials)
                 {
-                    RNGscript.allOres[13].StorageAmount += CraftingAmount;
+                    foreach (var material in recipe)
+                    {
+                        var ore = Materials.FirstOrDefault(m => m.Name == material.Key);
+                        ore.StorageAmount -= material.Value * quantity;
+
+                    }
+
+                    if (CurrentRecipe == 20)
+                    {
+                        RNGscript.allOres[13].StorageAmount += CraftingAmount * quantity;
+                    }
+                    else
+                    {
+                        Minerscript.Materials[CurrentRecipe].StorageAmount += CraftingAmount * quantity;
+                    }
+                    UpdateUi();
+                    IsInvalid.color = Color.white;
+                    TutorialManager.UpdateRequirementsText();
                 }
                 else
                 {
-                    Minerscript.Materials[CurrentRecipe].StorageAmount += CraftingAmount;
+                    IsInvalid.color = Color.red;
+                    Errormessages.SetErrorMessageMachines("Not enough materials");
                 }
-                UpdateUi();
-                IsInvalid.color = Color.white;
-                TutorialManager.UpdateRequirementsText();
             }
             else
             {
-                IsInvalid.color = Color.red;            
+                Errormessages.SetErrorMessageMachines("Recipe not found");
             }
         }
         else
         {
-            Debug.Log("Recipe not found");
+            Errormessages.SetErrorMessageMachines("The quantity can't be 0!");
         }
+        
     }
 
     private void SetAmount()
@@ -192,7 +200,7 @@ public class CraftingRecipes : MonoBehaviour, IDataPersistence
         }
     }
 
-    public void Backwards()
+    public void CraftingLeft()
     {
         if (CurrentRecipe <= 0)
         {
@@ -206,7 +214,7 @@ public class CraftingRecipes : MonoBehaviour, IDataPersistence
         SetAmount();
         UpdateUi();
     }
-    public void Forward()
+    public void CraftingRight()
     {
         if (CurrentRecipe >= (Recipes.Count - 1))
         {
@@ -227,26 +235,24 @@ public class CraftingRecipes : MonoBehaviour, IDataPersistence
         {
             MaterialName.text = Minerscript.Materials[CurrentRecipe].Name;
             MaterialAmount.text = "Stored: " + RNGscript.allOres[13].StorageAmount.ToString();
-            MaterialPrice.text = Minerscript.Materials[CurrentRecipe].OrePrice.ToString();
+            MaterialPrice.text = "Material Price\n" + Minerscript.Materials[CurrentRecipe].OrePrice.ToString()
+                + "\nOutput\n" + CraftingAmount.ToString();
             MaterialImage.sprite = Minerscript.Materials[CurrentRecipe].OrePicture;
-            MaterialRequirements.text = string.Join("\n", Recipes.ElementAt(CurrentRecipe).Value.Select(r => $"{r.Key}: {r.Value}"));
-            Output.text = "Output: " + CraftingAmount.ToString();
+            MaterialRequirements.text = "Requirements\n" + string.Join("\n", Recipes.ElementAt(CurrentRecipe).Value.Select(r => $"{r.Key}: {r.Value}"));
         } 
         else
         {
             MaterialName.text = Minerscript.Materials[CurrentRecipe].Name;
             MaterialAmount.text = "Stored: " + Minerscript.Materials[CurrentRecipe].StorageAmount.ToString();
-            MaterialPrice.text = Minerscript.Materials[CurrentRecipe].OrePrice.ToString();
+            MaterialPrice.text = "Material Price\n" + Minerscript.Materials[CurrentRecipe].OrePrice.ToString()
+                + "\nOutput\n" + CraftingAmount.ToString();
             MaterialImage.sprite = Minerscript.Materials[CurrentRecipe].OrePicture;
-            MaterialRequirements.text = string.Join("\n", Recipes.ElementAt(CurrentRecipe).Value.Select(r => $"{r.Key}: {r.Value}"));
-            Output.text = "Output: " + CraftingAmount.ToString();
+            MaterialRequirements.text = "Requirements\n" + string.Join("\n", Recipes.ElementAt(CurrentRecipe).Value.Select(r => $"{r.Key}: {r.Value}"));
         }
     }
 
     private void Start()
     {
-        TutorialManager = FindObjectOfType<TutorialManager>();
-        RecipeIndex();
         Materials = Minerscript.Materials.Cast<OreClass>().Concat(RNGscript.allOres).ToList();
     }
 }

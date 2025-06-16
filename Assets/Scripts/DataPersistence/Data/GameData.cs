@@ -1,7 +1,5 @@
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
-
 
 [System.Serializable]
 public class GameData
@@ -74,6 +72,10 @@ public class GameData
     public bool ClaimedReward2;
     public bool ClaimedReward3;
 
+    [Header("Values from machines")]
+    public bool isPurchased;
+    public List<StonePowders> StonePowdersList = new List<StonePowders>();
+
     public GameData()
     {
         this.Money = 0;
@@ -124,7 +126,10 @@ public class GameData
         this.ClaimedReward1 = false;
         this.ClaimedReward2 = false;
         this.ClaimedReward3 = false;
+        
+        this.isPurchased = false;
 
+        this.StonePowdersList = new List<StonePowders>();
         this.OresCount = new List<OresCountList>();
         this.MaterialCount = new List<int>();
         this.SavedDrillData = new List<savedDrillData>();

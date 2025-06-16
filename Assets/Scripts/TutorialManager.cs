@@ -266,7 +266,7 @@ public class TutorialManager : MonoBehaviour, IDataPersistence
         {
             if (moneyLogic.Money >= 25 && rngScript.allOres[5].StorageAmount >= 5 && rngScript.allOres[6].StorageAmount >= 1 && !ClaimedReward1)
             {
-                TutorialText.text = "Next click on the button with 2 hammers. This is the crafting menu. In here you can craft items for more expensive upgrades";
+                TutorialText.text = "Next click on the button with 2 hammers. This is the Machine menu. This menu lets you access all machines but for now click 'crafter'";
                 RequirementText.text = "Reward claimed";
                 minerScript.Materials[12].StorageAmount++;
                 ClaimedReward1 = true;

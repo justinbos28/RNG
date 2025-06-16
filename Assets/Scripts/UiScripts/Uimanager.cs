@@ -6,10 +6,9 @@ public class Uimanager : MonoBehaviour
     public GameObject Shop;
     public GameObject Index;
     public GameObject Stats;
-    public GameObject Crafter;
+    public GameObject Machines;
     public GameObject Teleporter;
 
-    public CraftingRecipes CraftingRecipes;
     public MoneyLogic MoneyLogic;
     public StatsScript StatsScript;
 
@@ -17,7 +16,7 @@ public class Uimanager : MonoBehaviour
     public bool OpenIndex;
     public bool InventoryPanel;
     public bool OpenStats;
-    public bool OpenCrafter;
+    public bool OpenMachines;
     public bool OpenPortal;
 
     public void ShopButton()
@@ -41,9 +40,9 @@ public class Uimanager : MonoBehaviour
             MoneyLogic.UpdateEverything();
 
             InventoryPanel = false;
-            OpenCrafter = false;
+            OpenMachines = false;
             Inventory.SetActive(false);
-            Crafter.SetActive(false);
+            Machines.SetActive(false);
         }
         else
         {
@@ -61,9 +60,9 @@ public class Uimanager : MonoBehaviour
             Inventory.SetActive(true);
 
             InventoryPanel = true;
-            OpenCrafter = false;
+            OpenMachines = false;
             Shop.SetActive(false);
-            Crafter.SetActive(false);
+            Machines.SetActive(false);
         }
         else
         {
@@ -72,23 +71,22 @@ public class Uimanager : MonoBehaviour
         }
     }
 
-    public void CrafterButton()
+    public void MachinesButton()
     {
-        if (OpenCrafter == false)
+        if (OpenMachines == false)
         {
-            OpenCrafter = true;
-            Crafter.SetActive(true);
+            OpenMachines = true;
+            Machines.SetActive(true);
 
             InventoryPanel = false;
             ShopPanel = false;
             Inventory.SetActive(false);
             Shop.SetActive(false);
-            CraftingRecipes.UpdateUi();
         }
         else
         {
-            OpenCrafter = false;
-            Crafter.SetActive(false);
+            OpenMachines = false;
+            Machines.SetActive(false);
         }
     }
 
