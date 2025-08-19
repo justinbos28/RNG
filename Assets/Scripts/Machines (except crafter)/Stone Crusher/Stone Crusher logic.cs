@@ -45,7 +45,7 @@ public class StoneCrusherlogic : MonoBehaviour, IDataPersistence
         { "Stone" , new Dictionary<string, int>{ { "Iron", 50 }, { "Copper", 30}, { "Petroleum", 15 }, { "Steel", 5 } } },
         { "Hardstone" , new Dictionary<string, int>{ { "Titanium", 60 }, { "Silver", 40}, { "Tungsten", 15 }, { "Gold", 5 }, { "Strange Sword Handle", 1 } } },
         { "Darkstone" , new Dictionary<string, int>{ { "Moonstone", 50 }, { "Starlight", 20}, { "Strange Sword Components", 5 }, { "Molten Chest", 1 } } },
-        { "Redstone" , new Dictionary<string, int>{ { "Volcanium", 50 }, { "Magma Comet", 25}, { "Strange Sword Blade", 10 }, { "Molten Chest", 5 }, { "Secret Key", 1 } } }
+        { "Redstone" , new Dictionary<string, int>{ { "Volcanium", 50 }, { "Magma Comet", 25}, { "Strange Sword Blade", 10 }, { "Molten Chest", 5 } } }
     };
     public Dictionary<string, int> StoneCrusherReparationCost = new Dictionary<string, int>
     {

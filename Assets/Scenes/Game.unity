@@ -71572,18 +71572,18 @@ MonoBehaviour:
     OrePrice: 69420
     rarityEffectColor: {r: 0, g: 0, b: 0, a: 0}
     Color: {r: 1, g: 1, b: 1, a: 1}
-  - Name: Secret Key
-    description: This looks like it can open something hot
+  - Name: Lily
+    description: I wonder why a flower is this hard to get
     rarityTitle: Secret
-    OrePicture: {fileID: 0}
+    OrePicture: {fileID: 21300000, guid: 5fc0c79e4f1cc21478e31133f047f528, type: 3}
     XP: 500
     OreID: 0
     chance: 0
     StorageAmount: 0
     Percentage: 0
-    OrePrice: 4500789
-    rarityEffectColor: {r: 1, g: 0.33380708, b: 0, a: 0}
-    Color: {r: 1, g: 0.3372549, b: 0, a: 1}
+    OrePrice: 20310
+    rarityEffectColor: {r: 0.9433962, g: 0.493948, b: 0.83252966, a: 0}
+    Color: {r: 0.94509804, g: 0.49411765, b: 0.8352941, a: 1}
   - Name: Element 58
     description: Someone forgot to name it and no one knows what it is
     rarityTitle: Secret
@@ -71740,18 +71740,18 @@ MonoBehaviour:
     OrePrice: 6000000
     rarityEffectColor: {r: 1, g: 0.9137255, b: 0, a: 0}
     Color: {r: 1, g: 0.9137255, b: 0, a: 1}
-  - Name: virtual_gem
-    description: A reference to the creator
+  - Name: Hoshino
+    description: As it stares at you, you hear the words uhee~
     rarityTitle: Secret
-    OrePicture: {fileID: 21300000, guid: a1ad42d77305a4b438b54ca15b684843, type: 3}
+    OrePicture: {fileID: 21300000, guid: b52ab9a83e53b7442b4145896d25e644, type: 3}
     XP: 500
     OreID: 0
     chance: 0
     StorageAmount: 0
     Percentage: 0
     OrePrice: 15000000
-    rarityEffectColor: {r: 0.1132058, g: 0.5377358, b: 0.109069064, a: 0}
-    Color: {r: 0.11372549, g: 0.5411765, b: 0.10980392, a: 1}
+    rarityEffectColor: {r: 0.92156863, g: 0.5686275, b: 0.854448, a: 0}
+    Color: {r: 0.92156863, g: 0.5686275, b: 0.85490197, a: 1}
   CommonOres: []
   UncommonOres: []
   RareOres: []

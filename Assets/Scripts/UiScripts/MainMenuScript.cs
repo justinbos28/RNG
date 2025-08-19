@@ -134,6 +134,11 @@ public class MainMenuScript : MonoBehaviour, IDataPersistence
             mainMenu.SetActive(false);
         }
     }
+
+    public void ExitSavefile()
+    {
+        mainMenu.SetActive(true);
+    }
     public void BackToMainMenu()
     {
         DataPersistence.SaveGame();
