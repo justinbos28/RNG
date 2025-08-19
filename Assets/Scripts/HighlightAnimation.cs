@@ -4,7 +4,6 @@ using UnityEngine.UI;
 public class HighlightAnimation : MonoBehaviour
 {
     public GameObject highlightPrefab;
-    public GameObject MainObjectPosition;
     public float duration = 0;
     public Image highlightImage;
 
@@ -14,7 +13,6 @@ public class HighlightAnimation : MonoBehaviour
     public void Start()
     {
         highlightImage = highlightPrefab.GetComponent<Image>();
-        highlightImage.transform.position = MainObjectPosition.transform.position;
     }
     public void Update()
     {
