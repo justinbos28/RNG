@@ -20,6 +20,7 @@ public class XPScript : MonoBehaviour, IDataPersistence
     public Text ShowXp;
     public List<WorldClass> Worlds = new List<WorldClass>();
 
+    [Header("References")]
     public RNGscript RNGscript;
     public Minerscript Minerscript;
     public MoneyLogic MoneyLogic;
@@ -28,8 +29,13 @@ public class XPScript : MonoBehaviour, IDataPersistence
     public DataPersistence DataPersistence;
     public IndexManager IndexManager;
     public CraftingRecipes CraftingRecipes;
+    public Uimanager Uimanager;
+    public ProgressionBar ProgressionBar;
+    public Errormessages Errormessages;
 
     public GameObject RebirthButton;
+    public GameObject TeleportMenu;
+
     public void LoadData(GameData data)
     {
         this.SavedRebirth = data.SavedRebirth;
@@ -39,6 +45,11 @@ public class XPScript : MonoBehaviour, IDataPersistence
         this.XPNeeded = data.XPNeeded;
         this.XPMultiplier = data.XPMultiplier;
         this.XPLuckMultiplier = data.XPLuckMultiplier;
+
+        // update ui of the progression bar when loaded in
+        ProgressionBar.UpdateXPNeeded(XPNeeded);
+        ProgressionBar.UpdateProgressionBar(XPCount);
+
     }
     public void SaveData(ref GameData data)
     {
@@ -50,29 +61,40 @@ public class XPScript : MonoBehaviour, IDataPersistence
         data.XPMultiplier = this.XPMultiplier;
         data.XPLuckMultiplier = this.XPLuckMultiplier;
     }
-    private void Update()
-    {
-        if (LevelCount < MaxLevel)
-        {
-            ShowXp.text = "level " + LevelCount + ": " + XPCount + " / " + XPNeeded.ToString("F0");
-        }
-        else
-        {
-            XPMultiplier = 0;
-            ShowXp.text = "level " + LevelCount + ": " + "Max";
-        }
-    }
     private void Start()
     {
         Rebirth = SavedRebirth;
 
         SelectWorld();
+        if (MaxLevel > LevelCount)
+        {
+            ShowXp.text = "level " + LevelCount + ": " + XPCount + " / " + XPNeeded.ToString("F0");
+            ProgressionBar.UpdateProgressionBar(XPCount);
+        }
+        else
+        {
+            XPMultiplier = 0;
+            ShowXp.text = "level " + LevelCount + ": " + "Max";
+            ProgressionBar.BarSetMax();
+        }
     }
     public void UpdateXP()
     {
+
         for (int i = 0; i < RNGscript.playerHand.Count; i++)
         {
             XPCount += RNGscript.playerHand[i].XP * XPMultiplier;
+            if (MaxLevel > LevelCount)
+            {
+                ShowXp.text = "level " + LevelCount + ": " + XPCount + " / " + XPNeeded.ToString("F0");
+                ProgressionBar.UpdateProgressionBar(XPCount);
+            }
+            else
+            {
+                XPMultiplier = 0;
+                ShowXp.text = "level " + LevelCount + ": " + "Max";
+                ProgressionBar.BarSetMax();
+            }
         }
         if (XPCount >= XPNeeded)
         {
@@ -86,6 +108,9 @@ public class XPScript : MonoBehaviour, IDataPersistence
         LevelCount++;
         ShowXp.text = "level " + LevelCount + ": " + XPCount + " / " + XPNeeded.ToString("F0");
         ApplyLevelBonuses();
+        ProgressionBar.UpdateXPNeeded(XPNeeded);
+
+        Errormessages.SetErrorMessageMain("Leveled up to level " + LevelCount);
     }
     private void ApplyLevelBonuses()
     {
@@ -127,6 +152,8 @@ public class XPScript : MonoBehaviour, IDataPersistence
                 }    
             }
         }
+        TeleportMenu.SetActive(false);
+        Uimanager.OpenPortal = false;
     }
 
 

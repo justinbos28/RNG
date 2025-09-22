@@ -9,6 +9,7 @@ public class Errormessages : MonoBehaviour
     public Text ErrorMessageMain;
     public float Timer;
     public bool timerActive = false;
+    public bool AnimationActive = false;
     public GameObject ErrorMessageMainObject;
 
     [Header("Error Message Machines")]
@@ -31,6 +32,7 @@ public class Errormessages : MonoBehaviour
             ErrorMessageMain.text = message;
             ErrorMessageMainObject.SetActive(true);
             MainErrorMessageStart();
+            AnimationActive = true;
         }
         else
         {
@@ -63,11 +65,21 @@ public class Errormessages : MonoBehaviour
 
     private void MainErrorMessageStart()
     {
-        ErrorMessageMainRectTransform.DOAnchorPosY(EndPositionY, Duration);
+        if (AnimationActive)
+        {
+            ErrorMessageMainRectTransform.position = new Vector2(ErrorMessageMainRectTransform.position.x, StartPositionY);
+            Timer = 0;
+            ErrorMessageMainRectTransform.DOAnchorPosY(EndPositionY, Duration);
+        }
+        else
+        {
+            ErrorMessageMainRectTransform.DOAnchorPosY(EndPositionY, Duration);
+        }
     }
 
     private async Task MainErrorMessageEnd()
     {
+
         await ErrorMessageMainRectTransform.DOAnchorPosY(StartPositionY, Duration).AsyncWaitForCompletion();
     }
 
@@ -90,6 +102,7 @@ public class Errormessages : MonoBehaviour
             TimerMachines = 0;
             await MachinesErrorMessageEnd();
             ErrorMessageMachinesObject.SetActive(false);
+            AnimationActive = false;
         }
         if (Timer > 5)
         {
@@ -97,6 +110,7 @@ public class Errormessages : MonoBehaviour
             Timer = 0;
             await MainErrorMessageEnd();
             ErrorMessageMainObject.SetActive(false);
+            AnimationActive = false;
         }
     }
 }
